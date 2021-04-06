@@ -3,12 +3,12 @@ package com.SPQ.clasesBasicas;
 public class Anuncio {
 	static String idAnuncio;
 
-	private String nombre;
-	private String descripcion;
-	private float precio;
-	private String foto;
-	private Categoria categoria;
-	private String usuario; //identificador del usuario que ha creado el anuncio
+	String nombre;
+	String descripcion;
+	float precio;
+	String foto;
+	Categoria categoria;
+	String usuario; //identificador del usuario que ha creado el anuncio
 	
 	public static String getIdAnuncio() {
 		return idAnuncio;

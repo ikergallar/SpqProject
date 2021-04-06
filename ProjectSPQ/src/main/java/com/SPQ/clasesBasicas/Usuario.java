@@ -4,16 +4,16 @@ public class Usuario {
 	
 	static String usuario;//identificador unico y estatico
 	
-	private String nombre;
-	private String apellido;
-	private String numero;
-	private String pass;
-	private String mail;
-	private String descripcion;
-	private String foto;
-	private Anuncio[] anuncios;
-	private String palabraRecuperacion;
-	private String preguntaRecuperacion;
+	String nombre;
+	String apellido;
+	String numero;
+	String pass;
+	String mail;
+	String descripcion;
+	String foto;
+	Anuncio[] anuncios;
+	String palabraRecuperacion;
+	String preguntaRecuperacion;
 	
 	
 	public static String getUsuario() {

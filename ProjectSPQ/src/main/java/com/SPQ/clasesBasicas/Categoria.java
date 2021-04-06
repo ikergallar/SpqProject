@@ -4,8 +4,9 @@ public class Categoria {
 	
 	static String idCategoria;
 	
-	private String nombre;
-	private String descripcion;
+	String nombre;
+	String descripcion;
+	
 	public static String getIdCategoria() {
 		return idCategoria;
 	}
