@@ -4,15 +4,17 @@ public class Servicio {
 
 	private String nombre;
 	private String descripcion;
+	private String foto;
 	private int ref; //Referencia con id único
 	private double precio;
 	private String categoria;
 	private String contacto;
 	
-	public Servicio(String nombre, String descripcion, int ref, double precio, String categoria, String contacto) {
+	public Servicio(String nombre, String descripcion, String foto, int ref, double precio, String categoria, String contacto) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
+		this.foto = foto;
 		this.ref = ref;
 		this.precio = precio;
 		this.categoria = categoria;
@@ -23,6 +25,7 @@ public class Servicio {
 		super();
 		this.nombre = "";
 		this.descripcion = "";
+		this.foto = "";
 		this.ref = 0;
 		this.precio = 0.0;
 		this.categoria = "";
@@ -43,6 +46,13 @@ public class Servicio {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public int getRef() {
@@ -79,7 +89,7 @@ public class Servicio {
 
 	@Override
 	public String toString() {
-		return "Servicio [nombre=" + nombre + ", descripcion=" + descripcion + ", ref=" + ref + ", precio=" + precio
+		return "Servicio [nombre=" + nombre + ", descripcion=" + descripcion + ", foto=" + foto + ", ref=" + ref + ", precio=" + precio
 				+ ", categoria=" + categoria + ", contacto=" + contacto + "]";
 	}
 	

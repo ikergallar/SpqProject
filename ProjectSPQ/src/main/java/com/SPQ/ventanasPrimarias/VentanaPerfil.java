@@ -17,12 +17,6 @@ import javax.swing.JTextField;
 
 public class VentanaPerfil extends JFrame{
 	
-		
-		private JPanel contentPane;
-		private int contC1 = 0;
-		private int contC2 = 0;
-		private int contC3 = 0;
-		private int contC4 = 0;
 
 		
 		private JTextField textField;
