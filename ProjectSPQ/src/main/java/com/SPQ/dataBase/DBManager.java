@@ -11,7 +11,7 @@ private Connection conn = null;
 
 	//CREAR CONEXION CON BD
 
-		public void connect() throws DBException { 
+		public void connect() throws DBException {
 			try {
 				Class.forName("org.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection("jdbc:mysql:usuarios");
