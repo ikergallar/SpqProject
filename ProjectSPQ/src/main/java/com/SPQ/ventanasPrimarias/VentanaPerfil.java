@@ -147,6 +147,10 @@ public class VentanaPerfil extends JFrame{
 			btnTarjeta_1.setBounds(26, 394, 126, 23);
 			getContentPane().add(btnTarjeta_1);
 			
+			JButton btnNewButton = new JButton("Guardar");
+			btnNewButton.setBounds(284, 394, 89, 23);
+			getContentPane().add(btnNewButton);
+			
 			JButton btnGuardarCambios = new JButton("Guardar cambios\r\n");
 			btnGuardarCambios.addMouseListener(new MouseAdapter() {
 			
