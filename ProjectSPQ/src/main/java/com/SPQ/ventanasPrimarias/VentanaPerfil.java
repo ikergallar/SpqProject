@@ -98,6 +98,59 @@ public class VentanaPerfil extends JFrame{
 			getContentPane().add(textPais);
 			
 
+			JLabel lblNewLabel_7 = new JLabel("Detalles de la cuenta");
+			lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNewLabel_7.setBounds(26, 220, 157, 14);
+			getContentPane().add(lblNewLabel_7);
+			
+			JLabel lblNewLabel_8 = new JLabel("E-Mail");
+			lblNewLabel_8.setBounds(36, 245, 76, 14);
+			getContentPane().add(lblNewLabel_8);
+			
+			JLabel lblNewLabel_8_1 = new JLabel("Contrase\u00F1a");
+			lblNewLabel_8_1.setBounds(26, 270, 76, 14);
+			getContentPane().add(lblNewLabel_8_1);
+			
+			textTelefono = new JTextField();
+			textTelefono.setColumns(10);
+			textTelefono.setBounds(172, 242, 201, 20);
+			getContentPane().add(textTelefono);
+			
+			textMisDatos = new JTextField();
+			textMisDatos.setColumns(10);
+			textMisDatos.setBounds(172, 267, 201, 20);
+			getContentPane().add(textMisDatos);
+			
+			JLabel lblNewLabel_9 = new JLabel("Forma de pago");
+			lblNewLabel_9.setBounds(28, 316, 138, 14);
+			getContentPane().add(lblNewLabel_9);
+			
+			JButton btnTarjeta = new JButton("TARJETA");
+			btnTarjeta.addMouseListener(new MouseAdapter() {
+
+			});
+			btnTarjeta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			btnTarjeta.setBounds(284, 312, 89, 23);
+			getContentPane().add(btnTarjeta);
+			
+			JButton btnTarjeta_1 = new JButton("Atr\u00E1s");
+			btnTarjeta_1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+				}
+			});
+			btnTarjeta_1.addMouseListener(new MouseAdapter() {
+				
+			});
+			btnTarjeta_1.setBounds(26, 394, 126, 23);
+			getContentPane().add(btnTarjeta_1);
+			
+			JButton btnGuardarCambios = new JButton("Guardar cambios\r\n");
+			btnGuardarCambios.addMouseListener(new MouseAdapter() {
+			
+			});
 		
 			
 			
