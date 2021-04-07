@@ -24,8 +24,11 @@ public class VentanaRegistro extends JDialog {
 
 	private final JPanel contentPanel = new JPanel();
 	private JTextField tfCorreo;
-	JRadioButton rdbtnFacebook;
-	JLabel lblError;
+	private JTextField textField;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
 
 	/**
 	 * Launch the application.
@@ -47,7 +50,7 @@ public class VentanaRegistro extends JDialog {
 		setBackground(Color.WHITE);
 		getContentPane().setBackground(Color.WHITE);
 		setTitle("Registro");
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 725, 555);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBackground(Color.WHITE);
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -65,37 +68,56 @@ public class VentanaRegistro extends JDialog {
 			tfCorreo.setColumns(30);
 		}
 		{
-			JLabel lblSisAuto = new JLabel("Sistema de autorizaci\u00F3n:");
+			JLabel lblSisAuto = new JLabel("Nombre de usuario:");
 			lblSisAuto.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
 			contentPanel.add(lblSisAuto);
 		}
 		{
-			JPanel panel = new JPanel();
-			panel.setBackground(Color.WHITE);
-			rdbtnFacebook = new JRadioButton("Facebook");
-			rdbtnFacebook.setBackground(Color.WHITE);
-			contentPanel.add(panel);
-			{
-
-				rdbtnFacebook.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
-				panel.add(rdbtnFacebook);
-			}
+			textField = new JTextField();
+			contentPanel.add(textField);
+			textField.setColumns(10);
 		}
 		{
-			JLabel label = new JLabel("");
-			contentPanel.add(label);
+			JLabel lblNewLabel = new JLabel("Contraseña:");
+			lblNewLabel.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+			contentPanel.add(lblNewLabel);
 		}
 		{
-			lblError = new JLabel("*debes rellenar todos los campos");
-			lblError.setVisible(false);
-			lblError.setHorizontalAlignment(SwingConstants.RIGHT);
-			lblError.setForeground(Color.RED);
-			lblError.setFont(new Font("Malgun Gothic", Font.BOLD, 10));
-			contentPanel.add(lblError);
+			textField_1 = new JTextField();
+			contentPanel.add(textField_1);
+			textField_1.setColumns(10);
 		}
 		{
-			JLabel label = new JLabel("");
-			contentPanel.add(label);
+			JLabel lblNewLabel_1 = new JLabel("Confirmar contraseña:");
+			lblNewLabel_1.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+			contentPanel.add(lblNewLabel_1);
+		}
+		{
+			textField_2 = new JTextField();
+			contentPanel.add(textField_2);
+			textField_2.setColumns(10);
+		}
+		{
+			JLabel lblNewLabel_2 = new JLabel("Nombre:");
+			lblNewLabel_2.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+			contentPanel.add(lblNewLabel_2);
+		}
+		{
+			textField_3 = new JTextField();
+			contentPanel.add(textField_3);
+			textField_3.setColumns(10);
+		}
+		{
+			JLabel lblNewLabel_3 = new JLabel("Apellido:");
+			lblNewLabel_3.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+			contentPanel.add(lblNewLabel_3);
+		}
+		{
+			textField_4 = new JTextField();
+			contentPanel.add(textField_4);
+			textField_4.setColumns(10);
+		}
+		{
 		}
 		{
 			JPanel buttonPane = new JPanel();
