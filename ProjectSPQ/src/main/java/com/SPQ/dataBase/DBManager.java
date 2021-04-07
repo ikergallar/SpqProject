@@ -17,8 +17,8 @@ private Connection conn = null;
 
 		public void connect() throws DBException { 
 			try {
-				Class.forName("com.mysql.JDBC.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql:data/database");
+				Class.forName("com.mysql.cj.jdbc.Driver");
+				conn = DriverManager.getConnection("jdbc:mysql://localhost/database","root","");
 			} catch (ClassNotFoundException e) {
 				throw new DBException("Error cargando el driver de la BD", e);
 			} catch (SQLException e) {
@@ -47,7 +47,7 @@ private Connection conn = null;
 			
 			try (Statement s= conn.createStatement()) {
 				//Añadimos en la base de datos los campos de infomacion introducidos en la ventana(recibido como objeto de la clase usuario)
-				s.executeUpdate("INSERT INTO usuario (username, email, contrasenya, nombre, apellido) VALUES ('" + nombreUsuario + "', '"+ email + "', '" + contrasena + "', '" + nombre + "', '"+ apellido +"')");
+				s.executeUpdate("INSERT INTO usuarios (username, email, contrasenya, nombre, apellido) VALUES ('" + nombreUsuario + "', '"+ email + "', '" + contrasena + "', '" + nombre + "', '"+ apellido +"')");
 			} catch (SQLException e) {
 				throw new DBException("No ha sido posible ejecutar la query");
 			}

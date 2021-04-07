@@ -75,7 +75,7 @@ public class VentanaRegistro extends JDialog {
 	public VentanaRegistro() {
 		
 		
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 588, 401);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -137,17 +137,6 @@ public class VentanaRegistro extends JDialog {
 		texto_contrasena.setBounds(123, 223, 144, 19);
 		contentPane.add(texto_contrasena);
 		
-		JLabel labelDireccion = new JLabel("Numero de contacto");
-		labelDireccion.setForeground(Color.WHITE);
-		labelDireccion.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		labelDireccion.setBounds(31, 265, 136, 17);
-		contentPane.add(labelDireccion);
-		
-		textNumero = new JTextField();
-		textNumero.setColumns(10);
-		textNumero.setBounds(161, 265, 169, 19);
-		contentPane.add(textNumero);
-		
 		JLabel labelUsuario = new JLabel("Usuario");
 		labelUsuario.setForeground(Color.WHITE);
 		labelUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -159,34 +148,6 @@ public class VentanaRegistro extends JDialog {
 		texto_usuario.setBounds(334, 97, 118, 19);
 		contentPane.add(texto_usuario);
 		
-		JLabel labelSexo = new JLabel("Sexo");
-		labelSexo.setForeground(Color.WHITE);
-		labelSexo.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		labelSexo.setBounds(260, 137, 70, 17);
-		contentPane.add(labelSexo);
-		
-		JRadioButton rdbtnMasculino = new JRadioButton("Masculino");
-		rdbtnMasculino.setBounds(327, 136, 98, 21);
-		contentPane.add(rdbtnMasculino);
-		
-		JRadioButton rdbtnFemenino = new JRadioButton("Femenino");
-		rdbtnFemenino.setBounds(427, 136, 82, 21);
-		contentPane.add(rdbtnFemenino);
-		
-		sexo.add(rdbtnFemenino);
-		sexo.add(rdbtnMasculino);
-		
-		
-		JLabel labelD = new JLabel("Direcci\u00F3n de contacto");
-		labelD.setForeground(Color.WHITE);
-		labelD.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		labelD.setBounds(31, 304, 136, 17);
-		contentPane.add(labelD);
-		
-		texto_direccion = new JTextField();
-		texto_direccion.setColumns(10);
-		texto_direccion.setBounds(161, 304, 169, 19);
-		contentPane.add(texto_direccion);
 		
 		
 		JButton btnRegistrar = new JButton("Finalizar registro");
