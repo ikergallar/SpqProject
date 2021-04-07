@@ -48,9 +48,7 @@ private Connection conn = null;
 			try (Statement s= conn.createStatement()) {
 				//Añadimos en la base de datos los campos de infomacion introducidos en la ventana(recibido como objeto de la clase usuario)
 				s.executeUpdate("INSERT INTO usuario (username, email, contrasenya, nombre, apellido) VALUES ('" + nombreUsuario + "', '"+ email + "', '" + contrasena + "', '" + nombre + "', '"+ apellido +"')");
-				LOG.log(Level.INFO,"Usuario registrado");
 			} catch (SQLException e) {
-				LOG.log(Level.WARNING,e.getMessage());
 				throw new DBException("No ha sido posible ejecutar la query");
 			}
 			
