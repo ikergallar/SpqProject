@@ -13,8 +13,8 @@ private Connection conn = null;
 
 		public void connect() throws DBException { 
 			try {
-				Class.forName("org.sqlite.JDBC");
-				conn = DriverManager.getConnection("jdbc:sqlite:data/BD2");
+				Class.forName("com.mysql.JDBC.Driver");
+				conn = DriverManager.getConnection("jdbc:mysql:data/usuarios");
 			} catch (ClassNotFoundException e) {
 				throw new DBException("Error cargando el driver de la BD", e);
 			} catch (SQLException e) {
