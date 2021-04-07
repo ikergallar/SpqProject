@@ -3,8 +3,12 @@ package com.SPQ.dataBase;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
 
 import com.SPQ.dataBase.DBException;
+
+import com.SPQ.clasesBasicas.*;
 
 public class DBManager {
 private Connection conn = null; 
@@ -29,5 +33,26 @@ private Connection conn = null;
 			} catch (SQLException e) {
 				throw new DBException("Error cerrando la conexiÃ³n con la BD", e);
 			}
+		}
+		
+		//REGISTRAR NUEVO USUARIO
+		public void registrarUsuario(Usuario usuario) throws DBException{
+			
+			String nombre = usuario.getNombre();
+			String apellido = usuario.getApellido();
+			String nombreUsuario = usuario.getNombreUsuario();
+			String contrasena = usuario.getPass();
+			String email= usuario.getMail();
+			
+			
+			try (Statement s= conn.createStatement()) {
+				//Añadimos en la base de datos los campos de infomacion introducidos en la ventana(recibido como objeto de la clase usuario)
+				s.executeUpdate("INSERT INTO usuario (username, email, contrasenya, nombre, apellido) VALUES ('" + nombreUsuario + "', '"+ email + "', '" + contrasena + "', '" + nombre + "', '"+ apellido +"')");
+				LOG.log(Level.INFO,"Usuario registrado");
+			} catch (SQLException e) {
+				LOG.log(Level.WARNING,e.getMessage());
+				throw new DBException("No ha sido posible ejecutar la query");
+			}
+			
 		}
 }

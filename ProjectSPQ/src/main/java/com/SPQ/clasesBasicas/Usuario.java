@@ -6,6 +6,7 @@ public class Usuario {
 	
 	String nombre;
 	String apellido;
+	String nombreUsuario;
 	String pass;
 	String mail;
 	String telefono;
@@ -22,6 +23,12 @@ public class Usuario {
 	}
 	public static void setUsuario(int id) {
 		Usuario.id = id;
+	}
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
 	public String getNombre() {
 		return nombre;
