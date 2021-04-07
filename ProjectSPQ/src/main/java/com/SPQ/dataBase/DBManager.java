@@ -2,9 +2,13 @@ package com.SPQ.dataBase;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
+
+import javax.swing.JOptionPane;
 
 import com.SPQ.dataBase.DBException;
 
@@ -53,4 +57,31 @@ private Connection conn = null;
 			}
 			
 		}
+		
+		//LOGIN
+		//LOGIN
+	    public boolean loginUsuario (String nomUsuario, String contrasena) throws DBException{
+	        boolean acceso = false;
+	        try (PreparedStatement stmt = conn.prepareStatement("SELECT username,contrasenya FROM usuarios WHERE username = ?  AND contrasenya = ?;")) {
+	                stmt.setString(1, nomUsuario);
+	                stmt.setString(2, contrasena);
+
+	                ResultSet rs = stmt.executeQuery();
+
+	                if (rs.next()) {
+	                    acceso = true;
+	                }else {
+	                    acceso = false;
+	                }
+
+	            } catch (SQLException e) {
+	                throw new DBException("Error obteniendo datos de la query", e);
+	            }
+
+
+	        return acceso;
+	    }
+
+		
+		
 }

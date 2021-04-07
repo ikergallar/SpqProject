@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
+
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,6 +18,11 @@ import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
+
+import com.SPQ.clasesBasicas.Usuario;
+import com.SPQ.dataBase.DBException;
+import com.SPQ.dataBase.DBManager;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -24,7 +31,8 @@ import java.awt.event.MouseEvent;
 public class VentanaLogin {
 
 	private JFrame frmLogin;
-	private JTextField textFieldCorreo;
+	private JTextField textFieldUsuario;
+	private JTextField textFieldContrasena;
 
 	/**
 	 * Launch the application.
@@ -62,13 +70,13 @@ public class VentanaLogin {
 
 		JPanel panelLogo = new JPanel();
 		panelLogo.setBackground(Color.WHITE);
-		panelLogo.setBounds(0, 0, 500, 500);
+		panelLogo.setBounds(0, 0, 500, 355);
 		frmLogin.getContentPane().add(panelLogo);
 		panelLogo.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JLabel labelLogo = new JLabel("");
-		labelLogo.setIcon(new ImageIcon(getClass().getResource("/archivos/EasyBookingLogo2.gif")));
-		panelLogo.add(labelLogo);
+		//JLabel labelLogo = new JLabel("");
+		//labelLogo.setIcon(new ImageIcon(getClass().getResource("/archivos/EasyBookingLogo2.gif")));
+		//panelLogo.add(labelLogo);
 
 		JPanel panelLogin = new JPanel();
 		panelLogin.setBackground(Color.WHITE);
@@ -88,11 +96,11 @@ public class VentanaLogin {
 		FlowLayout fl_panelCorreo = new FlowLayout(FlowLayout.CENTER, 5, 5);
 		panelCorreo.setLayout(fl_panelCorreo);
 
-		textFieldCorreo = new JTextField();
-		textFieldCorreo.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldCorreo.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
-		panelCorreo.add(textFieldCorreo);
-		textFieldCorreo.setColumns(30);
+		textFieldUsuario = new JTextField();
+		textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
+		panelCorreo.add(textFieldUsuario);
+		textFieldUsuario.setColumns(30);
 
 		final JLabel labelRegistro = new JLabel("\u00BFEres nuevo? Reg\u00EDstrate Aqu\u00ED");
 		labelRegistro.addMouseListener(new MouseAdapter() {
@@ -120,7 +128,41 @@ public class VentanaLogin {
 		JButton botonLogin = new JButton("Login");
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String correo = "";
+				
+				String nomUsuario = textFieldUsuario.getText();
+                String contrasena = textFieldContrasena.getText();
+                DBManager conexion = new DBManager();
+
+                try {
+                    conexion.connect();
+
+                    if (conexion.loginUsuario(nomUsuario,contrasena) == true) {
+
+                       System.out.println("animo");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
+                        textFieldUsuario.setText("");
+                        textFieldContrasena.setText("");
+                    }
+
+                    conexion.disconnect();
+
+                } catch (DBException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			/*	String correo = "";
 				correo = textFieldCorreo.getText();
 				if (correo.length() >= 10) {
 					System.out.println("Comprobando login para : " + correo);
@@ -133,13 +175,22 @@ public class VentanaLogin {
 				} else {
 					JOptionPane.showMessageDialog(null, "Debes rellenar el campo del correo.", "", 0);
 				}
-
+*/
 			}
 		});
 		botonLogin.setForeground(Color.WHITE);
 		botonLogin.setBackground(Color.BLACK);
 		botonLogin.setFont(new Font("Malgun Gothic", Font.BOLD, 16));
 		panelLogin.add(botonLogin);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setBounds(10, 366, 46, 14);
+		frmLogin.getContentPane().add(lblNewLabel);
+		
+		textFieldContrasena = new JTextField();
+		textFieldContrasena.setBounds(22, 403, 86, 20);
+		frmLogin.getContentPane().add(textFieldContrasena);
+		textFieldContrasena.setColumns(10);
 
 	}
 }
