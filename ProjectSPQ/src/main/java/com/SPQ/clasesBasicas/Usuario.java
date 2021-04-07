@@ -2,13 +2,14 @@ package com.SPQ.clasesBasicas;
 
 public class Usuario {
 	
-	static String usuario;//identificador unico y estatico
+	static int id;//identificador unico y estatico
 	
 	String nombre;
 	String apellido;
-	String numero;
 	String pass;
 	String mail;
+	String telefono;
+	String direccion;
 	String descripcion;
 	String foto;
 	Anuncio[] anuncios;
@@ -16,11 +17,11 @@ public class Usuario {
 	String preguntaRecuperacion;
 	
 	
-	public static String getUsuario() {
-		return usuario;
+	public static int getUsuario() {
+		return id;
 	}
-	public static void setUsuario(String usuario) {
-		Usuario.usuario = usuario;
+	public static void setUsuario(int id) {
+		Usuario.id = id;
 	}
 	public String getNombre() {
 		return nombre;
@@ -34,11 +35,17 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public String getNumero() {
-		return numero;
+	public String gettelefono() {
+		return telefono;
 	}
-	public void setNumero(String numero) {
-		this.numero = numero;
+	public void settelefono(String telefono) {
+		this.telefono = telefono;
+	}
+	public String getdireccion() {
+		return direccion;
+	}
+	public void setdireccion(String direccion) {
+		this.direccion = direccion;
 	}
 	public String getPass() {
 		return pass;
@@ -88,7 +95,7 @@ public class Usuario {
 	}
 	//Todos los datos de un usuario
 	public String printAllData() {
-		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", numero=" + numero + ", pass=" + pass
+		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", pass=" + pass
 				+ ", mail=" + mail + ", descripcion=" + descripcion + ", foto=" + foto + "]";
 	}
 	

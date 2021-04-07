@@ -14,7 +14,7 @@ private Connection conn = null;
 		public void connect() throws DBException { 
 			try {
 				Class.forName("com.mysql.JDBC.Driver");
-				conn = DriverManager.getConnection("jdbc:mysql:data/usuarios");
+				conn = DriverManager.getConnection("jdbc:mysql:data/database");
 			} catch (ClassNotFoundException e) {
 				throw new DBException("Error cargando el driver de la BD", e);
 			} catch (SQLException e) {
