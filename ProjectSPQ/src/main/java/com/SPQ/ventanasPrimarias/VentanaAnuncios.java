@@ -14,7 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 
 
-public class VentanaServicios extends JFrame{
+public class VentanaAnuncios extends JFrame{
 	
 	private JPanel pNorte,pCentral;
 	
@@ -22,7 +22,7 @@ public class VentanaServicios extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaServicios frame = new VentanaServicios();
+					VentanaAnuncios frame = new VentanaAnuncios();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -31,7 +31,7 @@ public class VentanaServicios extends JFrame{
 		});
 	}
 	
-	public VentanaServicios() {
+	public VentanaAnuncios() {
 		
 		pNorte = new JPanel();
 		pNorte.setBackground(Color.WHITE);

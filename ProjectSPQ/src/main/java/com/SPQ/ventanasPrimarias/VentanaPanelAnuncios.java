@@ -7,9 +7,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class VentanaPanelServicios extends JPanel{
+public class VentanaPanelAnuncios extends JPanel{
 	
-	public VentanaPanelServicios(String textoNombre, String textoFoto, String textoDescripción, int ref, double textoPrecio, String textoCategoria, String textoContacto) {
+	public VentanaPanelAnuncios(String textoNombre, String textoFoto, String textoDescripción, int ref, double textoPrecio, String textoCategoria, String textoContacto) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 
