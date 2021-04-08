@@ -33,7 +33,7 @@ public class VentanaPerfil extends JFrame{
 		
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 440, 522);
-			getContentPane().setBackground(Color.WHITE);
+			getContentPane().setBackground(Color.LIGHT_GRAY);
 			getContentPane().setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("MI PERFIL");
