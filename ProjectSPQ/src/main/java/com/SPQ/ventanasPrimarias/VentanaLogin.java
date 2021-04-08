@@ -193,4 +193,14 @@ public class VentanaLogin {
 		textFieldContrasena.setColumns(10);
 
 	}
+
+	public void setVisible(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static int getUsuarioId() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

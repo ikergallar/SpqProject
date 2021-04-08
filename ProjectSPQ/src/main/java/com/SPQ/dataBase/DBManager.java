@@ -1,6 +1,7 @@
 package com.SPQ.dataBase;
 
 import java.sql.Connection;
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,6 +10,7 @@ import java.sql.Statement;
 
 
 import com.SPQ.clasesBasicas.*;
+
 
 public class DBManager {
 private Connection conn = null; 
@@ -89,6 +91,33 @@ private Connection conn = null;
 				
 			}catch (SQLException e) {
 				throw new DBException("No ha sido posible ejecutar la query");
+			}
+		}
+		
+		//BUSCAR USUARIO POR LA ID
+		public Usuario buscarUsuarioId(int id) throws DBException {
+			try (PreparedStatement stmt = conn.prepareStatement("SELECT id, nomUsuario, contrasenya, correo, nombre, apellidos, ubicacion, direccionIP FROM usuario WHERE id = ?")) {
+				stmt.setInt(1, id);
+				
+				ResultSet rs = stmt.executeQuery();
+
+				if (rs.next()) {
+					Usuario usuario = new Usuario();
+					usuario.setUsuario(rs.getInt("id"));
+					usuario.setNombre(rs.getString("nombre"));
+					usuario.setApellido(rs.getString("apellido"));
+					usuario.setNombreUsuario(rs.getString("nomUsuario"));
+					usuario.setPass(rs.getString("contraseña"));
+					usuario.setMail(rs.getString("correo"));
+					usuario.setdireccion(rs.getString("direccion"));
+					usuario.setDescripcion(rs.getString("descripcion"));
+					return usuario;
+					
+				} else {
+					return new Usuario();
+				}
+			} catch (SQLException e) {
+				throw new DBException("Error obteniendo el usuario con id " + id, e);
 			}
 		}
 		
