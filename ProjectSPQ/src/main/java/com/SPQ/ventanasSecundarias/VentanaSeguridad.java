@@ -11,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
+import com.SPQ.clasesBasicas.Usuario;
+import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 import com.SPQ.ventanasPrimarias.VentanaLogin;
 
@@ -27,7 +29,7 @@ public class VentanaSeguridad extends JFrame{
 		
 			setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 			setBounds(100, 100, 454, 555);
-			getContentPane().setBackground(Color.PINK);
+			getContentPane().setBackground(Color.LIGHT_GRAY);
 			getContentPane().setLayout(null);
 			
 			JLabel lblCambiarContrasea = new JLabel("Cambiar contrase\u00F1a");
@@ -86,8 +88,8 @@ public class VentanaSeguridad extends JFrame{
 						dbm.connect();
 					
 						Usuario user = dbm.buscarUsuarioId(a);
-						if (user.getContrasenya().equals(passwordField.getText()) && passwordField_1.getText().equals(passwordField_2.getText())) {
-							user.setContrasenya(passwordField_1.getText());
+						if (user.getPass().equals(passwordField.getText()) && passwordField_1.getText().equals(passwordField_2.getText())) {
+							user.setPass(passwordField_1.getText());
 							dbm.cambiarContrsenya(user);
 							JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
 							passwordField.setText("");
