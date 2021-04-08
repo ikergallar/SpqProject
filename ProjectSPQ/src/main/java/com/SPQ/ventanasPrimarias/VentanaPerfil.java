@@ -16,8 +16,6 @@ import javax.swing.JTextField;
 
 
 public class VentanaPerfil extends JFrame{
-	
-
 		
 		private JTextField textField;
 		private JTextField textNombre;
