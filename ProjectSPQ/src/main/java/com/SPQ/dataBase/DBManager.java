@@ -6,11 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.logging.Level;
 
-import javax.swing.JOptionPane;
-
-import com.SPQ.dataBase.DBException;
 
 import com.SPQ.clasesBasicas.*;
 
@@ -58,7 +54,7 @@ private Connection conn = null;
 			
 		}
 		
-		//LOGIN
+	
 		//LOGIN
 	    public boolean loginUsuario (String nomUsuario, String contrasena) throws DBException{
 	        boolean acceso = false;
@@ -81,6 +77,21 @@ private Connection conn = null;
 
 	        return acceso;
 	    }
+	    
+	    
+		//CAMBIAR CONTRASENYA 
+	    
+		public void cambiarContrsenya (Usuario user) throws DBException{
+			try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarioS SET contrasenya= ? WHERE username ='"+ user.getNombreUsuario() + "'")){
+				stmt.setString(1, user.getPass());
+				stmt.executeUpdate();
+				
+				
+			}catch (SQLException e) {
+				throw new DBException("No ha sido posible ejecutar la query");
+			}
+		}
+		
 
 		
 		
