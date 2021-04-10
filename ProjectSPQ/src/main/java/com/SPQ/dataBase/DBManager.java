@@ -84,7 +84,7 @@ private Connection conn = null;
 		//CAMBIAR CONTRASENYA 
 	    
 		public void cambiarContrsenya (Usuario user) throws DBException{
-			try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarioS SET contrasenya= ? WHERE username ='"+ user.getNombreUsuario() + "'")){
+			try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarios SET contrasenya= ? WHERE username ='"+ user.getNombreUsuario() + "'")){
 				stmt.setString(1, user.getPass());
 				stmt.executeUpdate();
 				
@@ -96,7 +96,7 @@ private Connection conn = null;
 		
 		//BUSCAR USUARIO POR LA ID
 		public Usuario buscarUsuarioId(int id) throws DBException {
-			try (PreparedStatement stmt = conn.prepareStatement("SELECT id, nomUsuario, contrasenya, correo, nombre, apellidos, ubicacion, direccionIP FROM usuario WHERE id = ?")) {
+			try (PreparedStatement stmt = conn.prepareStatement("SELECT id, nomUsuario, contrasenya, correo, nombre, apellidos, ubicacion, direccionIP FROM usuarios WHERE id = ?")) {
 				stmt.setInt(1, id);
 				
 				ResultSet rs = stmt.executeQuery();
@@ -122,7 +122,7 @@ private Connection conn = null;
 		}
 		
 		public Usuario seleccionarDatos(String nombreUsuario) throws DBException {
-			try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM usuario WHERE username ='"+ nombreUsuario + "'")) {
+			try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM usuarios WHERE username ='"+ nombreUsuario + "'")) {
 				
 				ResultSet rs = stmt.executeQuery();
 

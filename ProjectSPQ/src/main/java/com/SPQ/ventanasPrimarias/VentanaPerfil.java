@@ -48,7 +48,6 @@ public class VentanaPerfil extends JFrame{
 					while((linea = br.readLine()) != null) {
 						nombreUsuario = linea;
 					}
-					System.out.println(nombreUsuario);
 					br.close();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
