@@ -135,8 +135,7 @@ public class VentanaLogin {
                     conexion.connect();
 
                     if (conexion.loginUsuario(nomUsuario,contrasena) == true) {
-                    	VentanaPerfil perfil = new VentanaPerfil();
-                    	perfil.setVisible(true);
+                    	
                     	File archivo;
         				
         				FileWriter escribir;
@@ -154,7 +153,6 @@ public class VentanaLogin {
         					try { 
         						escribir = new FileWriter(archivo,true);
         						linea = new PrintWriter(escribir);
-        						
         						linea.println(nomUsuario);
         						linea.close();
         						escribir.close();
@@ -166,6 +164,8 @@ public class VentanaLogin {
         						e1.printStackTrace();
         					}
         				}
+        				VentanaPerfil perfil = new VentanaPerfil();
+                    	perfil.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
                         textFieldUsuario.setText("");
