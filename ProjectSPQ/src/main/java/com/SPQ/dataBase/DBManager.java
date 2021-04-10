@@ -132,8 +132,8 @@ private Connection conn = null;
 				while(rs.next()) {
 					usuario.setNombre(rs.getString("nombre"));
 					usuario.setApellido(rs.getString("apellido"));
-					usuario.settelefono("telefono");
-					usuario.setdireccion("direccion");
+					usuario.settelefono(rs.getString("telefono"));
+					usuario.setdireccion(rs.getString("direccion"));
 					usuario.setNombreUsuario(rs.getString("username"));
 					usuario.setPass(rs.getString("contrasenya"));
 					usuario.setMail(rs.getString("email"));
