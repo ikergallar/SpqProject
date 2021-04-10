@@ -170,23 +170,25 @@ public class VentanaPerfil extends JFrame{
 			btnTarjeta_1.setBounds(26, 376, 126, 23);
 			getContentPane().add(btnTarjeta_1);
 			
-			usuario = new Usuario();
-			usuario.setNombre(textNombre.getText());
-			usuario.setApellido(textApellido.getText());
-			usuario.setdireccion(textDireccion.getText());
-			usuario.settelefono(textTel.getText());
-			System.out.println(usuario.getNombre());
-			System.out.println(usuario.getApellido());
-			System.out.println(usuario.getdireccion());
-			System.out.println(usuario.gettelefono());
+			
+		
 			JButton btnNewButton = new JButton("Guardar");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DBManager con = new DBManager();
 					
 					try {
+						usuario = new Usuario();
+						usuario.setNombre(textNombre.getText());
+						usuario.setApellido(textApellido.getText());
+						usuario.setdireccion(textDireccion.getText());
+						usuario.settelefono(textTel.getText());
 						con.connect();
 						con.cambiarDatos(usuario);
+						System.out.println(usuario.getNombre());
+						System.out.println(usuario.getApellido());
+						System.out.println(usuario.getdireccion());
+						System.out.println(usuario.gettelefono());
 						con.disconnect();
 					} catch (DBException e) {
 						// TODO Auto-generated catch block

@@ -222,3 +222,35 @@
   <message>Inicio Registro Sat Apr 10 12:36:32 CEST 2021</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T10:40:49.893857900Z</date>
+  <millis>1618051249893</millis>
+  <nanos>857900</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 12:40:49 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T10:41:04.712097400Z</date>
+  <millis>1618051264712</millis>
+  <nanos>97400</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>18</thread>
+  <message>Cuenta creada correctamente Sat Apr 10 12:41:04 CEST 2021</message>
+</record>
+</log>
