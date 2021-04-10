@@ -142,3 +142,83 @@
   <message>Las contrasenyas no coinciden Sat Apr 10 11:08:02 CEST 2021</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T10:32:30.192180300Z</date>
+  <millis>1618050750192</millis>
+  <nanos>180300</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 12:32:30 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T10:32:41.979299300Z</date>
+  <millis>1618050761979</millis>
+  <nanos>299300</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Las contrasenyas no coinciden Sat Apr 10 12:32:41 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T10:34:17.483586200Z</date>
+  <millis>1618050857483</millis>
+  <nanos>586200</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 12:34:17 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T10:34:39.516798500Z</date>
+  <millis>1618050879516</millis>
+  <nanos>798500</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Direccion de correo no valida Sat Apr 10 12:34:39 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T10:36:32.214790600Z</date>
+  <millis>1618050992214</millis>
+  <nanos>790600</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 12:36:32 CEST 2021</message>
+</record>
+</log>

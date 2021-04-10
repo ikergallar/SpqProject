@@ -173,6 +173,7 @@ public class VentanaRegistro extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				String nombreUsuario;
 				String contrasenya;
+				String confPass;
 				String email;
 				String nombre;
 				String apellido;
@@ -180,6 +181,7 @@ public class VentanaRegistro extends JDialog {
 				
 				nombreUsuario = texto_usuario.getText();
 				contrasenya = String.valueOf(texto_contrasena.getPassword());
+				confPass = String.valueOf(texto_confPass.getPassword());
 				email = texto_email.getText();
 				nombre = textoNombre.getText();
 				apellido = textoApellido.getText();
@@ -190,10 +192,10 @@ public class VentanaRegistro extends JDialog {
 					
 				}else {
 					
-					if (email.contains("@") && email.contains(".")) {
-						
-						if(texto_contrasena.equals(texto_confPass)) {
-				
+					if(contrasenya.equals(confPass)) {
+					
+					    if (email.contains("@") && email.contains(".")) {
+										
 						    Usuario usuario = new Usuario();
 							usuario.setNombreUsuario(nombreUsuario);
 							usuario.setPass(contrasenya);
@@ -222,13 +224,13 @@ public class VentanaRegistro extends JDialog {
 							}
 				
 					     }else {
-						     JOptionPane.showMessageDialog(null, "Las contrasenyas no coinciden", "Error", 0);
-						     LogController.log ( Level.WARNING, "Las contrasenyas no coinciden " + (new Date()),null);
-						
+					    	 JOptionPane.showMessageDialog(null, "Direccion de correo no valida", "Error", 0);
+							 LogController.log ( Level.WARNING, "Direccion de correo no valida " + (new Date()),null);
+						    
 					     }
 					  }else {
-						  JOptionPane.showMessageDialog(null, "Direccion de correo no valida", "Error", 0);
-						  LogController.log ( Level.WARNING, "Direccion de correo no valida " + (new Date()),null);
+						  JOptionPane.showMessageDialog(null, "Las contrasenyas no coinciden", "Error", 0);
+						  LogController.log ( Level.WARNING, "Las contrasenyas no coinciden " + (new Date()),null);
 							
 					  }
 				}
