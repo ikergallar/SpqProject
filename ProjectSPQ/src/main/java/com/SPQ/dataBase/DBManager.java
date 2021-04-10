@@ -2,12 +2,13 @@ package com.SPQ.dataBase;
 
 import java.sql.Connection;
 
+
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
+import java.util.ArrayList;
 
 import com.SPQ.clasesBasicas.*;
 
@@ -122,19 +123,21 @@ private Connection conn = null;
 		}
 		
 		public Usuario seleccionarDatos(String nombreUsuario) throws DBException {
-			try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM usuarios WHERE username ='"+ nombreUsuario + "'")) {
-				
-				ResultSet rs = stmt.executeQuery();
+			String sentSQL = "SELECT * FROM usuarios WHERE username ='"+ nombreUsuario + "';";
+			try{
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sentSQL);
 
 				Usuario usuario = new Usuario();
-				usuario.setNombre(rs.getString("nombre"));
-				usuario.setApellido(rs.getString("apellido"));
-				usuario.setNombreUsuario(rs.getString("nomUsuario"));
-				usuario.setPass(rs.getString("contraseña"));
-				usuario.setMail(rs.getString("correo"));
-				usuario.setdireccion(rs.getString("direccion"));
-				usuario.setDescripcion(rs.getString("descripcion"));
-				
+				while(rs.next()) {
+					usuario.setNombre(rs.getString("nombre"));
+					usuario.setApellido(rs.getString("apellido"));
+					usuario.setNombreUsuario(rs.getString("username"));
+					usuario.setPass(rs.getString("contrasenya"));
+					usuario.setMail(rs.getString("email"));
+				}
+				rs.close();
+				st.close();
 				return usuario;
 					
 				
@@ -143,7 +146,6 @@ private Connection conn = null;
 			}
 		}
 		
-
 		
 		
 }
