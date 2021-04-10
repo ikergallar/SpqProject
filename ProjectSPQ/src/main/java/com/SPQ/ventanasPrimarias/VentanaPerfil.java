@@ -5,30 +5,69 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.SPQ.clasesBasicas.Usuario;
+import com.SPQ.dataBase.DBException;
+import com.SPQ.dataBase.DBManager;
+
 
 
 public class VentanaPerfil extends JFrame{
 		
-		private JTextField textField;
 		private JTextField textNombre;
-		private JTextField textApellidos;
+		private JTextField textApellido;
 		private JTextField textDireccion;
 		private JTextField textPais;
-		private JTextField textTelefono;
-		private JTextField textMisDatos;
+		private JTextField textTel;
+		private JTextField textUsuario;
+		private JTextField textContrasenya;
+		private String nombreUsuario;
+		private Usuario datosUsuario;
 		
 		public VentanaPerfil() {
 			
 			int contBarra = 0;
-		
+
+		    File f = new File("usuario.txt");
+		    	try {
+					BufferedReader br = new BufferedReader(new FileReader(f));
+					nombreUsuario = br.readLine();
+					
+					br.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		    	
+		    DBManager con = new DBManager();
+		    
+		    try {
+		    	con.connect();
+				datosUsuario = con.seleccionarDatos(nombreUsuario);
+				
+				con.disconnect();
+			} catch (DBException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		   
+		    
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 440, 522);
 			getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -64,30 +103,30 @@ public class VentanaPerfil extends JFrame{
 			lblNewLabel_6.setBounds(26, 57, 126, 14);
 			getContentPane().add(lblNewLabel_6);
 			
-			textField = new JTextField();
-			textField.setBounds(172, 79, 201, 20);
-			getContentPane().add(textField);
-			textField.setColumns(10);
-			
-			textNombre = new JTextField();
-			textNombre.setColumns(10);
-			textNombre.setBounds(172, 104, 201, 20);
+			textNombre = new JTextField(datosUsuario.getNombre());
+			textNombre.setBounds(172, 79, 201, 20);
 			getContentPane().add(textNombre);
+			textNombre.setColumns(10);
 			
-			textApellidos = new JTextField();
-			textApellidos.setColumns(10);
-			textApellidos.setBounds(172, 129, 201, 20);
-			getContentPane().add(textApellidos);
+			textApellido = new JTextField(datosUsuario.getApellido());
+			textApellido.setColumns(10);
+			textApellido.setBounds(172, 104, 201, 20);
+			getContentPane().add(textApellido);
 			
 			textDireccion = new JTextField();
 			textDireccion.setColumns(10);
-			textDireccion.setBounds(172, 154, 201, 20);
+			textDireccion.setBounds(172, 129, 201, 20);
 			getContentPane().add(textDireccion);
 			
 			textPais = new JTextField();
 			textPais.setColumns(10);
-			textPais.setBounds(172, 179, 201, 20);
+			textPais.setBounds(172, 154, 201, 20);
 			getContentPane().add(textPais);
+			
+			textTel = new JTextField();
+			textTel.setColumns(10);
+			textTel.setBounds(172, 179, 201, 20);
+			getContentPane().add(textTel);
 			
 
 			JLabel lblNewLabel_7 = new JLabel("Detalles de la cuenta");
@@ -95,23 +134,23 @@ public class VentanaPerfil extends JFrame{
 			lblNewLabel_7.setBounds(26, 220, 157, 14);
 			getContentPane().add(lblNewLabel_7);
 			
-			JLabel lblNewLabel_8 = new JLabel("E-Mail");
+			JLabel lblNewLabel_8 = new JLabel("Usuario");
 			lblNewLabel_8.setBounds(36, 245, 76, 14);
 			getContentPane().add(lblNewLabel_8);
 			
 			JLabel lblNewLabel_8_1 = new JLabel("Contrase\u00F1a");
-			lblNewLabel_8_1.setBounds(26, 270, 76, 14);
+			lblNewLabel_8_1.setBounds(36, 269, 76, 14);
 			getContentPane().add(lblNewLabel_8_1);
 			
-			textTelefono = new JTextField();
-			textTelefono.setColumns(10);
-			textTelefono.setBounds(172, 242, 201, 20);
-			getContentPane().add(textTelefono);
+			textUsuario = new JTextField(datosUsuario.getNombreUsuario());
+			textUsuario.setColumns(10);
+			textUsuario.setBounds(172, 242, 201, 20);
+			getContentPane().add(textUsuario);
 			
-			textMisDatos = new JTextField();
-			textMisDatos.setColumns(10);
-			textMisDatos.setBounds(172, 267, 201, 20);
-			getContentPane().add(textMisDatos);
+			textContrasenya = new JTextField(datosUsuario.getPass());
+			textContrasenya.setColumns(10);
+			textContrasenya.setBounds(172, 267, 201, 20);
+			getContentPane().add(textContrasenya);
 			
 			JLabel lblNewLabel_9 = new JLabel("Forma de pago");
 			lblNewLabel_9.setBounds(28, 316, 138, 14);

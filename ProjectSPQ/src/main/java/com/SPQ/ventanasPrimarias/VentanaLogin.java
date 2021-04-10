@@ -27,6 +27,12 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class VentanaLogin {
 
@@ -120,13 +126,42 @@ public class VentanaLogin {
 				String nomUsuario = textFieldUsuario.getText();
                 String contrasena = textFieldContrasena.getText();
                 DBManager conexion = new DBManager();
+                
+                
 
                 try {
                     conexion.connect();
 
                     if (conexion.loginUsuario(nomUsuario,contrasena) == true) {
-
-                       System.out.println("animo");
+                    	File archivo;
+        				
+        				FileWriter escribir;
+        				PrintWriter linea;
+        				
+        				archivo = new File("usuario.txt");
+        				if(!archivo.exists()) {
+        					try {
+        						archivo.createNewFile();
+        					} catch (IOException e2) {
+        						// TODO Auto-generated catch block
+        						e2.printStackTrace();
+        					}
+        				}else {
+        					try { 
+        						escribir = new FileWriter(archivo,true);
+        						linea = new PrintWriter(escribir);
+        						
+        						linea.println(nomUsuario);
+        						linea.close();
+        						escribir.close();
+        					} catch (FileNotFoundException | UnsupportedEncodingException e3) {
+        						// TODO Auto-generated catch block
+        						e3.printStackTrace();
+        					} catch (IOException e1) {
+        						// TODO Auto-generated catch block
+        						e1.printStackTrace();
+        					}
+        				}
                     } else {
                         JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
                         textFieldUsuario.setText("");

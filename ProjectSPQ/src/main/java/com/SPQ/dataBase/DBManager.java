@@ -121,6 +121,28 @@ private Connection conn = null;
 			}
 		}
 		
+		public Usuario seleccionarDatos(String nombreUsuario) throws DBException {
+			try (PreparedStatement stmt = conn.prepareStatement("SELECT * FROM usuario WHERE username ='"+ nombreUsuario + "'")) {
+				
+				ResultSet rs = stmt.executeQuery();
+
+				Usuario usuario = new Usuario();
+				usuario.setNombre(rs.getString("nombre"));
+				usuario.setApellido(rs.getString("apellido"));
+				usuario.setNombreUsuario(rs.getString("nomUsuario"));
+				usuario.setPass(rs.getString("contraseña"));
+				usuario.setMail(rs.getString("correo"));
+				usuario.setdireccion(rs.getString("direccion"));
+				usuario.setDescripcion(rs.getString("descripcion"));
+				
+				return usuario;
+					
+				
+			} catch (SQLException e) {
+				throw new DBException("Error obteniendo el usuario", e);
+			}
+		}
+		
 
 		
 		
