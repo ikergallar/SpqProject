@@ -194,40 +194,39 @@ public class VentanaRegistro extends JDialog {
 						
 						if(texto_contrasena.equals(texto_confPass)) {
 				
-						Usuario usuario = new Usuario();
-						usuario.setNombreUsuario(nombreUsuario);
-						usuario.setPass(contrasenya);
-						usuario.setMail(email);
-						usuario.setNombre(nombre);
-						usuario.setApellido(apellido);
-						
-						DBManager conexion = new DBManager();
-						
-						try {
-							conexion.connect();
+						    Usuario usuario = new Usuario();
+							usuario.setNombreUsuario(nombreUsuario);
+							usuario.setPass(contrasenya);
+							usuario.setMail(email);
+							usuario.setNombre(nombre);
+							usuario.setApellido(apellido);
 							
-								conexion.registrarUsuario(usuario);
-								JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-								LogController.log ( Level.INFO, "Cuenta creada correctamente " + (new Date()),null);
-								
-								VentanaLogin ini = new VentanaLogin(); 
-								setVisible(false);
-								//ini.setVisible(true);
-								
-								conexion.disconnect();
-								
+							DBManager conexion = new DBManager();
 							
-						} catch (DBException e1) {
-							e1.printStackTrace();
-						}
+							try {
+								conexion.connect();
+								
+									conexion.registrarUsuario(usuario);
+									JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+									LogController.log ( Level.INFO, "Cuenta creada correctamente " + (new Date()),null);
+									
+									VentanaLogin ini = new VentanaLogin(); 
+									setVisible(false);
+									//ini.setVisible(true);
+									
+									conexion.disconnect();
+									
+								
+							} catch (DBException e1) {
+								e1.printStackTrace();
+							}
 				
-					}else {
-						 JOptionPane.showMessageDialog(null, "Las contrasenyas no coinciden", "Error", 0);
-						 LogController.log ( Level.WARNING, "Las contrasenyas no coinciden " + (new Date()),null);
+					     }else {
+						     JOptionPane.showMessageDialog(null, "Las contrasenyas no coinciden", "Error", 0);
+						     LogController.log ( Level.WARNING, "Las contrasenyas no coinciden " + (new Date()),null);
 						
-					}
+					     }
 					  }else {
-						 
 						  JOptionPane.showMessageDialog(null, "Direccion de correo no valida", "Error", 0);
 						  LogController.log ( Level.WARNING, "Direccion de correo no valida " + (new Date()),null);
 							
