@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Date;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -22,6 +24,7 @@ import javax.swing.JTextField;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.dataBase.LogController;
 
 
 
@@ -183,13 +186,13 @@ public class VentanaPerfil extends JFrame{
 						usuario.setApellido(textApellido.getText());
 						usuario.setdireccion(textDireccion.getText());
 						usuario.settelefono(textTel.getText());
+						usuario.setNombreUsuario(textUsuario.getText());
 						con.connect();
 						con.cambiarDatos(usuario);
-						System.out.println(usuario.getNombre());
-						System.out.println(usuario.getApellido());
-						System.out.println(usuario.getdireccion());
-						System.out.println(usuario.gettelefono());
 						con.disconnect();
+						
+						JOptionPane.showMessageDialog(null, "Datos editados correctamente", "Informacion", 1);
+						LogController.log ( Level.INFO, "Datos editados correctamente " + (new Date()),null);
 					} catch (DBException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
