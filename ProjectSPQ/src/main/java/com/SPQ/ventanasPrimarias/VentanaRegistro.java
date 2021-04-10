@@ -15,6 +15,7 @@ import javax.swing.border.EmptyBorder;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.dataBase.LogController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,7 +26,9 @@ import java.awt.Image;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -41,6 +44,7 @@ public class VentanaRegistro extends JDialog {
 	private JTextField textoApellido;
 	private JTextField texto_email;
 	private JPasswordField texto_contrasena;
+	private JPasswordField texto_confPass;
 	private JTextField textNumero;
 	private JTextField texto_usuario;
 	private JTextField texto_direccion;
@@ -55,6 +59,8 @@ public class VentanaRegistro extends JDialog {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
+		
+		LogController.log ( Level.INFO, "Inicio Registro " + (new Date()),null);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -137,6 +143,14 @@ public class VentanaRegistro extends JDialog {
 		texto_contrasena.setBounds(123, 223, 144, 19);
 		contentPane.add(texto_contrasena);
 		
+		JLabel lblConfPass = new JLabel("Confirmar contraseña");
+		lblConfPass.setBounds(41, 279, 46, 14);
+		contentPane.add(lblConfPass);
+		
+		texto_confPass = new JPasswordField();
+		texto_confPass.setBounds(123, 276, 144, 20);
+		contentPane.add(texto_confPass);
+		
 		JLabel labelUsuario = new JLabel("Usuario");
 		labelUsuario.setForeground(Color.WHITE);
 		labelUsuario.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -172,10 +186,13 @@ public class VentanaRegistro extends JDialog {
 				
 				if (nombreUsuario.equals("") || contrasenya.equals("") || email.equals("") || nombre.equals("")||apellido.equals("")) {
 					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
+					LogController.log ( Level.WARNING, "Es necesario rellenar todos los campos " + (new Date()),null);
 					
 				}else {
 					
 					if (email.contains("@") && email.contains(".")) {
+						
+						if(texto_contrasena.equals(texto_confPass)) {
 				
 						Usuario usuario = new Usuario();
 						usuario.setNombreUsuario(nombreUsuario);
@@ -190,8 +207,8 @@ public class VentanaRegistro extends JDialog {
 							conexion.connect();
 							
 								conexion.registrarUsuario(usuario);
-								JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);					
-							
+								JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+								LogController.log ( Level.INFO, "Cuenta creada correctamente " + (new Date()),null);
 								
 								VentanaLogin ini = new VentanaLogin(); 
 								setVisible(false);
@@ -205,9 +222,16 @@ public class VentanaRegistro extends JDialog {
 						}
 				
 					}else {
-						JOptionPane.showMessageDialog(null, "Direccion de correo no validaa", "Error", 0);
+						 JOptionPane.showMessageDialog(null, "Las contrasenyas no coinciden", "Error", 0);
+						 LogController.log ( Level.WARNING, "Las contrasenyas no coinciden " + (new Date()),null);
 						
 					}
+					  }else {
+						 
+						  JOptionPane.showMessageDialog(null, "Direccion de correo no valida", "Error", 0);
+						  LogController.log ( Level.WARNING, "Direccion de correo no valida " + (new Date()),null);
+							
+					  }
 				}
 			}
 			
@@ -240,6 +264,8 @@ public class VentanaRegistro extends JDialog {
         labelFondo.setIcon(img4);
 		contentPane.add(labelFondo);
 		
-	}
 		
+	
+		
+	}
 	}

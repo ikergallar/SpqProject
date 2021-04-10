@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T08:53:23.101251300Z</date>
+  <millis>1618044803101</millis>
+  <nanos>251300</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 10:53:23 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T08:57:14.757416400Z</date>
+  <millis>1618045034757</millis>
+  <nanos>416400</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 10:57:14 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T08:57:32.472924100Z</date>
+  <millis>1618045052472</millis>
+  <nanos>924100</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Es necesario rellenar todos los camposSat Apr 10 10:57:32 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T08:58:22.217696700Z</date>
+  <millis>1618045102217</millis>
+  <nanos>696700</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 10:58:22 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T09:06:03.667197300Z</date>
+  <millis>1618045563667</millis>
+  <nanos>197300</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 11:06:03 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T09:06:10.878318500Z</date>
+  <millis>1618045570878</millis>
+  <nanos>318500</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Es necesario rellenar todos los campos Sat Apr 10 11:06:10 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T09:06:28.295756200Z</date>
+  <millis>1618045588295</millis>
+  <nanos>756200</nanos>
+  <sequence>2</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Direccion de correo no valida Sat Apr 10 11:06:28 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T09:07:48.535714800Z</date>
+  <millis>1618045668535</millis>
+  <nanos>714800</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 11:07:48 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T09:08:02.282848800Z</date>
+  <millis>1618045682282</millis>
+  <nanos>848800</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Las contrasenyas no coinciden Sat Apr 10 11:08:02 CEST 2021</message>
+</record>
+</log>
