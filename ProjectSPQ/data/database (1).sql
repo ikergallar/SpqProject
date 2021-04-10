@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2021 a las 11:17:41
+-- Tiempo de generación: 10-04-2021 a las 12:29:54
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -48,7 +48,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `username`, `email`, `contrasenya`, `nombre`, `apellido`, `telefono`, `direccion`, `descripcion`, `foto`, `palabraRecuperacion`, `preguntaRecuperacion`, `id_anuncio`) VALUES
-(2, 'Mrfahrenheit10', 'aitor.fournier@opendeusto.es', 'animotio', 'Aitor', 'Fournier', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+(1, 'Mrfahrenheit10', 'aitor.fournier@opendeusto.es', 'animotio', 'Aitor', 'Fournier', 696254476, 'calaikans', NULL, NULL, NULL, NULL, NULL);
 
 --
 -- Índices para tablas volcadas
