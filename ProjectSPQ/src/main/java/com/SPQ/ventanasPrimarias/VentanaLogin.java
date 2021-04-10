@@ -84,23 +84,11 @@ public class VentanaLogin {
 		frmLogin.getContentPane().add(panelLogin);
 		panelLogin.setLayout(new GridLayout(3, 1, 0, 0));
 
-		JLabel labelCorreo = new JLabel("Correo:");
-		labelCorreo.setForeground(Color.BLACK);
-		labelCorreo.setHorizontalAlignment(SwingConstants.CENTER);
-		labelCorreo.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
-		panelLogin.add(labelCorreo);
-
 		JPanel panelCorreo = new JPanel();
 		panelCorreo.setBackground(Color.WHITE);
 		panelLogin.add(panelCorreo);
 		FlowLayout fl_panelCorreo = new FlowLayout(FlowLayout.CENTER, 5, 5);
 		panelCorreo.setLayout(fl_panelCorreo);
-
-		textFieldUsuario = new JTextField();
-		textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-		textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
-		panelCorreo.add(textFieldUsuario);
-		textFieldUsuario.setColumns(30);
 
 		final JLabel labelRegistro = new JLabel("\u00BFEres nuevo? Reg\u00EDstrate Aqu\u00ED");
 		labelRegistro.addMouseListener(new MouseAdapter() {
@@ -183,14 +171,28 @@ public class VentanaLogin {
 		botonLogin.setFont(new Font("Malgun Gothic", Font.BOLD, 16));
 		panelLogin.add(botonLogin);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		lblNewLabel.setBounds(10, 366, 46, 14);
-		frmLogin.getContentPane().add(lblNewLabel);
-		
 		textFieldContrasena = new JTextField();
-		textFieldContrasena.setBounds(22, 403, 86, 20);
+		textFieldContrasena.setBounds(209, 478, 86, 14);
 		frmLogin.getContentPane().add(textFieldContrasena);
 		textFieldContrasena.setColumns(10);
+		
+				JLabel labelCorreo = new JLabel("Usuario");
+				labelCorreo.setBounds(-12, 330, 500, 70);
+				frmLogin.getContentPane().add(labelCorreo);
+				labelCorreo.setForeground(Color.BLACK);
+				labelCorreo.setHorizontalAlignment(SwingConstants.CENTER);
+				labelCorreo.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+				
+						textFieldUsuario = new JTextField();
+						textFieldUsuario.setBounds(65, 394, 366, 26);
+						frmLogin.getContentPane().add(textFieldUsuario);
+						textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+						textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
+						textFieldUsuario.setColumns(30);
+						
+						JLabel lblNewLabel = new JLabel("Contraseña");
+						lblNewLabel.setBounds(220, 443, 46, 14);
+						frmLogin.getContentPane().add(lblNewLabel);
 
 	}
 
