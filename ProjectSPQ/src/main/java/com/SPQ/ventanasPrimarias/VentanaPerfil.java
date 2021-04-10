@@ -44,8 +44,11 @@ public class VentanaPerfil extends JFrame{
 		    File f = new File("usuario.txt");
 		    	try {
 					BufferedReader br = new BufferedReader(new FileReader(f));
-					nombreUsuario = br.readLine();
-					
+					String linea;
+					while((linea = br.readLine()) != null) {
+						nombreUsuario = linea;
+					}
+					System.out.println(nombreUsuario);
 					br.close();
 				} catch (FileNotFoundException e) {
 					// TODO Auto-generated catch block
