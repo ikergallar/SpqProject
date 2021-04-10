@@ -147,7 +147,7 @@ private Connection conn = null;
 		}
 		
 		public void cambiarDatos(Usuario usuario) throws DBException {
-			try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarios SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', direccion='"+usuario.getdireccion()+"',telefono='"+usuario.gettelefono()+"' WHERE username ='"+ usuario.getNombreUsuario() + "'")){
+			try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarios SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', direccion='"+usuario.getdireccion()+"',telefono='"+usuario.gettelefono()+"' WHERE username ='"+ usuario.getNombreUsuario() + "';")){
 				stmt.setString(1, usuario.getNombre());
 				stmt.setString(2, usuario.getApellido());
 				stmt.setString(3, usuario.getdireccion());

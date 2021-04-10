@@ -172,9 +172,9 @@ public class VentanaPerfil extends JFrame{
 			
 			usuario = new Usuario();
 			usuario.setNombre(textNombre.getText());
-			usuario.setNombre(textApellido.getText());
-			usuario.setNombre(textDireccion.getText());
-			usuario.setNombre(textTel.getText());
+			usuario.setApellido(textApellido.getText());
+			usuario.setdireccion(textDireccion.getText());
+			usuario.settelefono(textTel.getText());
 			
 			JButton btnNewButton = new JButton("Guardar");
 			btnNewButton.addActionListener(new ActionListener() {
