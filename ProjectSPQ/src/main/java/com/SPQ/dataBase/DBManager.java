@@ -162,6 +162,24 @@ private Connection conn = null;
 			
 		}
 		
+/*		 public int existeUsuario(String usuario) throws DBException {
+		        try {PreparedStatement ps = conn.prepareStatement("SELECT count(id) FROM usuarios WHERE username = ?");
+		            ps.setString(1, usuario);
+		            ResultSet rs = ps.executeQuery();
+
+		            if (rs.next()) {
+		                return rs.getInt(1);
+		            }
+		           
+		            return 1;
+
+		        } catch (SQLException e) {
+		            return 1;
+		        } finally {
+		            
+		        }
+		    }
+		*/
 		
 		
 }

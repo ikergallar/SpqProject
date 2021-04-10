@@ -22,6 +22,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
@@ -162,8 +163,6 @@ public class VentanaRegistro extends JDialog {
 		texto_usuario.setBounds(334, 97, 118, 19);
 		contentPane.add(texto_usuario);
 		
-		
-		
 		JButton btnRegistrar = new JButton("Finalizar registro");
 		btnRegistrar.setBounds(388, 303, 153, 33);
 		contentPane.add(btnRegistrar);
@@ -178,6 +177,8 @@ public class VentanaRegistro extends JDialog {
 				String nombre;
 				String apellido;
 				int i = 1;
+				
+				DBManager conexion = new DBManager();
 				
 				nombreUsuario = texto_usuario.getText();
 				contrasenya = String.valueOf(texto_contrasena.getPassword());
@@ -195,33 +196,46 @@ public class VentanaRegistro extends JDialog {
 					if(contrasenya.equals(confPass)) {
 					
 					    if (email.contains("@") && email.contains(".")) {
+					    	
+					    //	try {
+						//		if(conexion.existeUsuario(nombreUsuario) == 0) {
+								
+																				
+									Usuario usuario = new Usuario();
+									usuario.setNombreUsuario(nombreUsuario);
+									usuario.setPass(contrasenya);
+									usuario.setMail(email);
+									usuario.setNombre(nombre);
+									usuario.setApellido(apellido);
+																	
+									
+									try {
+										conexion.connect();
 										
-						    Usuario usuario = new Usuario();
-							usuario.setNombreUsuario(nombreUsuario);
-							usuario.setPass(contrasenya);
-							usuario.setMail(email);
-							usuario.setNombre(nombre);
-							usuario.setApellido(apellido);
+											conexion.registrarUsuario(usuario);
+											JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+											LogController.log ( Level.INFO, "Cuenta creada correctamente " + (new Date()),null);
+											
+											VentanaLogin ini = new VentanaLogin(); 
+											setVisible(true);
+											VentanaRegistro.this.dispose();
+											
+											conexion.disconnect();
+											
+										
+									} catch (DBException e1) {
+										e1.printStackTrace();
+									}
+									
+					//				}else {
+					//					JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
+					//					LogController.log ( Level.WARNING, "El usuario ya existe " + (new Date()),null);
+					//				}
+					//		} catch (HeadlessException | SecurityException | DBException e1) {
+					//			// TODO Auto-generated catch block
+					//			e1.printStackTrace();
+					//		}
 							
-							DBManager conexion = new DBManager();
-							
-							try {
-								conexion.connect();
-								
-									conexion.registrarUsuario(usuario);
-									JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-									LogController.log ( Level.INFO, "Cuenta creada correctamente " + (new Date()),null);
-									
-									VentanaLogin ini = new VentanaLogin(); 
-									setVisible(false);
-									//ini.setVisible(true);
-									
-									conexion.disconnect();
-									
-								
-							} catch (DBException e1) {
-								e1.printStackTrace();
-							}
 				
 					     }else {
 					    	 JOptionPane.showMessageDialog(null, "Direccion de correo no valida", "Error", 0);

@@ -334,3 +334,227 @@
   <message>Datos editados correctamente Sat Apr 10 13:01:44 CEST 2021</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T15:53:48.824455600Z</date>
+  <millis>1618070028824</millis>
+  <nanos>455600</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 17:53:48 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T15:54:43.519674100Z</date>
+  <millis>1618070083519</millis>
+  <nanos>674100</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 17:54:43 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T15:55:02.141430500Z</date>
+  <millis>1618070102141</millis>
+  <nanos>430500</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Las contrasenyas no coinciden Sat Apr 10 17:55:02 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T15:56:49.019356200Z</date>
+  <millis>1618070209019</millis>
+  <nanos>356200</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 17:56:48 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:00:41.414582200Z</date>
+  <millis>1618070441414</millis>
+  <nanos>582200</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:00:41 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:01:49.994234900Z</date>
+  <millis>1618070509994</millis>
+  <nanos>234900</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:01:49 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:03:26.277111100Z</date>
+  <millis>1618070606277</millis>
+  <nanos>111100</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:03:26 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:06:37.039565100Z</date>
+  <millis>1618070797039</millis>
+  <nanos>565100</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:06:37 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:08:15.294816800Z</date>
+  <millis>1618070895294</millis>
+  <nanos>816800</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:08:15 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:10:44.078234100Z</date>
+  <millis>1618071044078</millis>
+  <nanos>234100</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:10:44 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:11:18.668891600Z</date>
+  <millis>1618071078668</millis>
+  <nanos>891600</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:11:18 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:12:18.327062600Z</date>
+  <millis>1618071138327</millis>
+  <nanos>62600</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:12:18 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:31:19.471018200Z</date>
+  <millis>1618072279471</millis>
+  <nanos>18200</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:31:19 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-10T16:44:45.179114200Z</date>
+  <millis>1618073085179</millis>
+  <nanos>114200</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sat Apr 10 18:44:45 CEST 2021</message>
+</record>
+</log>
