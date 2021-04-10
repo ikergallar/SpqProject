@@ -110,12 +110,12 @@ public class VentanaPerfil extends JFrame{
 			textApellido.setBounds(172, 104, 201, 20);
 			getContentPane().add(textApellido);
 			
-			textDireccion = new JTextField();
+			textDireccion = new JTextField(datosUsuario.getdireccion());
 			textDireccion.setColumns(10);
 			textDireccion.setBounds(172, 129, 201, 20);
 			getContentPane().add(textDireccion);
 			
-			textTel = new JTextField();
+			textTel = new JTextField(datosUsuario.gettelefono());
 			textTel.setColumns(10);
 			textTel.setBounds(172, 154, 201, 20);
 			getContentPane().add(textTel);
@@ -175,7 +175,10 @@ public class VentanaPerfil extends JFrame{
 			usuario.setApellido(textApellido.getText());
 			usuario.setdireccion(textDireccion.getText());
 			usuario.settelefono(textTel.getText());
-			
+			System.out.println(usuario.getNombre());
+			System.out.println(usuario.getApellido());
+			System.out.println(usuario.getdireccion());
+			System.out.println(usuario.gettelefono());
 			JButton btnNewButton = new JButton("Guardar");
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {

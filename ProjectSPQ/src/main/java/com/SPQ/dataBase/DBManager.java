@@ -132,6 +132,8 @@ private Connection conn = null;
 				while(rs.next()) {
 					usuario.setNombre(rs.getString("nombre"));
 					usuario.setApellido(rs.getString("apellido"));
+					usuario.settelefono("telefono");
+					usuario.setdireccion("direccion");
 					usuario.setNombreUsuario(rs.getString("username"));
 					usuario.setPass(rs.getString("contrasenya"));
 					usuario.setMail(rs.getString("email"));
@@ -147,16 +149,15 @@ private Connection conn = null;
 		}
 		
 		public void cambiarDatos(Usuario usuario) throws DBException {
-			try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarios SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', direccion='"+usuario.getdireccion()+"',telefono='"+usuario.gettelefono()+"' WHERE username ='"+ usuario.getNombreUsuario() + "';")){
-				stmt.setString(1, usuario.getNombre());
-				stmt.setString(2, usuario.getApellido());
-				stmt.setString(3, usuario.getdireccion());
-				stmt.setString(4, usuario.gettelefono());
-				stmt.executeUpdate();
+			String sentSQL = "UPDATE usuarios SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', direccion='"+usuario.getdireccion()+"',telefono='"+usuario.gettelefono()+"' WHERE username ='"+ usuario.getNombreUsuario() + "';";
+			try{
+				Statement st = conn.createStatement();
+				st.executeUpdate(sentSQL);
+				st.close();
 				
 				
 			}catch (SQLException e) {
-				throw new DBException("No ha sido posible ejecutar la query");
+				throw new DBException("No ha sido posible cambiar los datos de la BD");
 			}
 			
 		}
