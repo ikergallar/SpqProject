@@ -30,13 +30,12 @@ public class VentanaPerfil extends JFrame{
 		private JTextField textNombre;
 		private JTextField textApellido;
 		private JTextField textDireccion;
-		private JTextField textPais;
 		private JTextField textTel;
 		private JTextField textUsuario;
 		private JTextField textContrasenya;
 		private String nombreUsuario;
 		private Usuario datosUsuario;
-		
+		private Usuario usuario;
 		public VentanaPerfil() {
 			
 			int contBarra = 0;
@@ -71,7 +70,7 @@ public class VentanaPerfil extends JFrame{
 		   
 		    
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 440, 522);
+			setBounds(100, 100, 440, 473);
 			getContentPane().setBackground(Color.LIGHT_GRAY);
 			getContentPane().setLayout(null);
 			
@@ -92,12 +91,8 @@ public class VentanaPerfil extends JFrame{
 			lblNewLabel_3.setBounds(36, 132, 76, 14);
 			getContentPane().add(lblNewLabel_3);
 			
-			JLabel lblNewLabel_4 = new JLabel("Pa\u00EDs");
-			lblNewLabel_4.setBounds(36, 157, 46, 14);
-			getContentPane().add(lblNewLabel_4);
-			
 			JLabel lblNewLabel_5 = new JLabel("Tel\u00E9fono");
-			lblNewLabel_5.setBounds(36, 182, 76, 14);
+			lblNewLabel_5.setBounds(36, 156, 76, 14);
 			getContentPane().add(lblNewLabel_5);
 			
 			JLabel lblNewLabel_6 = new JLabel("Mis datos");
@@ -120,42 +115,37 @@ public class VentanaPerfil extends JFrame{
 			textDireccion.setBounds(172, 129, 201, 20);
 			getContentPane().add(textDireccion);
 			
-			textPais = new JTextField();
-			textPais.setColumns(10);
-			textPais.setBounds(172, 154, 201, 20);
-			getContentPane().add(textPais);
-			
 			textTel = new JTextField();
 			textTel.setColumns(10);
-			textTel.setBounds(172, 179, 201, 20);
+			textTel.setBounds(172, 154, 201, 20);
 			getContentPane().add(textTel);
 			
 
 			JLabel lblNewLabel_7 = new JLabel("Detalles de la cuenta");
 			lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
-			lblNewLabel_7.setBounds(26, 220, 157, 14);
+			lblNewLabel_7.setBounds(26, 192, 157, 14);
 			getContentPane().add(lblNewLabel_7);
 			
 			JLabel lblNewLabel_8 = new JLabel("Usuario");
-			lblNewLabel_8.setBounds(36, 245, 76, 14);
+			lblNewLabel_8.setBounds(36, 216, 76, 14);
 			getContentPane().add(lblNewLabel_8);
 			
 			JLabel lblNewLabel_8_1 = new JLabel("Contrase\u00F1a");
-			lblNewLabel_8_1.setBounds(36, 269, 76, 14);
+			lblNewLabel_8_1.setBounds(36, 244, 76, 14);
 			getContentPane().add(lblNewLabel_8_1);
 			
 			textUsuario = new JTextField(datosUsuario.getNombreUsuario());
 			textUsuario.setColumns(10);
-			textUsuario.setBounds(172, 242, 201, 20);
+			textUsuario.setBounds(172, 216, 201, 20);
 			getContentPane().add(textUsuario);
 			
 			textContrasenya = new JTextField(datosUsuario.getPass());
 			textContrasenya.setColumns(10);
-			textContrasenya.setBounds(172, 267, 201, 20);
+			textContrasenya.setBounds(172, 242, 201, 20);
 			getContentPane().add(textContrasenya);
 			
 			JLabel lblNewLabel_9 = new JLabel("Forma de pago");
-			lblNewLabel_9.setBounds(28, 316, 138, 14);
+			lblNewLabel_9.setBounds(36, 297, 138, 14);
 			getContentPane().add(lblNewLabel_9);
 			
 			JButton btnTarjeta = new JButton("TARJETA");
@@ -166,7 +156,7 @@ public class VentanaPerfil extends JFrame{
 				public void actionPerformed(ActionEvent arg0) {
 				}
 			});
-			btnTarjeta.setBounds(284, 312, 89, 23);
+			btnTarjeta.setBounds(284, 293, 89, 23);
 			getContentPane().add(btnTarjeta);
 			
 			JButton btnTarjeta_1 = new JButton("Atr\u00E1s");
@@ -177,11 +167,32 @@ public class VentanaPerfil extends JFrame{
 			btnTarjeta_1.addMouseListener(new MouseAdapter() {
 				
 			});
-			btnTarjeta_1.setBounds(26, 394, 126, 23);
+			btnTarjeta_1.setBounds(26, 376, 126, 23);
 			getContentPane().add(btnTarjeta_1);
 			
+			usuario = new Usuario();
+			usuario.setNombre(textNombre.getText());
+			usuario.setNombre(textApellido.getText());
+			usuario.setNombre(textDireccion.getText());
+			usuario.setNombre(textTel.getText());
+			
 			JButton btnNewButton = new JButton("Guardar");
-			btnNewButton.setBounds(284, 394, 89, 23);
+			btnNewButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					DBManager con = new DBManager();
+					
+					try {
+						con.connect();
+						con.cambiarDatos(usuario);
+						con.disconnect();
+					} catch (DBException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				
+				}
+			});
+			btnNewButton.setBounds(284, 376, 89, 23);
 			getContentPane().add(btnNewButton);
 			
 			JButton btnGuardarCambios = new JButton("Guardar cambios\r\n");
