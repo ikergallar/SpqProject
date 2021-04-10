@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
+import org.glassfish.grizzly.streams.AbstractStreamWriter.DisposeBufferCompletionHandler;
+
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
@@ -133,6 +135,8 @@ public class VentanaLogin {
                     conexion.connect();
 
                     if (conexion.loginUsuario(nomUsuario,contrasena) == true) {
+                    	VentanaPerfil perfil = new VentanaPerfil();
+                    	perfil.setVisible(true);
                     	File archivo;
         				
         				FileWriter escribir;
