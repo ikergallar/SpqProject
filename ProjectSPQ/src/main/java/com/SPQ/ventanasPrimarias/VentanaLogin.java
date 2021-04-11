@@ -78,7 +78,7 @@ public class VentanaLogin {
 		frmLogin = new JFrame();
 		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
 		frmLogin.setResizable(false);
-		frmLogin.setTitle("Login");
+		frmLogin.setTitle("Hustle - Login");
 		frmLogin.setBounds(100, 100, 513, 869);
 		frmLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
@@ -105,7 +105,7 @@ public class VentanaLogin {
 		labelRegistro.addMouseListener(new MouseAdapter() {
 
 			public void mouseEntered(MouseEvent e) {
-				labelRegistro.setForeground(Color.BLACK);
+				labelRegistro.setForeground(Color.WHITE);
 			}
 
 			@Override
@@ -125,7 +125,7 @@ public class VentanaLogin {
 		labelRegistro.setForeground(Color.GRAY);
 		panelCorreo.add(labelRegistro);
 
-		JButton botonLogin = new JButton("Login");
+		JButton botonLogin = new JButton("LOGIN");
 		botonLogin.setBounds(0, 35, 497, 73);
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -191,8 +191,8 @@ public class VentanaLogin {
 			}
 		});
 		botonLogin.setForeground(Color.WHITE);
-		botonLogin.setBackground(Color.BLACK);
-		botonLogin.setFont(new Font("Malgun Gothic", Font.BOLD, 16));
+		botonLogin.setBackground(new Color(255, 0, 0));
+		botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
 		panelLogin.add(botonLogin);
 		
 		textFieldContrasena = new JPasswordField();
@@ -229,9 +229,10 @@ public class VentanaLogin {
 		frmLogin.getContentPane().add(checkVerPass);
 		
 		JLabel lblNewLabel_1 = new JLabel("¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_1.setBackground(Color.WHITE);
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setBounds(36, 667, 356, 14);
+		lblNewLabel_1.setForeground(Color.GRAY);
+		lblNewLabel_1.setBounds(36, 667, 398, 14);
 		frmLogin.getContentPane().add(lblNewLabel_1);
 		
 				JLabel labelLogo = new JLabel("");
