@@ -213,7 +213,7 @@ public class VentanaLogin {
 		textFieldUsuario = new JTextField();
 		textFieldUsuario.setBounds(36, 562, 398, 26);
 		frmLogin.getContentPane().add(textFieldUsuario);
-		textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
 		textFieldUsuario.setColumns(30);
 		

@@ -52,7 +52,6 @@ public class VentanaRegistro extends JDialog {
 	private JTextField texto_usuario;
 	private JTextField texto_direccion;
 	private ButtonGroup sexo = new ButtonGroup();
-	final VentanaPrincipal principal = new VentanaPrincipal();
 	private JTextField textoRespuesta;
 	
 	
@@ -164,7 +163,7 @@ public class VentanaRegistro extends JDialog {
 		btnRegistrar.setBackground(new Color(255, 0, 0));
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnRegistrar.setBounds(0, 385, 536, 72);
+		btnRegistrar.setBounds(0, 385, 497, 72);
 		contentPane.add(btnRegistrar);
 		
 		ImageIcon ico4 = new ImageIcon("imagenes/fondos.jpg");

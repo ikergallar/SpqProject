@@ -49,7 +49,6 @@ public class VentanaRecuperacion extends JDialog {
 	private JTextField texto_usuario;
 	private JTextField texto_direccion;
 	private ButtonGroup sexo = new ButtonGroup();
-	final VentanaPrincipal principal = new VentanaPrincipal();
 	private JTextField textoRespuesta;
 	
 	
@@ -163,12 +162,6 @@ public class VentanaRecuperacion extends JDialog {
 		textoRespuesta.setColumns(10);
 		textoRespuesta.setBounds(31, 248, 175, 19);
 		contentPane.add(textoRespuesta);
-		
-		
-		
-		
-		
-	
 		
 	}
 	}
