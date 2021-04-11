@@ -7,6 +7,18 @@ public class Categoria {
 	String nombre;
 	String descripcion;
 	
+	
+	
+	public Categoria(String nombre, String descripcion) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+	}
+	
+	public Categoria() {
+		this.nombre = "";
+		this.descripcion = "";
+	}
 	public static String getIdCategoria() {
 		return idCategoria;
 	}

@@ -8,7 +8,29 @@ public class Anuncio {
 	float precio;
 	String foto;
 	Categoria categoria;
-	String usuario; //identificador del usuario que ha creado el anuncio
+	Usuario usuario;
+	
+	
+	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria, Usuario usuario) {
+		super();
+		this.nombre = nombre;
+		this.descripcion = descripcion;
+		this.precio = precio;
+		this.foto = foto;
+		this.categoria = categoria;
+		this.usuario = usuario;
+
+	}
+	
+	public Anuncio() {
+		this.nombre = "";
+		this.descripcion = "";
+		this.precio = 0;
+		this.foto = "";
+		this.categoria = null;
+		this.usuario = null;
+
+	}
 	
 	public static String getIdAnuncio() {
 		return idAnuncio;
@@ -46,16 +68,18 @@ public class Anuncio {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	public String getUsuario() {
+	
+	public Usuario getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(String usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
+	
 	//
 	public String printAnuncio() {
 		return "Anuncio [nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", categoria=" + categoria.getNombre() + ", usuario=" + usuario + "]";
+				+ ", categoria=" + categoria.getNombre()  + "]";
 	}
 	
 	
