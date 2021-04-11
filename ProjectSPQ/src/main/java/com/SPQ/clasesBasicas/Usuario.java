@@ -18,6 +18,39 @@ public class Usuario {
 	String preguntaRecuperacion;
 	
 	
+	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
+			String direccion, String descripcion, String foto, Anuncio[] anuncios, String palabraRecuperacion,
+			String preguntaRecuperacion) {
+		super();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.nombreUsuario = nombreUsuario;
+		this.pass = pass;
+		this.mail = mail;
+		this.telefono = telefono;
+		this.direccion = direccion;
+		this.descripcion = descripcion;
+		this.foto = foto;
+		this.anuncios = anuncios;
+		this.palabraRecuperacion = palabraRecuperacion;
+		this.preguntaRecuperacion = preguntaRecuperacion;
+	}
+	
+	public Usuario() {
+		super();
+		this.nombre = "";
+		this.apellido = "";
+		this.nombreUsuario = "";
+		this.pass = "";
+		this.mail = "";
+		this.telefono = "";
+		this.direccion = "";
+		this.descripcion = "";
+		this.foto = "";
+		this.anuncios = null;
+		this.palabraRecuperacion = "";
+		this.preguntaRecuperacion = "";
+	}
 	public static int getUsuario() {
 		return id;
 	}
@@ -42,16 +75,16 @@ public class Usuario {
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
-	public String gettelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
-	public void settelefono(String telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-	public String getdireccion() {
+	public String getDireccion() {
 		return direccion;
 	}
-	public void setdireccion(String direccion) {
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 	public String getPass() {

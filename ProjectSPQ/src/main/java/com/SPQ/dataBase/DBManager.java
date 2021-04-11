@@ -112,7 +112,7 @@ private Connection conn = null;
 					usuario.setNombreUsuario(rs.getString("nomUsuario"));
 					usuario.setPass(rs.getString("contraseña"));
 					usuario.setMail(rs.getString("correo"));
-					usuario.setdireccion(rs.getString("direccion"));
+					usuario.setDireccion(rs.getString("direccion"));
 					usuario.setDescripcion(rs.getString("descripcion"));
 					return usuario;
 					
@@ -134,8 +134,8 @@ private Connection conn = null;
 				while(rs.next()) {
 					usuario.setNombre(rs.getString("nombre"));
 					usuario.setApellido(rs.getString("apellido"));
-					usuario.settelefono(rs.getString("telefono"));
-					usuario.setdireccion(rs.getString("direccion"));
+					usuario.setTelefono(rs.getString("telefono"));
+					usuario.setDireccion(rs.getString("direccion"));
 					usuario.setNombreUsuario(rs.getString("username"));
 					usuario.setPass(rs.getString("contrasenya"));
 					usuario.setMail(rs.getString("email"));
@@ -151,7 +151,7 @@ private Connection conn = null;
 		}
 		
 		public void cambiarDatos(Usuario usuario) throws DBException {
-			String sentSQL = "UPDATE usuarios SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', telefono='"+usuario.gettelefono()+"',direccion='"+usuario.getdireccion()+ "', email='"+usuario.getMail() + "' WHERE username ='"+ usuario.getNombreUsuario() + "'" ;
+			String sentSQL = "UPDATE usuarios SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', telefono='"+usuario.getTelefono()+"',direccion='"+usuario.getDireccion()+ "', email='"+usuario.getMail() + "' WHERE username ='"+ usuario.getNombreUsuario() + "'" ;
 			try{
 				Statement st = conn.createStatement();
 				st.executeUpdate(sentSQL);

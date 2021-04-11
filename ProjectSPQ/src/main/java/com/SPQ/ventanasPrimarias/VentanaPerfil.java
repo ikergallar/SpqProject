@@ -114,12 +114,12 @@ public class VentanaPerfil extends JFrame{
 			textApellido.setBounds(172, 104, 201, 20);
 			getContentPane().add(textApellido);
 			
-			textDireccion = new JTextField(datosUsuario.getdireccion());
+			textDireccion = new JTextField(datosUsuario.getDireccion());
 			textDireccion.setColumns(10);
 			textDireccion.setBounds(172, 129, 201, 20);
 			getContentPane().add(textDireccion);
 			
-			textTel = new JTextField(datosUsuario.gettelefono());
+			textTel = new JTextField(datosUsuario.getTelefono());
 			textTel.setColumns(10);
 			textTel.setBounds(172, 154, 201, 20);
 			getContentPane().add(textTel);
@@ -186,8 +186,8 @@ public class VentanaPerfil extends JFrame{
 						usuario = new Usuario();
 						usuario.setNombre(textNombre.getText());
 						usuario.setApellido(textApellido.getText());
-						usuario.setdireccion(textDireccion.getText());
-						usuario.settelefono(textTel.getText());
+						usuario.setDireccion(textDireccion.getText());
+						usuario.setTelefono(textTel.getText());
 						usuario.setNombreUsuario(textUsuario.getText());
 						con.connect();
 						con.cambiarDatos(usuario);
