@@ -197,20 +197,27 @@ public class VentanaPerfil extends JFrame{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					
 				
 				}
 			});
 			btnNewButton.setBounds(284, 376, 89, 23);
 			getContentPane().add(btnNewButton);
 			
-			JButton btnGuardarCambios = new JButton("Guardar cambios\r\n");
-			btnGuardarCambios.addMouseListener(new MouseAdapter() {
-			
-			});
-		
-			
-			
+			JButton botonCerrarSesion = new JButton("Cerrar Sesion");
+			botonCerrarSesion.setBounds(296, 23, 107, 21);
+			getContentPane().add(botonCerrarSesion);
+			botonCerrarSesion.addActionListener(new ActionListener() {
 
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					VentanaLogin login = new VentanaLogin();
+					login.setVisible(true);
+					dispose();
+					
+				}
+				
+			});
 			
 		}
 	}

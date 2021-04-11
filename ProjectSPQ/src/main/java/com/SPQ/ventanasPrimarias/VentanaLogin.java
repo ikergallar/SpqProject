@@ -49,8 +49,8 @@ public class VentanaLogin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaLogin window = new VentanaLogin();
-					window.frmLogin.setVisible(true);
+					VentanaLogin frame = new VentanaLogin();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -73,7 +73,7 @@ public class VentanaLogin {
 		frmLogin.setResizable(false);
 		frmLogin.setTitle("Login");
 		frmLogin.setBounds(100, 100, 515, 748);
-		frmLogin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 
 		JPanel panelLogo = new JPanel();
@@ -178,31 +178,7 @@ public class VentanaLogin {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-
-
-				
-				
-				
-				
-				
-				
-				
-				
-				
-			/*	String correo = "";
-				correo = textFieldCorreo.getText();
-				if (correo.length() >= 10) {
-					System.out.println("Comprobando login para : " + correo);
-					String[] correoCompleto = correo.split("@");
-					String nomUsuario = correoCompleto[0];
-
-					VentanaPrincipal.lanzar(nomUsuario);
-					frmLogin.setVisible(false);
-
-				} else {
-					JOptionPane.showMessageDialog(null, "Debes rellenar el campo del correo.", "", 0);
-				}
-*/
+	
 			}
 		});
 		botonLogin.setForeground(Color.WHITE);

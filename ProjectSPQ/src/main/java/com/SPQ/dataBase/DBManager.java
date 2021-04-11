@@ -163,7 +163,8 @@ private Connection conn = null;
 		}
 		
 /*		 public int existeUsuario(String usuario) throws DBException {
-		        try {PreparedStatement ps = conn.prepareStatement("SELECT count(id) FROM usuarios WHERE username = ?");
+		        try {
+		        PreparedStatement ps = conn.prepareStatement("SELECT count(id) FROM usuarios WHERE username = ?");
 		            ps.setString(1, usuario);
 		            ResultSet rs = ps.executeQuery();
 
@@ -180,6 +181,23 @@ private Connection conn = null;
 		        }
 		    }
 		*/
+		public boolean existeUsuario(String username) throws DBException {
+			String sentSQL = "SELECT * FROM usuarios WHERE username='"+username+"'";
+			boolean existe = false;
+			try {
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sentSQL);
+				if(rs.next())
+					existe = true;
+				rs.close();
+				st.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				throw new DBException("No se ha podido acceder a la tabla Alumno");
+			}
+			return existe;
+		}
 		
 		
 }
