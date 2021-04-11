@@ -50,14 +50,8 @@ public class VentanaRecuperacion extends JDialog {
 	private JTextField texto_direccion;
 	private ButtonGroup sexo = new ButtonGroup();
 	private JTextField textoRespuesta;
-	
-	
-	
-	
+	private Usuario usuario;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		
 		LogController.log ( Level.INFO, "Recuperacion contraseña " + (new Date()),null);
@@ -124,10 +118,7 @@ public class VentanaRecuperacion extends JDialog {
 		
 		
 		JButton btnRegistrar = new JButton("RECUPERAR");
-		btnRegistrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
+	
 		btnRegistrar.setBackground(new Color(255, 0, 0));
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 16));
@@ -162,6 +153,58 @@ public class VentanaRecuperacion extends JDialog {
 		textoRespuesta.setColumns(10);
 		textoRespuesta.setBounds(31, 246, 175, 19);
 		contentPane.add(textoRespuesta);
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				String nomUsuario = texto_usuario.getText();
+                String palabraRecuperacion = textoRespuesta.getText();
+                String preguntaRecuperacion = comboPreguntas.getSelectedItem().toString();
+                DBManager conexion = new DBManager();
+                
+                try {
+                    conexion.connect();
+                    
+                    if (conexion.recuperarContrasenya(nomUsuario,palabraRecuperacion,preguntaRecuperacion) == true) {
+                    	
+                    	if(texto_contrasena.getText().equals(texto_confPass.getText())) {
+							try {
+							
+								usuario = new Usuario();
+								usuario.setPass(texto_confPass.getText());
+								usuario.setNombreUsuario(nomUsuario);
+
+								
+								conexion.cambiarContrsenya(usuario);
+								JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
+								LogController.log ( Level.INFO, "Contraseña editada correctamente " + (new Date()),null);
+
+							} catch (DBException e1) {
+								e1.printStackTrace();
+							}
+							
+						}else {
+							JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", 0);
+							LogController.log ( Level.WARNING, "Las contraseñas no coinciden " + (new Date()),null);
+							texto_contrasena.setText("");
+							texto_confPass.setText("");
+						}
+                    	
+                    }else {
+                        JOptionPane.showMessageDialog(null, "Datos erroneos", "Error", 0);
+                		LogController.log ( Level.WARNING, "Datos erroneos " + (new Date()),null);
+                    }	
+
+                    conexion.disconnect();
+                    
+
+                } catch (DBException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+
+	
+			}
+		});
 		
 	}
 	}

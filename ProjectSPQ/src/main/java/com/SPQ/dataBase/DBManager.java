@@ -199,6 +199,28 @@ private Connection conn = null;
 			
 			return coincide;	
 		}
+		public boolean recuperarContrasenya (String nomUsuario, String palabraRecuperacion, String preguntaRecuperacion) throws DBException{
+            boolean acceso = false;
+            try (PreparedStatement stmt = conn.prepareStatement("SELECT username, palabraRecuperacion, preguntaRecuperacion FROM usuarios WHERE username = ? AND palabraRecuperacion = ? AND preguntaRecuperacion = ?;")) {
+                    stmt.setString(1, nomUsuario);
+                    stmt.setString(2, palabraRecuperacion);
+                    stmt.setString(3, preguntaRecuperacion);
+
+                    ResultSet rs = stmt.executeQuery();
+
+                    if (rs.next()) {
+                        acceso = true;
+                    }else {
+                        acceso = false;
+                    }
+
+                } catch (SQLException e) {
+                    throw new DBException("Error obteniendo datos de la query", e);
+                }
+
+
+            return acceso;
+        }
 		
 		
 }
