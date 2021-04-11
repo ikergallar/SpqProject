@@ -42,53 +42,69 @@ public class VentanaContrasenya extends JFrame{
 		
 	public VentanaContrasenya() {
 		
-		setTitle("Seguridad");
-		setBounds(100, 100, 454, 555);
+		setTitle("Hustle - Seguridad");
+		setBounds(100, 100, 513, 496);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-			getContentPane().setBackground(Color.LIGHT_GRAY);
+			getContentPane().setBackground(new Color(39, 45, 53));
 			getContentPane().setLayout(null);
 			
-			JLabel lblCambiarContrasea = new JLabel("Cambiar contrase\u00F1a");
+			JLabel lblCambiarContrasea = new JLabel("CAMBIAR CONTRASEÑA");
+			lblCambiarContrasea.setForeground(Color.WHITE);
 			lblCambiarContrasea.setFont(new Font("Tahoma", Font.BOLD, 18));
-			lblCambiarContrasea.setBounds(99, 22, 223, 20);
+			lblCambiarContrasea.setBounds(133, 24, 223, 20);
 			getContentPane().add(lblCambiarContrasea);
 			
 			JLabel lblContraseaAntigua = new JLabel("Contrase\u00F1a actual");
-			lblContraseaAntigua.setBounds(10, 75, 160, 20);
+			lblContraseaAntigua.setForeground(Color.WHITE);
+			lblContraseaAntigua.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			lblContraseaAntigua.setBounds(32, 74, 160, 20);
 			getContentPane().add(lblContraseaAntigua);
 			
 			contrasenyaActual = new JPasswordField();
-			contrasenyaActual.setBounds(10, 107, 398, 26);
+			contrasenyaActual.setBounds(32, 107, 398, 26);
 			getContentPane().add(contrasenyaActual);
 			
 			JLabel lblNuevaContrasea = new JLabel("Nueva contrase\u00F1a");
-			lblNuevaContrasea.setBounds(10, 158, 160, 20);
+			lblNuevaContrasea.setForeground(Color.WHITE);
+			lblNuevaContrasea.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			lblNuevaContrasea.setBounds(32, 158, 160, 20);
 			getContentPane().add(lblNuevaContrasea);
 			
 			nuevaContrasenya = new JPasswordField();
-			nuevaContrasenya.setBounds(10, 189, 398, 26);
+			nuevaContrasenya.setBounds(32, 189, 398, 26);
 			getContentPane().add(nuevaContrasenya);
 			
 			JLabel lblConfirmarContrasea = new JLabel("Confirmar contraseña");
-			lblConfirmarContrasea.setBounds(10, 243, 160, 20);
+			lblConfirmarContrasea.setForeground(Color.WHITE);
+			lblConfirmarContrasea.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			lblConfirmarContrasea.setBounds(32, 243, 160, 20);
 			getContentPane().add(lblConfirmarContrasea);
 			
 			confirmarContrasenya = new JPasswordField();
-			confirmarContrasenya.setBounds(10, 274, 398, 26);
+			confirmarContrasenya.setBounds(32, 274, 398, 26);
 			getContentPane().add(confirmarContrasenya);
 			
-			JButton btnAtras = new JButton("Atras");
-			btnAtras.setBounds(39, 366, 105, 29);
+			JButton btnAtras = new JButton("VOLVER");
+			btnAtras.setFont(new Font("Tahoma", Font.BOLD, 16));
+			btnAtras.setBackground(Color.RED);
+			btnAtras.setForeground(Color.WHITE);
+			btnAtras.setBounds(0, 398, 248, 59);
 			getContentPane().add(btnAtras);
 			
-			JButton btnCambiar = new JButton("Cambiar");
-			btnCambiar.setBounds(207, 366, 115, 32);
+			JButton btnCambiar = new JButton("CAMBIAR");
+			btnCambiar.setFont(new Font("Tahoma", Font.BOLD, 16));
+			btnCambiar.setForeground(Color.WHITE);
+			btnCambiar.setBackground(Color.RED);
+			btnCambiar.setBounds(247, 398, 250, 59);
 			getContentPane().add(btnCambiar);
 			
 			final JCheckBox checkVerPass = new JCheckBox("Visualizar contraseñas");
-			checkVerPass.setBounds(10, 319, 182, 23);
+			checkVerPass.setForeground(Color.WHITE);
+			checkVerPass.setFont(new Font("Tahoma", Font.PLAIN, 12));
+			checkVerPass.setBackground(new Color(39, 45, 53));
+			checkVerPass.setBounds(32, 318, 182, 23);
 			getContentPane().add(checkVerPass);
 			checkVerPass.addActionListener(new ActionListener() {	
 				@Override

@@ -103,7 +103,7 @@ public class VentanaRecuperacion extends JDialog {
 		JLabel lblConfPass = new JLabel("Confirmar contraseña");
 		lblConfPass.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblConfPass.setForeground(new Color(255, 255, 255));
-		lblConfPass.setBounds(280, 140, 200, 14);
+		lblConfPass.setBounds(280, 125, 200, 14);
 		contentPane.add(lblConfPass);
 		
 		texto_confPass = new JPasswordField();
@@ -130,7 +130,7 @@ public class VentanaRecuperacion extends JDialog {
 		});
 		btnRegistrar.setBackground(new Color(255, 0, 0));
 		btnRegistrar.setForeground(Color.WHITE);
-		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnRegistrar.setBounds(0, 308, 497, 72);
 		contentPane.add(btnRegistrar);
 		
@@ -139,7 +139,7 @@ public class VentanaRecuperacion extends JDialog {
 		JLabel labelPregunta = new JLabel("Pregunta recuperación");
 		labelPregunta.setForeground(Color.WHITE);
 		labelPregunta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		labelPregunta.setBounds(31, 139, 150, 17);
+		labelPregunta.setBounds(31, 124, 150, 17);
 		contentPane.add(labelPregunta);
 		
 		final JComboBox comboPreguntas = new JComboBox();
@@ -149,18 +149,18 @@ public class VentanaRecuperacion extends JDialog {
 		comboPreguntas.addItem("¿Ciudad natal?");
 		comboPreguntas.addItem("¿Fecha especial?");
 		comboPreguntas.addItem("¿Mascota de la infancia?");
-		comboPreguntas.setBounds(31, 167, 175, 22);
+		comboPreguntas.setBounds(31, 164, 175, 22);
 		contentPane.add(comboPreguntas);
 		
 		JLabel labelRespuesta = new JLabel("Respuesta");
 		labelRespuesta.setForeground(Color.WHITE);
 		labelRespuesta.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		labelRespuesta.setBounds(31, 220, 150, 17);
+		labelRespuesta.setBounds(31, 212, 150, 17);
 		contentPane.add(labelRespuesta);
 		
 		textoRespuesta = new JTextField();
 		textoRespuesta.setColumns(10);
-		textoRespuesta.setBounds(31, 248, 175, 19);
+		textoRespuesta.setBounds(31, 246, 175, 19);
 		contentPane.add(textoRespuesta);
 		
 	}

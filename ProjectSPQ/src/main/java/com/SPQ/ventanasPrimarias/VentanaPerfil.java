@@ -95,39 +95,43 @@ public class VentanaPerfil extends JFrame{
 		   
 		    
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			setBounds(100, 100, 440, 473);
+			setBounds(100, 100, 513, 496);
 			getContentPane().setBackground(new Color(39, 45, 53));
 			getContentPane().setLayout(null);
 			
 			JLabel lblNewLabel = new JLabel("MI PERFIL");
 			lblNewLabel.setForeground(new Color(255, 255, 255));
-			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 16));
-			lblNewLabel.setBounds(150, 11, 89, 40);
+			lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 18));
+			lblNewLabel.setBounds(204, 11, 105, 40);
 			getContentPane().add(lblNewLabel);
 			
 			JLabel lblNewLabel_1 = new JLabel("Nombre");
+			lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblNewLabel_1.setForeground(Color.WHITE);
 			lblNewLabel_1.setBounds(36, 82, 46, 14);
 			getContentPane().add(lblNewLabel_1);
 			
 			JLabel lblNewLabel_2 = new JLabel("Apellidos");
+			lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblNewLabel_2.setForeground(Color.WHITE);
 			lblNewLabel_2.setBounds(36, 107, 89, 14);
 			getContentPane().add(lblNewLabel_2);
 			
 			JLabel lblNewLabel_3 = new JLabel("Direcci\u00F3n");
+			lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblNewLabel_3.setForeground(Color.WHITE);
 			lblNewLabel_3.setBounds(36, 132, 76, 14);
 			getContentPane().add(lblNewLabel_3);
 			
 			JLabel lblNewLabel_5 = new JLabel("Tel\u00E9fono");
+			lblNewLabel_5.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblNewLabel_5.setForeground(Color.WHITE);
 			lblNewLabel_5.setBounds(36, 156, 76, 14);
 			getContentPane().add(lblNewLabel_5);
 			
 			JLabel lblNewLabel_6 = new JLabel("Mis datos");
 			lblNewLabel_6.setForeground(new Color(255, 255, 255));
-			lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 12));
 			lblNewLabel_6.setBounds(26, 57, 126, 14);
 			getContentPane().add(lblNewLabel_6);
 			
@@ -154,16 +158,18 @@ public class VentanaPerfil extends JFrame{
 
 			JLabel lblNewLabel_7 = new JLabel("Detalles de la cuenta");
 			lblNewLabel_7.setForeground(Color.WHITE);
-			lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 11));
+			lblNewLabel_7.setFont(new Font("Tahoma", Font.BOLD, 12));
 			lblNewLabel_7.setBounds(26, 192, 157, 14);
 			getContentPane().add(lblNewLabel_7);
 			
 			JLabel lblNewLabel_8 = new JLabel("Usuario");
+			lblNewLabel_8.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblNewLabel_8.setForeground(Color.WHITE);
 			lblNewLabel_8.setBounds(36, 216, 76, 14);
 			getContentPane().add(lblNewLabel_8);
 			
 			JLabel lblNewLabel_8_1 = new JLabel("Mail");
+			lblNewLabel_8_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
 			lblNewLabel_8_1.setForeground(Color.WHITE);
 			lblNewLabel_8_1.setBounds(36, 244, 76, 14);
 			getContentPane().add(lblNewLabel_8_1);
@@ -179,10 +185,10 @@ public class VentanaPerfil extends JFrame{
 			textMail.setBounds(172, 242, 201, 20);
 			getContentPane().add(textMail);
 			
-			JButton btnTarjeta_1 = new JButton("Volver");
+			JButton btnTarjeta_1 = new JButton("VOLVER");
 			btnTarjeta_1.setBackground(Color.RED);
 			btnTarjeta_1.setForeground(Color.WHITE);
-			btnTarjeta_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+			btnTarjeta_1.setFont(new Font("Tahoma", Font.BOLD, 16));
 			btnTarjeta_1.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 				}
@@ -190,15 +196,15 @@ public class VentanaPerfil extends JFrame{
 			btnTarjeta_1.addMouseListener(new MouseAdapter() {
 				
 			});
-			btnTarjeta_1.setBounds(0, 366, 211, 68);
+			btnTarjeta_1.setBounds(0, 399, 257, 68);
 			getContentPane().add(btnTarjeta_1);
 			
 			
 		
-			JButton btnNewButton = new JButton("Guardar");
+			JButton btnNewButton = new JButton("GUARDAR");
 			btnNewButton.setBackground(Color.RED);
 			btnNewButton.setForeground(Color.WHITE);
-			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 13));
+			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DBManager con = new DBManager();
@@ -224,19 +230,19 @@ public class VentanaPerfil extends JFrame{
 				
 				}
 			});
-			btnNewButton.setBounds(207, 366, 217, 68);
+			btnNewButton.setBounds(255, 399, 252, 68);
 			getContentPane().add(btnNewButton);
 			
 			JButton botonCerrarSesion = new JButton("Cerrar Sesion");
 			botonCerrarSesion.setFont(new Font("Tahoma", Font.BOLD, 12));
 			botonCerrarSesion.setForeground(Color.WHITE);
 			botonCerrarSesion.setBackground(Color.RED);
-			botonCerrarSesion.setBounds(239, 297, 134, 40);
+			botonCerrarSesion.setBounds(336, 281, 134, 40);
 			getContentPane().add(botonCerrarSesion);
 			
 			JLabel cambiarPass = new JLabel("¿Deseas cambiar tu contraseña? Pincha aquí.");
 			cambiarPass.setForeground(Color.WHITE);
-			cambiarPass.setBounds(36, 272, 273, 14);
+			cambiarPass.setBounds(36, 295, 273, 14);
 			getContentPane().add(cambiarPass);
 			
 			cambiarPass.addMouseListener(new MouseAdapter() {

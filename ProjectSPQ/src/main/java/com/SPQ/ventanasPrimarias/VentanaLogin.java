@@ -78,10 +78,10 @@ public class VentanaLogin {
 	 */
 	private void initialize() {
 		frmLogin = new JFrame();
-		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
 		frmLogin.setResizable(false);
+		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
 		frmLogin.setTitle("Hustle - Login");
-		frmLogin.setBounds(100, 100, 513, 869);
+		frmLogin.setBounds(100, 100, 513, 870);
 		frmLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 
