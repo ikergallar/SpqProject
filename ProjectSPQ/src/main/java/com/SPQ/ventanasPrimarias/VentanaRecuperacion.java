@@ -124,7 +124,11 @@ public class VentanaRecuperacion extends JDialog {
 		
 		
 		
-		JButton btnRegistrar = new JButton("REGISTRAR");
+		JButton btnRegistrar = new JButton("RECUPERAR");
+		btnRegistrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		btnRegistrar.setBackground(new Color(255, 0, 0));
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 18));

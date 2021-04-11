@@ -230,18 +230,31 @@ public class VentanaLogin {
 		checkVerPass.setBounds(335, 630, 137, 26);
 		frmLogin.getContentPane().add(checkVerPass);
 		
-		JLabel lblNewLabel_1 = new JLabel("¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
-		lblNewLabel_1.addKeyListener(new KeyAdapter() {
+		final JLabel textoRecuperacion = new JLabel("¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
+		textoRecuperacion.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		textoRecuperacion.setBackground(Color.WHITE);
+		textoRecuperacion.setForeground(Color.GRAY);
+		textoRecuperacion.setBounds(36, 667, 398, 14);
+		frmLogin.getContentPane().add(textoRecuperacion);
+		textoRecuperacion.addMouseListener(new MouseAdapter() {
+
+			public void mouseEntered(MouseEvent e) {
+				textoRecuperacion.setForeground(Color.WHITE);
+			}
+
 			@Override
-			public void keyPressed(KeyEvent e) {
-				
+			public void mouseExited(MouseEvent e) {
+				textoRecuperacion.setForeground(Color.GRAY);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// Ventana para registro
+				VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
+				recuperacionContra.setVisible(true);
+
 			}
 		});
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		lblNewLabel_1.setBackground(Color.WHITE);
-		lblNewLabel_1.setForeground(Color.GRAY);
-		lblNewLabel_1.setBounds(36, 667, 398, 14);
-		frmLogin.getContentPane().add(lblNewLabel_1);
 		
 				JLabel labelLogo = new JLabel("");
 				labelLogo.setBounds(0, 0, 500, 500);
