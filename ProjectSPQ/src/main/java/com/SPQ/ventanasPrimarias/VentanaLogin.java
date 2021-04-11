@@ -40,6 +40,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.logging.Level;
+import javax.swing.UIManager;
 
 public class VentanaLogin {
 
@@ -77,19 +78,19 @@ public class VentanaLogin {
 		frmLogin = new JFrame();
 		frmLogin.setResizable(false);
 		frmLogin.setTitle("Login");
-		frmLogin.setBounds(100, 100, 515, 748);
+		frmLogin.setBounds(100, 100, 515, 676);
 		frmLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 
 		JPanel panelLogo = new JPanel();
 		panelLogo.setBackground(Color.WHITE);
-		panelLogo.setBounds(0, 0, 500, 355);
+		panelLogo.setBounds(0, 0, 509, 319);
 		frmLogin.getContentPane().add(panelLogo);
 		panelLogo.setLayout(new GridLayout(0, 1, 0, 0));
 
-		//JLabel labelLogo = new JLabel("");
-		//labelLogo.setIcon(new ImageIcon(getClass().getResource("/archivos/EasyBookingLogo2.gif")));
-		//panelLogo.add(labelLogo);
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setIcon(new ImageIcon(getClass().getResource("/imagenesEstaticas/hustleCompleto.png")));
+		panelLogo.add(labelLogo);
 
 		JPanel panelLogin = new JPanel();
 		panelLogin.setBackground(Color.WHITE);
@@ -98,7 +99,7 @@ public class VentanaLogin {
 		panelLogin.setLayout(new GridLayout(3, 1, 0, 0));
 
 		JPanel panelCorreo = new JPanel();
-		panelCorreo.setBackground(Color.WHITE);
+		panelCorreo.setBackground(UIManager.getColor("Button.background"));
 		panelLogin.add(panelCorreo);
 		FlowLayout fl_panelCorreo = new FlowLayout(FlowLayout.CENTER, 5, 5);
 		panelCorreo.setLayout(fl_panelCorreo);
@@ -196,34 +197,34 @@ public class VentanaLogin {
 		panelLogin.add(botonLogin);
 		
 		textFieldContrasena = new JPasswordField();
-		textFieldContrasena.setBounds(65, 456, 292, 14);
+		textFieldContrasena.setBounds(36, 450, 293, 26);
 		frmLogin.getContentPane().add(textFieldContrasena);
 		textFieldContrasena.setColumns(10);
 		
 		JLabel labelCorreo = new JLabel("Usuario");
-		labelCorreo.setBounds(-12, 330, 500, 70);
+		labelCorreo.setBounds(36, 313, 52, 89);
 		frmLogin.getContentPane().add(labelCorreo);
 		labelCorreo.setForeground(Color.BLACK);
 		labelCorreo.setHorizontalAlignment(SwingConstants.CENTER);
-		labelCorreo.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+		labelCorreo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		textFieldUsuario = new JTextField();
-		textFieldUsuario.setBounds(65, 394, 366, 26);
+		textFieldUsuario.setBounds(36, 376, 366, 26);
 		frmLogin.getContentPane().add(textFieldUsuario);
 		textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
 		textFieldUsuario.setColumns(30);
 		
 		JLabel lblNewLabel = new JLabel("Contraseña");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		lblNewLabel.setBounds(209, 431, 111, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel.setBounds(36, 426, 111, 14);
 		frmLogin.getContentPane().add(lblNewLabel);
 		
-		final JCheckBox checkVerPass = new JCheckBox("Visualizar contraseña");
-		checkVerPass.setBounds(363, 450, 137, 26);
+		final JCheckBox checkVerPass = new JCheckBox("Ver contraseña");
+		checkVerPass.setBounds(335, 450, 137, 26);
 		frmLogin.getContentPane().add(checkVerPass);
 		
-		JLabel lblNewLabel_1 = new JLabel("¿Se le ha olvidado la contraseña?Pulse aquí si desea recuperarla");
+		JLabel lblNewLabel_1 = new JLabel("¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
 		lblNewLabel_1.setBounds(75, 481, 356, 14);
 		frmLogin.getContentPane().add(lblNewLabel_1);
 		checkVerPass.addActionListener(new ActionListener() {	
