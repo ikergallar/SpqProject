@@ -191,7 +191,7 @@ public class VentanaLogin {
 		panelLogin.add(botonLogin);
 		
 		textFieldContrasena = new JPasswordField();
-		textFieldContrasena.setBounds(209, 478, 86, 14);
+		textFieldContrasena.setBounds(65, 456, 292, 14);
 		frmLogin.getContentPane().add(textFieldContrasena);
 		textFieldContrasena.setColumns(10);
 		
@@ -210,12 +210,17 @@ public class VentanaLogin {
 		textFieldUsuario.setColumns(30);
 		
 		JLabel lblNewLabel = new JLabel("Contraseña");
-		lblNewLabel.setBounds(220, 443, 46, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel.setBounds(209, 431, 111, 14);
 		frmLogin.getContentPane().add(lblNewLabel);
 		
 		final JCheckBox checkVerPass = new JCheckBox("Visualizar contraseña");
-		checkVerPass.setBounds(315, 466, 185, 26);
+		checkVerPass.setBounds(363, 450, 137, 26);
 		frmLogin.getContentPane().add(checkVerPass);
+		
+		JLabel lblNewLabel_1 = new JLabel("¿Se le ha olvidado la contraseña?Pulse aquí si desea recuperarla");
+		lblNewLabel_1.setBounds(75, 481, 356, 14);
+		frmLogin.getContentPane().add(lblNewLabel_1);
 		checkVerPass.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
