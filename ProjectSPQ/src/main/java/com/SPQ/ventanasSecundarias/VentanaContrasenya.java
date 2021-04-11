@@ -166,6 +166,8 @@ public class VentanaContrasenya extends JFrame{
 										dbm.cambiarContrsenya(usuario);
 									dbm.disconnect();
 										JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
+										LogController.log ( Level.INFO, "Contraseña editada correctamente " + (new Date()),null);
+
 									} catch (DBException e1) {
 										e1.printStackTrace();
 									}
@@ -176,12 +178,14 @@ public class VentanaContrasenya extends JFrame{
 								
 								}else {
 									JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", 0);
+									LogController.log ( Level.WARNING, "Las contraseñas no coinciden " + (new Date()),null);
 									contrasenyaActual.setText("");
 									nuevaContrasenya.setText("");
 									confirmarContrasenya.setText("");
 								}
 							}else {
 								JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta", "Error", 0);
+								LogController.log ( Level.WARNING, "Contraseña actual incorrecta " + (new Date()),null);
 								contrasenyaActual.setText("");
 								nuevaContrasenya.setText("");
 								confirmarContrasenya.setText("");

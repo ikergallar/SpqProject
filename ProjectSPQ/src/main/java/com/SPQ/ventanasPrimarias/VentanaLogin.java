@@ -26,6 +26,7 @@ import org.glassfish.grizzly.streams.AbstractStreamWriter.DisposeBufferCompletio
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.dataBase.LogController;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -37,6 +38,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.logging.Level;
 
 public class VentanaLogin {
 
@@ -166,11 +169,13 @@ public class VentanaLogin {
         						e1.printStackTrace();
         					}
         				}
+        				LogController.log ( Level.INFO, "Sesion iniciada " + (new Date()),null);
         				VentanaPerfil perfil = new VentanaPerfil();
                     	perfil.setVisible(true);
                     	frmLogin.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
+                		LogController.log ( Level.WARNING, "No se ha podido iniciar sesion " + (new Date()),null);
                         textFieldUsuario.setText("");
                         textFieldContrasena.setText("");
                     }
