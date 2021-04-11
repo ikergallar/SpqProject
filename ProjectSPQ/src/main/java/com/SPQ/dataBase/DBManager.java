@@ -85,14 +85,16 @@ private Connection conn = null;
 		//CAMBIAR CONTRASENYA 
 	    
 		public void cambiarContrsenya (Usuario user) throws DBException{
-			try (PreparedStatement stmt = conn.prepareStatement("UPDATE usuarios SET contrasenya= ? WHERE username ='"+ user.getNombreUsuario() + "'")){
-				stmt.setString(1, user.getPass());
-				stmt.executeUpdate();
-				
-				
-			}catch (SQLException e) {
-				throw new DBException("No ha sido posible ejecutar la query");
-			}
+				String sentSQL = "UPDATE usuarios SET contrasenya='"+ user.getPass() +"' WHERE username = '" + user.getNombreUsuario() +"';" ;
+				try{
+					Statement st = conn.createStatement();
+					st.executeUpdate(sentSQL);
+					st.close();
+					
+					
+				}catch (SQLException e) {
+					throw new DBException("No ha sido posible cambiar la contraseña");
+				}
 		}
 		
 		//BUSCAR USUARIO POR LA ID
@@ -161,26 +163,7 @@ private Connection conn = null;
 			}
 			
 		}
-		
-/*		 public int existeUsuario(String usuario) throws DBException {
-		        try {
-		        PreparedStatement ps = conn.prepareStatement("SELECT count(id) FROM usuarios WHERE username = ?");
-		            ps.setString(1, usuario);
-		            ResultSet rs = ps.executeQuery();
 
-		            if (rs.next()) {
-		                return rs.getInt(1);
-		            }
-		           
-		            return 1;
-
-		        } catch (SQLException e) {
-		            return 1;
-		        } finally {
-		            
-		        }
-		    }
-		*/
 		public boolean existeUsuario(String username) throws DBException {
 			String sentSQL = "SELECT * FROM usuarios WHERE username='"+username+"'";
 			boolean existe = false;
@@ -194,9 +177,27 @@ private Connection conn = null;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				throw new DBException("No se ha podido acceder a la tabla Alumno");
+				throw new DBException("No se ha podido acceder a la tabla usuarios");
 			}
 			return existe;
+		}
+		
+		public boolean comprobarContrasenya(Usuario usuario) throws DBException{
+			String sentSQL = "SELECT * FROM usuarios WHERE username='"+ usuario.getNombreUsuario() +"' AND contrasenya='" +usuario.getPass()+"';";
+			boolean coincide = false;
+			try {
+				Statement st = conn.createStatement();
+				ResultSet rs = st.executeQuery(sentSQL);
+				if(rs.next())
+					coincide = true;
+				rs.close();
+				st.close();
+			}catch(SQLException e) {
+				e.printStackTrace();
+				throw new DBException("No se ha podido acceder a la tabla usuarios");
+			}
+			
+			return coincide;	
 		}
 		
 		

@@ -3,8 +3,14 @@ package com.SPQ.ventanasSecundarias;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Date;
 import java.util.logging.Level;
 
@@ -26,23 +32,12 @@ import com.SPQ.ventanasPrimarias.VentanaPerfil;
 public class VentanaContrasenya extends JFrame{
 	int a = VentanaLogin.getUsuarioId();
 		
-	private JPasswordField passwordField;
-	private JPasswordField passwordField_1;
-	private JPasswordField passwordField_2;
-	
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaContrasenya frame = new VentanaContrasenya();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
+	private JPasswordField contrasenyaActual;
+	private JPasswordField nuevaContrasenya;
+	private JPasswordField confirmarContrasenya;
+	private String nombreUsuario;
+	private Usuario datosUsuario;
+	private Usuario usuario;
 		
 	public VentanaContrasenya() {
 		
@@ -63,25 +58,25 @@ public class VentanaContrasenya extends JFrame{
 			lblContraseaAntigua.setBounds(10, 75, 160, 20);
 			getContentPane().add(lblContraseaAntigua);
 			
-			passwordField = new JPasswordField();
-			passwordField.setBounds(10, 107, 398, 26);
-			getContentPane().add(passwordField);
+			contrasenyaActual = new JPasswordField();
+			contrasenyaActual.setBounds(10, 107, 398, 26);
+			getContentPane().add(contrasenyaActual);
 			
 			JLabel lblNuevaContrasea = new JLabel("Nueva contrase\u00F1a");
 			lblNuevaContrasea.setBounds(10, 158, 160, 20);
 			getContentPane().add(lblNuevaContrasea);
 			
-			passwordField_1 = new JPasswordField();
-			passwordField_1.setBounds(10, 189, 398, 26);
-			getContentPane().add(passwordField_1);
+			nuevaContrasenya = new JPasswordField();
+			nuevaContrasenya.setBounds(10, 189, 398, 26);
+			getContentPane().add(nuevaContrasenya);
 			
-			JLabel label = new JLabel("Nueva contrase\u00F1a");
-			label.setBounds(10, 243, 160, 20);
-			getContentPane().add(label);
+			JLabel lblConfirmarContrasea = new JLabel("Confirmar contraseña");
+			lblConfirmarContrasea.setBounds(10, 243, 160, 20);
+			getContentPane().add(lblConfirmarContrasea);
 			
-			passwordField_2 = new JPasswordField();
-			passwordField_2.setBounds(10, 274, 398, 26);
-			getContentPane().add(passwordField_2);
+			confirmarContrasenya = new JPasswordField();
+			confirmarContrasenya.setBounds(10, 274, 398, 26);
+			getContentPane().add(confirmarContrasenya);
 			
 			JButton btnAtras = new JButton("Atras");
 			btnAtras.setBounds(39, 366, 105, 29);
@@ -102,35 +97,83 @@ public class VentanaContrasenya extends JFrame{
 				}
 			});
 			
+			File f = new File("usuario.txt");
+	    	try {
+				BufferedReader br = new BufferedReader(new FileReader(f));
+				String linea;
+				while((linea = br.readLine()) != null) {
+					nombreUsuario = linea;
+				}
+				br.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    DBManager con = new DBManager();
+	    
+	    try {
+	    	con.connect();
+			datosUsuario = con.seleccionarDatos(nombreUsuario);
+			
+			con.disconnect();
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+			
 			btnCambiar.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) { 
 					DBManager dbm = new DBManager();
 					try {
+						Usuario usuario1 = new Usuario();
+						usuario1.setNombreUsuario(nombreUsuario);
+						usuario1.setPass(contrasenyaActual.getText());
 						dbm.connect();
-					
-						Usuario user = dbm.buscarUsuarioId(a);
-						if (user.getPass().equals(passwordField.getText()) && passwordField_1.getText().equals(passwordField_2.getText())) {
-							user.setPass(passwordField_1.getText());
-							dbm.cambiarContrsenya(user);
-							JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
-							LogController.log ( Level.INFO, "Su contraseña ha sido cambiada " + (new Date()),null);
-							passwordField.setText("");
-							passwordField_1.setText("");
-							passwordField_2.setText("");
-						}else {
-							JOptionPane.showMessageDialog(null, "Los campos no coinciden o contraseña incorrecta", "Error", 0);
-							LogController.log ( Level.WARNING, "Los campos no coinciden o contraseña incorrecta " + (new Date()),null);
+							if(dbm.comprobarContrasenya(usuario1)== true) {
+								if(nuevaContrasenya.equals(confirmarContrasenya)) {
+									try {
+									
+										usuario = new Usuario();
+										usuario.setPass(confirmarContrasenya.getText());
+										usuario.setNombreUsuario(nombreUsuario);
+										
+										dbm.cambiarContrsenya(usuario);
+									dbm.disconnect();
+										JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
+									} catch (DBException e1) {
+										e1.printStackTrace();
+									}
+									
+									VentanaPerfil perf = new VentanaPerfil();
+									perf.setVisible(true);
+									dispose();
+								
+								}else {
+									JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", 0);
+									contrasenyaActual.setText("");
+									nuevaContrasenya.setText("");
+									confirmarContrasenya.setText("");
+								}
+							}else {
+								JOptionPane.showMessageDialog(null, "Contraseña actual incorrecta", "Error", 0);
+								contrasenyaActual.setText("");
+								nuevaContrasenya.setText("");
+								confirmarContrasenya.setText("");
+							}
+						} catch (HeadlessException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						} catch (DBException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
 						}
-						dbm.disconnect();
-					} catch (DBException e1) {
-						
-						e1.printStackTrace();
-					}
 					
-					VentanaPerfil perf = new VentanaPerfil();
-					perf.setVisible(true);
-					dispose();
+					
 					
 				}
 			});
