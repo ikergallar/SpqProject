@@ -49,8 +49,8 @@ public class VentanaLogin {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaLogin frame = new VentanaLogin();
-					frame.setVisible(true);
+					VentanaLogin window = new VentanaLogin();
+					window.frmLogin.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -178,6 +178,7 @@ public class VentanaLogin {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
+
 	
 			}
 		});
