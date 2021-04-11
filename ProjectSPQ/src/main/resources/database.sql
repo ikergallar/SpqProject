@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-04-2021 a las 12:29:54
+-- Tiempo de generación: 12-04-2021 a las 00:32:45
 -- Versión del servidor: 10.4.18-MariaDB
 -- Versión de PHP: 8.0.3
 
@@ -48,7 +48,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `username`, `email`, `contrasenya`, `nombre`, `apellido`, `telefono`, `direccion`, `descripcion`, `foto`, `palabraRecuperacion`, `preguntaRecuperacion`, `id_anuncio`) VALUES
-(1, 'Mrfahrenheit10', 'aitor.fournier@opendeusto.es', 'animotio', 'Aitor', 'Fournier', 696254476, 'calaikans', NULL, NULL, NULL, NULL, NULL);
+(1, 'Mrfahrenheit10', 'aitor.fournier@opendeusto.es', 'animotio', 'Aitor', 'Fournier', 696254476, 'calaikans', NULL, NULL, NULL, NULL, NULL),
+(3, 'aa', 'aa@gmail.com', 'aa', 'aa', 'aa', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 'aaa', 'aa@.', '123', 'aa', 'aa', NULL, NULL, NULL, NULL, 'aa', '¿Nombre de tu madre?', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -69,7 +71,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
