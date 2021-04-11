@@ -76,35 +76,32 @@ public class VentanaLogin {
 	 */
 	private void initialize() {
 		frmLogin = new JFrame();
+		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
 		frmLogin.setResizable(false);
 		frmLogin.setTitle("Login");
-		frmLogin.setBounds(100, 100, 515, 676);
+		frmLogin.setBounds(100, 100, 513, 869);
 		frmLogin.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		frmLogin.getContentPane().setLayout(null);
 
 		JPanel panelLogo = new JPanel();
 		panelLogo.setBackground(Color.WHITE);
-		panelLogo.setBounds(0, 0, 509, 319);
+		panelLogo.setBounds(500, 0, 0, 500);
 		frmLogin.getContentPane().add(panelLogo);
 		panelLogo.setLayout(new GridLayout(0, 1, 0, 0));
 
-		JLabel labelLogo = new JLabel("");
-		labelLogo.setIcon(new ImageIcon(getClass().getResource("/imagenesEstaticas/hustleCompleto.png")));
-		panelLogo.add(labelLogo);
-
 		JPanel panelLogin = new JPanel();
-		panelLogin.setBackground(Color.WHITE);
-		panelLogin.setBounds(0, 499, 500, 210);
+		panelLogin.setBackground(UIManager.getColor("Button.background"));
+		panelLogin.setBounds(0, 724, 497, 108);
 		frmLogin.getContentPane().add(panelLogin);
-		panelLogin.setLayout(new GridLayout(3, 1, 0, 0));
+		panelLogin.setLayout(null);
 
 		JPanel panelCorreo = new JPanel();
-		panelCorreo.setBackground(UIManager.getColor("Button.background"));
+		panelCorreo.setBounds(0, 0, 497, 36);
+		panelCorreo.setBackground(new Color(39, 45, 53));
 		panelLogin.add(panelCorreo);
-		FlowLayout fl_panelCorreo = new FlowLayout(FlowLayout.CENTER, 5, 5);
-		panelCorreo.setLayout(fl_panelCorreo);
 
 		final JLabel labelRegistro = new JLabel("\u00BFEres nuevo? Reg\u00EDstrate Aqu\u00ED");
+		labelRegistro.setBounds(173, 11, 233, 14);
 		labelRegistro.addMouseListener(new MouseAdapter() {
 
 			public void mouseEntered(MouseEvent e) {
@@ -124,10 +121,12 @@ public class VentanaLogin {
 
 			}
 		});
+		panelCorreo.setLayout(null);
 		labelRegistro.setForeground(Color.GRAY);
 		panelCorreo.add(labelRegistro);
 
 		JButton botonLogin = new JButton("Login");
+		botonLogin.setBounds(0, 35, 497, 73);
 		botonLogin.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -197,36 +196,48 @@ public class VentanaLogin {
 		panelLogin.add(botonLogin);
 		
 		textFieldContrasena = new JPasswordField();
-		textFieldContrasena.setBounds(36, 450, 293, 26);
+		textFieldContrasena.setBounds(36, 630, 293, 26);
 		frmLogin.getContentPane().add(textFieldContrasena);
 		textFieldContrasena.setColumns(10);
 		
 		JLabel labelCorreo = new JLabel("Usuario");
-		labelCorreo.setBounds(36, 313, 52, 89);
+		labelCorreo.setBackground(Color.WHITE);
+		labelCorreo.setBounds(36, 499, 52, 89);
 		frmLogin.getContentPane().add(labelCorreo);
-		labelCorreo.setForeground(Color.BLACK);
+		labelCorreo.setForeground(Color.WHITE);
 		labelCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelCorreo.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		textFieldUsuario = new JTextField();
-		textFieldUsuario.setBounds(36, 376, 366, 26);
+		textFieldUsuario.setBounds(36, 562, 398, 26);
 		frmLogin.getContentPane().add(textFieldUsuario);
 		textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
 		textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
 		textFieldUsuario.setColumns(30);
 		
 		JLabel lblNewLabel = new JLabel("Contraseña");
+		lblNewLabel.setBackground(Color.WHITE);
+		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel.setBounds(36, 426, 111, 14);
+		lblNewLabel.setBounds(36, 599, 111, 14);
 		frmLogin.getContentPane().add(lblNewLabel);
 		
 		final JCheckBox checkVerPass = new JCheckBox("Ver contraseña");
-		checkVerPass.setBounds(335, 450, 137, 26);
+		checkVerPass.setBackground(new Color(39, 45, 53));
+		checkVerPass.setForeground(Color.WHITE);
+		checkVerPass.setBounds(335, 630, 137, 26);
 		frmLogin.getContentPane().add(checkVerPass);
 		
 		JLabel lblNewLabel_1 = new JLabel("¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
-		lblNewLabel_1.setBounds(75, 481, 356, 14);
+		lblNewLabel_1.setBackground(Color.WHITE);
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setBounds(36, 667, 356, 14);
 		frmLogin.getContentPane().add(lblNewLabel_1);
+		
+				JLabel labelLogo = new JLabel("");
+				labelLogo.setBounds(0, 0, 500, 500);
+				frmLogin.getContentPane().add(labelLogo);
+				labelLogo.setIcon(new ImageIcon(getClass().getResource("/imagenesEstaticas/hustle500.png")));
 		checkVerPass.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
