@@ -101,7 +101,7 @@ public class VentanaRegistro extends JDialog {
 		contentPane.add(labelNombre);
 		
 		textoNombre = new JTextField();
-		textoNombre.setBounds(280, 154, 175, 19);
+		textoNombre.setBounds(31, 76, 175, 19);
 		contentPane.add(textoNombre);
 		textoNombre.setColumns(10);
 		
@@ -113,7 +113,7 @@ public class VentanaRegistro extends JDialog {
 		
 		textoApellido = new JTextField();
 		textoApellido.setColumns(10);
-		textoApellido.setBounds(31, 154, 175, 19);
+		textoApellido.setBounds(280, 76, 175, 19);
 		contentPane.add(textoApellido);
 		
 		JLabel labelEmail = new JLabel("Correo");
@@ -124,7 +124,7 @@ public class VentanaRegistro extends JDialog {
 		
 		texto_email = new JTextField();
 		texto_email.setColumns(10);
-		texto_email.setBounds(280, 226, 175, 19);
+		texto_email.setBounds(31, 232, 175, 19);
 		contentPane.add(texto_email);
 		
 		JLabel labelContrasena = new JLabel("Contrase\u00F1a");
@@ -134,7 +134,7 @@ public class VentanaRegistro extends JDialog {
 		contentPane.add(labelContrasena);
 		
 		texto_contrasena = new JPasswordField();
-		texto_contrasena.setBounds(280, 76, 173, 19);
+		texto_contrasena.setBounds(280, 154, 173, 19);
 		contentPane.add(texto_contrasena);
 		
 		JLabel lblConfPass = new JLabel("Confirmar contraseña");
@@ -144,7 +144,7 @@ public class VentanaRegistro extends JDialog {
 		contentPane.add(lblConfPass);
 		
 		texto_confPass = new JPasswordField();
-		texto_confPass.setBounds(31, 228, 175, 20);
+		texto_confPass.setBounds(280, 232, 175, 20);
 		contentPane.add(texto_confPass);
 		
 		JLabel labelUsuario = new JLabel("Usuario");
@@ -155,7 +155,7 @@ public class VentanaRegistro extends JDialog {
 		
 		texto_usuario = new JTextField();
 		texto_usuario.setColumns(10);
-		texto_usuario.setBounds(31, 76, 175, 19);
+		texto_usuario.setBounds(31, 154, 175, 19);
 		contentPane.add(texto_usuario);
 		
 		

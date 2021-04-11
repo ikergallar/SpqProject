@@ -61,11 +61,11 @@ public class VentanaRecuperacion extends JDialog {
 	 */
 	public static void main(String[] args) {
 		
-		LogController.log ( Level.INFO, "Inicio Registro " + (new Date()),null);
+		LogController.log ( Level.INFO, "Recuperacion contraseña " + (new Date()),null);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaRegistro frame = new VentanaRegistro();
+					VentanaRecuperacion frame = new VentanaRecuperacion();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -128,7 +128,7 @@ public class VentanaRecuperacion extends JDialog {
 		btnRegistrar.setBackground(new Color(255, 0, 0));
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnRegistrar.setBounds(0, 303, 497, 72);
+		btnRegistrar.setBounds(0, 308, 497, 72);
 		contentPane.add(btnRegistrar);
 		
 		ImageIcon ico4 = new ImageIcon("imagenes/fondos.jpg");
