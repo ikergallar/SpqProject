@@ -166,6 +166,7 @@ public class VentanaLogin {
         				}
         				VentanaPerfil perfil = new VentanaPerfil();
                     	perfil.setVisible(true);
+                    	frmLogin.dispose();
                     } else {
                         JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
                         textFieldUsuario.setText("");

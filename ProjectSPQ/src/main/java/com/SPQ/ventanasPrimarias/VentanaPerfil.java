@@ -25,6 +25,7 @@ import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 import com.SPQ.dataBase.LogController;
+import com.SPQ.ventanasSecundarias.VentanaSeguridad;
 
 
 
@@ -35,7 +36,7 @@ public class VentanaPerfil extends JFrame{
 		private JTextField textDireccion;
 		private JTextField textTel;
 		private JTextField textUsuario;
-		private JTextField textContrasenya;
+		private JTextField textMail;
 		private String nombreUsuario;
 		private Usuario datosUsuario;
 		private Usuario usuario;
@@ -133,19 +134,20 @@ public class VentanaPerfil extends JFrame{
 			lblNewLabel_8.setBounds(36, 216, 76, 14);
 			getContentPane().add(lblNewLabel_8);
 			
-			JLabel lblNewLabel_8_1 = new JLabel("Contrase\u00F1a");
+			JLabel lblNewLabel_8_1 = new JLabel("Mail");
 			lblNewLabel_8_1.setBounds(36, 244, 76, 14);
 			getContentPane().add(lblNewLabel_8_1);
 			
 			textUsuario = new JTextField(datosUsuario.getNombreUsuario());
+			textUsuario.setEditable(false);
 			textUsuario.setColumns(10);
 			textUsuario.setBounds(172, 216, 201, 20);
 			getContentPane().add(textUsuario);
 			
-			textContrasenya = new JTextField(datosUsuario.getPass());
-			textContrasenya.setColumns(10);
-			textContrasenya.setBounds(172, 242, 201, 20);
-			getContentPane().add(textContrasenya);
+			textMail = new JTextField(datosUsuario.getMail());
+			textMail.setColumns(10);
+			textMail.setBounds(172, 242, 201, 20);
+			getContentPane().add(textMail);
 			
 			JLabel lblNewLabel_9 = new JLabel("Forma de pago");
 			lblNewLabel_9.setBounds(36, 297, 138, 14);
@@ -207,8 +209,22 @@ public class VentanaPerfil extends JFrame{
 			JButton botonCerrarSesion = new JButton("Cerrar Sesion");
 			botonCerrarSesion.setBounds(296, 23, 107, 21);
 			getContentPane().add(botonCerrarSesion);
-			botonCerrarSesion.addActionListener(new ActionListener() {
-
+			
+			JLabel cambiarPass = new JLabel("¿Deseas cambiar tu contraseña? Pincha aquí.");
+			cambiarPass.setBounds(36, 272, 273, 14);
+			getContentPane().add(cambiarPass);
+			
+			cambiarPass.addMouseListener(new MouseAdapter() {
+				public void mouseClicked(MouseEvent e) {
+					VentanaSeguridad sec = new VentanaSeguridad();
+					sec.setVisible(true);
+					dispose();
+				}
+			});
+			
+			
+			
+			botonCerrarSesion.addActionListener(new ActionListener() {	
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					VentanaLogin login = new VentanaLogin();

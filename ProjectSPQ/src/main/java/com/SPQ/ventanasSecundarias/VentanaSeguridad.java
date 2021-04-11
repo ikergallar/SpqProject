@@ -22,7 +22,6 @@ import com.SPQ.ventanasPrimarias.VentanaLogin;
 public class VentanaSeguridad extends JFrame{
 	int a = VentanaLogin.getUsuarioId();
 		
-	private JFrame frmSecurity;
 	private JPasswordField passwordField;
 	private JPasswordField passwordField_1;
 	private JPasswordField passwordField_2;
@@ -31,8 +30,8 @@ public class VentanaSeguridad extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaSeguridad window = new VentanaSeguridad();
-					window.frmSecurity.setVisible(true);
+					VentanaSeguridad frame = new VentanaSeguridad();
+					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,58 +39,53 @@ public class VentanaSeguridad extends JFrame{
 		});
 	}
 	
+		
 	public VentanaSeguridad() {
-		initialize();
-	}
 		
-	private void initialize() {
-		
-		frmSecurity = new JFrame();
-		frmSecurity.setResizable(false);
-		frmSecurity.setTitle("Seguridad");
-		frmSecurity.setBounds(100, 100, 454, 555);
-		frmSecurity.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setTitle("Seguridad");
+		setBounds(100, 100, 454, 555);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
 		
-			frmSecurity.getContentPane().setBackground(Color.LIGHT_GRAY);
-			frmSecurity.getContentPane().setLayout(null);
+			getContentPane().setBackground(Color.LIGHT_GRAY);
+			getContentPane().setLayout(null);
 			
 			JLabel lblCambiarContrasea = new JLabel("Cambiar contrase\u00F1a");
 			lblCambiarContrasea.setFont(new Font("Tahoma", Font.BOLD, 18));
 			lblCambiarContrasea.setBounds(99, 22, 223, 20);
-			frmSecurity.getContentPane().add(lblCambiarContrasea);
+			getContentPane().add(lblCambiarContrasea);
 			
 			JLabel lblContraseaAntigua = new JLabel("Contrase\u00F1a actual");
 			lblContraseaAntigua.setBounds(10, 75, 160, 20);
-			frmSecurity.getContentPane().add(lblContraseaAntigua);
+			getContentPane().add(lblContraseaAntigua);
 			
 			passwordField = new JPasswordField();
 			passwordField.setBounds(10, 107, 398, 26);
-			frmSecurity.getContentPane().add(passwordField);
+			getContentPane().add(passwordField);
 			
 			JLabel lblNuevaContrasea = new JLabel("Nueva contrase\u00F1a");
 			lblNuevaContrasea.setBounds(10, 158, 160, 20);
-			frmSecurity.getContentPane().add(lblNuevaContrasea);
+			getContentPane().add(lblNuevaContrasea);
 			
 			passwordField_1 = new JPasswordField();
 			passwordField_1.setBounds(10, 189, 398, 26);
-			frmSecurity.getContentPane().add(passwordField_1);
+			getContentPane().add(passwordField_1);
 			
 			JLabel label = new JLabel("Nueva contrase\u00F1a");
 			label.setBounds(10, 243, 160, 20);
-			frmSecurity.getContentPane().add(label);
+			getContentPane().add(label);
 			
 			passwordField_2 = new JPasswordField();
 			passwordField_2.setBounds(10, 274, 398, 26);
-			frmSecurity.getContentPane().add(passwordField_2);
+			getContentPane().add(passwordField_2);
 			
 			JButton btnAtras = new JButton("Atras");
 			btnAtras.setBounds(39, 366, 105, 29);
-			frmSecurity.getContentPane().add(btnAtras);
+			getContentPane().add(btnAtras);
 			
 			JButton btnCambiar = new JButton("Cambiar");
 			btnCambiar.setBounds(207, 366, 115, 32);
-			frmSecurity.getContentPane().add(btnCambiar);
+			getContentPane().add(btnCambiar);
 			
 
 			btnAtras.addActionListener(new ActionListener() {
@@ -127,6 +121,8 @@ public class VentanaSeguridad extends JFrame{
 						
 						e1.printStackTrace();
 					}
+					
+					
 					
 					
 				}
