@@ -846,3 +846,99 @@
   <message>Inicio Registro Sun Apr 11 22:55:15 CEST 2021</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T20:59:55.697012600Z</date>
+  <millis>1618174795697</millis>
+  <nanos>12600</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>WARNING</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>18</thread>
+  <message>No se ha podido iniciar sesion Sun Apr 11 22:59:55 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:00:23.442850900Z</date>
+  <millis>1618174823442</millis>
+  <nanos>850900</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>18</thread>
+  <message>Sesion iniciada Sun Apr 11 23:00:23 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:01:03.936873500Z</date>
+  <millis>1618174863936</millis>
+  <nanos>873500</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sun Apr 11 23:01:03 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:03:23.084108200Z</date>
+  <millis>1618175003084</millis>
+  <nanos>108200</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sun Apr 11 23:03:23 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:03:48.995922900Z</date>
+  <millis>1618175028995</millis>
+  <nanos>922900</nanos>
+  <sequence>1</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>19</thread>
+  <message>Cuenta creada correctamente Sun Apr 11 23:03:48 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:04:02.599243600Z</date>
+  <millis>1618175042599</millis>
+  <nanos>243600</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sun Apr 11 23:04:02 CEST 2021</message>
+</record>
+</log>
