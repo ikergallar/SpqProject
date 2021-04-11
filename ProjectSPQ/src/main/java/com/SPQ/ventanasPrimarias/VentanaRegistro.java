@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -163,6 +164,8 @@ public class VentanaRegistro extends JDialog {
 		texto_usuario.setBounds(334, 97, 118, 19);
 		contentPane.add(texto_usuario);
 		
+		
+		
 		JButton btnRegistrar = new JButton("Finalizar registro");
 		btnRegistrar.setBounds(388, 303, 153, 33);
 		contentPane.add(btnRegistrar);
@@ -257,6 +260,8 @@ public class VentanaRegistro extends JDialog {
 		labelDisponerDeCuenta.setBounds(270, 29, 161, 13);
 		contentPane.add(labelDisponerDeCuenta);
 		
+		
+		
 		JButton btnIniciarSesion = new JButton("Iniciar Sesion");
 		
 		
@@ -278,6 +283,27 @@ public class VentanaRegistro extends JDialog {
         ImageIcon img4 = new ImageIcon(ico4.getImage().getScaledInstance(labelFondo.getWidth(), labelFondo.getHeight(), Image.SCALE_SMOOTH));
         labelFondo.setIcon(img4);
 		contentPane.add(labelFondo);
+		
+		final JCheckBox checkVerPass = new JCheckBox("Visualizar contraseñas");
+		checkVerPass.setBounds(70, 319, 180, 23);
+		getContentPane().add(checkVerPass);
+		checkVerPass.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(checkVerPass.isSelected()) {
+					
+					texto_contrasena.setEchoChar((char)0);
+					texto_confPass.setEchoChar((char)0);
+					
+				}else {
+					
+					texto_contrasena.setEchoChar(('*'));
+					texto_confPass.setEchoChar((char)0);
+				}
+				
+			}
+		});
+		
 		
 		
 	

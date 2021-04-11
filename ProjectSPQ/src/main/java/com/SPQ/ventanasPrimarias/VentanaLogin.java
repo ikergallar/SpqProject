@@ -8,6 +8,7 @@ import java.awt.GridLayout;
 import java.awt.HeadlessException;
 
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -15,6 +16,7 @@ import java.awt.Color;
 import java.awt.Toolkit;
 import java.awt.Font;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
@@ -40,7 +42,7 @@ public class VentanaLogin {
 
 	private JFrame frmLogin;
 	private JTextField textFieldUsuario;
-	private JTextField textFieldContrasena;
+	private JPasswordField textFieldContrasena;
 
 	/**
 	 * Launch the application.
@@ -188,28 +190,46 @@ public class VentanaLogin {
 		botonLogin.setFont(new Font("Malgun Gothic", Font.BOLD, 16));
 		panelLogin.add(botonLogin);
 		
-		textFieldContrasena = new JTextField();
+		textFieldContrasena = new JPasswordField();
 		textFieldContrasena.setBounds(209, 478, 86, 14);
 		frmLogin.getContentPane().add(textFieldContrasena);
 		textFieldContrasena.setColumns(10);
 		
-				JLabel labelCorreo = new JLabel("Usuario");
-				labelCorreo.setBounds(-12, 330, 500, 70);
-				frmLogin.getContentPane().add(labelCorreo);
-				labelCorreo.setForeground(Color.BLACK);
-				labelCorreo.setHorizontalAlignment(SwingConstants.CENTER);
-				labelCorreo.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+		JLabel labelCorreo = new JLabel("Usuario");
+		labelCorreo.setBounds(-12, 330, 500, 70);
+		frmLogin.getContentPane().add(labelCorreo);
+		labelCorreo.setForeground(Color.BLACK);
+		labelCorreo.setHorizontalAlignment(SwingConstants.CENTER);
+		labelCorreo.setFont(new Font("Malgun Gothic", Font.BOLD, 14));
+		
+		textFieldUsuario = new JTextField();
+		textFieldUsuario.setBounds(65, 394, 366, 26);
+		frmLogin.getContentPane().add(textFieldUsuario);
+		textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
+		textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
+		textFieldUsuario.setColumns(30);
+		
+		JLabel lblNewLabel = new JLabel("Contraseña");
+		lblNewLabel.setBounds(220, 443, 46, 14);
+		frmLogin.getContentPane().add(lblNewLabel);
+		
+		final JCheckBox checkVerPass = new JCheckBox("Visualizar contraseña");
+		checkVerPass.setBounds(315, 466, 185, 26);
+		frmLogin.getContentPane().add(checkVerPass);
+		checkVerPass.addActionListener(new ActionListener() {	
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				if(checkVerPass.isSelected()) {
+					
+					textFieldContrasena.setEchoChar((char)0);
+					
+				}else {
+					
+					textFieldContrasena.setEchoChar(('*'));
+				}
 				
-						textFieldUsuario = new JTextField();
-						textFieldUsuario.setBounds(65, 394, 366, 26);
-						frmLogin.getContentPane().add(textFieldUsuario);
-						textFieldUsuario.setHorizontalAlignment(SwingConstants.CENTER);
-						textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
-						textFieldUsuario.setColumns(30);
-						
-						JLabel lblNewLabel = new JLabel("Contraseña");
-						lblNewLabel.setBounds(220, 443, 46, 14);
-						frmLogin.getContentPane().add(lblNewLabel);
+			}
+		});
 
 	}
 

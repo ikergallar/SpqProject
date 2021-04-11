@@ -26,6 +26,7 @@ import com.SPQ.dataBase.DBManager;
 import com.SPQ.dataBase.LogController;
 import com.SPQ.ventanasPrimarias.VentanaLogin;
 import com.SPQ.ventanasPrimarias.VentanaPerfil;
+import javax.swing.JCheckBox;
 
 
 
@@ -86,7 +87,27 @@ public class VentanaContrasenya extends JFrame{
 			btnCambiar.setBounds(207, 366, 115, 32);
 			getContentPane().add(btnCambiar);
 			
+			final JCheckBox checkVerPass = new JCheckBox("Visualizar contraseñas");
+			checkVerPass.setBounds(10, 319, 182, 23);
+			getContentPane().add(checkVerPass);
+			checkVerPass.addActionListener(new ActionListener() {	
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					if(checkVerPass.isSelected()) {
+						contrasenyaActual.setEchoChar((char)0);
+						nuevaContrasenya.setEchoChar((char)0);
+						confirmarContrasenya.setEchoChar((char)0);
+						
+					}else {
+						contrasenyaActual.setEchoChar(('*'));
+						nuevaContrasenya.setEchoChar(('*'));
+						confirmarContrasenya.setEchoChar(('*'));
 
+					}
+					
+				}
+			});
+			
 			btnAtras.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
@@ -135,7 +156,7 @@ public class VentanaContrasenya extends JFrame{
 						usuario1.setPass(contrasenyaActual.getText());
 						dbm.connect();
 							if(dbm.comprobarContrasenya(usuario1)== true) {
-								if(nuevaContrasenya.equals(confirmarContrasenya)) {
+								if(nuevaContrasenya.getText().equals(confirmarContrasenya.getText())) {
 									try {
 									
 										usuario = new Usuario();
@@ -178,6 +199,4 @@ public class VentanaContrasenya extends JFrame{
 				}
 			});
 		}
-	
-
 }
