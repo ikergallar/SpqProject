@@ -5,6 +5,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Date;
+import java.util.logging.Level;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -15,11 +17,13 @@ import javax.swing.JPasswordField;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.dataBase.LogController;
 import com.SPQ.ventanasPrimarias.VentanaLogin;
+import com.SPQ.ventanasPrimarias.VentanaPerfil;
 
 
 
-public class VentanaSeguridad extends JFrame{
+public class VentanaContrasenya extends JFrame{
 	int a = VentanaLogin.getUsuarioId();
 		
 	private JPasswordField passwordField;
@@ -30,7 +34,7 @@ public class VentanaSeguridad extends JFrame{
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					VentanaSeguridad frame = new VentanaSeguridad();
+					VentanaContrasenya frame = new VentanaContrasenya();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +44,7 @@ public class VentanaSeguridad extends JFrame{
 	}
 	
 		
-	public VentanaSeguridad() {
+	public VentanaContrasenya() {
 		
 		setTitle("Seguridad");
 		setBounds(100, 100, 454, 555);
@@ -110,11 +114,13 @@ public class VentanaSeguridad extends JFrame{
 							user.setPass(passwordField_1.getText());
 							dbm.cambiarContrsenya(user);
 							JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
+							LogController.log ( Level.INFO, "Su contraseña ha sido cambiada " + (new Date()),null);
 							passwordField.setText("");
 							passwordField_1.setText("");
 							passwordField_2.setText("");
 						}else {
 							JOptionPane.showMessageDialog(null, "Los campos no coinciden o contraseña incorrecta", "Error", 0);
+							LogController.log ( Level.WARNING, "Los campos no coinciden o contraseña incorrecta " + (new Date()),null);
 						}
 						dbm.disconnect();
 					} catch (DBException e1) {
@@ -122,8 +128,9 @@ public class VentanaSeguridad extends JFrame{
 						e1.printStackTrace();
 					}
 					
-					
-					
+					VentanaPerfil perf = new VentanaPerfil();
+					perf.setVisible(true);
+					dispose();
 					
 				}
 			});

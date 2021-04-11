@@ -25,7 +25,7 @@ import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 import com.SPQ.dataBase.LogController;
-import com.SPQ.ventanasSecundarias.VentanaSeguridad;
+import com.SPQ.ventanasSecundarias.VentanaContrasenya;
 
 
 
@@ -216,7 +216,7 @@ public class VentanaPerfil extends JFrame{
 			
 			cambiarPass.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
-					VentanaSeguridad sec = new VentanaSeguridad();
+					VentanaContrasenya sec = new VentanaContrasenya();
 					sec.setVisible(true);
 					dispose();
 				}
