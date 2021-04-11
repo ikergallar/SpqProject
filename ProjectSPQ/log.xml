@@ -1003,3 +1003,19 @@
   <message>Recuperacion contraseña Sun Apr 11 23:12:17 CEST 2021</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:43:51.474330300Z</date>
+  <millis>1618177431474</millis>
+  <nanos>330300</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Perfil Sun Apr 11 23:43:51 CEST 2021</message>
+</record>
+</log>

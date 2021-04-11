@@ -44,7 +44,7 @@ public class VentanaAnuncios extends JFrame{
 
 		setBounds(300, 200, 900, 900);
 		
-		JLabel derecha = new JLabel("                                                                                                                        ");
+		JLabel derecha = new JLabel("");
 		derecha.setBackground(Color.WHITE);
 		
         
