@@ -41,6 +41,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.logging.Level;
 import javax.swing.UIManager;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class VentanaLogin {
 
@@ -229,6 +231,12 @@ public class VentanaLogin {
 		frmLogin.getContentPane().add(checkVerPass);
 		
 		JLabel lblNewLabel_1 = new JLabel("¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
+		lblNewLabel_1.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyPressed(KeyEvent e) {
+				
+			}
+		});
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNewLabel_1.setBackground(Color.WHITE);
 		lblNewLabel_1.setForeground(Color.GRAY);

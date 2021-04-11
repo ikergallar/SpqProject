@@ -846,3 +846,35 @@
   <message>Inicio Registro Sun Apr 11 22:55:15 CEST 2021</message>
 </record>
 </log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:08:34.756931900Z</date>
+  <millis>1618175314756</millis>
+  <nanos>931900</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sun Apr 11 23:08:34 CEST 2021</message>
+</record>
+</log>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2021-04-11T21:09:19.066923400Z</date>
+  <millis>1618175359066</millis>
+  <nanos>923400</nanos>
+  <sequence>0</sequence>
+  <logger>com.SPQ.dataBase.LogController</logger>
+  <level>INFO</level>
+  <class>com.SPQ.dataBase.LogController</class>
+  <method>log</method>
+  <thread>1</thread>
+  <message>Inicio Registro Sun Apr 11 23:09:19 CEST 2021</message>
+</record>
+</log>
