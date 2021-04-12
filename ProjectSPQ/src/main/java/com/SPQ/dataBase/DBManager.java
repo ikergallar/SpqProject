@@ -46,11 +46,13 @@ private Connection conn = null;
 			String nombreUsuario = usuario.getNombreUsuario();
 			String contrasena = usuario.getPass();
 			String email= usuario.getMail();
+			String palabraRecuperacion = usuario.getPalabraRecuperacion();
+			String preguntaRecuperacion = usuario.getPreguntaRecuperacion();
 			
 			
 			try (Statement s= conn.createStatement()) {
 				//Añadimos en la base de datos los campos de infomacion introducidos en la ventana(recibido como objeto de la clase usuarios)
-				s.executeUpdate("INSERT INTO usuarios (username, email, contrasenya, nombre, apellido) VALUES ('" + nombreUsuario + "', '"+ email + "', '" + contrasena + "', '" + nombre + "', '"+ apellido +"')");
+				s.executeUpdate("INSERT INTO usuarios (username, email, contrasenya, nombre, apellido, palabraRecuperacion, preguntaRecuperacion) VALUES ('" + nombreUsuario + "', '"+ email + "', '" + contrasena + "', '" + nombre + "', '"+ apellido + "', '" + palabraRecuperacion + "', '" + preguntaRecuperacion +"')");
 			} catch (SQLException e) {
 				throw new DBException("No ha sido posible ejecutar la query");
 			}
