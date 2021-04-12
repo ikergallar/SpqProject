@@ -240,8 +240,8 @@ public class VentanaPerfil extends JFrame{
 			botonCerrarSesion.setBounds(336, 281, 134, 40);
 			getContentPane().add(botonCerrarSesion);
 			
-			JLabel cambiarPass = new JLabel("¿Deseas cambiar tu contraseña? Pincha aquí.");
-			cambiarPass.setForeground(Color.WHITE);
+			final JLabel cambiarPass = new JLabel("¿Deseas cambiar tu contraseña? Pincha aquí.");
+			cambiarPass.setForeground(Color.GRAY);
 			cambiarPass.setBounds(36, 295, 273, 14);
 			getContentPane().add(cambiarPass);
 			
@@ -250,6 +250,14 @@ public class VentanaPerfil extends JFrame{
 					VentanaContrasenya sec = new VentanaContrasenya();
 					sec.setVisible(true);
 					dispose();
+				}
+				@Override
+				public void mouseEntered(MouseEvent e) {
+					cambiarPass.setForeground(Color.WHITE);
+				}
+				@Override
+				public void mouseExited(MouseEvent e) {
+					cambiarPass.setForeground(Color.GRAY);
 				}
 			});
 			
