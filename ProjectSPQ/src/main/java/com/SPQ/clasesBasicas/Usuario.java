@@ -5,11 +5,11 @@ import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 
-@PersistenceCapable()
+@PersistenceCapable
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	
-	@PrimaryKey
+	
 	static int id;//identificador unico y estatico
 	String nombre;	
 	String apellido;	
