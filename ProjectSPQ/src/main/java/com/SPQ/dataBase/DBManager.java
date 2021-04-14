@@ -1,10 +1,15 @@
 package com.SPQ.dataBase;
 
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.List;
+
 import javax.jdo.*;
 
 
 import com.SPQ.clasesBasicas.*;
+
 
 
 public class DBManager {
@@ -69,5 +74,45 @@ public class DBManager {
 			pm.close();
 		}
    }
+   
+   public Boolean validarUsuario(Usuario usuarioPendiente) {
+	   PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+	   PersistenceManager pm = pmf.getPersistenceManager();
+	   Transaction tx = pm.currentTransaction();
+       Boolean retornar = null;
+       String consulta = "SELECT u FROM Usuario u WHERE u.nombre = :pNombre AND u.password = :pPassword AND u.habilitado = 1";
+       Query qConsulta = pm.newQuery(consulta, Usuario.class);
+       qConsulta.setParameters("pNombre", usuarioPendiente.getNombre());
+       qConsulta.setParameters("pPassword", usuarioPendiente.getPass());
+       if (qConsulta.) {
+           retornar = Boolean.FALSE;
+       } else {
+           retornar = Boolean.TRUE;
+       }
+       return retornar;
+   }
+   
+//   public boolean loginUsuario (String nomUsuario, String contrasena) throws DBException{
+//       boolean acceso = false;
+//       try (PreparedStatement stmt = conn.prepareStatement("SELECT username,contrasenya FROM usuarios WHERE username = ?  AND contrasenya = ?;")) {
+//               stmt.setString(1, nomUsuario);
+//               stmt.setString(2, contrasena);
+//
+//               ResultSet rs = stmt.executeQuery();
+//
+//               if (rs.next()) {
+//                   acceso = true;
+//               }else {
+//                   acceso = false;
+//               }
+//
+//           } catch (SQLException e) {
+//               throw new DBException("Error obteniendo datos de la query", e);
+//           }
+//
+//
+//       return acceso;
+//   }
+
 		
 }

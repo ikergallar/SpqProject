@@ -6,7 +6,7 @@
 	<artifactId>ProjectSPQ</artifactId>
 	<packaging>jar</packaging>
 	<version>3.0</version>
-	<name>ProjectSPQ servuice jdo</name>
+	<name>ProjectSPQ</name>
 	<url>http://www.datanucleus.org</url>
 
 	<properties>
@@ -51,11 +51,6 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>[1.2.17, )</version>
-		</dependency>
-		<dependency>
-    		<groupId>com.toedter</groupId>
-    		<artifactId>jcalendar</artifactId>
-    		<version>1.4</version>
 		</dependency>
 
 	</dependencies>
@@ -107,6 +102,7 @@
 				<artifactId>datanucleus-maven-plugin</artifactId>
 				<version>5.0.2</version>
 				<configuration>
+					<fork>false</fork>				
 					<log4jConfiguration>${config.files.dir}/log4j.properties</log4jConfiguration>
 					<verbose>true</verbose>
 					<props>${config.files.dir}/datanucleus.properties</props>
@@ -154,7 +150,6 @@
 					<nohelp>true</nohelp>
 				</configuration>
 			</plugin>
-
 		</plugins>
 	</build>
 </project>
