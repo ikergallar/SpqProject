@@ -180,7 +180,7 @@ public class DBManager {
  		
         tx.begin();
  		
- 		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuarios SET contrasenya='"+ usuario.getPass() +"' WHERE username = '" + usuario.getNombreUsuario() +"'") ;
+ 		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuario SET pass='"+ usuario.getPass() +"' WHERE nombreusuario = '" + usuario.getNombreUsuario() +"'") ;
  		query.setClass(Usuario.class);
  		Long update = (Long)query.execute();
  		
