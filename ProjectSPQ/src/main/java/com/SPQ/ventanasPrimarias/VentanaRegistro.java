@@ -226,9 +226,8 @@ public class VentanaRegistro extends JDialog {
 					
 					    if (email.contains("@") && email.contains(".")) {
 					    	
-					    	try {
-					    		conexion.connect();
-								if(conexion.existeUsuario(nombreUsuario) == false) {
+					    	//try {
+								//if(conexion.existeUsuario(nombreUsuario) == false) {
 								
 																				
 									Usuario usuario = new Usuario();
@@ -247,25 +246,25 @@ public class VentanaRegistro extends JDialog {
 											JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
 											LogController.log ( Level.INFO, "Cuenta creada correctamente " + (new Date()),null);
 											
-											VentanaLogin ini = new VentanaLogin(); 
-											setVisible(true);
-											VentanaRegistro.this.dispose();
-											
-											conexion.disconnect();
+//											VentanaLogin ini = new VentanaLogin(); 
+//											setVisible(true);
+//											VentanaRegistro.this.dispose();
+//											
+//											conexion.disconnect();
 											
 										
 									} catch (DBException e1) {
 										e1.printStackTrace();
 									}
 									
-									}else {
-										JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
-										LogController.log ( Level.WARNING, "El usuario ya existe " + (new Date()),null);
-									}
-							} catch (HeadlessException | SecurityException | DBException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
+//									}else {
+//										JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
+//										LogController.log ( Level.WARNING, "El usuario ya existe " + (new Date()),null);
+//									}
+//							} catch (HeadlessException | SecurityException | DBException e1) {
+//								// TODO Auto-generated catch block
+//								e1.printStackTrace();
+//							}
 							
 				
 					     }else {

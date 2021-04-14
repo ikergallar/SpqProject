@@ -1,20 +1,52 @@
 package com.SPQ.clasesBasicas;
 
+import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
+
+@PersistenceCapable(detachable = "true")
+@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	
+	@PrimaryKey
 	static int id;//identificador unico y estatico
 	
+	@Persistent
 	String nombre;
+	@Persistent
+
 	String apellido;
+	@Persistent
+
 	String nombreUsuario;
+	@Persistent
+
 	String pass;
+	@Persistent
+
 	String mail;
+	@Persistent
+
 	String telefono;
+	@Persistent
+
 	String direccion;
+	@Persistent
+
 	String descripcion;
+	@Persistent
+
 	String foto;
+	@Persistent
+
 	Anuncio[] anuncios;
+	@Persistent
+
 	String palabraRecuperacion;
+	@Persistent
+
 	String preguntaRecuperacion;
 	
 	
