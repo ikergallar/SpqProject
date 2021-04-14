@@ -154,7 +154,7 @@ public class DBManager {
  		
  	}
  	
-public void  updateUsuario(Usuario usuario) throws DBException{
+    public void  updateUsuario(Usuario usuario) throws DBException{
  		
  		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
  		PersistenceManager pm = pmf.getPersistenceManager();
@@ -162,10 +162,27 @@ public void  updateUsuario(Usuario usuario) throws DBException{
  		
         tx.begin();
  		
- 		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuario SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', telefono='"+usuario.getTelefono()+"',direccion='"+usuario.getDireccion()+ "', mail='"+usuario.getMail() + "' WHERE nombreusuario ='"+ usuario.getNombreUsuario() + "'") ;
+ 		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuario SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', telefono='"+usuario.getTelefono()+"',direccion='"+usuario.getDireccion()+ "', mail='"+usuario.getMail() + "' WHERE nombreusuario ='"+ usuario.getNombreUsuario() + "'") ;
  		query.setClass(Usuario.class);
-
- 		usuario = query.executeUnique();
+ 		Long update = (Long)query.execute();
+ 		
+ 		tx.commit();
+ 		pm.close();
+			 		
+ 		
+ 	}
+    
+   public void  cambiarContrasenya(Usuario usuario) throws DBException{
+ 		
+ 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+ 		PersistenceManager pm = pmf.getPersistenceManager();
+ 		Transaction tx = pm.currentTransaction();
+ 		
+        tx.begin();
+ 		
+ 		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuarios SET contrasenya='"+ usuario.getPass() +"' WHERE username = '" + usuario.getNombreUsuario() +"'") ;
+ 		query.setClass(Usuario.class);
+ 		Long update = (Long)query.execute();
  		
  		tx.commit();
  		pm.close();
