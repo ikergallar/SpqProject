@@ -9,6 +9,7 @@ import javax.jdo.*;
 
 
 import com.SPQ.clasesBasicas.*;
+import com.mysql.cj.xdevapi.Statement;
 
 
 
@@ -75,22 +76,57 @@ public class DBManager {
 		}
    }
    
-   public boolean loginUsuario(String nomUsuario, String contrasena) {
-	   PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	   PersistenceManager pm = pmf.getPersistenceManager();
-	   Transaction tx = pm.currentTransaction();
-       Boolean retornar = null;
-       String consulta = "SELECT NOMBREUSUARIO,PASS FROM usuario WHERE NOMBREUSUARIO = ?  AND PASS = ?";
-       Query qConsulta = pm.newQuery(consulta, Usuario.class);
-       qConsulta.setParameters("nombreusario", nomUsuario);
-       qConsulta.setParameters("pass", contrasena);
-       if (qConsulta.executeResultList().isEmpty()) {
-           retornar = false;
-       } else {
-           retornar = true;
-       }
-       return retornar;
-   }
+ //LISTAR USUARIOS DE BD
+	public List<Usuario> listarUsuarios() throws DBException{
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		
+		tx.begin();
+		
+		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL","select * from " + "usuario");
+		query.setClass(Usuario.class);
+			
+		List<Usuario> results = query.executeList();
+		
+		tx.commit();
+		pm.close();
+		return results;
+		
+	}
+ 	public boolean existeUsuario(Usuario usuario) throws DBException{
+ 		
+ 		boolean existe = false;
+ 		List<Usuario> usuarios = listarUsuarios();
+ 		
+ 		for (Usuario user : usuarios) {
+ 			if (user.getNombreUsuario().equals(usuario.getNombreUsuario())) {
+ 				existe = true;
+ 			}
+ 		}
+
+ 		return existe;
+
+ 	}
+ 	
+ 	public Usuario seleccionarUsuario(String nombreUsuario) throws DBException{
+ 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+ 		PersistenceManager pm = pmf.getPersistenceManager();
+ 		Transaction tx = pm.currentTransaction();
+ 		
+ 		tx.begin();
+ 		
+ 		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL", "SELECT * FROM usuario where nombreusuario='"+nombreUsuario+"'");
+ 		query.setClass(Usuario.class);
+
+ 		Usuario usuario = query.executeUnique();
+ 		
+ 		tx.commit();
+ 		pm.close();
+ 		return usuario;
+ 		
+ 	}
+ 	
    
 //   public boolean loginUsuario (String nomUsuario, String contrasena) throws DBException{
 //       boolean acceso = false;

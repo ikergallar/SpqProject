@@ -223,44 +223,41 @@ public class VentanaRegistro extends JDialog {
 					
 					    if (email.contains("@") && email.contains(".")) {
 					    	
-					    	//try {
-								//if(conexion.existeUsuario(nombreUsuario) == false) {
+					    	try {
+					    		Usuario usuario = new Usuario();
+								usuario.setNombreUsuario(nombreUsuario);
+								usuario.setPass(contrasenya);
+								usuario.setMail(email);
+								usuario.setNombre(nombre);
+								usuario.setApellido(apellido);
+								usuario.setPalabraRecuperacion(textoRespuesta.getText());
+								usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());
 								
-																				
-									Usuario usuario = new Usuario();
-									usuario.setNombreUsuario(nombreUsuario);
-									usuario.setPass(contrasenya);
-									usuario.setMail(email);
-									usuario.setNombre(nombre);
-									usuario.setApellido(apellido);
-									usuario.setPalabraRecuperacion(textoRespuesta.getText());
-									usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());
-																	
+								if(!conexion.existeUsuario(usuario)) {						
 									
 									try {
 										
 											conexion.registrarUsuario(usuario);
 											JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
 											
-//											VentanaLogin ini = new VentanaLogin(); 
-//											setVisible(true);
-//											VentanaRegistro.this.dispose();
-//											
-//											conexion.disconnect();
+											VentanaLogin ini = new VentanaLogin(); 
+											setVisible(true);
+											VentanaRegistro.this.dispose();
+											
 											
 										
 									} catch (DBException e1) {
 										e1.printStackTrace();
 									}
 									
-//									}else {
-//										JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
-//										LogController.log ( Level.WARNING, "El usuario ya existe " + (new Date()),null);
-//									}
-//							} catch (HeadlessException | SecurityException | DBException e1) {
-//								// TODO Auto-generated catch block
-//								e1.printStackTrace();
-//							}
+									}else {
+										JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
+										
+									}
+							} catch (HeadlessException | SecurityException | DBException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
 							
 				
 					     }else {

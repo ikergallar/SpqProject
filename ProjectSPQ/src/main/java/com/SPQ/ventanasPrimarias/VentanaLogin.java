@@ -1,24 +1,18 @@
 package com.SPQ.ventanasPrimarias;
 
-import java.awt.EventQueue;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import java.awt.GridLayout;
-import java.awt.HeadlessException;
+
+import java.awt.*;
 
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
-
-import java.awt.Color;
-import java.awt.Toolkit;
-import java.awt.Font;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTextField;
-import java.awt.FlowLayout;
 import javax.swing.SwingConstants;
 
 
@@ -37,17 +31,20 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import javax.swing.UIManager;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class VentanaLogin {
+public class VentanaLogin extends JFrame{
 
 	private JFrame frmLogin;
 	private JTextField textFieldUsuario;
 	private JPasswordField textFieldContrasena;
-	private Usuario usuario;
+	//private JList usuarios = new JList<Usuario>();
+	private boolean acceso = false;
+	
 
 	/**
 	 * Launch the application.
@@ -135,48 +132,68 @@ public class VentanaLogin {
 				
 				String nomUsuario = textFieldUsuario.getText();
                 String contrasena = textFieldContrasena.getText();
-                DBManager conexion = new DBManager();
                 
-                
-
-                if (conexion.loginUsuario(nomUsuario,contrasena) == true) {
-					
-					File archivo;
-					
-					FileWriter escribir;
-					PrintWriter linea;
-					
-					archivo = new File("usuario.txt");
-					if(!archivo.exists()) {
-						try {
-							archivo.createNewFile();
-						} catch (IOException e2) {
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-						}
-					}else {
-						try { 
-							escribir = new FileWriter(archivo,true);
-							linea = new PrintWriter(escribir);
-							linea.println(nomUsuario);
-							linea.close();
-							escribir.close();
-						} catch (FileNotFoundException | UnsupportedEncodingException e3) {
-							// TODO Auto-generated catch block
-							e3.printStackTrace();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					}
-				//	VentanaPerfil perfil = new VentanaPerfil();
-				//	perfil.setVisible(true);
-					frmLogin.dispose();
-				} else {
-				    JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
-				    textFieldUsuario.setText("");
-				    textFieldContrasena.setText("");
+                DBManager conn = new DBManager();
+                try {
+					System.out.println(conn.listarUsuarios());
+				} catch (DBException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
+        		try {
+        			List<Usuario> usuarios = conn.listarUsuarios();
+        			for (Usuario usuario : usuarios) {
+    					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
+    						acceso = true;
+    					}else {
+    						acceso= false;
+    					}
+                    }
+        			if(acceso==true) {
+        				File archivo;
+    					
+    					FileWriter escribir;
+    					PrintWriter linea;
+    					
+    					archivo = new File("usuario.txt");
+    					if(!archivo.exists()) {
+    						try {
+    							archivo.createNewFile();
+    						} catch (IOException e2) {
+    							// TODO Auto-generated catch block
+    							e2.printStackTrace();
+    						}
+    					}else {
+    						try { 
+    							escribir = new FileWriter(archivo,true);
+    							linea = new PrintWriter(escribir);
+    							linea.println(nomUsuario);
+    							linea.close();
+    							escribir.close();
+    						} catch (FileNotFoundException | UnsupportedEncodingException e3) {
+    							// TODO Auto-generated catch block
+    							e3.printStackTrace();
+    						} catch (IOException e1) {
+    							// TODO Auto-generated catch block
+    							e1.printStackTrace();
+    						}
+    					
+    				}
+        				JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+						VentanaPerfil perfil = new VentanaPerfil();
+						perfil.setVisible(true);
+						setVisible(false);
+        			}if(acceso!=true){
+        				JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+						textFieldUsuario.setText("");
+						textFieldContrasena.setText("");
+        			}
+        		} catch (DBException e1) {
+        			e1.printStackTrace();
+        		}
+                
+					
+					
 
 	
 			}
