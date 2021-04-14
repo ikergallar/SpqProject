@@ -75,19 +75,19 @@ public class DBManager {
 		}
    }
    
-   public Boolean validarUsuario(Usuario usuarioPendiente) {
+   public boolean loginUsuario(String nomUsuario, String contrasena) {
 	   PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	   PersistenceManager pm = pmf.getPersistenceManager();
 	   Transaction tx = pm.currentTransaction();
        Boolean retornar = null;
-       String consulta = "SELECT u FROM Usuario u WHERE u.nombre = :pNombre AND u.password = :pPassword AND u.habilitado = 1";
+       String consulta = "SELECT NOMBREUSUARIO,PASS FROM usuario WHERE NOMBREUSUARIO = ?  AND PASS = ?";
        Query qConsulta = pm.newQuery(consulta, Usuario.class);
-       qConsulta.setParameters("pNombre", usuarioPendiente.getNombre());
-       qConsulta.setParameters("pPassword", usuarioPendiente.getPass());
-       if (qConsulta.) {
-           retornar = Boolean.FALSE;
+       qConsulta.setParameters("nombreusario", nomUsuario);
+       qConsulta.setParameters("pass", contrasena);
+       if (qConsulta.executeResultList().isEmpty()) {
+           retornar = false;
        } else {
-           retornar = Boolean.TRUE;
+           retornar = true;
        }
        return retornar;
    }

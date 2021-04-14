@@ -25,7 +25,6 @@ import javax.swing.SwingConstants;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
-import com.SPQ.dataBase.LogController;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -48,6 +47,7 @@ public class VentanaLogin {
 	private JFrame frmLogin;
 	private JTextField textFieldUsuario;
 	private JPasswordField textFieldContrasena;
+	private Usuario usuario;
 
 	/**
 	 * Launch the application.
@@ -76,6 +76,8 @@ public class VentanaLogin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		
 		frmLogin = new JFrame();
 		frmLogin.setResizable(false);
 		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
@@ -137,54 +139,44 @@ public class VentanaLogin {
                 
                 
 
-                try {
-
-                    if (conexion.loginUsuario(nomUsuario,contrasena) == true) {
-                    	
-                    	File archivo;
-        				
-        				FileWriter escribir;
-        				PrintWriter linea;
-        				
-        				archivo = new File("usuario.txt");
-        				if(!archivo.exists()) {
-        					try {
-        						archivo.createNewFile();
-        					} catch (IOException e2) {
-        						// TODO Auto-generated catch block
-        						e2.printStackTrace();
-        					}
-        				}else {
-        					try { 
-        						escribir = new FileWriter(archivo,true);
-        						linea = new PrintWriter(escribir);
-        						linea.println(nomUsuario);
-        						linea.close();
-        						escribir.close();
-        					} catch (FileNotFoundException | UnsupportedEncodingException e3) {
-        						// TODO Auto-generated catch block
-        						e3.printStackTrace();
-        					} catch (IOException e1) {
-        						// TODO Auto-generated catch block
-        						e1.printStackTrace();
-        					}
-        				}
-        				LogController.log ( Level.INFO, "Sesion iniciada " + (new Date()),null);
-        			//	VentanaPerfil perfil = new VentanaPerfil();
-                    //	perfil.setVisible(true);
-                    	frmLogin.dispose();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
-                		LogController.log ( Level.WARNING, "No se ha podido iniciar sesion " + (new Date()),null);
-                        textFieldUsuario.setText("");
-                        textFieldContrasena.setText("");
-                    }
-
-
-                } catch (DBException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+                if (conexion.loginUsuario(nomUsuario,contrasena) == true) {
+					
+					File archivo;
+					
+					FileWriter escribir;
+					PrintWriter linea;
+					
+					archivo = new File("usuario.txt");
+					if(!archivo.exists()) {
+						try {
+							archivo.createNewFile();
+						} catch (IOException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+					}else {
+						try { 
+							escribir = new FileWriter(archivo,true);
+							linea = new PrintWriter(escribir);
+							linea.println(nomUsuario);
+							linea.close();
+							escribir.close();
+						} catch (FileNotFoundException | UnsupportedEncodingException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					}
+				//	VentanaPerfil perfil = new VentanaPerfil();
+				//	perfil.setVisible(true);
+					frmLogin.dispose();
+				} else {
+				    JOptionPane.showMessageDialog(null, "No se ha podido iniciar sesion", "Error", 0);
+				    textFieldUsuario.setText("");
+				    textFieldContrasena.setText("");
+				}
 
 	
 			}

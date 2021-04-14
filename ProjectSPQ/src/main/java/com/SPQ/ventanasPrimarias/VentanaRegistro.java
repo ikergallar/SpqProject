@@ -16,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
-import com.SPQ.dataBase.LogController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -63,7 +62,6 @@ public class VentanaRegistro extends JDialog {
 	 */
 	public static void main(String[] args) {
 		
-		LogController.log ( Level.INFO, "Inicio Registro " + (new Date()),null);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -218,7 +216,6 @@ public class VentanaRegistro extends JDialog {
 				
 				if (nombreUsuario.equals("") || contrasenya.equals("") || email.equals("") || nombre.equals("")||apellido.equals("") ||textoRespuesta.equals("")) {
 					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
-					LogController.log ( Level.WARNING, "Es necesario rellenar todos los campos " + (new Date()),null);
 					
 				}else {
 					
@@ -244,7 +241,6 @@ public class VentanaRegistro extends JDialog {
 										
 											conexion.registrarUsuario(usuario);
 											JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-											LogController.log ( Level.INFO, "Cuenta creada correctamente " + (new Date()),null);
 											
 //											VentanaLogin ini = new VentanaLogin(); 
 //											setVisible(true);
@@ -269,12 +265,10 @@ public class VentanaRegistro extends JDialog {
 				
 					     }else {
 					    	 JOptionPane.showMessageDialog(null, "Direccion de correo no valida", "Error", 0);
-							 LogController.log ( Level.WARNING, "Direccion de correo no valida " + (new Date()),null);
 						    
 					     }
 					  }else {
 						  JOptionPane.showMessageDialog(null, "Las contrasenyas no coinciden", "Error", 0);
-						  LogController.log ( Level.WARNING, "Las contrasenyas no coinciden " + (new Date()),null);
 							
 					  }
 				}
