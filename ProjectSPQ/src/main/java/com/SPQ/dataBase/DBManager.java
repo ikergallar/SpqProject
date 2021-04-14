@@ -187,35 +187,10 @@ public class DBManager {
  		tx.commit();
  		pm.close();
 			
-
- 		
- 		
  	}
  	
 
  	
-   
-//   public boolean loginUsuario (String nomUsuario, String contrasena) throws DBException{
-//       boolean acceso = false;
-//       try (PreparedStatement stmt = conn.prepareStatement("SELECT username,contrasenya FROM usuarios WHERE username = ?  AND contrasenya = ?;")) {
-//               stmt.setString(1, nomUsuario);
-//               stmt.setString(2, contrasena);
-//
-//               ResultSet rs = stmt.executeQuery();
-//
-//               if (rs.next()) {
-//                   acceso = true;
-//               }else {
-//                   acceso = false;
-//               }
-//
-//           } catch (SQLException e) {
-//               throw new DBException("Error obteniendo datos de la query", e);
-//           }
-//
-//
-//       return acceso;
-//   }
 
 		
 }

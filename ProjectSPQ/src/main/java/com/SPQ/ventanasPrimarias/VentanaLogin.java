@@ -256,16 +256,16 @@ public class VentanaLogin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Ventana para registro
-			//	VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
-			//	recuperacionContra.setVisible(true);
+				VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
+				recuperacionContra.setVisible(true);
 
 			}
 		});
 		
-//				JLabel labelLogo = new JLabel("");
-//				labelLogo.setBounds(0, 0, 500, 500);
-//				frmLogin.getContentPane().add(labelLogo);
-//			//	labelLogo.setIcon(new ImageIcon(getClass().getResource("/imagenesEstaticas/hustle500.png")));
+				JLabel labelLogo = new JLabel("");
+				labelLogo.setBounds(0, 0, 500, 500);
+				frmLogin.getContentPane().add(labelLogo);
+				labelLogo.setIcon(new ImageIcon(getClass().getResource("/imagenesEstaticas/hustle50.png")));
 		checkVerPass.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
