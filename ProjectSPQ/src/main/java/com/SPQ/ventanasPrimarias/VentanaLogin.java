@@ -31,6 +31,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import javax.swing.UIManager;
@@ -145,7 +146,8 @@ public class VentanaLogin extends JFrame{
         		for (Usuario usuario : usuarios) {
 					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
 						acceso = true;
-						dispose();
+						
+						break;
 					}else {
 						acceso= false;
 					}
@@ -183,7 +185,7 @@ public class VentanaLogin extends JFrame{
 					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
 					VentanaPerfil perfil = new VentanaPerfil();
 					perfil.setVisible(true);
-					setVisible(false);
+					dispose();
 				}if(acceso!=true){
 					JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
 					textFieldUsuario.setText("");

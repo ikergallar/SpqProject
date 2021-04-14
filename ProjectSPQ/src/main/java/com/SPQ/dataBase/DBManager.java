@@ -162,7 +162,7 @@ public void  updateUsuario(Usuario usuario) throws DBException{
  		
         tx.begin();
  		
- 		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuario SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', telefono='"+usuario.getTelefono()+"',direccion='"+usuario.getDireccion()+ "', email='"+usuario.getMail() + "' WHERE nombreusuario ='"+ usuario.getNombreUsuario() + "'") ;
+ 		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuario SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', telefono='"+usuario.getTelefono()+"',direccion='"+usuario.getDireccion()+ "', mail='"+usuario.getMail() + "' WHERE nombreusuario ='"+ usuario.getNombreUsuario() + "'") ;
  		query.setClass(Usuario.class);
 
  		usuario = query.executeUnique();

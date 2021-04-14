@@ -213,7 +213,7 @@ public class VentanaPerfil extends JFrame{
 						usuario.setDireccion(textDireccion.getText());
 						usuario.setTelefono(textTel.getText());
 						usuario.setNombreUsuario(textUsuario.getText());
-						con.editarUsuario(usuario);
+						con.updateUsuario(usuario);
 						
 						JOptionPane.showMessageDialog(null, "Datos editados correctamente", "Informacion", 1);
 					} catch (DBException e) {
