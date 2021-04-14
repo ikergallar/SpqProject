@@ -42,7 +42,7 @@ public class VentanaLogin extends JFrame{
 	private JFrame frmLogin;
 	private JTextField textFieldUsuario;
 	private JPasswordField textFieldContrasena;
-	//private JList usuarios = new JList<Usuario>();
+	private List<Usuario> usuarios;
 	private boolean acceso = false;
 	
 
@@ -73,6 +73,14 @@ public class VentanaLogin extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
+		
+		DBManager conn = new DBManager();
+        try {
+        	usuarios =conn.listarUsuarios();
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		frmLogin = new JFrame();
@@ -133,64 +141,54 @@ public class VentanaLogin extends JFrame{
 				String nomUsuario = textFieldUsuario.getText();
                 String contrasena = textFieldContrasena.getText();
                 
-                DBManager conn = new DBManager();
-                try {
-					System.out.println(conn.listarUsuarios());
-				} catch (DBException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+                
+        		for (Usuario usuario : usuarios) {
+					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
+						acceso = true;
+						dispose();
+					}else {
+						acceso= false;
+					}
 				}
-        		try {
-        			List<Usuario> usuarios = conn.listarUsuarios();
-        			for (Usuario usuario : usuarios) {
-    					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
-    						acceso = true;
-    					}else {
-    						acceso= false;
-    					}
-                    }
-        			if(acceso==true) {
-        				File archivo;
-    					
-    					FileWriter escribir;
-    					PrintWriter linea;
-    					
-    					archivo = new File("usuario.txt");
-    					if(!archivo.exists()) {
-    						try {
-    							archivo.createNewFile();
-    						} catch (IOException e2) {
-    							// TODO Auto-generated catch block
-    							e2.printStackTrace();
-    						}
-    					}else {
-    						try { 
-    							escribir = new FileWriter(archivo,true);
-    							linea = new PrintWriter(escribir);
-    							linea.println(nomUsuario);
-    							linea.close();
-    							escribir.close();
-    						} catch (FileNotFoundException | UnsupportedEncodingException e3) {
-    							// TODO Auto-generated catch block
-    							e3.printStackTrace();
-    						} catch (IOException e1) {
-    							// TODO Auto-generated catch block
-    							e1.printStackTrace();
-    						}
-    					
-    				}
-        				JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-						VentanaPerfil perfil = new VentanaPerfil();
-						perfil.setVisible(true);
-						setVisible(false);
-        			}if(acceso!=true){
-        				JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-						textFieldUsuario.setText("");
-						textFieldContrasena.setText("");
-        			}
-        		} catch (DBException e1) {
-        			e1.printStackTrace();
-        		}
+				if(acceso==true) {
+					File archivo;
+					
+					FileWriter escribir;
+					PrintWriter linea;
+					
+					archivo = new File("usuario.txt");
+					if(!archivo.exists()) {
+						try {
+							archivo.createNewFile();
+						} catch (IOException e2) {
+							// TODO Auto-generated catch block
+							e2.printStackTrace();
+						}
+					}else {
+						try { 
+							escribir = new FileWriter(archivo,true);
+							linea = new PrintWriter(escribir);
+							linea.println(nomUsuario);
+							linea.close();
+							escribir.close();
+						} catch (FileNotFoundException | UnsupportedEncodingException e3) {
+							// TODO Auto-generated catch block
+							e3.printStackTrace();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+					
+				}
+					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+					VentanaPerfil perfil = new VentanaPerfil();
+					perfil.setVisible(true);
+					setVisible(false);
+				}if(acceso!=true){
+					JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+					textFieldUsuario.setText("");
+					textFieldContrasena.setText("");
+				}
                 
 					
 					

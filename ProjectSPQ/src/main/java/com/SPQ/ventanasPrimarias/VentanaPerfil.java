@@ -204,25 +204,22 @@ public class VentanaPerfil extends JFrame{
 			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-//					DBManager con = new DBManager();
-//					
-//					try {
-//						usuario = new Usuario();
-//						usuario.setNombre(textNombre.getText());
-//						usuario.setApellido(textApellido.getText());
-//						usuario.setDireccion(textDireccion.getText());
-//						usuario.setTelefono(textTel.getText());
-//						usuario.setNombreUsuario(textUsuario.getText());
-//						con.connect();
-//						con.cambiarDatos(usuario);
-//						con.disconnect();
-//						
-//						JOptionPane.showMessageDialog(null, "Datos editados correctamente", "Informacion", 1);
-//						LogController.log ( Level.INFO, "Datos editados correctamente " + (new Date()),null);
-//					} catch (DBException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
+					DBManager con = new DBManager();
+					
+					try {
+						usuario = new Usuario();
+						usuario.setNombre(textNombre.getText());
+						usuario.setApellido(textApellido.getText());
+						usuario.setDireccion(textDireccion.getText());
+						usuario.setTelefono(textTel.getText());
+						usuario.setNombreUsuario(textUsuario.getText());
+						con.editarUsuario(usuario);
+						
+						JOptionPane.showMessageDialog(null, "Datos editados correctamente", "Informacion", 1);
+					} catch (DBException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 				
 				}

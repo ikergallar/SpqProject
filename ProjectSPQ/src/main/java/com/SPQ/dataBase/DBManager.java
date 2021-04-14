@@ -86,7 +86,6 @@ public class DBManager {
 		
 		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL","select * from " + "usuario");
 		query.setClass(Usuario.class);
-			
 		List<Usuario> results = query.executeList();
 		
 		tx.commit();
@@ -126,6 +125,57 @@ public class DBManager {
  		return usuario;
  		
  	}
+ 
+ 	
+ 	public void  editarUsuario(Usuario usuario) throws DBException{
+ 		
+ 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+ 		PersistenceManager pm = pmf.getPersistenceManager();
+ 		Transaction tx = pm.currentTransaction();
+ 		
+ 		try {
+			tx.begin();
+			
+			pm.deletePersistent(usuario);
+
+			tx.commit();
+			
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+ 		
+        registrarUsuario(usuario);
+
+
+ 		
+ 		
+ 	}
+ 	
+public void  updateUsuario(Usuario usuario) throws DBException{
+ 		
+ 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+ 		PersistenceManager pm = pmf.getPersistenceManager();
+ 		Transaction tx = pm.currentTransaction();
+ 		
+        tx.begin();
+ 		
+ 		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuario SET nombre='"+ usuario.getNombre() +"', apellido='"+usuario.getApellido() +"', telefono='"+usuario.getTelefono()+"',direccion='"+usuario.getDireccion()+ "', email='"+usuario.getMail() + "' WHERE nombreusuario ='"+ usuario.getNombreUsuario() + "'") ;
+ 		query.setClass(Usuario.class);
+
+ 		usuario = query.executeUnique();
+ 		
+ 		tx.commit();
+ 		pm.close();
+			
+
+ 		
+ 		
+ 	}
+ 	
+
  	
    
 //   public boolean loginUsuario (String nomUsuario, String contrasena) throws DBException{

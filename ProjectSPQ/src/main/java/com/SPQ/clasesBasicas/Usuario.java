@@ -1,6 +1,7 @@
 package com.SPQ.clasesBasicas;
 
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
@@ -9,19 +10,31 @@ import javax.jdo.annotations.InheritanceStrategy;
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	
-	
+	@Persistent
 	static int id;//identificador unico y estatico
+	@Persistent
 	String nombre;	
+	@Persistent
 	String apellido;	
-	String nombreUsuario;	
+	@Persistent
+    String nombreUsuario;	
+	@Persistent
 	String pass;	
+	@Persistent
 	String mail;	
+	@Persistent
 	String telefono;	
+	@Persistent
 	String direccion;	
+	@Persistent
 	String descripcion;	
+	@Persistent
 	String foto;	
+	@Persistent
 	Anuncio[] anuncios;	
+	@Persistent
 	String palabraRecuperacion;
+	@Persistent
 	String preguntaRecuperacion;
 	
 	
