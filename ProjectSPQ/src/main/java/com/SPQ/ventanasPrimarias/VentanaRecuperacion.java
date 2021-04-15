@@ -30,6 +30,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -50,7 +51,9 @@ public class VentanaRecuperacion extends JDialog {
 	private JTextField texto_direccion;
 	private ButtonGroup sexo = new ButtonGroup();
 	private JTextField textoRespuesta;
+	private List<Usuario> usuarios;
 	private Usuario usuario;
+
 
 	public static void main(String[] args) {
 		
@@ -74,6 +77,14 @@ public class VentanaRecuperacion extends JDialog {
 	 */
 	public VentanaRecuperacion() {
 		setTitle("Hustle - Recuperación Contraseña");
+		
+		DBManager conn = new DBManager();
+        try {
+        	usuarios =conn.listarUsuarios();
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -160,21 +171,35 @@ public class VentanaRecuperacion extends JDialog {
 				String nomUsuario = texto_usuario.getText();
                 String palabraRecuperacion = textoRespuesta.getText();
                 String preguntaRecuperacion = comboPreguntas.getSelectedItem().toString();
-                DBManager conexion = new DBManager();
-                try {				//REFINAR
-                	Usuario u = conexion.seleccionarUsuario(nomUsuario);
-                	if(u.getPalabraRecuperacion().equals(palabraRecuperacion) && u.getPreguntaRecuperacion().equals(preguntaRecuperacion)) {
-                		u.setPass(texto_contrasena.toString());
-                		conexion.cambiarContrasenya(u);
-                	}
-                    
-						
-
-                } catch (DBException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
+                
+                for (Usuario usuario : usuarios) {
+                	if(usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPalabraRecuperacion().equals(palabraRecuperacion) && usuario.getPreguntaRecuperacion().equals(preguntaRecuperacion)) {
+                		if(texto_contrasena.getText().equals(texto_confPass.getText())) {
+                			try {
+    							
+    								usuario = new Usuario();
+    								usuario.setPass(texto_confPass.getText());
+    								usuario.setNombreUsuario(nomUsuario);
+    
+   								
+   								    conn.cambiarContrasenya(usuario);
+    								JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
+    
+    							} catch (DBException e1) {
+    								e1.printStackTrace();
+    							}   							
+    						}else {
+    							JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", 0);
+    							texto_contrasena.setText("");
+    							texto_confPass.setText("");
+    						}
+                        	
+                        }else {
+                            JOptionPane.showMessageDialog(null, "Datos erroneos", "Error", 0);
+                        }	
+                	
+                	break;
                 }
-
 	
 			}
 		});
