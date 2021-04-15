@@ -239,11 +239,7 @@ public class VentanaRegistro extends JDialog {
 										
 											conexion.registrarUsuario(usuario);
 											JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-											
-											VentanaLogin ini = new VentanaLogin(); 
-											setVisible(true);
-											VentanaRegistro.this.dispose();
-											
+                                            dispose();											
 											
 										
 									} catch (DBException e1) {

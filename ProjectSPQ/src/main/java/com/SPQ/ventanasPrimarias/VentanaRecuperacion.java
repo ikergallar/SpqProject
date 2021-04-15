@@ -171,6 +171,7 @@ public class VentanaRecuperacion extends JDialog {
 				String nomUsuario = texto_usuario.getText();
                 String palabraRecuperacion = textoRespuesta.getText();
                 String preguntaRecuperacion = comboPreguntas.getSelectedItem().toString();
+                boolean comprobar = false;
                 
                 for (Usuario usuario : usuarios) {
                 	if(usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPalabraRecuperacion().equals(palabraRecuperacion) && usuario.getPreguntaRecuperacion().equals(preguntaRecuperacion)) {
@@ -180,26 +181,27 @@ public class VentanaRecuperacion extends JDialog {
     								usuario = new Usuario();
     								usuario.setPass(texto_confPass.getText());
     								usuario.setNombreUsuario(nomUsuario);
+    								comprobar = true;
     
    								
    								    conn.cambiarContrasenya(usuario);
     								JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
+    								break;
     
     							} catch (DBException e1) {
     								e1.printStackTrace();
     							}   							
-    						}else {
-    							JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "Error", 0);
-    							texto_contrasena.setText("");
-    							texto_confPass.setText("");
     						}
-                        	
-                        }else {
-                            JOptionPane.showMessageDialog(null, "Datos erroneos", "Error", 0);
-                        }	
+                        }
                 	
-                	break;
                 }
+                
+                if(!comprobar) {
+                	JOptionPane.showMessageDialog(null, "Datos erroneos", "Error", 0);
+                }
+                
+                
+                
 	
 			}
 		});
