@@ -265,7 +265,7 @@ public class VentanaLogin extends JFrame{
 				JLabel labelLogo = new JLabel("");
 				labelLogo.setBounds(0, 0, 500, 500);
 				frmLogin.getContentPane().add(labelLogo);
-				labelLogo.setIcon(new ImageIcon(getClass().getResource("/imagenesEstaticas/hustle50.png")));
+				labelLogo.setIcon(new ImageIcon(getClass().getResource("")));
 		checkVerPass.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
