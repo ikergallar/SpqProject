@@ -11,13 +11,12 @@ import com.SPQ.clasesBasicas.UsuarioConectado;
 
 import junit.framework.JUnit4TestAdapter;
 
-import org.mockito.Mockito;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class UsuarioTest {
 	
 	private Usuario u;
-	private UsuarioConectado mockServer = Mockito.mock(UsuarioConectado.class);
+	private UsuarioConectado mockServer = mock(UsuarioConectado.class);
 	
 	public static junit.framework.Test suite() {
 		return new JUnit4TestAdapter(UsuarioTest.class);
