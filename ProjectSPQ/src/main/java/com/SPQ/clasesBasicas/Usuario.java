@@ -36,11 +36,12 @@ public class Usuario {
 	String palabraRecuperacion;
 	@Persistent
 	String preguntaRecuperacion;
+	private UsuarioConectado usuarioConectado;
 	
 	
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
 			String direccion, String descripcion, String foto, Anuncio[] anuncios, String palabraRecuperacion,
-			String preguntaRecuperacion) {
+			String preguntaRecuperacion, UsuarioConectado usuarioConectado) {
 		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -54,6 +55,7 @@ public class Usuario {
 		this.anuncios = anuncios;
 		this.palabraRecuperacion = palabraRecuperacion;
 		this.preguntaRecuperacion = preguntaRecuperacion;
+		this.usuarioConectado = usuarioConectado;
 	}
 	
 	public Usuario() {
@@ -157,6 +159,14 @@ public class Usuario {
 	public String printAllData() {
 		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", pass=" + pass
 				+ ", mail=" + mail + ", descripcion=" + descripcion + ", foto=" + foto + "]";
+	}
+	
+	public String getStatus() {
+		if(UsuarioConectado.isConnected(nombre)) {
+			return "Conectado";
+		}else {
+			return "No conectado";
+		}
 	}
 	
 
