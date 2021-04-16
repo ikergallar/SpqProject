@@ -5,10 +5,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
+import org.mockito.Mockito.*;
 
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.clasesBasicas.UsuarioConectado;
+import org.mockito.Mockito;
 
 public class UsuarioTest {
 	
