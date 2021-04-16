@@ -33,7 +33,7 @@ public class AnuncioTest {
 		Usuario usuarioAitor =new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
 		Categoria fontaneria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
 		Anuncio anuncio=new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", fontaneria, usuarioAitor);
-		assertEquals("Ofrezco servicio de fontaneria", anuncio.getDescripcion(),);	
+		assertEquals("Ofrezco servicio de fontaneria", anuncio.getDescripcion());	
 	}
 	
 	@Test
