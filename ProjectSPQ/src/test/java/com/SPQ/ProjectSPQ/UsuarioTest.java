@@ -21,67 +21,67 @@ public class UsuarioTest {
 	@Test
 	public void testGetNombre() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getNombre(),"Aitor");	
+		assertEquals("Aitor", usuario.getNombre());	
 	}
 
 	@Test
 	public void testGetApellido() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getApellido(),"Davila");	
+		assertEquals("Davila", usuario.getApellido());	
 	}
 
 	@Test
 	public void testGetNombreUsuario() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getNombreUsuario(),"aidav13");	
+		assertEquals("aidav13", usuario.getNombreUsuario());	
 	}
 	
 	@Test
 	public void testGetPass() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getPass(),"pass123");	
+		assertEquals("pass123", usuario.getPass());	
 	}
 	
 	@Test
 	public void testGetMail() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getMail(),"aidav@gmail.com");	
+		assertEquals("aidav@gmail.com", usuario.getMail());	
 	}
 	
 	@Test
 	public void testGetTelefono() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getTelefono(),"6839283948");	
+		assertEquals("6839283948", usuario.getTelefono());	
 	}
 	
 	@Test
 	public void testGetDireccion() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getDireccion(),"Calle Ave del Paraiso 9, Barcelona");	
+		assertEquals("Calle Ave del Paraiso 9, Barcelona", usuario.getDireccion());	
 	}
 	
 	@Test
 	public void testGetDescripcion() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getDescripcion(),"Buena zona");	
+		assertEquals("Buena zona", usuario.getDescripcion());	
 	}
 	
 	@Test
 	public void testGetAnuncio() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getAnuncios(),null);	
+		assertEquals(null,usuario.getAnuncios());	
 	}
 	
 	@Test
 	public void testGetPalabraRecuperacion() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getPalabraRecuperacion(),"Dua");	
+		assertEquals("Dua", usuario.getPalabraRecuperacion());	
 	}
 	
 	@Test
 	public void testGetPreguntaRecuperacion() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
-		assertEquals(usuario.getPreguntaRecuperacion(),"¿Como se llama mi gato?");	
+		assertEquals("¿Como se llama mi gato?", usuario.getPreguntaRecuperacion());	
 	}
 
 }

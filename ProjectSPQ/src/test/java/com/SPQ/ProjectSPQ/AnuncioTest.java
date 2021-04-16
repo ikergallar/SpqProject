@@ -25,7 +25,7 @@ public class AnuncioTest {
 		Usuario usuarioAitor =new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
 		Categoria fontaneria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
 		Anuncio anuncio=new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", fontaneria, usuarioAitor);
-		assertEquals(anuncio.getNombre(),"Aitor");	
+		assertEquals("Aitor", anuncio.getNombre());	
 	}
 	
 	@Test
@@ -33,7 +33,7 @@ public class AnuncioTest {
 		Usuario usuarioAitor =new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
 		Categoria fontaneria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
 		Anuncio anuncio=new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", fontaneria, usuarioAitor);
-		assertEquals(anuncio.getDescripcion(),"Ofrezco servicio de fontaneria");	
+		assertEquals("Ofrezco servicio de fontaneria", anuncio.getDescripcion(),);	
 	}
 	
 	@Test
@@ -41,7 +41,7 @@ public class AnuncioTest {
 		Usuario usuarioAitor =new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
 		Categoria fontaneria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
 		Anuncio anuncio=new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", fontaneria,usuarioAitor);
-		assertEquals(anuncio.getPrecio(),60);	
+		assertEquals(60, anuncio.getPrecio());	
 	}
 	
 	@Test
@@ -49,7 +49,7 @@ public class AnuncioTest {
 		Usuario usuarioAitor =new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
 		Categoria fontaneria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
 		Anuncio anuncio=new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", fontaneria, usuarioAitor);
-		assertEquals(anuncio.getCategoria(),fontaneria);	
+		assertEquals(fontaneria, anuncio.getCategoria());	
 	}
 	
 	@Test
@@ -57,7 +57,7 @@ public class AnuncioTest {
 		Usuario usuarioAitor =new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
 		Categoria fontaneria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
 		Anuncio anuncio=new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", fontaneria, usuarioAitor);
-		assertEquals(anuncio.getUsuario(),usuarioAitor);	
+		assertEquals(usuarioAitor, anuncio.getUsuario());	
 	}
 	
 

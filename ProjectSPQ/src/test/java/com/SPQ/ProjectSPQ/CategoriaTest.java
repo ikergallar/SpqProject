@@ -21,11 +21,11 @@ public class CategoriaTest {
 	@Test
 	public void testGetNombre() {
 		Categoria categoria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
-		assertEquals(categoria.getNombre(),"Fontaneria");	
+		assertEquals("Fontaneria", categoria.getNombre());	
 	}
 	
 	public void testGetDescripcion() {
 		Categoria categoria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
-		assertEquals(categoria.getDescripcion(),"Te arreglo cañerias y retretes");	
+		assertEquals("Te arreglo cañerias y retretes", categoria.getDescripcion());	
 	}
 }
