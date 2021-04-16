@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.SPQ.clasesBasicas.Categoria;
 
-public class TestCategoria {
+public class CategoriaTest {
 
 	@Before
 	public void setUp() throws Exception {

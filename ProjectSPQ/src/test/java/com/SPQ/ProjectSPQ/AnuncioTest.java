@@ -10,7 +10,7 @@ import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
 
-public class TestAnuncio {
+public class AnuncioTest {
 	
 	@Before
 	public void setUp() throws Exception {

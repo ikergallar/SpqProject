@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import com.SPQ.clasesBasicas.Usuario;
 
-public class TestUsuario {
+public class UsuarioTest {
 
 	@Before
 	public void setUp() throws Exception {
