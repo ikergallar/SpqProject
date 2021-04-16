@@ -12,7 +12,7 @@ import com.SPQ.clasesBasicas.UsuarioConectado;
 import junit.framework.JUnit4TestAdapter;
 
 import org.mockito.Mockito;
-import org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 public class UsuarioTest {
 	
@@ -33,17 +33,17 @@ public class UsuarioTest {
 	public void tearDown() throws Exception {
 	}
 
-//	@Test
-//	public void testgetStatusConectado() {
-//		when(mockServer.isConnected("Peter")).thenReturn(true);
-//		assertEquals("Conectado", u.getNombre());	
-//	}
-//	
-//	@Test
-//	public void testgetStatusNoConectado() {
-//		when(mockServer.isConnected("Peter")).thenReturn(false);
-//		assertEquals("No conectado", u.getNombre());	
-//	}
+	@Test
+	public void testgetStatusConectado() {
+		when(mockServer.isConnected("Peter")).thenReturn(true);
+		assertEquals("Conectado", u.getNombre());	
+	}
+	
+	@Test
+	public void testgetStatusNoConectado() {
+		when(mockServer.isConnected("Peter")).thenReturn(false);
+		assertEquals("No conectado", u.getNombre());	
+	}
 	@Test
 	public void testGetNombre() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?", null);
