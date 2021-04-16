@@ -1,2 +1,7 @@
 /target/
-/log.xml
+.classpath
+.project
+.settings/
+/bin/
+
+datanucleus.log
