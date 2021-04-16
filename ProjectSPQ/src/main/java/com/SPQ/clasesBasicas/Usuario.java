@@ -11,7 +11,7 @@ import javax.jdo.annotations.InheritanceStrategy;
 public class Usuario {
 	
 	static int id;//identificador unico y estatico
-	String nombre;	
+	static String nombre;	
 	String apellido;	
     String nombreUsuario;	
 	String pass;	
@@ -148,7 +148,7 @@ public class Usuario {
 				+ ", mail=" + mail + ", descripcion=" + descripcion + ", foto=" + foto + "]";
 	}
 	
-	public String getStatus() {
+	public static String getStatus() {
 		if(UsuarioConectado.isConnected(nombre)) {
 			return "Conectado";
 		}else {

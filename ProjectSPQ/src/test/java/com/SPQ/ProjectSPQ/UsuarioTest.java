@@ -35,13 +35,13 @@ public class UsuarioTest {
 
 	@Test
 	public void testgetStatusConectado() {
-		when(mockServer.isConnected("Peter")).thenReturn(true);
+		when(UsuarioConectado.isConnected("Peter")).thenReturn(true);
 		assertEquals("Conectado", u.getNombre());	
 	}
 	
 	@Test
 	public void testgetStatusNoConectado() {
-		when(mockServer.isConnected("Peter")).thenReturn(false);
+		when(UsuarioConectado.isConnected("Peter")).thenReturn(false);
 		assertEquals("No conectado", u.getNombre());	
 	}
 	@Test
