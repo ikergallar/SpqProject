@@ -1,6 +1,6 @@
 package com.SPQ.dataBase;
 
-public class DBException extends Exception{
+public class DBException extends Exception {
 
 	/**
 	 * 

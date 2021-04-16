@@ -10,31 +10,18 @@ import javax.jdo.annotations.InheritanceStrategy;
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	
-	@Persistent
 	static int id;//identificador unico y estatico
-	@Persistent
 	String nombre;	
-	@Persistent
 	String apellido;	
-	@Persistent
     String nombreUsuario;	
-	@Persistent
 	String pass;	
-	@Persistent
 	String mail;	
-	@Persistent
 	String telefono;	
-	@Persistent
 	String direccion;	
-	@Persistent
 	String descripcion;	
-	@Persistent
 	String foto;	
-	@Persistent
 	Anuncio[] anuncios;	
-	@Persistent
 	String palabraRecuperacion;
-	@Persistent
 	String preguntaRecuperacion;
 	private UsuarioConectado usuarioConectado;
 	
@@ -55,7 +42,7 @@ public class Usuario {
 		this.anuncios = anuncios;
 		this.palabraRecuperacion = palabraRecuperacion;
 		this.preguntaRecuperacion = preguntaRecuperacion;
-		this.usuarioConectado = usuarioConectado;
+		this.setUsuarioConectado(usuarioConectado);
 	}
 	
 	public Usuario() {
@@ -167,6 +154,14 @@ public class Usuario {
 		}else {
 			return "No conectado";
 		}
+	}
+
+	public UsuarioConectado getUsuarioConectado() {
+		return usuarioConectado;
+	}
+
+	public void setUsuarioConectado(UsuarioConectado usuarioConectado) {
+		this.usuarioConectado = usuarioConectado;
 	}
 	
 

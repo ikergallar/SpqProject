@@ -1,16 +1,9 @@
 package com.SPQ.dataBase;
 
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
-
 import javax.jdo.*;
-
-
 import com.SPQ.clasesBasicas.*;
-import com.mysql.cj.xdevapi.Statement;
-
 
 
 public class DBManager {
@@ -41,7 +34,7 @@ public class DBManager {
 		
 		try {
 			tx.begin();
-			Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?");
+			Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?", null);
 			pm.makePersistent(usuario);
 			
 

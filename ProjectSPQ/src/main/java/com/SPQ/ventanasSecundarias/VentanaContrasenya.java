@@ -23,7 +23,6 @@ import javax.swing.JPasswordField;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
-import com.SPQ.dataBase.LogController;
 import com.SPQ.ventanasPrimarias.VentanaLogin;
 import com.SPQ.ventanasPrimarias.VentanaPerfil;
 import javax.swing.JCheckBox;

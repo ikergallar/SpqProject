@@ -8,7 +8,13 @@ import org.junit.Test;
 
 import com.SPQ.clasesBasicas.Categoria;
 
+import junit.framework.JUnit4TestAdapter;
+
 public class CategoriaTest {
+	
+	public static junit.framework.Test suite() {
+		return new JUnit4TestAdapter(CategoriaTest.class);
+		}
 
 	@Before
 	public void setUp() throws Exception {

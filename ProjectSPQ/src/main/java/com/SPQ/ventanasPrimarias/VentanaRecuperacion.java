@@ -16,7 +16,6 @@ import javax.swing.border.EmptyBorder;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
-import com.SPQ.dataBase.LogController;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -57,7 +56,6 @@ public class VentanaRecuperacion extends JDialog {
 
 	public static void main(String[] args) {
 		
-		LogController.log ( Level.INFO, "Recuperacion contraseña " + (new Date()),null);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {

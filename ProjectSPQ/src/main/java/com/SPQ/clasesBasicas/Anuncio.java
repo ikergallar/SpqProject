@@ -13,7 +13,7 @@ public class Anuncio {
 	String descripcion;
 	float precio;
 	String foto;
-	Categoria categoria;
+	private Categoria categoria;
 	Usuario usuario;
 	
 	

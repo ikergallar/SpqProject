@@ -25,7 +25,6 @@ import javax.swing.JTextField;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
-import com.SPQ.dataBase.LogController;
 import com.SPQ.ventanasSecundarias.VentanaContrasenya;
 
 
