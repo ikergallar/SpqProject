@@ -194,9 +194,7 @@ public class VentanaPerfil extends JFrame{
 				
 			});
 			btnTarjeta_1.setBounds(0, 399, 257, 68);
-			getContentPane().add(btnTarjeta_1);
-			
-			
+			getContentPane().add(btnTarjeta_1);			
 		
 			JButton btnNewButton = new JButton("GUARDAR");
 			btnNewButton.setBackground(Color.RED);
@@ -254,16 +252,13 @@ public class VentanaPerfil extends JFrame{
 					cambiarPass.setForeground(Color.GRAY);
 				}
 			});
-			
-			
-			
+						
 			botonCerrarSesion.addActionListener(new ActionListener() {	
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
 					VentanaLogin login = new VentanaLogin();
 					login.setVisible(true);
-					dispose();
-					
+					dispose();					
 				}
 				
 			});
