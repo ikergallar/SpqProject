@@ -29,6 +29,7 @@ public class Usuario {
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
 			String direccion, String descripcion, String foto, Anuncio[] anuncios, String palabraRecuperacion,
 			String preguntaRecuperacion, UsuarioConectado usuarioConectado) {
+		super();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nombreUsuario = nombreUsuario;
@@ -45,6 +46,7 @@ public class Usuario {
 	}
 	
 	public Usuario() {
+		super();
 		this.nombre = "";
 		this.apellido = "";
 		this.nombreUsuario = "";
