@@ -30,6 +30,7 @@ public class CategoriaTest {
 		assertEquals("Fontaneria", categoria.getNombre());	
 	}
 	
+	@Test
 	public void testGetDescripcion() {
 		Categoria categoria=new Categoria("Fontaneria", "Te arreglo cañerias y retretes");
 		assertEquals("Te arreglo cañerias y retretes", categoria.getDescripcion());	
