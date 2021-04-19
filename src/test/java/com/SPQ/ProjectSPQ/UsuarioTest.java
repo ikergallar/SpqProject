@@ -16,7 +16,7 @@ import static org.mockito.Mockito.*;
 public class UsuarioTest {
 	
 	private Usuario u;
-	private UsuarioConectado mockServer = mock(UsuarioConectado.class);
+//	private UsuarioConectado mockServer = mock(UsuarioConectado.class);
 	
 	public static junit.framework.Test suite() {
 		return new JUnit4TestAdapter(UsuarioTest.class);
@@ -25,7 +25,7 @@ public class UsuarioTest {
 	@Before
 	public void setUp(){
 		
-		u= new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?", mockServer);
+		u= new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?", null);
 	}
 	
 	@After
