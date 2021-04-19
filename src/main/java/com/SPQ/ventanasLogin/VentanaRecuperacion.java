@@ -1,12 +1,8 @@
 package com.SPQ.ventanasLogin;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,23 +16,14 @@ import com.SPQ.dataBase.DBManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import java.awt.GridLayout;
-import java.awt.HeadlessException;
-import java.awt.Image;
+
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
 public class VentanaRecuperacion extends JDialog {
@@ -45,13 +32,9 @@ public class VentanaRecuperacion extends JDialog {
 	private JPanel contentPane;
 	private JPasswordField texto_contrasena;
 	private JPasswordField texto_confPass;
-	private JTextField textNumero;
 	private JTextField texto_usuario;
-	private JTextField texto_direccion;
-	private ButtonGroup sexo = new ButtonGroup();
 	private JTextField textoRespuesta;
 	private List<Usuario> usuarios;
-	private Usuario usuario;
 
 
 	public static void main(String[] args) {
@@ -123,9 +106,7 @@ public class VentanaRecuperacion extends JDialog {
 		texto_usuario.setColumns(10);
 		texto_usuario.setBounds(31, 76, 175, 19);
 		contentPane.add(texto_usuario);
-		
-		
-		
+				
 		JButton btnRegistrar = new JButton("RECUPERAR");
 	
 		btnRegistrar.setBackground(new Color(255, 0, 0));
@@ -205,4 +186,4 @@ public class VentanaRecuperacion extends JDialog {
 		});
 		
 	}
-	}
+}

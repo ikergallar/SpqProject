@@ -1,12 +1,8 @@
 package com.SPQ.ventanasLogin;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -20,22 +16,13 @@ import com.SPQ.dataBase.DBManager;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
-import java.awt.GridLayout;
 import java.awt.HeadlessException;
-import java.awt.Image;
 import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.logging.Level;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.EventQueue;
 
-import javax.swing.SwingConstants;
 import javax.swing.JComboBox;
 
 public class VentanaRegistro extends JDialog {
@@ -47,15 +34,9 @@ public class VentanaRegistro extends JDialog {
 	private JTextField texto_email;
 	private JPasswordField texto_contrasena;
 	private JPasswordField texto_confPass;
-	private JTextField textNumero;
 	private JTextField texto_usuario;
-	private JTextField texto_direccion;
-	private ButtonGroup sexo = new ButtonGroup();
 	private JTextField textoRespuesta;
-	
-	
-	
-	
+				
 
 	/**
 	 * Launch the application.
@@ -153,10 +134,8 @@ public class VentanaRegistro extends JDialog {
 		texto_usuario = new JTextField();
 		texto_usuario.setColumns(10);
 		texto_usuario.setBounds(31, 154, 175, 19);
-		contentPane.add(texto_usuario);
-		
-		
-		
+		contentPane.add(texto_usuario);		
+				
 		JButton btnRegistrar = new JButton("REGISTRAR");
 		btnRegistrar.setBackground(new Color(255, 0, 0));
 		btnRegistrar.setForeground(Color.WHITE);
@@ -203,7 +182,6 @@ public class VentanaRegistro extends JDialog {
 				String email;
 				String nombre;
 				String apellido;
-				int i = 1;
 				
 				DBManager conexion = new DBManager();
 				
@@ -267,11 +245,6 @@ public class VentanaRegistro extends JDialog {
 				}
 			}
 			
-		});
-		
-		
-		
-	
-		
+		});		
 	}
-	}
+}

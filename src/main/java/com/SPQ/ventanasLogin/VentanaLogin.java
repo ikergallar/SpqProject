@@ -8,7 +8,6 @@ import java.awt.*;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -31,13 +30,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Level;
 import javax.swing.UIManager;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 
 public class VentanaLogin extends JFrame{
 
@@ -45,8 +39,7 @@ public class VentanaLogin extends JFrame{
 	private JTextField textFieldUsuario;
 	private JPasswordField textFieldContrasena;
 	private List<Usuario> usuarios;
-	private boolean acceso = false;
-	
+	private boolean acceso = false;	
 
 	/**
 	 * Launch the application.
@@ -83,8 +76,7 @@ public class VentanaLogin extends JFrame{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+				
 		frmLogin = new JFrame();
 		frmLogin.setResizable(false);
 		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
@@ -141,7 +133,7 @@ public class VentanaLogin extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				
 				String nomUsuario = textFieldUsuario.getText();
-                String contrasena = textFieldContrasena.getText();
+				String contrasena = textFieldContrasena.getText();
                 
                 
         		for (Usuario usuario : usuarios) {
@@ -263,10 +255,11 @@ public class VentanaLogin extends JFrame{
 			}
 		});
 		
-				JLabel labelLogo = new JLabel("");
-				labelLogo.setBounds(0, 0, 500, 500);
-				frmLogin.getContentPane().add(labelLogo);
-				labelLogo.setIcon(new ImageIcon(getClass().getResource("")));
+		JLabel labelLogo = new JLabel("");
+		labelLogo.setBounds(0, 0, 500, 500);
+		frmLogin.getContentPane().add(labelLogo);
+		labelLogo.setIcon(new ImageIcon(getClass().getResource("")));
+		
 		checkVerPass.addActionListener(new ActionListener() {	
 			@Override
 			public void actionPerformed(ActionEvent e) {
