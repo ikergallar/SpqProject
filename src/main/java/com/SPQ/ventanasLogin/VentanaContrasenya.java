@@ -1,4 +1,4 @@
-package com.SPQ.ventanasSecundarias;
+package com.SPQ.ventanasLogin;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -23,7 +23,6 @@ import javax.swing.JPasswordField;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
-import com.SPQ.ventanasPrimarias.VentanaLogin;
 import com.SPQ.ventanasPrimarias.VentanaPerfil;
 import javax.swing.JCheckBox;
 

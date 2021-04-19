@@ -1,4 +1,4 @@
-package com.SPQ.ventanasPrimarias;
+package com.SPQ.ventanasLogin;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -19,6 +19,7 @@ import javax.swing.SwingConstants;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.ventanasPrimarias.VentanaPerfil;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;

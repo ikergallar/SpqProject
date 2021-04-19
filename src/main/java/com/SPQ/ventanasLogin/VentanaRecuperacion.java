@@ -1,4 +1,4 @@
-package com.SPQ.ventanasPrimarias;
+package com.SPQ.ventanasLogin;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
