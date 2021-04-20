@@ -14,19 +14,29 @@ public class Anuncio {
 	float precio;
 	String foto;
 	private Categoria categoria;
+	boolean oferta;
 	Usuario usuario;
 	
 	
-	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria, Usuario usuario) {
+	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, Usuario usuario) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.foto = foto;
 		this.categoria = categoria;
+		this.oferta = oferta;
 		this.usuario = usuario;
 
 	}
+	public boolean isOferta() {
+		return oferta;
+	}
+
+	public void setOferta(boolean oferta) {
+		this.oferta = oferta;
+	}
+
 	
 	public Anuncio() {
 		this.nombre = "";
