@@ -77,7 +77,7 @@ public class DBManager {
 		
 		tx.begin();
 		
-		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL","select * from " + "usuario");
+		Query<Usuario> query = pm.newQuery("javax.jdo.query.SQL","select * from usuario");
 		query.setClass(Usuario.class);
 		List<Usuario> results = query.executeList();
 		
@@ -116,34 +116,6 @@ public class DBManager {
  		tx.commit();
  		pm.close();
  		return usuario;
- 		
- 	}
- 
- 	
- 	public void  editarUsuario(Usuario usuario) throws DBException{
- 		
- 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
- 		PersistenceManager pm = pmf.getPersistenceManager();
- 		Transaction tx = pm.currentTransaction();
- 		
- 		try {
-			tx.begin();
-			
-			pm.deletePersistent(usuario);
-
-			tx.commit();
-			
-		} finally {
-			if (tx.isActive()) {
-				tx.rollback();
-			}
-			pm.close();
-		}
- 		
-        registrarUsuario(usuario);
-
-
- 		
  		
  	}
  	
@@ -189,7 +161,7 @@ public class DBManager {
 		
 		tx.begin();
 		
-		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM ANUNCIO WHERE oferta = 'true'");
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","Select * FROM anuncio WHERE oferta = 'true'");
 		query.setClass(Anuncio.class);
 		List<Anuncio> results = query.executeList();
 		
@@ -198,9 +170,5 @@ public class DBManager {
 		return results;
 		
 	}
- 	
-
- 	
-
 		
 }

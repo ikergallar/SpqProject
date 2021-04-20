@@ -11,7 +11,7 @@ import javax.jdo.annotations.InheritanceStrategy;
 public class Usuario {
 	
 	static int id;//identificador unico y estatico
-	static String nombre;	
+	String nombre;	
 	String apellido;	
     String nombreUsuario;	
 	String pass;	
@@ -41,7 +41,7 @@ public class Usuario {
 		this.anuncios = anuncios;
 		this.palabraRecuperacion = palabraRecuperacion;
 		this.preguntaRecuperacion = preguntaRecuperacion;
-		this.setUsuarioConectado(usuarioConectado);
+//		this.setUsuarioConectado(usuarioConectado);
 	}
 	
 	public Usuario() {
@@ -146,21 +146,21 @@ public class Usuario {
 				+ ", mail=" + mail + ", descripcion=" + descripcion + ", foto=" + foto + "]";
 	}
 	
-	public static String getStatus() {
-		if(UsuarioConectado.isConnected(nombre)) {
-			return "Conectado";
-		}else {
-			return "No conectado";
-		}
-	}
-
-	public UsuarioConectado getUsuarioConectado() {
-		return usuarioConectado;
-	}
-
-	public void setUsuarioConectado(UsuarioConectado usuarioConectado) {
-		this.usuarioConectado = usuarioConectado;
-	}
+//	public static String getStatus() {
+//		if(UsuarioConectado.isConnected(nombre)) {
+//			return "Conectado";
+//		}else {
+//			return "No conectado";
+//		}
+//	}
+//
+//	public UsuarioConectado getUsuarioConectado() {
+//		return usuarioConectado;
+//	}
+//
+//	public void setUsuarioConectado(UsuarioConectado usuarioConectado) {
+//		this.usuarioConectado = usuarioConectado;
+//	}
 	
 
 }
