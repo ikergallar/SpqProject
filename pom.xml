@@ -73,6 +73,7 @@
 					<include>**/*.jdo</include>
 					<include>**/*.orm</include>
 					<include>**/*.properties</include>
+					<include>imagenes</include>
 				</includes>
 			</resource>
 		</resources>
@@ -129,7 +130,7 @@
 				<version>1.2.1</version>
 
 				<configuration>
-					<mainClass>com.SPQ.ventanasPrimarias.VentanaLogin</mainClass>
+					<mainClass>com.SPQ.ventanasLogin.VentanaLogin</mainClass>
 					<systemProperties>
 						<systemProperty>
 							<key>log4j.configuration</key>
