@@ -67,16 +67,20 @@
 		<testSourceDirectory>src/test/java</testSourceDirectory>
 
 		<resources>
-			<resource>
+		    <resource>
 				<directory>${config.files.dir}</directory>
 				<includes>
 					<include>**/*.jdo</include>
 					<include>**/*.orm</include>
 					<include>**/*.properties</include>
-					<include>imagenes</include>
 				</includes>
 			</resource>
-		</resources>
+			
+			<resource>
+                <directory>src/main/resources/imagenes</directory>
+                <includes><include>hustle50.png</include></includes>
+            </resource>           
+	    </resources>
 
 		<plugins>
 			<plugin>
