@@ -18,6 +18,7 @@ import javax.swing.SwingConstants;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.ventanasPrimarias.VentanaAnuncios;
 import com.SPQ.ventanasPrimarias.VentanaPerfil;
 
 import java.awt.event.ActionListener;
@@ -33,6 +34,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import javax.swing.UIManager;
 
+import org.datanucleus.store.rdbms.mapping.column.TinyIntColumnMapping;
+
 public class VentanaLogin extends JFrame{
 
 	private JFrame frmLogin;
@@ -40,6 +43,7 @@ public class VentanaLogin extends JFrame{
 	private JPasswordField textFieldContrasena;
 	private List<Usuario> usuarios;
 	private boolean acceso = false;	
+	private Usuario usuarioIniciado;
 
 	/**
 	 * Launch the application.
@@ -138,13 +142,15 @@ public class VentanaLogin extends JFrame{
                 
         		for (Usuario usuario : usuarios) {
 					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
-						acceso = true;
-						
+						acceso = true;				
+						usuarioIniciado = usuario;
 						break;
 					}else {
 						acceso= false;
 					}
 				}
+        		
+        		
 				if(acceso==true) {
 					File archivo;
 					
@@ -176,7 +182,7 @@ public class VentanaLogin extends JFrame{
 					
 				}
 					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-					VentanaPerfil perfil = new VentanaPerfil();
+					VentanaAnuncios perfil = new VentanaAnuncios(usuarioIniciado);
 					perfil.setVisible(true);
 					dispose();
 				}if(acceso!=true){
@@ -191,6 +197,8 @@ public class VentanaLogin extends JFrame{
 	
 			}
 		});
+		
+		
 		botonLogin.setForeground(Color.WHITE);
 		botonLogin.setBackground(new Color(255, 0, 0));
 		botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));

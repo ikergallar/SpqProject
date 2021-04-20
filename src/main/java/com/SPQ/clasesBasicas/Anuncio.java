@@ -7,15 +7,15 @@ import javax.jdo.annotations.PersistenceCapable;
 @PersistenceCapable
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Anuncio {
-	static String idAnuncio;
+	private static String idAnuncio;
 
-	String nombre;
-	String descripcion;
-	float precio;
-	String foto;
+	private String nombre;
+	private String descripcion;
+	private float precio;
+	private String foto;
 	private Categoria categoria;
-	boolean oferta;
-	Usuario usuario;
+	private boolean oferta;
+	private Usuario usuario;
 	
 	
 	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, Usuario usuario) {
@@ -43,7 +43,7 @@ public class Anuncio {
 		this.descripcion = "";
 		this.precio = 0;
 		this.foto = "";
-		this.categoria = null;
+		this.categoria = categoria.NINGUNA;
 		this.usuario = null;
 
 	}
@@ -95,7 +95,7 @@ public class Anuncio {
 	//
 	public String printAnuncio() {
 		return "Anuncio [nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", categoria=" + categoria.getNombre()  + "]";
+				+ ", categoria=" + categoria + "]";
 	}
 	
 	

@@ -41,21 +41,8 @@ public class VentanaPerfil extends JFrame{
 		private String nombreUsuario;
 		private Usuario datosUsuario;
 		private Usuario usuario;
-		public static void main(String[] args) {
-			
-			EventQueue.invokeLater(new Runnable() {
-				public void run() {
-					try {
-						VentanaPerfil frame = new VentanaPerfil();
-						frame.setVisible(true);
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-					
-					
-				}
-			});
-		}
+		
+		
 		public VentanaPerfil() {
 			
 			setTitle("Hustle - Perfil");

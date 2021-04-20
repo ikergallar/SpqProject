@@ -10,19 +10,19 @@ import javax.jdo.annotations.InheritanceStrategy;
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	
-	static int id;//identificador unico y estatico
-	String nombre;	
-	String apellido;	
-    String nombreUsuario;	
-	String pass;	
-	String mail;	
-	String telefono;	
-	String direccion;	
-	String descripcion;	
-	String foto;	
-	Anuncio[] anuncios;	
-	String palabraRecuperacion;
-	String preguntaRecuperacion;
+	private static int id;//identificador unico y estatico
+	private String nombre;	
+	private String apellido;	
+	private String nombreUsuario;	
+	private String pass;	
+	private String mail;	
+	private String telefono;	
+	private String direccion;	
+	private String descripcion;	
+	private String foto;	
+	private Anuncio[] anuncios;	
+	private String palabraRecuperacion;
+	private String preguntaRecuperacion;
 	private UsuarioConectado usuarioConectado;
 	
 	
