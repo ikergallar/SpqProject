@@ -61,6 +61,4 @@ public class AnuncioTest {
 		assertEquals(usuarioAitor, anuncio.getUsuario());	
 	}
 	
-
-
 }

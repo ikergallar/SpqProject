@@ -114,13 +114,11 @@ public class VentanaAnuncios extends JFrame{
 				String descripcion;
 				float  precio;
 				Categoria categoria;
-				
-				
+								
 				nombre = textNombre.getText();
 				descripcion = textDescripcion.getText();
 				precio = Float.parseFloat(textPrecio.getText());
-				categoria = (Categoria) comboCategoria.getSelectedItem();
-				
+				categoria = (Categoria) comboCategoria.getSelectedItem();				
 				
 				if (nombre.equals("") || descripcion.equals("") || precio < 0 || categoria.equals(null)) {
 					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
@@ -134,8 +132,7 @@ public class VentanaAnuncios extends JFrame{
 				    		anuncio.setPrecio(precio);
 				    		anuncio.setCategoria(categoria);
 				    		anuncio.setUsuario(usuario);
-											
-								
+																			
 								try {
 									
 										con.crearAnuncio(anuncio);
@@ -159,8 +156,7 @@ public class VentanaAnuncios extends JFrame{
         
         getContentPane().add(scrollbar, BorderLayout.CENTER);
         scrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
-        scrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        
+        scrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);       
 
 	}
 }
