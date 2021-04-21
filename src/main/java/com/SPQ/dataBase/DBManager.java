@@ -225,6 +225,23 @@ public class DBManager {
 		
 	}
    
+   	public List<AnuncioGuardado> listarAnunciosGuardados() throws DBException{
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		
+		tx.begin();
+		
+		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL","Select * FROM anuncioguardado");
+		query.setClass(AnuncioGuardado.class);
+		List<AnuncioGuardado> results = query.executeList();
+		
+		tx.commit();
+		pm.close();
+		return results;
+		
+	}
+   
   
 		
 }
