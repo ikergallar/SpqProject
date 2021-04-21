@@ -3,6 +3,8 @@ package com.SPQ.sockets;
 import java.awt.event.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -22,7 +24,7 @@ class MarcoCliente extends JFrame {
 	
 	public MarcoCliente() {
 		
-		setBounds (600, 300, 280, 350);
+		setBounds (600, 300, 200, 350);
 	
 		LaminaMarcoCliente milamina = new LaminaMarcoCliente();
 		
@@ -34,17 +36,27 @@ class MarcoCliente extends JFrame {
 
 class LaminaMarcoCliente extends JPanel {
 	
-	private JTextField campo1;
+	private JTextField campo1, nick, ip;
 	private JButton miboton;
+	private JTextArea campoChat;
 	
 	public LaminaMarcoCliente() {
 		
+		nick = new JTextField(5);
 		
+		add(nick);
 		
-		
-		JLabel texto = new JLabel("Cliente");
+		JLabel texto = new JLabel("CHAT");
 		
 		add(texto);
+		
+		ip = new JTextField(8);
+		
+		add(ip);
+		
+		campoChat = new JTextArea(12,20);
+		
+		add(campoChat);
 		
 		campo1 = new JTextField(20);
 		
@@ -72,11 +84,22 @@ class LaminaMarcoCliente extends JPanel {
 			try {
 				Socket misocket = new Socket("192.168.56.1", 9999);
 				
-				DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
+				PaqueteEnvio datos = new PaqueteEnvio();
+				
+				datos.setNick(nick.getText());
+				datos.setIp(ip.getText());
+				datos.setMensaje(campo1.getText());
+				
+				ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
+				paquete_datos.writeObject(datos);
+				
+				misocket.close();
+				
+				/*DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
 				
 				flujo_salida.writeUTF(campo1.getText());
 				
-				flujo_salida.close();
+				flujo_salida.close();*/
 				
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block
@@ -92,4 +115,32 @@ class LaminaMarcoCliente extends JPanel {
 		
 	}
 }
+class PaqueteEnvio implements Serializable{
+	
+	private String nick, ip, mensaje;
 
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+	
+}
