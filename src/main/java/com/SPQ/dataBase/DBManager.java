@@ -63,7 +63,7 @@ public class DBManager {
 //		}
 //	}
    
-   public void crearAnuncio(Anuncio anuncio, Usuario usuario) throws DBException{
+   public void crearAnuncio(Anuncio anuncio) throws DBException{
 		
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -73,7 +73,6 @@ public class DBManager {
 			tx.begin();
 			
 			pm.makePersistent(anuncio);
-			pm.deletePersistent(usuario);
 
 			tx.commit();
 			

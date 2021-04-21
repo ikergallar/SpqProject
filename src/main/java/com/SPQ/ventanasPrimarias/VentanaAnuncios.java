@@ -136,9 +136,9 @@ public class VentanaAnuncios extends JFrame{
 																		
 							try {
 								
-									con.crearAnuncio(anuncio,usuario);
-									JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-                                    dispose();											
+								con.crearAnuncio(anuncio);
+								JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+                                dispose();											
 									
 								
 							} catch (DBException e1) {
