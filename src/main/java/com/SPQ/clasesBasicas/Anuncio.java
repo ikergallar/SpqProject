@@ -18,7 +18,6 @@ public class Anuncio {
 	private boolean oferta;
 	@ForeignKey
 	private String nombreUsuario;
-	private Usuario usuario;
 	
 	
 	
