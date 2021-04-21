@@ -3,7 +3,6 @@ package com.SPQ.clasesBasicas;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
-import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 
@@ -11,9 +10,7 @@ import javax.jdo.annotations.InheritanceStrategy;
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Usuario {
 	
-	@PrimaryKey
-    @Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT, primaryKey = "true")
-	private int id;//identificador unico y estatico
+	private static int id;//identificador unico y estatico
 	private String nombre;	
 	private String apellido;	
 	private String nombreUsuario;	
@@ -61,11 +58,11 @@ public class Usuario {
 		this.palabraRecuperacion = "";
 		this.preguntaRecuperacion = "";
 	}
-	public int getUsuario() {
+	public static int getUsuario() {
 		return id;
 	}
-	public  void setUsuario(int id) {
-		this.id = id;
+	public static void setUsuario(int id) {
+		Usuario.id = id;
 	}
 	public String getNombreUsuario() {
 		return nombreUsuario;
