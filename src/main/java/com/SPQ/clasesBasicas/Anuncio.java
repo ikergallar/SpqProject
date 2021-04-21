@@ -94,13 +94,16 @@ public class Anuncio {
 	public void setOferta(boolean oferta) {
 		this.oferta = oferta;
 	}
-	
-	
-	//
-	public String printAnuncio() {
-		return "Anuncio [nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio
-				+ ", categoria=" + categoria + "]";
+
+	@Override
+	public String toString() {
+		return "Anuncio" + nombre + ", " + descripcion + ", " + precio + ", " + foto
+				+ ", " + categoria +  ", nombreUsuario=" + nombreUsuario + "]";
 	}
+	
+	
+	
+	
 	
 	
 }
