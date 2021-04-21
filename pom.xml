@@ -78,7 +78,12 @@
 			
 			<resource>
                 <directory>src/main/resources/imagenes</directory>
-                <includes><include>hustle50.png</include></includes>
+                <includes><include>hustle50.png</include>
+				<include>iconoChat.png</include>
+                <include>iconoOferta.png</include>
+                <include>iconoPerfil.png</include>
+				<include>logoHorizontal.png</include>
+                <include>iconoServicios.png</include></includes>
             </resource>           
 	    </resources>
 
@@ -134,7 +139,7 @@
 				<version>1.2.1</version>
 
 				<configuration>
-					<mainClass>com.SPQ.ventanasPrimarias.VentanaAnuncios</mainClass>
+					<mainClass>com.SPQ.ventanasLogin.VentanaLogin</mainClass>
 					<systemProperties>
 						<systemProperty>
 							<key>log4j.configuration</key>
