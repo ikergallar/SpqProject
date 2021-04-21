@@ -30,7 +30,7 @@ import com.SPQ.ventanasLogin.VentanaLogin;
 
 
 
-public class VentanaPerfil extends JFrame{
+public class VentanaPerfil extends JFrame {
 		
 		private JTextField textNombre;
 		private JTextField textApellido;
@@ -142,24 +142,31 @@ public class VentanaPerfil extends JFrame{
 			textMail.setBounds(172, 242, 201, 20);
 			getContentPane().add(textMail);
 			
-			JButton btnTarjeta_1 = new JButton("VOLVER");
-			btnTarjeta_1.setBackground(Color.RED);
-			btnTarjeta_1.setForeground(Color.WHITE);
-			btnTarjeta_1.setFont(new Font("Tahoma", Font.BOLD, 16));
-			btnTarjeta_1.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
+			JButton btnVolver = new JButton("VOLVER");
+			btnVolver.setBackground(Color.RED);
+			btnVolver.setForeground(Color.WHITE);
+			btnVolver.setFont(new Font("Tahoma", Font.BOLD, 16));
+			
+			
+			
+			btnVolver.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent e) {
+				VentanaLogin login = new VentanaLogin();
+				login.setVisible(true);
+				dispose();					
 				}
+			
 			});
-			btnTarjeta_1.addMouseListener(new MouseAdapter() {
+			
 				
-			});
-			btnTarjeta_1.setBounds(0, 399, 257, 68);
-			getContentPane().add(btnTarjeta_1);			
+			btnVolver.setBounds(0, 399, 257, 68);
+			getContentPane().add(btnVolver);			
 		
 			JButton btnNewButton = new JButton("GUARDAR");
 			btnNewButton.setBackground(Color.RED);
 			btnNewButton.setForeground(Color.WHITE);
 			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+			
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					DBManager con = new DBManager();
@@ -181,6 +188,7 @@ public class VentanaPerfil extends JFrame{
 				
 				}
 			});
+			
 			btnNewButton.setBounds(255, 399, 252, 68);
 			getContentPane().add(btnNewButton);
 			
@@ -222,6 +230,7 @@ public class VentanaPerfil extends JFrame{
 				
 			});
 			
-		}
+				}
+			
 	}
 
