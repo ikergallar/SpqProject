@@ -18,7 +18,7 @@ import javax.swing.SwingConstants;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
-import com.SPQ.ventanasPrimarias.VentanaAnuncios;
+import com.SPQ.ventanasPrimarias.VentanaCrearAnuncio;
 import com.SPQ.ventanasPrimarias.VentanaPerfil;
 
 import java.awt.event.ActionListener;
@@ -151,7 +151,7 @@ public class VentanaLogin extends JFrame{
 				}
         		        														
 				JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-				VentanaPerfil perfil = new VentanaPerfil(usuarioIniciado);
+				VentanaCrearAnuncio perfil = new VentanaCrearAnuncio(usuarioIniciado);
 				perfil.setVisible(true);
 				frmLogin.dispose();
 			    if(acceso!=true){

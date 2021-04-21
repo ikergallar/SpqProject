@@ -122,6 +122,24 @@ public class DBManager {
 		return results;
 		
 	}
+	
+	//LISTAR USUARIOS DE BD
+		public List<Anuncio> listarAnuncios() throws DBException{
+			PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+			PersistenceManager pm = pmf.getPersistenceManager();
+			Transaction tx = pm.currentTransaction();
+			
+			tx.begin();
+			
+			Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","select * from anuncio");
+			query.setClass(Anuncio.class);
+			List<Anuncio> results = query.executeList();
+			
+			tx.commit();
+			pm.close();
+			return results;
+			
+		}
  	public boolean existeUsuario(Usuario usuario) throws DBException{
  		
  		boolean existe = false;

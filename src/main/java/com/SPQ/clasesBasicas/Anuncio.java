@@ -16,7 +16,9 @@ public class Anuncio {
 	private String foto;
 	private Categoria categoria;
 	private boolean oferta;
+	@ForeignKey
 	private String nombreUsuario;
+	private Usuario usuario;
 	
 	
 	
@@ -29,18 +31,8 @@ public class Anuncio {
 		this.categoria = categoria;
 		this.nombreUsuario = nombreUsuario;
 		this.oferta = oferta;
-		
-		
-
+				
 	}
-	public boolean isOferta() {
-		return oferta;
-	}
-
-	public void setOferta(boolean oferta) {
-		this.oferta = oferta;
-	}
-
 	
 	public Anuncio() {
 		this.nombre = "";
@@ -49,9 +41,10 @@ public class Anuncio {
 		this.foto = "";
 		this.categoria = categoria.NINGUNA;
 		this.nombreUsuario = "";
+		this.oferta = false;
 
 	}
-	
+
 	public static String getIdAnuncio() {
 		return idAnuncio;
 	}
@@ -82,10 +75,10 @@ public class Anuncio {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public String getnombreUsuario() {
+	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
-	public void setnombreUsuario(String nombreUsuario) {
+	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
 	public Categoria getCategoria() {
@@ -95,7 +88,13 @@ public class Anuncio {
 		this.categoria = categoria;
 	}
 	
-	
+	public boolean isOferta() {
+		return oferta;
+	}
+
+	public void setOferta(boolean oferta) {
+		this.oferta = oferta;
+	}
 	
 	
 	//

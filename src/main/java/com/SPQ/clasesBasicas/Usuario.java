@@ -3,6 +3,7 @@ package com.SPQ.clasesBasicas;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
+import javax.jdo.annotations.Unique;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 
@@ -13,12 +14,12 @@ public class Usuario {
 	private static int id;//identificador unico y estatico
 	private String nombre;	
 	private String apellido;	
+	@Unique
 	private String nombreUsuario;	
 	private String pass;	
 	private String mail;	
 	private String telefono;	
 	private String direccion;	
-	private String descripcion;	
 	private String foto;	
 	private Anuncio[] anuncios;	
 	private String palabraRecuperacion;
@@ -27,7 +28,7 @@ public class Usuario {
 	
 	
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
-			String direccion, String descripcion, String foto, Anuncio[] anuncios, String palabraRecuperacion,
+			String direccion,  String foto, Anuncio[] anuncios, String palabraRecuperacion,
 			String preguntaRecuperacion, UsuarioConectado usuarioConectado) {
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -36,7 +37,6 @@ public class Usuario {
 		this.mail = mail;
 		this.telefono = telefono;
 		this.direccion = direccion;
-		this.descripcion = descripcion;
 		this.foto = foto;
 		this.anuncios = anuncios;
 		this.palabraRecuperacion = palabraRecuperacion;
@@ -52,7 +52,6 @@ public class Usuario {
 		this.mail = "";
 		this.telefono = "";
 		this.direccion = "";
-		this.descripcion = "";
 		this.foto = "";
 		this.anuncios = null;
 		this.palabraRecuperacion = "";
@@ -106,12 +105,7 @@ public class Usuario {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	public String getDescripcion() {
-		return descripcion;
-	}
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
-	}
+	
 	public String getFoto() {
 		return foto;
 	}
@@ -138,12 +132,12 @@ public class Usuario {
 	}
 	//Resumen de datos publicos del usuario
 	public String printPublicData() {
-		return "Usuario [Nombre=" + nombre + ", Apellido=" + apellido + ", Email=" + mail + ", Descripcion=" + descripcion + "]";
+		return "Usuario [Nombre=" + nombre + ", Apellido=" + apellido + ", Email=" + mail +  "]";
 	}
 	//Todos los datos de un usuario
 	public String printAllData() {
 		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", pass=" + pass
-				+ ", mail=" + mail + ", descripcion=" + descripcion + ", foto=" + foto + "]";
+				+ ", mail=" + mail +  ", foto=" + foto + "]";
 	}
 	
 //	public static String getStatus() {

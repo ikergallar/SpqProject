@@ -134,7 +134,7 @@
 				<version>1.2.1</version>
 
 				<configuration>
-					<mainClass>com.SPQ.ventanasLogin.VentanaLogin</mainClass>
+					<mainClass>com.SPQ.ventanasPrimarias.VentanaAnuncios</mainClass>
 					<systemProperties>
 						<systemProperty>
 							<key>log4j.configuration</key>
