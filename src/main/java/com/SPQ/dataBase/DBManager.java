@@ -20,48 +20,48 @@ public class DBManager {
     public static DBManager getInstance() throws DBException {
         if (instance == null) {
             instance = new DBManager();
-  //          instance.initializeData();
+            instance.initializeData();
         }
 
         return instance;
     }
 
-//   public void initializeData () throws DBException{
-//		
-//		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-//		pm = pmf.getPersistenceManager();
-//		tx = pm.currentTransaction();
-//		
-//		try {
-//			tx.begin();
-//			Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona","",null,"Dua","¿Como se llama mi gato?", null);
-//			pm.makePersistent(usuario);
-//			Usuario usuario1=new Usuario("Aitora", "Davilaa" , "aidav13a", "passa123","aidav@gamail.com" , "68392848" ,"Callse Ave del Paraiso 9, Barcselona","Buensa zona","",null,"Dusa","¿Comso se llama mi gato?", null);
-//			pm.makePersistent(usuario1);
-//			Usuario usuario2=new Usuario("Aitsor", "Davilaada" , "aidavsfa13", "pass1dsf23","aidav@fsgmail.com" , "68392833948" ,"Calle Ave del Pafaraiso 9, Barcafelona","Buena zfona","",null,"Dua","¿Como se llamsa mi gato?", null);
-//			pm.makePersistent(usuario2);
-//			Usuario usuario3=new Usuario("Aitofr", "Davilfa" , "aidsfav13", "passfs123","aidav@gmail.com" , "68393948" ,"Calle Ave del Pfaaraiso 9, Barcelafona","Bsduena zona","",null,"Dua","¿Como se llamsfa mi gato?", null);
-//			pm.makePersistent(usuario3);
-//			
-//			Anuncio anuncio=new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true,usuario);
-//			pm.makePersistent(anuncio);
-//			Anuncio anuncio1=new Anuncio("Aiadtor", "Ofrezco servicio de fontaneria" ,40,"", Categoria.ALBAÑIL,false,usuario1);
-//			pm.makePersistent(anuncio1);
-//			Anuncio anuncio2=new Anuncio("sitor", "Ofrezdco servicio de fontaneria" ,20,"", Categoria.ALBAÑIL,true,usuario2);
-//			pm.makePersistent(anuncio2);
-//			Anuncio anuncio3=new Anuncio("Aitoddr", "Ofrezco saaervicio de fontaneria" ,90,"", Categoria.ALBAÑIL,true,usuario3);
-//			pm.makePersistent(anuncio3);
-//			
-//
-//			tx.commit();
-//			
-//		} finally {
-//			if (tx.isActive()) {
-//				tx.rollback();
-//			}
-//			pm.close();
-//		}
-//	}
+   public void initializeData () throws DBException{
+		
+		pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		pm = pmf.getPersistenceManager();
+		tx = pm.currentTransaction();
+		
+		try {
+			tx.begin();
+			Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona",null,"Dua","¿Como se llama mi gato?", null);
+			pm.makePersistent(usuario);
+			Usuario usuario1=new Usuario("Aitora", "Davilaa" , "aidav13a", "passa123","aidav@gamail.com" , "68392848" ,"Callse Ave del Paraiso 9, Barcselona","Buensa zona",null,"Dusa","¿Comso se llama mi gato?", null);
+			pm.makePersistent(usuario1);
+			Usuario usuario2=new Usuario("Aitsor", "Davilaada" , "aidavsfa13", "pass1dsf23","aidav@fsgmail.com" , "68392833948" ,"Calle Ave del Pafaraiso 9, Barcafelona","Buena zfona",null,"Dua","¿Como se llamsa mi gato?", null);
+			pm.makePersistent(usuario2);
+			Usuario usuario3=new Usuario("Aitofr", "Davilfa" , "aidsfav13", "passfs123","aidav@gmail.com" , "68393948" ,"Calle Ave del Pfaaraiso 9, Barcelafona","Bsduena zona",null,"Dua","¿Como se llamsfa mi gato?", null);
+			pm.makePersistent(usuario3);
+			
+			Anuncio anuncio=new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "peter");
+			pm.makePersistent(anuncio);
+			Anuncio anuncio1=new Anuncio("Aiadtor", "Ofrezco servicio de fontaneria" ,40,"", Categoria.ALBAÑIL,false,"peter");
+			pm.makePersistent(anuncio1);
+			Anuncio anuncio2=new Anuncio("sitor", "Ofrezdco servicio de fontaneria" ,20,"", Categoria.ALBAÑIL,true,"peter");
+			pm.makePersistent(anuncio2);
+			Anuncio anuncio3=new Anuncio("Aitoddr", "Ofrezco saaervicio de fontaneria" ,90,"", Categoria.ALBAÑIL,true,"peter");
+			pm.makePersistent(anuncio3);
+			
+
+			tx.commit();
+			
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
+	}
    
    public void crearAnuncio(Anuncio anuncio) throws DBException{
 		
@@ -235,6 +235,23 @@ public class DBManager {
 		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL","Select * FROM anuncioguardado");
 		query.setClass(AnuncioGuardado.class);
 		List<AnuncioGuardado> results = query.executeList();
+		
+		tx.commit();
+		pm.close();
+		return results;
+		
+	}
+   	
+   	public List<Anuncio> filtroCategoria(Categoria categoria) throws DBException{
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		
+		tx.begin();
+		
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","select * from anuncio where categoria='" + categoria +"'");
+		query.setClass(Anuncio.class);
+		List<Anuncio> results = query.executeList();
 		
 		tx.commit();
 		pm.close();
