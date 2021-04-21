@@ -52,7 +52,7 @@ public class AnuncioTest {
 	
 	@Test
 	public void testGetNombreUsuario() {
-		Anuncio anuncio=new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "gomezPepe");
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "gomezPepe");
 		assertEquals("gomezPepe", anuncio.getNombreUsuario());	
 	}
 	
