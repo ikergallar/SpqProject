@@ -34,7 +34,7 @@ public class AnuncioTest {
 	
 	@Test
 	public void testGetDescripcion() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "gomezJuan");		
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, "gomezJuan");		
 		assertEquals("Ofrezco servicio de fontaneria", anuncio.getDescripcion());	
 	}
 		
