@@ -1,5 +1,6 @@
 package com.SPQ.clasesBasicas;
 
+import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
@@ -15,6 +16,7 @@ public class Anuncio {
 	private String foto;
 	private Categoria categoria;
 	private boolean oferta;
+	@ForeignKey
 	private Usuario usuario;
 	
 	
