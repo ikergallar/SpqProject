@@ -30,14 +30,12 @@ public class VentanaContrasenya extends JFrame{
 	private JPasswordField nuevaContrasenya;
 	private JPasswordField confirmarContrasenya;
 	private String nombreUsuario;
-	private Usuario usuario;
 		
-	public VentanaContrasenya() {
+	public VentanaContrasenya(Usuario usuario) {
 		
 		setTitle("Hustle - Seguridad");
 		setBounds(100, 100, 513, 409);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
 		
 		getContentPane().setBackground(new Color(39, 45, 53));
 		getContentPane().setLayout(null);
@@ -116,34 +114,15 @@ public class VentanaContrasenya extends JFrame{
 				
 			}
 		});
-		
-		File f = new File("usuario.txt");
-    	try {
-			BufferedReader br = new BufferedReader(new FileReader(f));
-			String linea;
-			while((linea = br.readLine()) != null) {
-				nombreUsuario = linea;
-			}
-			br.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	    	
+			    	
 	    DBManager con = new DBManager();
-	    
-	   
+	    	   
 		btnCambiar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {try {
 				if(nuevaContrasenya.getText().equals(confirmarContrasenya.getText())) {
 					try {
-						usuario = new Usuario();
 						usuario.setPass(confirmarContrasenya.getText());
-						usuario.setNombreUsuario(nombreUsuario);
 						con.cambiarContrasenya(usuario);
 						JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
 					
@@ -152,7 +131,7 @@ public class VentanaContrasenya extends JFrame{
 						e1.printStackTrace();
 					}
 					
-					VentanaPerfil perf = new VentanaPerfil();
+					VentanaPerfil perf = new VentanaPerfil(usuario);
 					perf.setVisible(true);
 					dispose();
 				

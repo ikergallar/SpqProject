@@ -38,47 +38,19 @@ public class VentanaPerfil extends JFrame{
 		private JTextField textTel;
 		private JTextField textUsuario;
 		private JTextField textMail;
-		private String nombreUsuario;
-		private Usuario datosUsuario;
 		private Usuario usuario;
 		
 		
-		public VentanaPerfil() {
+		public VentanaPerfil(Usuario usuario) {
 			
 			setTitle("Hustle - Perfil");
 			setResizable(false);
 			getContentPane().setForeground(new Color(39, 45, 53));
 			
 			int contBarra = 0;
-
-		    File f = new File("usuario.txt");
-		    	try {
-					BufferedReader br = new BufferedReader(new FileReader(f));
-					String linea;
-					while((linea = br.readLine()) != null) {
-						nombreUsuario = linea;
-					}
-					br.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		    	
+		  		    	
 		    DBManager con = new DBManager();
-		    
-		    try {
-		    	
-				datosUsuario = con.seleccionarUsuario(nombreUsuario);
-				
-			} catch (DBException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		   
-		    
+		    		 		  		    
 			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			setBounds(100, 100, 513, 496);
 			getContentPane().setBackground(new Color(39, 45, 53));
@@ -120,22 +92,22 @@ public class VentanaPerfil extends JFrame{
 			lblNewLabel_6.setBounds(26, 57, 126, 14);
 			getContentPane().add(lblNewLabel_6);
 			
-			textNombre = new JTextField(datosUsuario.getNombre());
+			textNombre = new JTextField(usuario.getNombre());
 			textNombre.setBounds(172, 79, 201, 20);
 			getContentPane().add(textNombre);
 			textNombre.setColumns(10);
 			
-			textApellido = new JTextField(datosUsuario.getApellido());
+			textApellido = new JTextField(usuario.getApellido());
 			textApellido.setColumns(10);
 			textApellido.setBounds(172, 104, 201, 20);
 			getContentPane().add(textApellido);
 			
-			textDireccion = new JTextField(datosUsuario.getDireccion());
+			textDireccion = new JTextField(usuario.getDireccion());
 			textDireccion.setColumns(10);
 			textDireccion.setBounds(172, 129, 201, 20);
 			getContentPane().add(textDireccion);
 			
-			textTel = new JTextField(datosUsuario.getTelefono());
+			textTel = new JTextField(usuario.getTelefono());
 			textTel.setColumns(10);
 			textTel.setBounds(172, 154, 201, 20);
 			getContentPane().add(textTel);
@@ -159,13 +131,13 @@ public class VentanaPerfil extends JFrame{
 			lblNewLabel_8_1.setBounds(36, 244, 76, 14);
 			getContentPane().add(lblNewLabel_8_1);
 			
-			textUsuario = new JTextField(datosUsuario.getNombreUsuario());
+			textUsuario = new JTextField(usuario.getNombreUsuario());
 			textUsuario.setEditable(false);
 			textUsuario.setColumns(10);
 			textUsuario.setBounds(172, 216, 201, 20);
 			getContentPane().add(textUsuario);
 			
-			textMail = new JTextField(datosUsuario.getMail());
+			textMail = new JTextField(usuario.getMail());
 			textMail.setColumns(10);
 			textMail.setBounds(172, 242, 201, 20);
 			getContentPane().add(textMail);
@@ -193,7 +165,6 @@ public class VentanaPerfil extends JFrame{
 					DBManager con = new DBManager();
 					
 					try {
-						usuario = new Usuario();
 						usuario.setNombre(textNombre.getText());
 						usuario.setApellido(textApellido.getText());
 						usuario.setDireccion(textDireccion.getText());
@@ -227,7 +198,7 @@ public class VentanaPerfil extends JFrame{
 			
 			cambiarPass.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
-					VentanaContrasenya sec = new VentanaContrasenya();
+					VentanaContrasenya sec = new VentanaContrasenya(usuario);
 					sec.setVisible(true);
 					dispose();
 				}

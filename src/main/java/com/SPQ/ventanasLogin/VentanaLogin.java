@@ -34,11 +34,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 import javax.swing.UIManager;
 
-import org.datanucleus.store.rdbms.mapping.column.TinyIntColumnMapping;
 
 public class VentanaLogin extends JFrame{
 
-	private JFrame frmLogin;
+	JFrame frmLogin;
 	private JTextField textFieldUsuario;
 	private JPasswordField textFieldContrasena;
 	private List<Usuario> usuarios;
@@ -124,6 +123,7 @@ public class VentanaLogin extends JFrame{
 				// Ventana para registro
 				VentanaRegistro register = new VentanaRegistro();
 				register.setVisible(true);
+				frmLogin.dispose();
 
 			}
 		});
@@ -149,52 +149,17 @@ public class VentanaLogin extends JFrame{
 						acceso= false;
 					}
 				}
-        		
-        		
-				if(acceso==true) {
-					File archivo;
-					
-					FileWriter escribir;
-					PrintWriter linea;
-					
-					archivo = new File("usuario.txt");
-					if(!archivo.exists()) {
-						try {
-							archivo.createNewFile();
-						} catch (IOException e2) {
-							// TODO Auto-generated catch block
-							e2.printStackTrace();
-						}
-					}else {
-						try { 
-							escribir = new FileWriter(archivo,true);
-							linea = new PrintWriter(escribir);
-							linea.println(nomUsuario);
-							linea.close();
-							escribir.close();
-						} catch (FileNotFoundException | UnsupportedEncodingException e3) {
-							// TODO Auto-generated catch block
-							e3.printStackTrace();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-					
+        		        														
+				JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+				VentanaPerfil perfil = new VentanaPerfil(usuarioIniciado);
+				perfil.setVisible(true);
+				frmLogin.dispose();
+			    if(acceso!=true){
+				    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+				    textFieldUsuario.setText("");
+				    textFieldContrasena.setText("");
 				}
-					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-					VentanaAnuncios perfil = new VentanaAnuncios(usuarioIniciado);
-					perfil.setVisible(true);
-					dispose();
-				}if(acceso!=true){
-					JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-					textFieldUsuario.setText("");
-					textFieldContrasena.setText("");
-				}
-                
-					
-					
-
-	
+                											
 			}
 		});
 		

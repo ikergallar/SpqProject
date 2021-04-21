@@ -12,6 +12,7 @@ import javax.swing.border.EmptyBorder;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.ventanasPrimarias.VentanaPerfil;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -37,26 +38,6 @@ public class VentanaRegistro extends JDialog {
 	private JTextField texto_usuario;
 	private JTextField textoRespuesta;
 				
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaRegistro frame = new VentanaRegistro();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-				
-				
-			}
-		});
-	}
-
 	/**
 	 * Create the frame.
 	 */
@@ -215,9 +196,11 @@ public class VentanaRegistro extends JDialog {
 									
 									try {
 										
-											conexion.registrarUsuario(usuario);
-											JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-                                            dispose();											
+										conexion.registrarUsuario(usuario);
+										JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+										VentanaLogin perfil = new VentanaLogin();											
+										perfil.frmLogin.setVisible(true);
+										dispose();
 											
 										
 									} catch (DBException e1) {
