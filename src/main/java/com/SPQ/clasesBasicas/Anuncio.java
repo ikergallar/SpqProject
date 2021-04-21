@@ -20,7 +20,7 @@ public class Anuncio {
 	
 	
 	
-	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, String nombreUsuario, Usuario usuario) {
+	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, String nombreUsuario) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
