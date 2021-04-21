@@ -5,6 +5,8 @@ import static org.junit.Assert.assertEquals;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
@@ -12,6 +14,7 @@ import com.SPQ.clasesBasicas.Usuario;
 
 import junit.framework.JUnit4TestAdapter;
 
+@RunWith(MockitoJUnitRunner.class)
 public class AnuncioTest {
 	
 	public static junit.framework.Test suite() {
@@ -21,7 +24,15 @@ public class AnuncioTest {
 	@Before
 	public void setUp() throws Exception {
 	}
-
+	
+	Anuncio anuncio;
+	
+	@Before
+	public void init() {
+		
+		anuncio = new Anuncio();
+	}
+	
 	@After
 	public void tearDown() throws Exception {
 	}

@@ -95,11 +95,6 @@ class LaminaMarcoCliente extends JPanel {
 				
 				misocket.close();
 				
-				/*DataOutputStream flujo_salida = new DataOutputStream(misocket.getOutputStream());
-				
-				flujo_salida.writeUTF(campo1.getText());
-				
-				flujo_salida.close();*/
 				
 			} catch (UnknownHostException e) {
 				// TODO Auto-generated catch block

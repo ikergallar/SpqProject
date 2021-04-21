@@ -3,6 +3,7 @@ package com.SPQ.sockets;
 import java.awt.BorderLayout;
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -53,21 +54,28 @@ class MarcoServidor extends JFrame implements Runnable {
 		try {
 			ServerSocket servidor = new ServerSocket(9999);
 			
+			String nick, ip, mensaje;
+			
+			PaqueteEnvio paquete_recibido;
+			
 			while(true) {
 				
 				Socket misocket = servidor.accept();
 			
-				DataInputStream flujo_entrada = new DataInputStream(misocket.getInputStream());
-			
-				String mensaje_texto = flujo_entrada.readUTF();
+				ObjectInputStream paquete_datos = new ObjectInputStream(misocket.getInputStream());
 				
-				areaTexto.append("\n" + mensaje_texto);
-			
+				paquete_recibido = (PaqueteEnvio) paquete_datos.readObject();
+				
+				nick = paquete_recibido.getNick();
+				ip = paquete_recibido.getIp();
+				mensaje = paquete_recibido.getMensaje();
+				
+				areaTexto.append("\n" + nick + ": " + mensaje + " para " + ip);	
 				misocket.close();
 			
 			}
 			
-		} catch (IOException e) {
+		} catch (IOException | ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
