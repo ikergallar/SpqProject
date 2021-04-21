@@ -126,23 +126,24 @@ public class VentanaAnuncios extends JFrame{
 				}else {
 					    	
 				    try {
-				    		Anuncio anuncio = new Anuncio();
-				    		anuncio.setNombre(nombre);
-				    		anuncio.setDescripcion(descripcion);
-				    		anuncio.setPrecio(precio);
-				    		anuncio.setCategoria(categoria);
-				    		anuncio.setUsuario(usuario);
-																			
-								try {
+				    	
+			    		Anuncio anuncio = new Anuncio();
+			    		anuncio.setNombre(nombre);
+			    		anuncio.setDescripcion(descripcion);
+			    		anuncio.setPrecio(precio);
+			    		anuncio.setCategoria(categoria);
+			    		anuncio.setUsuario(usuario);
+																		
+							try {
+								
+									con.crearAnuncio(anuncio,usuario);
+									JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+                                    dispose();											
 									
-										con.crearAnuncio(anuncio);
-										JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-                                        dispose();											
-										
-									
-								} catch (DBException e1) {
-									e1.printStackTrace();
-								}
+								
+							} catch (DBException e1) {
+								e1.printStackTrace();
+							}
 								
 								
 						} catch (HeadlessException | SecurityException e1) {
