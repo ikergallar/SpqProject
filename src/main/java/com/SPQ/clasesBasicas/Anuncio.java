@@ -16,19 +16,21 @@ public class Anuncio {
 	private String foto;
 	private Categoria categoria;
 	private boolean oferta;
-	@ForeignKey
-	private Usuario usuario;
+	private String nombreUsuario;
 	
 	
-	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, Usuario usuario) {
+	
+	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, String nombreUsuario, Usuario usuario) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.foto = foto;
 		this.categoria = categoria;
+		this.nombreUsuario = nombreUsuario;
 		this.oferta = oferta;
-		this.usuario = usuario;
+		
+		
 
 	}
 	public boolean isOferta() {
@@ -46,7 +48,7 @@ public class Anuncio {
 		this.precio = 0;
 		this.foto = "";
 		this.categoria = categoria.NINGUNA;
-		this.usuario = null;
+		this.nombreUsuario = "";
 
 	}
 	
@@ -80,6 +82,12 @@ public class Anuncio {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
+	public String getnombreUsuario() {
+		return nombreUsuario;
+	}
+	public void setnombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
 	public Categoria getCategoria() {
 		return categoria;
 	}
@@ -87,12 +95,8 @@ public class Anuncio {
 		this.categoria = categoria;
 	}
 	
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
+	
+	
 	
 	//
 	public String printAnuncio() {

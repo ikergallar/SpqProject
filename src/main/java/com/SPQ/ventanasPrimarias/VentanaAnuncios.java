@@ -114,11 +114,13 @@ public class VentanaAnuncios extends JFrame{
 				String descripcion;
 				float  precio;
 				Categoria categoria;
+				String nombreUsuario;
 								
 				nombre = textNombre.getText();
 				descripcion = textDescripcion.getText();
 				precio = Float.parseFloat(textPrecio.getText());
-				categoria = (Categoria) comboCategoria.getSelectedItem();				
+				categoria = (Categoria) comboCategoria.getSelectedItem();		
+				nombreUsuario = usuario.getNombreUsuario();
 				
 				if (nombre.equals("") || descripcion.equals("") || precio < 0 || categoria.equals(null)) {
 					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
@@ -132,7 +134,7 @@ public class VentanaAnuncios extends JFrame{
 			    		anuncio.setDescripcion(descripcion);
 			    		anuncio.setPrecio(precio);
 			    		anuncio.setCategoria(categoria);
-			    		anuncio.setUsuario(usuario);
+			    		anuncio.setnombreUsuario(nombreUsuario);
 																		
 							try {
 								
