@@ -12,6 +12,12 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class VentanaPrincipal {
 
@@ -36,30 +42,55 @@ public class VentanaPrincipal {
 		panelesDinamicos.setBounds(229, 89, 835, 592);
 		frmHustle.getContentPane().add(panelesDinamicos);
 		
+		JPanel panelPerfil = new JPanel();
+		panelPerfil.setBounds(0, 0, 835, 592);
+		panelesDinamicos.add(panelPerfil);
+		
+		JPanel panelServicios = new JPanel();
+		panelServicios.setBounds(0, 0, 835, 592);
+		panelesDinamicos.add(panelServicios);
+		
+		JPanel panelOferta = new JPanel();
+		panelOferta.setBounds(0, 0, 835, 592);
+		panelesDinamicos.add(panelOferta);
+		
+		JPanel panelChat = new JPanel();
+		panelChat.setBounds(0, 0, 835, 592);
+		panelesDinamicos.add(panelChat);
+		
 		JPanel panelSelecVentana = new JPanel();
 		panelSelecVentana.setBounds(0, 89, 231, 592);
 		frmHustle.getContentPane().add(panelSelecVentana);
 		panelSelecVentana.setLayout(new GridLayout(4, 1, 0, 0));
 		
 		JPanel ventPerfil = new JPanel();
+		ventPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		ventPerfil.setBackground(new Color(39, 45, 53));
 		panelSelecVentana.add(ventPerfil);
-		ventPerfil.setLayout(null);
+		ventPerfil.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JLabel imgPerfil = new JLabel("");
-		imgPerfil.setBounds(42, 43, 64, 64);
 		imgPerfil.setIcon(new ImageIcon(getClass().getResource("/iconoPerfil.png")));
 		ventPerfil.add(imgPerfil);
 		
 		JLabel lblPerfil = new JLabel("PERFIL");
-		lblPerfil.setBounds(136, 61, 65, 22);
 		lblPerfil.setForeground(Color.WHITE);
 		lblPerfil.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ventPerfil.add(lblPerfil);
 		
 		JPanel ventServicios = new JPanel();
+		ventServicios.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		ventServicios.setBackground(new Color(39, 45, 53));
 		panelSelecVentana.add(ventServicios);
+		ventServicios.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JLabel imgServicios = new JLabel("");
 		ventServicios.add(imgServicios);
@@ -70,20 +101,32 @@ public class VentanaPrincipal {
 		ventServicios.add(lblServicios);
 		
 		JPanel ventOferta = new JPanel();
+		ventOferta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		ventOferta.setBackground(new Color(39, 45, 53));
 		panelSelecVentana.add(ventOferta);
+		ventOferta.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JLabel imgOferta = new JLabel("");
 		ventOferta.add(imgOferta);
 		
-		JLabel lblOferta = new JLabel("OFERTA");
+		JLabel lblOferta = new JLabel("OFERTAS");
 		lblOferta.setForeground(Color.WHITE);
 		lblOferta.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ventOferta.add(lblOferta);
 		
 		JPanel ventChat = new JPanel();
+		ventChat.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+			}
+		});
 		ventChat.setBackground(new Color(39, 45, 53));
 		panelSelecVentana.add(ventChat);
+		ventChat.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JLabel imgChat = new JLabel("");
 		ventChat.add(imgChat);
