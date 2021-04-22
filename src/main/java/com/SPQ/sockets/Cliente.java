@@ -3,8 +3,10 @@ package com.SPQ.sockets;
 import java.awt.event.*;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
@@ -34,7 +36,7 @@ class MarcoCliente extends JFrame {
 	}
 }
 
-class LaminaMarcoCliente extends JPanel {
+class LaminaMarcoCliente extends JPanel implements Runnable{
 	
 	private JTextField campo1, nick, ip;
 	private JButton miboton;
@@ -69,6 +71,10 @@ class LaminaMarcoCliente extends JPanel {
 		miboton.addActionListener(miEvento);
 		
 		add(miboton);
+		
+		Thread mihilo = new Thread(this);
+		
+		mihilo.start();
 		
 	
 	}
@@ -107,6 +113,31 @@ class LaminaMarcoCliente extends JPanel {
 		}
 		
 		
+		
+	}
+
+	@Override
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+			
+			ServerSocket servidorCliente = new ServerSocket(9090);
+			Socket cliente;
+			PaqueteEnvio paqueteRecibido;
+			
+			while(true) {
+				cliente = servidorCliente.accept();
+				
+				ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
+				
+				paqueteRecibido = (PaqueteEnvio) flujoentrada.readObject();
+				
+				campoChat.append("\n" + paqueteRecibido.getNick() + ": " + paqueteRecibido.getMensaje());
+			}
+			
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
 		
 	}
 }
