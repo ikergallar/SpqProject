@@ -33,28 +33,69 @@ class MarcoCliente extends JFrame {
 		add(milamina);
 		
 		setVisible(true);
+		
+		addWindowListener(new EnvioOnline());
 	}
 }
 
+//-------------- ENVIO SEÑAL ONLINE -----------------------------------
+class EnvioOnline extends WindowAdapter{
+	
+	public void WindowOpened(WindowEvent e) {
+		try {
+			
+			Socket misocket = new Socket("192.168.0.194", 9999);
+			
+			PaqueteEnvio datos = new PaqueteEnvio();
+			
+			datos.setMensaje("Online");
+			
+			ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
+			
+			paquete_datos.writeObject(datos);
+			
+			misocket.close();
+		}catch(Exception e1) {
+			
+		}
+	}
+}
+
+//-----------------------------------------------------------------------
+
 class LaminaMarcoCliente extends JPanel implements Runnable{
 	
-	private JTextField campo1, nick, ip;
+	private JTextField campo1;
+	private JComboBox ip;
+	private JLabel nick;
 	private JButton miboton;
 	private JTextArea campoChat;
 	
 	public LaminaMarcoCliente() {
 		
-		nick = new JTextField(5);
+		String nick_usuario = JOptionPane.showInputDialog("Nick: ");
+		
+		JLabel n_nick = new JLabel("Nick: ");
+		
+		add(n_nick);
+		
+		nick = new JLabel();
+		
+		nick.setText(nick_usuario);
 		
 		add(nick);
 		
-		JLabel texto = new JLabel("CHAT");
+		JLabel texto = new JLabel("Online: ");
 		
 		add(texto);
 		
-		ip = new JTextField(8);
+		ip = new JComboBox();
 		
-		add(ip);
+		ip.addItem("Usuario 1");
+		ip.addItem("Usuario 2");
+		ip.addItem("Usuario 3");
+		
+		add(ip);	
 		
 		campoChat = new JTextArea(12,20);
 		
@@ -87,13 +128,15 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 			
 			//System.out.println(campo1.getText());
 			
+			campoChat.append("\n" + campo1.getText());
+			
 			try {
 				Socket misocket = new Socket("192.168.56.1", 9999);
 				
 				PaqueteEnvio datos = new PaqueteEnvio();
 				
 				datos.setNick(nick.getText());
-				datos.setIp(ip.getText());
+				datos.setIp(ip.getSelectedItem().toString());
 				datos.setMensaje(campo1.getText());
 				
 				ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
