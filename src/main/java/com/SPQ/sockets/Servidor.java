@@ -97,6 +97,7 @@ class MarcoServidor extends JFrame implements Runnable {
 				System.out.println("Online "+ ipRemota);
 				
 				listaIp.add(ipRemota);
+				paquete_recibido.setIps(listaIp);
 				
 				for(String z:listaIp) {
 					System.out.println("Array: "+ z);
