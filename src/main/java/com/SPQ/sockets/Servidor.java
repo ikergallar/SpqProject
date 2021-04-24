@@ -8,6 +8,7 @@ import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -58,22 +59,13 @@ class MarcoServidor extends JFrame implements Runnable {
 			
 			String nick, ip, mensaje;
 			
+			ArrayList<String> listaIp = new ArrayList<String>();
+						
 			PaqueteEnvio paquete_recibido;
-			
+					
 			while(true) {
 				
 				Socket misocket = servidor.accept();
-				
-			//------------------------ ONLINE ---------------------------------------------//
-				
-				InetAddress localizacion = misocket.getInetAddress();
-			
-				String ipRemota = localizacion.getHostAddress();
-				
-				System.out.println("Online "+ ipRemota);
-				
-			//-----------------------------------------------------------------------------//
-				
 				ObjectInputStream paquete_datos = new ObjectInputStream(misocket.getInputStream());
 				
 				paquete_recibido = (PaqueteEnvio) paquete_datos.readObject();
@@ -82,15 +74,35 @@ class MarcoServidor extends JFrame implements Runnable {
 				ip = paquete_recibido.getIp();
 				mensaje = paquete_recibido.getMensaje();
 				
+				if(mensaje.equals(" online")) {
+					
 				areaTexto.append("\n" + nick + ": " + mensaje + " para " + ip);	
+				
 				Socket enviaDestinatario = new Socket(ip, 9090);
 				
 				ObjectOutputStream paqueteReenvio = new ObjectOutputStream(enviaDestinatario.getOutputStream());
 				
 				paqueteReenvio.writeObject(paquete_recibido);
+				paqueteReenvio.close();
 				enviaDestinatario.close();
 				misocket.close();
+				}else {
+						
+				//------------------------ ONLINE ---------------------------------------------//
+				
+				InetAddress localizacion = misocket.getInetAddress();
 			
+				String ipRemota = localizacion.getHostAddress();
+				
+				System.out.println("Online "+ ipRemota);
+				
+				listaIp.add(ipRemota);
+				
+				for(String z:listaIp) {
+					System.out.println("Array: "+ z);
+				}
+				//-----------------------------------------------------------------------------//
+			}
 			}
 			
 		} catch (IOException | ClassNotFoundException e) {
