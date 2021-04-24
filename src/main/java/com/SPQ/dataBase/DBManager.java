@@ -208,7 +208,7 @@ public class DBManager {
 		
 	}
    
-   public List<Anuncio> listarOfertas() throws DBException{
+   public List<Anuncio> filtroOfertas() throws DBException{
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();

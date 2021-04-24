@@ -86,7 +86,7 @@ public class Anuncio {
 	public void setCategoria(Categoria categoria) {
 		this.categoria = categoria;
 	}
-	
+
 	public boolean isOferta() {
 		return oferta;
 	}

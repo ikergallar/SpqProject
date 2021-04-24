@@ -30,6 +30,7 @@ import com.SPQ.dataBase.DBManager;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 
 
 public class VentanaCrearAnuncio extends JFrame{
@@ -74,11 +75,6 @@ public class VentanaCrearAnuncio extends JFrame{
         pCentral.add(textDescripcion);
         textDescripcion.setColumns(10);
         
-        textPrecio = new JTextField();
-        textPrecio.setBounds(63, 293, 86, 20);
-        pCentral.add(textPrecio);
-        textPrecio.setColumns(10);
-        
         JLabel nombrelbl = new JLabel("Nombre");
         nombrelbl.setBounds(79, 53, 46, 14);
         pCentral.add(nombrelbl);
@@ -87,25 +83,38 @@ public class VentanaCrearAnuncio extends JFrame{
         descripcionlbl.setBounds(79, 147, 46, 14);
         pCentral.add(descripcionlbl);
         
-        JLabel preciolbl = new JLabel("precio");
-        preciolbl.setBounds(79, 257, 46, 14);
-        pCentral.add(preciolbl);
-        
-        JLabel categorialbl = new JLabel("categoria");
-        categorialbl.setBounds(103, 368, 46, 14);
-        pCentral.add(categorialbl);
-        
         JButton btnCrear = new JButton("Crear");
         btnCrear.setBounds(425, 508, 89, 23);
         pCentral.add(btnCrear);
+        
+        JLabel preciolbl = new JLabel("precio");
+        preciolbl.setBounds(79, 236, 46, 14);
+        pCentral.add(preciolbl);
+        
+        textPrecio = new JTextField();
+        textPrecio.setBounds(63, 285, 86, 20);
+        pCentral.add(textPrecio);
+        textPrecio.setColumns(10);
+        
+        JLabel categorialbl = new JLabel("categoria");
+        categorialbl.setBounds(79, 340, 46, 14);
+        pCentral.add(categorialbl);
         
         comboCategoria = new JComboBox();
         comboCategoria.addItem(Categoria.ALBAÑIL);
         comboCategoria.addItem(Categoria.FONTANERO);
         comboCategoria.addItem(Categoria.INFORMATICO);
         comboCategoria.addItem(Categoria.PERSIANERO);
-        comboCategoria.setBounds(79, 420, 103, 30);
+        comboCategoria.setBounds(63, 389, 103, 30);
         pCentral.add(comboCategoria);
+        
+        JCheckBox boxOferta = new JCheckBox("Oferta");
+        boxOferta.setBounds(69, 508, 97, 23);
+        pCentral.add(boxOferta);
+        
+        JLabel lblOferta = new JLabel("En oferta:");
+        lblOferta.setBounds(79, 488, 99, 14);
+        pCentral.add(lblOferta);
         btnCrear.addActionListener(new ActionListener() {
 
 			@Override
@@ -115,12 +124,14 @@ public class VentanaCrearAnuncio extends JFrame{
 				float  precio;
 				Categoria categoria;
 				String nombreUsuario;
+				boolean oferta;
 								
 				nombre = textNombre.getText();
 				descripcion = textDescripcion.getText();
 				precio = Float.parseFloat(textPrecio.getText());
 				categoria = (Categoria) comboCategoria.getSelectedItem();		
 				nombreUsuario = usuario.getNombreUsuario();
+				oferta = boxOferta.isSelected();
 				
 				if (nombre.equals("") || descripcion.equals("") || precio < 0 || categoria.equals(null)) {
 					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
@@ -135,6 +146,7 @@ public class VentanaCrearAnuncio extends JFrame{
 			    		anuncio.setPrecio(precio);
 			    		anuncio.setCategoria(categoria);
 			    		anuncio.setNombreUsuario(nombreUsuario);
+			    		anuncio.setOferta(oferta);
 																		
 							try {
 								

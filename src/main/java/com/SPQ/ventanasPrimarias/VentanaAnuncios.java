@@ -26,6 +26,7 @@ public class VentanaAnuncios extends JFrame{
 	private DefaultListModel modelo;
 	private DefaultListModel modeloCategoria;
 	private DefaultListModel modeloPrecio;
+	private DefaultListModel modeloOferta;
 	private JScrollPane scrollPane;
 	private JList list;
 	private ButtonGroup buttonGroup;	
@@ -83,11 +84,15 @@ public class VentanaAnuncios extends JFrame{
 		comboPrecio.setBounds(173, 70, 109, 22);
 		getContentPane().add(comboPrecio);
 		
+		JRadioButton rdbtnOferta = new JRadioButton("Ofertas:");
+		rdbtnOferta.setBounds(312, 40, 109, 23);
+		getContentPane().add(rdbtnOferta);
+		
 		buttonGroup = new ButtonGroup();
 		buttonGroup.add(rdbtnCategoria);
 		buttonGroup.add(rdbtnPrecio);
-
-		
+		buttonGroup.add(rdbtnOferta);
+			
 		rdbtnCategoria.addActionListener((ActionListener) new ActionListener() {
 		public void actionPerformed(ActionEvent e){   
 
@@ -154,6 +159,25 @@ public class VentanaAnuncios extends JFrame{
 				}					
 			}
 		});
+		
+		rdbtnOferta.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+
+		        if (rdbtnOferta.isSelected()){
+		        	modeloOferta = new DefaultListModel();
+					modelo = modeloOferta;
+					try {
+						modeloOferta.addElement(conn.filtroOfertas());
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					list.setModel(modeloOferta);
+		            
+		        }
+		    }
+			});
 		
 		this.setSize(600,697);
 		this.setLocationRelativeTo(null);
