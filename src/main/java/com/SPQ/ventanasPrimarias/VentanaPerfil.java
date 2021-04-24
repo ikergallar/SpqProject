@@ -1,30 +1,21 @@
 package com.SPQ.ventanasPrimarias;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Date;
-import java.util.logging.Level;
 
 import javax.swing.JButton;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.ventanasAnuncio.VentanaMisAnuncios;
 import com.SPQ.ventanasLogin.VentanaContrasenya;
 import com.SPQ.ventanasLogin.VentanaLogin;
 
@@ -204,6 +195,23 @@ public class VentanaPerfil extends JFrame {
 			cambiarPass.setBounds(36, 295, 273, 14);
 			getContentPane().add(cambiarPass);
 			
+			JButton btnAnuncios = new JButton("Ver mis anuncios");
+			btnAnuncios.setFont(new Font("Tahoma", Font.BOLD, 12));
+			btnAnuncios.setForeground(Color.WHITE);
+			btnAnuncios.setBackground(Color.RED);
+			btnAnuncios.setBounds(36, 345, 147, 23);
+			getContentPane().add(btnAnuncios);
+			
+			btnAnuncios.addActionListener(new ActionListener() {	
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					VentanaMisAnuncios misAnuncios = new VentanaMisAnuncios(usuario);
+					misAnuncios.setVisible(true);
+					dispose();					
+				}
+				
+			});
+			
 			cambiarPass.addMouseListener(new MouseAdapter() {
 				public void mouseClicked(MouseEvent e) {
 					VentanaContrasenya sec = new VentanaContrasenya(usuario);
@@ -230,7 +238,5 @@ public class VentanaPerfil extends JFrame {
 				
 			});
 			
-				}
-			
 	}
-
+}

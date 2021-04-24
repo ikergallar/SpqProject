@@ -1,18 +1,11 @@
-package com.SPQ.ventanasPrimarias;
+package com.SPQ.ventanasAnuncio;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.GridLayout;
+
 import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -33,7 +26,7 @@ import javax.swing.JComboBox;
 import javax.swing.JCheckBox;
 
 
-public class VentanaCrearAnuncio extends JFrame{
+public class VentanaEditarAnuncio extends JFrame{
 	
 	private JPanel pNorte,pCentral;
 	private JTextField textNombre;
@@ -42,7 +35,7 @@ public class VentanaCrearAnuncio extends JFrame{
 	private JComboBox<Categoria> comboCategoria;
 	
 		
-	public VentanaCrearAnuncio(Usuario usuario) {				
+	public VentanaEditarAnuncio(Usuario usuario, Anuncio anuncio) {				
 		
 		DBManager con = new DBManager();
 		
@@ -65,12 +58,12 @@ public class VentanaCrearAnuncio extends JFrame{
         JScrollPane scrollbar = new JScrollPane(pCentral);
         pCentral.setLayout(null);
         
-        textNombre = new JTextField();
+        textNombre = new JTextField(anuncio.getNombre());
         textNombre.setBounds(63, 94, 86, 20);
         pCentral.add(textNombre);
         textNombre.setColumns(10);
         
-        textDescripcion = new JTextField();
+        textDescripcion = new JTextField(anuncio.getDescripcion());
         textDescripcion.setBounds(63, 176, 86, 20);
         pCentral.add(textDescripcion);
         textDescripcion.setColumns(10);
@@ -91,7 +84,7 @@ public class VentanaCrearAnuncio extends JFrame{
         preciolbl.setBounds(79, 236, 46, 14);
         pCentral.add(preciolbl);
         
-        textPrecio = new JTextField();
+        textPrecio = new JTextField(Float.toString(anuncio.getPrecio()));
         textPrecio.setBounds(63, 285, 86, 20);
         pCentral.add(textPrecio);
         textPrecio.setColumns(10);
@@ -100,7 +93,7 @@ public class VentanaCrearAnuncio extends JFrame{
         categorialbl.setBounds(79, 340, 46, 14);
         pCentral.add(categorialbl);
         
-        comboCategoria = new JComboBox();
+        comboCategoria = new JComboBox<Categoria>();
         comboCategoria.addItem(Categoria.ALBAÑIL);
         comboCategoria.addItem(Categoria.FONTANERO);
         comboCategoria.addItem(Categoria.INFORMATICO);
@@ -150,8 +143,8 @@ public class VentanaCrearAnuncio extends JFrame{
 																		
 							try {
 								
-								con.crearAnuncio(anuncio);
-								JOptionPane.showMessageDialog(null, "Anuncio creado correctamente", "Correcto", 1);
+								con.updateAnuncio(anuncio);
+								JOptionPane.showMessageDialog(null, "Anuncio editado correctamente", "Correcto", 1);
                                 dispose();											
 									
 								

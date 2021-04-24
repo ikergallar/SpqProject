@@ -1,4 +1,4 @@
-package com.SPQ.ventanasPrimarias;
+package com.SPQ.ventanasAnuncio;
 
 import java.awt.Component;
 import java.awt.EventQueue;
@@ -42,7 +42,7 @@ public class VentanaAnuncios extends JFrame{
 			}
 		});
 	}
-	public VentanaAnuncios() throws DBException {
+	public VentanaAnuncios(){
 		getContentPane().setLayout(null);
 					
 		
@@ -66,7 +66,12 @@ public class VentanaAnuncios extends JFrame{
 		getContentPane().add(comboCategoria);
 		
 		modelo = new DefaultListModel();
-		modelo.addElement(conn.listarAnuncios());
+		try {
+			modelo.addElement(conn.listarAnuncios());
+		} catch (DBException e2) {
+			// TODO Auto-generated catch block
+			e2.printStackTrace();
+		}
 		list.setModel(modelo);
 		
 		JLabel flitro = new JLabel("Filtrar por:");
@@ -177,7 +182,7 @@ public class VentanaAnuncios extends JFrame{
 		            
 		        }
 		    }
-			});
+		});
 		
 		this.setSize(600,697);
 		this.setLocationRelativeTo(null);

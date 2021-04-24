@@ -292,6 +292,59 @@ public class DBManager {
 		return results;
 		
 	}
+	
+	public List<Anuncio> misAnuncios(String nomUsuario) throws DBException{
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+		
+		tx.begin();
+		
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where nombreusuario='"+nomUsuario+"'");
+		query.setClass(Anuncio.class);
+		List<Anuncio> results = query.executeList();
+		
+		tx.commit();
+		pm.close();
+		return results;
+		
+	}
+	
+	 public void  updateAnuncio(Anuncio anuncio) throws DBException{
+	 		
+	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+	 		PersistenceManager pm = pmf.getPersistenceManager();
+	 		Transaction tx = pm.currentTransaction();
+	 		
+	        tx.begin();
+	 		
+	 		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE anuncio SET nombre='"+ anuncio.getNombre() +"', descripcion='"+anuncio.getDescripcion() +"', categoria='"+anuncio.getCategoria()+"',precio='"+anuncio.getPrecio()+ "'") ;
+	 		query.setClass(Anuncio.class);
+	 		Long update = (Long)query.execute();
+	 		
+	 		tx.commit();
+	 		pm.close();
+				 		
+	 		
+	 }
+	 
+	 public Anuncio seleccionarAnuncio(Anuncio anuncio) throws DBException{
+	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+	 		PersistenceManager pm = pmf.getPersistenceManager();
+	 		Transaction tx = pm.currentTransaction();
+	 		
+	 		tx.begin();
+	 		
+	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "SELECT * FROM anuncio where nombre='"+anuncio.getNombre()+"'");
+	 		query.setClass(Anuncio.class);
+
+	 		anuncio = query.executeUnique();
+	 		
+	 		tx.commit();
+	 		pm.close();
+	 		return anuncio;
+	 		
+	 	}
    
   
 		
