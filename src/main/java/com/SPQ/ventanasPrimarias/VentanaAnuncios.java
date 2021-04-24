@@ -2,8 +2,11 @@ package com.SPQ.ventanasPrimarias;
 
 import java.awt.Component;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
@@ -22,10 +25,10 @@ public class VentanaAnuncios extends JFrame{
 	
 	private DefaultListModel modelo;
 	private DefaultListModel modeloCategoria;
+	private DefaultListModel modeloPrecio;
 	private JScrollPane scrollPane;
 	private JList list;
-	private JList listaCategoria;
-	
+	private ButtonGroup buttonGroup;	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -43,20 +46,17 @@ public class VentanaAnuncios extends JFrame{
 					
 		
 		list = new JList();
-		list.setBounds(192, 155, 218, 365);
+		list.setBounds(28, 123, 535, 524);
 		getContentPane().add(list);
-		
-		listaCategoria = new JList();
-		listaCategoria.setBounds(192, 155, 218, 365);
-		getContentPane().add(listaCategoria);
-		
+				
 		DBManager conn = new DBManager();
 		
 		JRadioButton rdbtnCategoria = new JRadioButton("Categoría");
 		rdbtnCategoria.setBounds(57, 40, 109, 23);
 		getContentPane().add(rdbtnCategoria);
-		
+			
 		JComboBox<Categoria> comboCategoria = new JComboBox<Categoria>();
+		comboCategoria.setEnabled(false);
 		comboCategoria.addItem(Categoria.INFORMATICO);
 		comboCategoria.addItem(Categoria.ALBAÑIL);
         comboCategoria.addItem(Categoria.FONTANERO);      
@@ -68,27 +68,98 @@ public class VentanaAnuncios extends JFrame{
 		modelo.addElement(conn.listarAnuncios());
 		list.setModel(modelo);
 		
-		modeloCategoria = new DefaultListModel();
-		modeloCategoria.addElement(conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
-		listaCategoria.setModel(modeloCategoria);
-		
-		scrollPane = new JScrollPane(listaCategoria);
-		scrollPane.setBounds(45, 106, 411, 521);
-		getContentPane().add(scrollPane);
-		
 		JLabel flitro = new JLabel("Filtrar por:");
 		flitro.setBounds(62, 11, 104, 14);
 		getContentPane().add(flitro);
 		
+		JRadioButton rdbtnPrecio = new JRadioButton("Precio:");
+		rdbtnPrecio.setBounds(173, 40, 109, 23);
+		getContentPane().add(rdbtnPrecio);
 		
+		JComboBox comboPrecio = new JComboBox();
+		comboPrecio.setEnabled(false);
+		comboPrecio.addItem("Mayor precio");
+		comboPrecio.addItem("Menor precio");
+		comboPrecio.setBounds(173, 70, 109, 22);
+		getContentPane().add(comboPrecio);
 		
+		buttonGroup = new ButtonGroup();
+		buttonGroup.add(rdbtnCategoria);
+		buttonGroup.add(rdbtnPrecio);
+
+		
+		rdbtnCategoria.addActionListener((ActionListener) new ActionListener() {
+		public void actionPerformed(ActionEvent e){   
+
+	        if (rdbtnCategoria.isSelected()){
+	            comboCategoria.setEnabled(true);
+	        }else{
+	            comboCategoria.setEnabled(false);
+	        }
+	    }
+		});
+		
+		comboCategoria.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+
+				modeloCategoria = new DefaultListModel();
+				modelo = modeloCategoria;
+				try {
+					modeloCategoria.addElement(conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				list.setModel(modeloCategoria);
+		    }
+			});
+		
+		rdbtnPrecio.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+
+		        if (rdbtnPrecio.isSelected()){
+		            comboPrecio.setEnabled(true);
+		        }else{
+		        	comboPrecio.setEnabled(false);
+		        }
+		    }
+			});
+			
+		comboPrecio.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){
+				if(comboPrecio.getSelectedItem().toString().equals("Mayor precio")) {
+					modeloPrecio = new DefaultListModel();
+					modelo = modeloPrecio;
+					try {
+						modeloPrecio.addElement(conn.filtroPrecioMayor());
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					list.setModel(modeloPrecio);
+					
+				}else if(comboPrecio.getSelectedItem().toString().equals("Menor precio")) {
+					modeloPrecio = new DefaultListModel();
+					modelo = modeloPrecio;
+					try {
+						modeloPrecio.addElement(conn.filtroPrecioMenor());
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+					
+					list.setModel(modeloPrecio);
+
+				}					
+			}
+		});
 		
 		this.setSize(600,697);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("ANUNCIOS");
 		this.setVisible(true);
-
 		
 	}
 }
