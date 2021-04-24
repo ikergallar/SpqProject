@@ -93,16 +93,18 @@ public class VentanaEditarAnuncio extends JFrame{
         categorialbl.setBounds(79, 340, 46, 14);
         pCentral.add(categorialbl);
         
-        comboCategoria = new JComboBox<Categoria>();
+        comboCategoria = new JComboBox();
         comboCategoria.addItem(Categoria.ALBAÑIL);
         comboCategoria.addItem(Categoria.FONTANERO);
         comboCategoria.addItem(Categoria.INFORMATICO);
         comboCategoria.addItem(Categoria.PERSIANERO);
+        comboCategoria.setSelectedItem(anuncio.getCategoria());
         comboCategoria.setBounds(63, 389, 103, 30);
         pCentral.add(comboCategoria);
         
         JCheckBox boxOferta = new JCheckBox("Oferta");
         boxOferta.setBounds(69, 508, 97, 23);
+        boxOferta.setSelected(anuncio.isOferta());
         pCentral.add(boxOferta);
         
         JLabel lblOferta = new JLabel("En oferta:");
