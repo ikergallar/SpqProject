@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
@@ -91,9 +92,12 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 		
 		ip = new JComboBox();
 		
-		ip.addItem("Usuario 1");
+		/*ip.addItem("Usuario 1");
 		ip.addItem("Usuario 2");
-		ip.addItem("Usuario 3");
+		ip.addItem("Usuario 3");*/
+		
+		ip.addItem("192.168.0.197");
+		ip.addItem("192.168.0.198");
 		
 		add(ip);	
 		
@@ -187,6 +191,16 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 class PaqueteEnvio implements Serializable{
 	
 	private String nick, ip, mensaje;
+	
+	private ArrayList<String> Ips;
+
+	public ArrayList<String> getIps() {
+		return Ips;
+	}
+
+	public void setIps(ArrayList<String> ips) {
+		Ips = ips;
+	}
 
 	public String getNick() {
 		return nick;
@@ -213,3 +227,4 @@ class PaqueteEnvio implements Serializable{
 	}
 	
 }
+
