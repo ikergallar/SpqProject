@@ -10,6 +10,7 @@ import javax.jdo.annotations.PersistenceCapable;
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class AnuncioGuardado extends Anuncio{
 	private Date fecha;
+	private String nombre;
 
 	public Date getFecha() {
 		return fecha;
@@ -20,9 +21,18 @@ public class AnuncioGuardado extends Anuncio{
 	}
 
 	public AnuncioGuardado(String nombre, String descripcion, float precio, String foto, Categoria categoria,
-			boolean oferta, String nombreUsuario, Date fecha) {
+			boolean oferta, String nombreUsuario, Date fecha, String nombreGuardado) {
 		super(nombre, descripcion, precio, foto, categoria, oferta, nombreUsuario);
 		this.fecha = fecha;
+		this.nombre = nombreGuardado;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
 	}
 	
 	
