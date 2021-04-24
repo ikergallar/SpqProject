@@ -345,6 +345,21 @@ public class DBManager {
 	 		return anuncio;
 	 		
 	 	}
+	 public void guardarAnuncio(Anuncio anuncio) throws DBException{
+		 	PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+	 		PersistenceManager pm = pmf.getPersistenceManager();
+	 		Transaction tx = pm.currentTransaction();
+	 		
+	 		tx.begin();
+	 		
+	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "INSERT INTO anuncioguardado VALUES ");
+	 		query.setClass(Anuncio.class);
+
+	 		anuncio = query.executeUnique();
+	 		
+	 		tx.commit();
+	 		pm.close();
+	 }
    
   
 		
