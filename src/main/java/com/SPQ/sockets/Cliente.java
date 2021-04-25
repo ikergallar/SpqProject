@@ -94,10 +94,10 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 		
 		/*ip.addItem("Usuario 1");
 		ip.addItem("Usuario 2");
-		ip.addItem("Usuario 3");*/
+		ip.addItem("Usuario 3");
 		
 		ip.addItem("192.168.0.197");
-		ip.addItem("192.168.0.198");
+		ip.addItem("192.168.0.198");*/
 		
 		add(ip);	
 		
@@ -172,14 +172,26 @@ class LaminaMarcoCliente extends JPanel implements Runnable{
 			Socket cliente;
 			PaqueteEnvio paqueteRecibido;
 			
-			while(true) {
+			while(true) { 
 				cliente = servidorCliente.accept();
 				
 				ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
 				
 				paqueteRecibido = (PaqueteEnvio) flujoentrada.readObject();
 				
-				campoChat.append("\n" + paqueteRecibido.getNick() + ": " + paqueteRecibido.getMensaje());
+				if(!paqueteRecibido.getMensaje().equals(" online")) {
+					campoChat.append("\n" + paqueteRecibido.getNick() + ": " + paqueteRecibido.getMensaje());
+				}else {
+					campoChat.append("\n" +paqueteRecibido.getIps());
+					ArrayList <String> IpsMenu = new ArrayList<String>();
+					IpsMenu = paqueteRecibido.getIps();
+					ip.removeAllItems();
+					
+					for(String z:IpsMenu) {
+						ip.addItem(z);
+					}
+				}
+				
 			}
 			
 		}catch(Exception e) {
