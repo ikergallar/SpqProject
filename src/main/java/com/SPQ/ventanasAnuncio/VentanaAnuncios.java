@@ -10,6 +10,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
@@ -20,6 +21,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class VentanaAnuncios extends JFrame{
 	
@@ -27,9 +30,12 @@ public class VentanaAnuncios extends JFrame{
 	private DefaultListModel modeloCategoria;
 	private DefaultListModel modeloPrecio;
 	private DefaultListModel modeloOferta;
+	private DefaultListModel modeloUsuario;
 	private JScrollPane scrollPane;
 	private JList list;
 	private ButtonGroup buttonGroup;	
+	private JTextField textUsername;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -44,15 +50,14 @@ public class VentanaAnuncios extends JFrame{
 	}
 	public VentanaAnuncios(){
 		getContentPane().setLayout(null);
-					
-		
+							
 		list = new JList();
 		list.setBounds(28, 123, 535, 524);
 		getContentPane().add(list);
 				
 		DBManager conn = new DBManager();
 		
-		JRadioButton rdbtnCategoria = new JRadioButton("Categoría");
+		JRadioButton rdbtnCategoria = new JRadioButton("Categoría:");
 		rdbtnCategoria.setBounds(57, 40, 109, 23);
 		getContentPane().add(rdbtnCategoria);
 			
@@ -93,10 +98,26 @@ public class VentanaAnuncios extends JFrame{
 		rdbtnOferta.setBounds(312, 40, 109, 23);
 		getContentPane().add(rdbtnOferta);
 		
+		JRadioButton rdbtnUsuario = new JRadioButton("Nombre de usuario:");
+		rdbtnUsuario.setBounds(420, 40, 143, 23);
+		getContentPane().add(rdbtnUsuario);
+		
 		buttonGroup = new ButtonGroup();
 		buttonGroup.add(rdbtnCategoria);
 		buttonGroup.add(rdbtnPrecio);
 		buttonGroup.add(rdbtnOferta);
+		buttonGroup.add(rdbtnUsuario);
+					
+		textUsername = new JTextField();
+		textUsername.setEnabled(false);
+		textUsername.setBounds(420, 71, 86, 20);
+		getContentPane().add(textUsername);
+		textUsername.setColumns(10);
+		
+		JButton btnBuscar = new JButton("Buscar");
+        btnBuscar.setEnabled(false);
+		btnBuscar.setBounds(506, 70, 31, 22);
+		getContentPane().add(btnBuscar);
 			
 		rdbtnCategoria.addActionListener((ActionListener) new ActionListener() {
 		public void actionPerformed(ActionEvent e){   
@@ -183,6 +204,39 @@ public class VentanaAnuncios extends JFrame{
 		        }
 		    }
 		});
+		
+		rdbtnUsuario.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+
+		        if (rdbtnUsuario.isSelected()){
+		            textUsername.setEnabled(true);
+		            btnBuscar.setEnabled(true);
+		        }else{
+		        	textUsername.setEnabled(false);
+		            btnBuscar.setEnabled(false);
+		        }
+		    }
+			});
+		
+		btnBuscar.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+				String nomUsuario = textUsername.getText();
+
+		        try {
+					if (conn.filtroUsuario(nomUsuario) != null){
+						modeloUsuario = new DefaultListModel();
+						modelo = modeloUsuario;
+						modeloUsuario.addElement(conn.filtroUsuario(nomUsuario));
+						list.setModel(modeloUsuario);	        	
+					}else{
+						 JOptionPane.showMessageDialog(null, "El usuario no existe", "Error", 0);
+					}
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+		    }
+			});
 		
 		this.setSize(600,697);
 		this.setLocationRelativeTo(null);
