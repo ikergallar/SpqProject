@@ -35,7 +35,6 @@ public class VentanaAnuncios extends JFrame{
 	private JList list;
 	private ButtonGroup buttonGroup;	
 	private JTextField textUsername;
-	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -49,15 +48,17 @@ public class VentanaAnuncios extends JFrame{
 		});
 	}
 	public VentanaAnuncios(){
+		getContentPane().setEnabled(false);
 		getContentPane().setLayout(null);
-							
+					
+		
 		list = new JList();
 		list.setBounds(28, 123, 535, 524);
 		getContentPane().add(list);
 				
 		DBManager conn = new DBManager();
 		
-		JRadioButton rdbtnCategoria = new JRadioButton("Categoría:");
+		JRadioButton rdbtnCategoria = new JRadioButton("Categoría");
 		rdbtnCategoria.setBounds(57, 40, 109, 23);
 		getContentPane().add(rdbtnCategoria);
 			
@@ -95,11 +96,11 @@ public class VentanaAnuncios extends JFrame{
 		getContentPane().add(comboPrecio);
 		
 		JRadioButton rdbtnOferta = new JRadioButton("Ofertas:");
-		rdbtnOferta.setBounds(312, 40, 109, 23);
+		rdbtnOferta.setBounds(306, 40, 109, 23);
 		getContentPane().add(rdbtnOferta);
 		
 		JRadioButton rdbtnUsuario = new JRadioButton("Nombre de usuario:");
-		rdbtnUsuario.setBounds(420, 40, 143, 23);
+		rdbtnUsuario.setBounds(413, 40, 165, 23);
 		getContentPane().add(rdbtnUsuario);
 		
 		buttonGroup = new ButtonGroup();
@@ -107,16 +108,17 @@ public class VentanaAnuncios extends JFrame{
 		buttonGroup.add(rdbtnPrecio);
 		buttonGroup.add(rdbtnOferta);
 		buttonGroup.add(rdbtnUsuario);
-					
+		
+		
 		textUsername = new JTextField();
 		textUsername.setEnabled(false);
-		textUsername.setBounds(420, 71, 86, 20);
+		textUsername.setBounds(423, 71, 86, 20);
 		getContentPane().add(textUsername);
 		textUsername.setColumns(10);
 		
-		JButton btnBuscar = new JButton("Buscar");
-        btnBuscar.setEnabled(false);
-		btnBuscar.setBounds(506, 70, 31, 22);
+		JButton btnBuscar = new JButton("New button");
+		btnBuscar.setEnabled(false);
+		btnBuscar.setBounds(509, 70, 24, 22);
 		getContentPane().add(btnBuscar);
 			
 		rdbtnCategoria.addActionListener((ActionListener) new ActionListener() {
@@ -124,8 +126,9 @@ public class VentanaAnuncios extends JFrame{
 
 	        if (rdbtnCategoria.isSelected()){
 	            comboCategoria.setEnabled(true);
-	        }else{
-	            comboCategoria.setEnabled(false);
+	            textUsername.setEnabled(false);
+	            btnBuscar.setEnabled(false);
+	            comboPrecio.setEnabled(false);
 	        }
 	    }
 		});
@@ -150,8 +153,9 @@ public class VentanaAnuncios extends JFrame{
 
 		        if (rdbtnPrecio.isSelected()){
 		            comboPrecio.setEnabled(true);
-		        }else{
-		        	comboPrecio.setEnabled(false);
+		            textUsername.setEnabled(false);
+		            btnBuscar.setEnabled(false);
+		        	comboCategoria.setEnabled(false);
 		        }
 		    }
 			});
@@ -190,6 +194,10 @@ public class VentanaAnuncios extends JFrame{
 			public void actionPerformed(ActionEvent e){   
 
 		        if (rdbtnOferta.isSelected()){
+		        	textUsername.setEnabled(false);
+		            btnBuscar.setEnabled(false);
+		            comboCategoria.setEnabled(false);
+		            comboPrecio.setEnabled(false);
 		        	modeloOferta = new DefaultListModel();
 					modelo = modeloOferta;
 					try {
@@ -211,13 +219,11 @@ public class VentanaAnuncios extends JFrame{
 		        if (rdbtnUsuario.isSelected()){
 		            textUsername.setEnabled(true);
 		            btnBuscar.setEnabled(true);
-		        }else{
-		        	textUsername.setEnabled(false);
-		            btnBuscar.setEnabled(false);
+		   
 		        }
 		    }
 			});
-		
+
 		btnBuscar.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e){   
 				String nomUsuario = textUsername.getText();
