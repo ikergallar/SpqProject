@@ -65,7 +65,7 @@ public class VentanaAnuncios extends JFrame{
 		JComboBox<Categoria> comboCategoria = new JComboBox<Categoria>();
 		comboCategoria.setEnabled(false);
 		comboCategoria.addItem(Categoria.INFORMATICO);
-		comboCategoria.addItem(Categoria.ALBAÑIL);
+		comboCategoria.addItem(Categoria.ALBAYIL);
         comboCategoria.addItem(Categoria.FONTANERO);      
         comboCategoria.addItem(Categoria.PERSIANERO);
 		comboCategoria.setBounds(45, 70, 105, 22);

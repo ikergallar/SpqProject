@@ -23,8 +23,8 @@ public class CategoriaTest {
 
     @Test
     public void testValores() {
-        String categoria = "ALBAÑIL";
-        Categoria expResult = Categoria.ALBAÑIL;
+        String categoria = "ALBAYIL";
+        Categoria expResult = Categoria.ALBAYIL;
         Categoria result = Categoria.valueOf(categoria);
         assertEquals(expResult, result);
 

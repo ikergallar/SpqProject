@@ -94,7 +94,7 @@ public class VentanaCrearAnuncio extends JFrame{
         pCentral.add(categorialbl);
         
         comboCategoria = new JComboBox();
-        comboCategoria.addItem(Categoria.ALBAÑIL);
+        comboCategoria.addItem(Categoria.ALBAYIL);
         comboCategoria.addItem(Categoria.FONTANERO);
         comboCategoria.addItem(Categoria.INFORMATICO);
         comboCategoria.addItem(Categoria.PERSIANERO);

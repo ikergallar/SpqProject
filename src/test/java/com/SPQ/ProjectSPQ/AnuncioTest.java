@@ -49,7 +49,7 @@ public class AnuncioTest {
 
 	@Test
 	public void testGetNombre() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "gomezJuan");
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true, "gomezJuan");
 		assertEquals("Aitor", anuncio.getNombre());	
 	}
 	
@@ -61,19 +61,19 @@ public class AnuncioTest {
 		
 	@Test
 	public void testGetPrecio() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "gomezJuan");		
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true, "gomezJuan");		
 		assertEquals(60, anuncio.getPrecio(), 0.0f);	
 	}
 	
 	@Test
 	public void testGetCategoria() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "gomezJuan");		
-		assertEquals(Categoria.ALBAÑIL, anuncio.getCategoria());	
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true, "gomezJuan");		
+		assertEquals(Categoria.ALBAYIL, anuncio.getCategoria());	
 	}
 	
 	@Test
 	public void testGetNombreUsuario() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "gomezPepe");
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true, "gomezPepe");
 		assertEquals("gomezPepe", anuncio.getNombreUsuario());	
 	}
 	
