@@ -20,7 +20,6 @@ import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 import com.SPQ.ventanasAnuncio.VentanaCrearAnuncio;
 import com.SPQ.ventanasAnuncio.VentanaMisAnuncios;
-import com.SPQ.ventanasPrimarias.VentanaPerfil;
 import com.SPQ.ventanasPrimarias.VentanaPrincipal;
 
 import java.awt.event.ActionListener;

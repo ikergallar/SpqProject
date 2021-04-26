@@ -66,7 +66,7 @@ public class VentanaPrincipal extends JFrame{
 		panelesDinamicos.add(panelChat);
 		
 		JPanel panelSelecVentana = new JPanel();
-		panelSelecVentana.setBounds(0, 89, 250, 601);
+		panelSelecVentana.setBounds(20, 89, 230, 600);
 		getContentPane().add(panelSelecVentana);
 		panelSelecVentana.setLayout(new GridLayout(4, 1, 0, 0));
 		
@@ -74,6 +74,7 @@ public class VentanaPrincipal extends JFrame{
 		ventPerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				
 			}
 		});
 		ventPerfil.setBackground(new Color(39, 45, 53));
