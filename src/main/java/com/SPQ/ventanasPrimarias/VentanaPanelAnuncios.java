@@ -32,9 +32,9 @@ public class VentanaPanelAnuncios extends JPanel{
 		lblContacto.setBounds(30, 194, 119, 13);
 		add(lblContacto);
 		
-		JLabel lblDescripción = new JLabel(textoDescripción);
-		lblDescripción.setBounds(30, 220, 119, 13);
-		add(lblDescripción);
+		JLabel lblDescripcion = new JLabel(textoDescripción);
+		lblDescripcion.setBounds(30, 220, 119, 13);
+		add(lblDescripcion);
 		
 		JLabel lblRef = new JLabel(Integer.toString(ref));
 		lblRef.setBounds(100, 146, 45, 13);

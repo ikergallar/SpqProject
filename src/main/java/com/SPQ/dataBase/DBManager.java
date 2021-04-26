@@ -43,13 +43,13 @@ public class DBManager {
 			Usuario usuario3=new Usuario("Aitofr", "Davilfa" , "aidsfav13", "passfs123","aidav@gmail.com" , "68393948" ,"Calle Ave del Pfaaraiso 9, Barcelafona","Bsduena zona",null,"Dua","¿Como se llamsfa mi gato?", null);
 			pm.makePersistent(usuario3);
 			
-			Anuncio anuncio=new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria" ,60,"", Categoria.ALBAÑIL,true, "peter");
+			Anuncio anuncio=new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true, "peter");
 			pm.makePersistent(anuncio);
-			Anuncio anuncio1=new Anuncio("Aiadtor", "Ofrezco servicio de fontaneria" ,40,"", Categoria.ALBAÑIL,false,"peter");
+			Anuncio anuncio1=new Anuncio("Aiadtor", "Ofrezco servicio de fontaneria" ,40,"", Categoria.ALBAYIL,false,"peter");
 			pm.makePersistent(anuncio1);
-			Anuncio anuncio2=new Anuncio("sitor", "Ofrezdco servicio de fontaneria" ,20,"", Categoria.ALBAÑIL,true,"peter");
+			Anuncio anuncio2=new Anuncio("sitor", "Ofrezdco servicio de fontaneria" ,20,"", Categoria.ALBAYIL,true,"peter");
 			pm.makePersistent(anuncio2);
-			Anuncio anuncio3=new Anuncio("Aitoddr", "Ofrezco saaervicio de fontaneria" ,90,"", Categoria.ALBAÑIL,true,"peter");
+			Anuncio anuncio3=new Anuncio("Aitoddr", "Ofrezco saaervicio de fontaneria" ,90,"", Categoria.ALBAYIL,true,"peter");
 			pm.makePersistent(anuncio3);
 			
 
