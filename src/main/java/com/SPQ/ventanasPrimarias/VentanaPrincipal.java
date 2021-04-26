@@ -100,6 +100,7 @@ public class VentanaPrincipal extends JFrame{
 		ventServicios.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JLabel imgServicios = new JLabel("");
+		imgServicios.setIcon(new ImageIcon(getClass().getResource("/iconoServicios.png")));
 		ventServicios.add(imgServicios);
 		
 		JLabel lblServicios = new JLabel("SERVICIOS");
@@ -118,6 +119,7 @@ public class VentanaPrincipal extends JFrame{
 		ventOferta.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JLabel imgOferta = new JLabel("");
+		imgOferta.setIcon(new ImageIcon(getClass().getResource("/iconoOferta.png")));
 		ventOferta.add(imgOferta);
 		
 		JLabel lblOferta = new JLabel("OFERTAS");
@@ -136,6 +138,7 @@ public class VentanaPrincipal extends JFrame{
 		ventChat.setLayout(new GridLayout(1, 2, 0, 0));
 		
 		JLabel imgChat = new JLabel("");
+		imgChat.setIcon(new ImageIcon(getClass().getResource("/iconoChat.png")));
 		ventChat.add(imgChat);
 		
 		JLabel lblChat = new JLabel("CHAT");
@@ -150,6 +153,7 @@ public class VentanaPrincipal extends JFrame{
 		logoImg.setLayout(null);
 		
 		JLabel imgLogoHorizontal = new JLabel("");
+		imgLogoHorizontal.setIcon(new ImageIcon(getClass().getResource("/logoHorizontal.png")));
 		imgLogoHorizontal.setBounds(10, 11, 402, 67);
 		logoImg.add(imgLogoHorizontal);
 	}
