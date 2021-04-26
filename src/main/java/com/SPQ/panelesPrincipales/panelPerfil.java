@@ -29,7 +29,6 @@ public class panelPerfil extends JPanel {
 	private JTextField textTel;
 	private JTextField textUsuario;
 	private JTextField textMail;
-	private Usuario usuario;
 	
 	public panelPerfil(Usuario usuario) {
 		setBackground(new Color(39, 45, 53));
