@@ -31,9 +31,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
-public class VentanaPrincipal {
+public class VentanaPrincipal extends JFrame{
 
-	private JFrame frmHustle;
 	private JTextField textNombre;
 	private JTextField textApellido;
 	private JTextField textDireccion;
@@ -41,32 +40,34 @@ public class VentanaPrincipal {
 	private JTextField textUsuario;
 	private JTextField textMail;
 	JPanel panelPerfil;
+    DBManager con = new DBManager();
+
+
 
 	public VentanaPrincipal(Usuario usuario) {
-		initialize(usuario);
-	}
 
-
-	private void initialize(Usuario usuario) {
-		frmHustle = new JFrame();
-		frmHustle.setResizable(false);
-		frmHustle.getContentPane().setBackground(new Color(39, 45, 53));
-		frmHustle.setTitle("Hustle - Inicio");
-		frmHustle.setBounds(100, 100, 1120, 729);
-		frmHustle.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmHustle.getContentPane().setLayout(null);
+		setResizable(false);
+		getContentPane().setBackground(new Color(39, 45, 53));
+		setTitle("Hustle - Inicio");
+		setBounds(100, 100, 1120, 729);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		getContentPane().setLayout(null);
 		
 		JLayeredPane panelesDinamicos = new JLayeredPane();
 		panelesDinamicos.setBounds(250, 89, 835, 592);
-		frmHustle.getContentPane().add(panelesDinamicos);
+		getContentPane().add(panelesDinamicos);
 		
 		panelPerfil = genPanelPerfil(usuario);
 		panelPerfil.setBounds(0, 0, 835, 592);
 		panelesDinamicos.add(panelPerfil);
 		
+		JPanel panelChat = new JPanel();
+		panelChat.setBounds(0, 0, 835, 592);
+		panelesDinamicos.add(panelChat);
+		
 		JPanel panelSelecVentana = new JPanel();
 		panelSelecVentana.setBounds(0, 89, 250, 601);
-		frmHustle.getContentPane().add(panelSelecVentana);
+		getContentPane().add(panelSelecVentana);
 		panelSelecVentana.setLayout(new GridLayout(4, 1, 0, 0));
 		
 		JPanel ventPerfil = new JPanel();
@@ -145,7 +146,7 @@ public class VentanaPrincipal {
 		JPanel logoImg = new JPanel();
 		logoImg.setBackground(new Color(39, 45, 53));
 		logoImg.setBounds(0, 0, 422, 89);
-		frmHustle.getContentPane().add(logoImg);
+		getContentPane().add(logoImg);
 		logoImg.setLayout(null);
 		
 		JLabel imgLogoHorizontal = new JLabel("");
@@ -158,11 +159,8 @@ public class VentanaPrincipal {
 	public JPanel genPanelPerfil(Usuario usuario){
 		JPanel panelPerfilGen=new JPanel();
 		panelPerfilGen.setBackground(new Color(39, 45, 53));
-		panelPerfilGen.setLayout(null);
+		panelPerfilGen.setLayout(null);    	
 
-		int contBarra = 0;
-	    	
-	    DBManager con = new DBManager();
 	    		 		  		    
 
 	    panelPerfilGen.setBounds(100, 100, 835, 592);
@@ -334,8 +332,7 @@ public class VentanaPrincipal {
 			botonCerrarSesion.addActionListener(new ActionListener() {	
 				@Override
 				public void actionPerformed(ActionEvent arg0) {
-					VentanaLogin login = new VentanaLogin();
-					login.setVisible(true);				
+					System.exit(0);				
 				}
 				
 			});
