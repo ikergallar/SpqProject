@@ -1,5 +1,6 @@
 package com.SPQ.main;
 
+import com.SPQ.ventanasAnuncio.VentanaAnuncios;
 import com.SPQ.ventanasLogin.VentanaLogin;
 
 public class Main {
@@ -11,6 +12,9 @@ public class Main {
 		VentanaLogin inicio = new VentanaLogin();
 		inicio.frmLogin.setVisible(true);
 		
+//		VentanaAnuncios inicio = new VentanaAnuncios();
+//		inicio.setVisible(true);
+//		
 		
 		
 

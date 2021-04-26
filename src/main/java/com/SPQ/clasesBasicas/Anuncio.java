@@ -97,7 +97,7 @@ public class Anuncio {
 
 	@Override
 	public String toString() {
-		return nombre + ", " + descripcion + ", " + precio + " euros, CATEGORIA:" + categoria + ", Usuario: " + nombreUsuario;
+		return nombre + ", " + descripcion + ", " + precio + " euros, CATEGORIA:" + categoria + ", Usuario: " + nombreUsuario + "]";
 	}
 	
 	
