@@ -38,7 +38,7 @@ import javax.swing.UIManager;
 
 public class VentanaLogin extends JFrame{
 
-	JFrame frmLogin;
+	public JFrame frmLogin;
 	private JTextField textFieldUsuario;
 	private JPasswordField textFieldContrasena;
 	private List<Usuario> usuarios;
