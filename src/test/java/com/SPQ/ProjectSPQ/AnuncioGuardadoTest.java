@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
 
 import com.SPQ.clasesBasicas.AnuncioGuardado;

@@ -2,6 +2,7 @@ package com.SPQ.ProjectSPQ;
 
 import static org.junit.Assert.assertEquals;
 
+import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;

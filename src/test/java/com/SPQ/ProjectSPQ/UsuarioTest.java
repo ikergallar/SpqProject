@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.SPQ.clasesBasicas.Usuario;
@@ -12,6 +13,8 @@ import com.SPQ.clasesBasicas.UsuarioConectado;
 import junit.framework.JUnit4TestAdapter;
 
 import static org.mockito.Mockito.*;
+
+import org.glassfish.jersey.test.JerseyTest;
 
 public class UsuarioTest {
 	
@@ -47,6 +50,7 @@ public class UsuarioTest {
 	public void testGetNombre() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 		assertEquals("Aitor", usuario.getNombre());	
+		
 	}
 
 	@Test
