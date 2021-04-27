@@ -3,6 +3,7 @@ package com.SPQ.ProjectSPQ;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,7 +29,6 @@ public class UsuarioTest {
 	@Before
 	public void setUp(){
 		
-		u= new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 	}
 	
 	@After
@@ -46,6 +46,13 @@ public class UsuarioTest {
 //		when(UsuarioConectado.isConnected("Peter")).thenReturn(false);
 //		assertEquals("No conectado", u.getNombre());	
 //	}
+	
+	@Test
+	public void testGetIdUsuario() {
+	    Usuario usuario = new Usuario();
+        usuario.setIdUsuario(1);
+        assertEquals(1, usuario.getIdUsuario());
+	}
 	@Test
 	public void testGetNombre() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
@@ -90,6 +97,12 @@ public class UsuarioTest {
 	}
 	
 	@Test
+	public void testGetFoto() {
+		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		assertEquals("", usuario.getFoto());	
+	}
+	
+	@Test
 	public void testGetPalabraRecuperacion() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 		assertEquals("Dua", usuario.getPalabraRecuperacion());	
@@ -99,6 +112,13 @@ public class UsuarioTest {
 	public void testGetPreguntaRecuperacion() {
 		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 		assertEquals("¿Como se llama mi gato?", usuario.getPreguntaRecuperacion());	
+	}
+	
+	@Test
+	public void testSetIdUsuario() {
+		Usuario usuario=new Usuario();
+		int idUsuario = 1;
+		usuario.setIdUsuario(idUsuario);
 	}
 	
 	@Test
@@ -150,6 +170,13 @@ public class UsuarioTest {
 	}
 	
 	@Test
+	public void testSetFoto() {
+		Usuario usuario=new Usuario();
+		String foto = "";
+		usuario.setFoto(foto);
+	}
+	
+	@Test
 	public void testSetPalabraRecuperacion() {
 		Usuario usuario=new Usuario();
 		String palabraRecuperacion = "Dua";
@@ -162,5 +189,7 @@ public class UsuarioTest {
 		String preguntaRecuperacion = "¿Como se llama mi gato?";
 		usuario.setPreguntaRecuperacion(preguntaRecuperacion);
 	}
+	
+	
 
 }
