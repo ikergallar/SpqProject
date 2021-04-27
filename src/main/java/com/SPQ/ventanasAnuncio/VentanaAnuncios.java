@@ -97,7 +97,7 @@ public class VentanaAnuncios extends JFrame{
 		flitro.setBounds(22, 87, 104, 14);
 		getContentPane().add(flitro);
 		
-		JRadioButton rdbtnPrecio = new JRadioButton("Precio:");
+		JRadioButton rdbtnPrecio = new JRadioButton("Precio");
 		rdbtnPrecio.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnPrecio.setForeground(Color.WHITE);
 		rdbtnPrecio.setBounds(41, 220, 109, 23);
@@ -113,13 +113,13 @@ public class VentanaAnuncios extends JFrame{
 		comboPrecio.setBounds(41, 250, 133, 35);
 		getContentPane().add(comboPrecio);
 		
-		JRadioButton rdbtnOferta = new JRadioButton("Ofertas:");
+		JRadioButton rdbtnOferta = new JRadioButton("Ofertas");
 		rdbtnOferta.setForeground(Color.WHITE);
 		rdbtnOferta.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnOferta.setBounds(41, 317, 109, 23);
 		getContentPane().add(rdbtnOferta);
 		
-		JRadioButton rdbtnUsuario = new JRadioButton("Nombre de usuario:");
+		JRadioButton rdbtnUsuario = new JRadioButton("Nombre de usuario");
 		rdbtnUsuario.setForeground(Color.WHITE);
 		rdbtnUsuario.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnUsuario.setBounds(41, 369, 165, 23);
