@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
+import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 import com.SPQ.ventanasLogin.VentanaLogin;
@@ -33,6 +34,10 @@ public class VentanaAnuncios extends JFrame{
 	private DefaultListModel modeloPrecio;
 	private DefaultListModel modeloOferta;
 	private DefaultListModel modeloUsuario;
+	private List<Anuncio> listaCategoria;
+	private List<Anuncio> listaPrecio;
+	private List<Anuncio> listaOferta;
+	private List<Anuncio> listaUsuario;
 	private JScrollPane scrollPane;
 	private JList list;
 	private ButtonGroup buttonGroup;	
@@ -148,127 +153,141 @@ public class VentanaAnuncios extends JFrame{
 		getContentPane().add(lblTiruloServicios);
 			
 		rdbtnCategoria.addActionListener((ActionListener) new ActionListener() {
-		public void actionPerformed(ActionEvent e){   
-
-	        if (rdbtnCategoria.isSelected()){
-	            comboCategoria.setEnabled(true);
-	            textUsername.setEnabled(false);
-	            btnBuscar.setEnabled(false);
-	            comboPrecio.setEnabled(false);
-	        }
-	    }
-		});
-		
-		comboCategoria.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e){   
 
-				modeloCategoria = new DefaultListModel();
-				modelo = modeloCategoria;
-				try {
-					modeloCategoria.addElement(conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-				list.setModel(modeloCategoria);
-		    }
-			});
-		
-		rdbtnPrecio.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent e){   
-
-		        if (rdbtnPrecio.isSelected()){
-		            comboPrecio.setEnabled(true);
+		        if (rdbtnCategoria.isSelected()){
+		            comboCategoria.setEnabled(true);
 		            textUsername.setEnabled(false);
 		            btnBuscar.setEnabled(false);
-		        	comboCategoria.setEnabled(false);
+		            comboPrecio.setEnabled(false);
 		        }
 		    }
 			});
 			
-		comboPrecio.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent e){
-				if(comboPrecio.getSelectedItem().toString().equals("Mayor precio")) {
-					modeloPrecio = new DefaultListModel();
-					modelo = modeloPrecio;
+			comboCategoria.addActionListener((ActionListener) new ActionListener() {
+				public void actionPerformed(ActionEvent e){   
+
+					modeloCategoria = new DefaultListModel();
 					try {
-						modeloPrecio.addElement(conn.filtroPrecioMayor());
+						listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
-					list.setModel(modeloPrecio);
-					
-				}else if(comboPrecio.getSelectedItem().toString().equals("Menor precio")) {
-					modeloPrecio = new DefaultListModel();
-					modelo = modeloPrecio;
-					try {
-						modeloPrecio.addElement(conn.filtroPrecioMenor());
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+					for (Anuncio anuncios : listaCategoria) {
+						modelo = modeloCategoria;
+						modeloCategoria.addElement(anuncios);
+						list.setModel(modeloCategoria);
 					}
-					
-					list.setModel(modeloPrecio);
+			    }
+				});
+			
+			rdbtnPrecio.addActionListener((ActionListener) new ActionListener() {
+				public void actionPerformed(ActionEvent e){   
 
-				}					
-			}
-		});
-		
-		rdbtnOferta.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent e){   
-
-		        if (rdbtnOferta.isSelected()){
-		        	textUsername.setEnabled(false);
-		            btnBuscar.setEnabled(false);
-		            comboCategoria.setEnabled(false);
-		            comboPrecio.setEnabled(false);
-		        	modeloOferta = new DefaultListModel();
-					modelo = modeloOferta;
-					try {
-						modeloOferta.addElement(conn.filtroOfertas());
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					list.setModel(modeloOferta);
-		            
-		        }
-		    }
-		});
-		
-		rdbtnUsuario.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent e){   
-
-		        if (rdbtnUsuario.isSelected()){
-		            textUsername.setEnabled(true);
-		            btnBuscar.setEnabled(true);
-		   
-		        }
-		    }
-			});
-
-		btnBuscar.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent e){   
-				String nomUsuario = textUsername.getText();
-
-		        try {
-					if (conn.filtroUsuario(nomUsuario) != null){
-						modeloUsuario = new DefaultListModel();
-						modelo = modeloUsuario;
-						modeloUsuario.addElement(conn.filtroUsuario(nomUsuario));
-						list.setModel(modeloUsuario);	        	
-					}else{
-						 JOptionPane.showMessageDialog(null, "El usuario no existe", "Error", 0);
-					}
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
+			        if (rdbtnPrecio.isSelected()){
+			            comboPrecio.setEnabled(true);
+			            textUsername.setEnabled(false);
+			            btnBuscar.setEnabled(false);
+			        	comboCategoria.setEnabled(false);
+			        }
+			    }
+				});
+				
+			comboPrecio.addActionListener((ActionListener) new ActionListener() {
+				public void actionPerformed(ActionEvent e){
+					if(comboPrecio.getSelectedItem().toString().equals("Mayor precio")) {
+						modeloPrecio = new DefaultListModel();
+						try {
+							listaPrecio = (conn.filtroPrecioMayor());
+						} catch (DBException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						for (Anuncio anuncios : listaPrecio) {
+							modelo = modeloPrecio;
+							modeloPrecio.addElement(anuncios);
+							list.setModel(modeloPrecio);
+						}
+										
+					}else if(comboPrecio.getSelectedItem().toString().equals("Menor precio")) {
+						modeloPrecio = new DefaultListModel();
+						modelo = modeloPrecio;
+						try {
+							listaPrecio = (conn.filtroPrecioMenor());
+						} catch (DBException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						for (Anuncio anuncios : listaPrecio) {
+							modeloPrecio.addElement(anuncios);
+							list.setModel(modeloPrecio);
+						}
+					}					
 				}
-		    }
 			});
+			
+			rdbtnOferta.addActionListener((ActionListener) new ActionListener() {
+				public void actionPerformed(ActionEvent e){   
+
+			        if (rdbtnOferta.isSelected()){
+			        	textUsername.setEnabled(false);
+			            btnBuscar.setEnabled(false);
+			            comboCategoria.setEnabled(false);
+			            comboPrecio.setEnabled(false);
+			        	modeloOferta = new DefaultListModel();
+						modelo = modeloOferta;
+						try {
+							listaOferta = (conn.filtroOfertas());
+						} catch (DBException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						
+						for (Anuncio anuncios : listaOferta) {
+							modeloOferta.addElement(anuncios);
+							list.setModel(modeloOferta);
+						}
+			            
+			        }
+			    }
+			});
+			
+			rdbtnUsuario.addActionListener((ActionListener) new ActionListener() {
+				public void actionPerformed(ActionEvent e){   
+
+			        if (rdbtnUsuario.isSelected()){
+			            textUsername.setEnabled(true);
+			            btnBuscar.setEnabled(true);
+			   
+			        }
+			    }
+				});
+
+			btnBuscar.addActionListener((ActionListener) new ActionListener() {
+				public void actionPerformed(ActionEvent e){   
+					String nomUsuario = textUsername.getText();
+					modeloUsuario = new DefaultListModel();
+					Usuario usuario;
+					try {
+						usuario = conn.seleccionarUsuario(nomUsuario);
+						listaUsuario = (conn.filtroUsuario(usuario));
+
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}				
+
+					for (Anuncio anuncios : listaUsuario) {
+						modelo = modeloUsuario;
+						modeloUsuario.addElement(anuncios);
+						list.setModel(modeloUsuario);
+					}
+			    }
+				});
 		
 		this.setSize(835,592);
 		this.setLocationRelativeTo(null);
