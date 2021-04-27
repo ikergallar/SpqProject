@@ -310,14 +310,14 @@ public class DBManager {
 		
 	}
 	
-	public List<Anuncio> filtroUsuario(String nomUsuario) throws DBException{
+	public List<Anuncio> filtroUsuario(Usuario usuario) throws DBException{
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
 		tx.begin();
 
-		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where nombreusuario='"+ nomUsuario +"'");
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where idusuario='"+ usuario.getIdUsuario() +"'");
 		query.setClass(Anuncio.class);
 		List<Anuncio> results = query.executeList();
 

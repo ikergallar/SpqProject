@@ -137,7 +137,7 @@ public class VentanaLogin extends JFrame{
         		
         		if(acceso == true) {
 					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-					VentanaMisAnuncios vPrincipal = new VentanaMisAnuncios(usuarioIniciado);
+					VentanaCrearAnuncio vPrincipal = new VentanaCrearAnuncio(usuarioIniciado);
 					vPrincipal.setVisible(true);
 					frmLogin.dispose();
         		}

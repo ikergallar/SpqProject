@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
+import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 import com.SPQ.ventanasLogin.VentanaLogin;
@@ -40,18 +41,8 @@ public class VentanaAnuncios extends JFrame{
 	private JList list;
 	private ButtonGroup buttonGroup;	
 	private JTextField textUsername;
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaAnuncios window = new VentanaAnuncios();
-					window.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+	
+	
 	public VentanaAnuncios(){
 		getContentPane().setEnabled(false);
 		getContentPane().setLayout(null);
@@ -146,7 +137,6 @@ public class VentanaAnuncios extends JFrame{
 			public void actionPerformed(ActionEvent e){   
 
 				modeloCategoria = new DefaultListModel();
-				modelo = modeloCategoria;
 				try {
 					listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
 				} catch (DBException e1) {
@@ -155,6 +145,7 @@ public class VentanaAnuncios extends JFrame{
 				}
 				
 				for (Anuncio anuncios : listaCategoria) {
+					modelo = modeloCategoria;
 					modeloCategoria.addElement(anuncios);
 					list.setModel(modeloCategoria);
 				}
@@ -177,7 +168,6 @@ public class VentanaAnuncios extends JFrame{
 			public void actionPerformed(ActionEvent e){
 				if(comboPrecio.getSelectedItem().toString().equals("Mayor precio")) {
 					modeloPrecio = new DefaultListModel();
-					modelo = modeloPrecio;
 					try {
 						listaPrecio = (conn.filtroPrecioMayor());
 					} catch (DBException e1) {
@@ -186,6 +176,7 @@ public class VentanaAnuncios extends JFrame{
 					}
 					
 					for (Anuncio anuncios : listaPrecio) {
+						modelo = modeloPrecio;
 						modeloPrecio.addElement(anuncios);
 						list.setModel(modeloPrecio);
 					}
@@ -194,7 +185,7 @@ public class VentanaAnuncios extends JFrame{
 					modeloPrecio = new DefaultListModel();
 					modelo = modeloPrecio;
 					try {
-						modeloPrecio.addElement(conn.filtroPrecioMenor());
+						listaPrecio = (conn.filtroPrecioMenor());
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
@@ -249,15 +240,18 @@ public class VentanaAnuncios extends JFrame{
 			public void actionPerformed(ActionEvent e){   
 				String nomUsuario = textUsername.getText();
 				modeloUsuario = new DefaultListModel();
-				modelo = modeloUsuario;
+				Usuario usuario;
 				try {
-					listaUsuario = (conn.filtroUsuario(nomUsuario));
-				} catch (DBException e2) {
+					usuario = conn.seleccionarUsuario(nomUsuario);
+					listaUsuario = (conn.filtroUsuario(usuario));
+
+				} catch (DBException e1) {
 					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
+					e1.printStackTrace();
+				}				
 
 				for (Anuncio anuncios : listaUsuario) {
+					modelo = modeloUsuario;
 					modeloUsuario.addElement(anuncios);
 					list.setModel(modeloUsuario);
 				}
