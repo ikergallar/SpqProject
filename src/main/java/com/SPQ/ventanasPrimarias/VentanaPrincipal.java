@@ -30,6 +30,7 @@ import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
+import javax.swing.JTabbedPane;
 
 public class VentanaPrincipal extends JFrame{
 
