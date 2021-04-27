@@ -34,13 +34,13 @@ public class DBManager {
 		
 		try {
 			tx.begin();
-			Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","Buena zona",null,"Dua","¿Como se llama mi gato?", null);
+			Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 			pm.makePersistent(usuario);
-			Usuario usuario1=new Usuario("Aitora", "Davilaa" , "aidav13a", "passa123","aidav@gamail.com" , "68392848" ,"Callse Ave del Paraiso 9, Barcselona","Buensa zona",null,"Dusa","¿Comso se llama mi gato?", null);
+			Usuario usuario1=new Usuario("Aitora", "Davilaa" , "aidav13a", "passa123","aidav@gamail.com" , "68392848" ,"Callse Ave del Paraiso 9, Barcselona","","Dusa","¿Comso se llama mi gato?");
 			pm.makePersistent(usuario1);
-			Usuario usuario2=new Usuario("Aitsor", "Davilaada" , "aidavsfa13", "pass1dsf23","aidav@fsgmail.com" , "68392833948" ,"Calle Ave del Pafaraiso 9, Barcafelona","Buena zfona",null,"Dua","¿Como se llamsa mi gato?", null);
+			Usuario usuario2=new Usuario("Aitsor", "Davilaada" , "aidavsfa13", "pass1dsf23","aidav@fsgmail.com" , "68392833948" ,"Calle Ave del Pafaraiso 9, Barcafelona","","Dua","¿Como se llamsa mi gato?");
 			pm.makePersistent(usuario2);
-			Usuario usuario3=new Usuario("Aitofr", "Davilfa" , "aidsfav13", "passfs123","aidav@gmail.com" , "68393948" ,"Calle Ave del Pfaaraiso 9, Barcelafona","Bsduena zona",null,"Dua","¿Como se llamsfa mi gato?", null);
+			Usuario usuario3=new Usuario("Aitofr", "Davilfa" , "aidsfav13", "passfs123","aidav@gmail.com" , "68393948" ,"Calle Ave del Pfaaraiso 9, Barcelafona","","Dua","¿Como se llamsfa mi gato?");
 			pm.makePersistent(usuario3);
 			
 			Anuncio anuncio=new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);

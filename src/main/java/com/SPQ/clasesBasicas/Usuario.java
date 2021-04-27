@@ -24,15 +24,14 @@ public class Usuario {
 	private String telefono;	
 	private String direccion;	
 	private String foto;	
-	private Anuncio[] anuncios;	
 	private String palabraRecuperacion;
 	private String preguntaRecuperacion;
-	private UsuarioConectado usuarioConectado;
+	//private UsuarioConectado usuarioConectado;
 	
 	
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
-			String direccion,  String foto, Anuncio[] anuncios, String palabraRecuperacion,
-			String preguntaRecuperacion, UsuarioConectado usuarioConectado) {
+			String direccion,  String foto, String palabraRecuperacion,
+			String preguntaRecuperacion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nombreUsuario = nombreUsuario;
@@ -41,7 +40,6 @@ public class Usuario {
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.foto = foto;
-		this.anuncios = anuncios;
 		this.palabraRecuperacion = palabraRecuperacion;
 		this.preguntaRecuperacion = preguntaRecuperacion;
 //		this.setUsuarioConectado(usuarioConectado);
@@ -56,7 +54,6 @@ public class Usuario {
 		this.telefono = "";
 		this.direccion = "";
 		this.foto = "";
-		this.anuncios = null;
 		this.palabraRecuperacion = "";
 		this.preguntaRecuperacion = "";
 	}
@@ -115,12 +112,7 @@ public class Usuario {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public Anuncio[] getAnuncios() {
-		return anuncios;
-	}
-	public void setAnuncios(Anuncio[] anuncios) {
-		this.anuncios = anuncios;
-	}
+
 	public String getPalabraRecuperacion() {
 		return palabraRecuperacion;
 	}

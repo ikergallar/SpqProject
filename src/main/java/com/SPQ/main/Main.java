@@ -9,11 +9,11 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-//		VentanaLogin inicio = new VentanaLogin();
-//		inicio.frmLogin.setVisible(true);
+		VentanaLogin inicio = new VentanaLogin();
+		inicio.frmLogin.setVisible(true);
 		
-		VentanaAnuncios inicio = new VentanaAnuncios();
-		inicio.setVisible(true);
+//		VentanaAnuncios inicio = new VentanaAnuncios();
+//		inicio.setVisible(true);
 		
 		
 		

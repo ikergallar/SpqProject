@@ -71,4 +71,32 @@ public class AnuncioTest {
 		assertEquals(Categoria.ALBAYIL, anuncio.getCategoria());	
 	}
 	
+	@Test
+	public void testSetNombre() {
+		Anuncio anuncio= new Anuncio();
+		String nombre = "Aitor";
+		anuncio.setNombre(nombre);	
+	}
+	
+	@Test
+	public void testSetDescripcion() {
+		Anuncio anuncio= new Anuncio();
+		String descripcion = "Ofrezco servicio de fontaneria";
+		anuncio.setDescripcion(descripcion);
+	}
+		
+	@Test
+	public void testSetPrecio() {
+		Anuncio anuncio= new Anuncio();
+		Float precio = 60.0f;
+		anuncio.setPrecio(precio);	
+	}
+	
+	@Test
+	public void testSetCategoria() {
+		Anuncio anuncio= new Anuncio();		
+		Categoria categoria = Categoria.FONTANERO;
+		anuncio.setCategoria(categoria);
+	}
+	
 }
