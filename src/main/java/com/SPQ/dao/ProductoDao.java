@@ -12,7 +12,7 @@ public class ProductoDao {
 		
 		List<Usuario> lista = new ArrayList();
 		
-		Usuario usuario = new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		Usuario usuario = new Usuario("Aitor", "Davila" , "aidav13", "passs123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 		Usuario usuario1 = new Usuario("Juan", "Gomez" , "gomezJuan", "7","gomezJuan@gmail.com" , "678987123" ,"Calle Colon 13, Zaragoza","","Misifu","¿Como se llama mi gato?");
 		Usuario usuario2 = new Usuario("Markel", "Alegria" , "markai", "091","markAle@gmail.com" , "786123064" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 		Usuario usuario3 = new Usuario("Marta", "Fournier" , "marfur", "091","marF@gmail.com" , "672094560" ,"Calle Uhagon 12, Pamplona","","Dua","¿Como se llama mi gato?");
