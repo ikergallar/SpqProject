@@ -1,4 +1,4 @@
-package com.SPQ.ProjectSPQ;
+package com.SPQ.clasesBasicas;
 
 import static org.junit.Assert.assertEquals;
 

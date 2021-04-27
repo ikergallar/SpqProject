@@ -1,4 +1,4 @@
-package com.SPQ.ProjectSPQ;
+package com.SPQ.clasesBasicas;
 
 import static org.junit.Assert.assertEquals;
 
@@ -20,6 +20,8 @@ import junit.framework.JUnit4TestAdapter;
 @RunWith(MockitoJUnitRunner.class)
 public class AnuncioTest {
 	
+	Anuncio anuncio;
+	
 	public static junit.framework.Test suite() {
 		return new JUnit4TestAdapter(AnuncioTest.class);
 		}
@@ -27,6 +29,8 @@ public class AnuncioTest {
 	
 	@Before
 	public void setUp() throws Exception {
+		anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true);		
+
 	}
 		
 	@After
@@ -42,85 +46,72 @@ public class AnuncioTest {
 	
 	@Test
 	public void testGetNombre() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);
 		assertEquals("Aitor", anuncio.getNombre());	
 	}
 	
 	@Test
 	public void testGetDescripcion() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true);		
 		assertEquals("Ofrezco servicio de fontaneria", anuncio.getDescripcion());	
 	}
 		
 	@Test
 	public void testGetPrecio() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);		
 		assertEquals(60, anuncio.getPrecio(), 0.0f);	
 	}
 	
 	@Test
 	public void testGetCategoria() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);		
-		assertEquals(Categoria.ALBAYIL, anuncio.getCategoria());	
+		assertEquals(Categoria.FONTANERO, anuncio.getCategoria());	
 	}
 	
 	@Test
 	public void testIsOferta() {
-		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);		
 		assertEquals(true, anuncio.isOferta());	
 	}
 	
 	@Test
 	public void testGetIdUsuario() {
-	    Anuncio anuncio = new Anuncio();
         anuncio.setIdUsuario(1);
         assertEquals(1, anuncio.getIdUsuario());
 	}
 	
 	@Test
 	public void testSetIdAnuncio() {
-		Anuncio anuncio=new Anuncio();
 		int idAnuncio = 1;
 		anuncio.setIdUsuario(idAnuncio);
 	} 
 	@Test
 	public void testSetNombre() {
-		Anuncio anuncio= new Anuncio();
 		String nombre = "Aitor";
 		anuncio.setNombre(nombre);	
 	}
 	
 	@Test
 	public void testSetDescripcion() {
-		Anuncio anuncio= new Anuncio();
 		String descripcion = "Ofrezco servicio de fontaneria";
 		anuncio.setDescripcion(descripcion);
 	}
 		
 	@Test
 	public void testSetPrecio() {
-		Anuncio anuncio= new Anuncio();
 		Float precio = 60.0f;
 		anuncio.setPrecio(precio);	
 	}
 	
 	@Test
 	public void testSetCategoria() {
-		Anuncio anuncio= new Anuncio();		
 		Categoria categoria = Categoria.FONTANERO;
 		anuncio.setCategoria(categoria);
 	}
 	
 	@Test
 	public void testSetOferta() {
-		Anuncio anuncio= new Anuncio();		
 		boolean oferta = true;
 		anuncio.setOferta(oferta);
 	}
 	
 	@Test
 	public void testSetIdUsuario() {
-		Anuncio anuncio=new Anuncio();
 		int idUsuario = 1;
 		anuncio.setIdUsuario(idUsuario);
 	} 
