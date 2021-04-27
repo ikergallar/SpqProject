@@ -98,6 +98,7 @@ public class VentanaPrincipal extends JFrame{
 		JPanel panelChat = new JPanel();
 		panelChat.setBounds(0, 0, 835, 592);
 		panelesDinamicos.add(panelChat, "3");
+		panelChat.setLayout(null);
 		cl.show(panelesDinamicos, "1");
 		
 		JPanel panelSelecVentana = new JPanel();
@@ -168,6 +169,7 @@ public class VentanaPrincipal extends JFrame{
 		ventChat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				cl.show(panelesDinamicos, "3");
 			}
 		});
 		ventChat.setBackground(new Color(39, 45, 53));
@@ -384,6 +386,7 @@ public class VentanaPrincipal extends JFrame{
 		
 		panelServiciosGen.setBackground(new Color(39, 45, 53));
 		panelServiciosGen.setSize(835,592);
+		panelServiciosGen.setLayout(null);
 					
 		
 		list = new JList();
