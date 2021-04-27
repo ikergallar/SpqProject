@@ -21,8 +21,8 @@ public class AnuncioGuardado extends Anuncio{
 	}
 
 	public AnuncioGuardado(String nombre, String descripcion, float precio, String foto, Categoria categoria,
-			boolean oferta, String nombreUsuario, Date fecha, String nombreGuardado) {
-		super(nombre, descripcion, precio, foto, categoria, oferta, nombreUsuario);
+			boolean oferta, Date fecha, String nombreGuardado) {
+		super(nombre, descripcion, precio, foto, categoria, oferta);
 		this.fecha = fecha;
 		this.nombre = nombreGuardado;
 	}

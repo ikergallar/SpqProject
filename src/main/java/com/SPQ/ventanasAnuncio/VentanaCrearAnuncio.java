@@ -116,14 +116,12 @@ public class VentanaCrearAnuncio extends JFrame{
 				String descripcion;
 				float  precio;
 				Categoria categoria;
-				String nombreUsuario;
 				boolean oferta;
 								
 				nombre = textNombre.getText();
 				descripcion = textDescripcion.getText();
 				precio = Float.parseFloat(textPrecio.getText());
 				categoria = (Categoria) comboCategoria.getSelectedItem();		
-				nombreUsuario = usuario.getNombreUsuario();
 				oferta = boxOferta.isSelected();
 				
 				if (nombre.equals("") || descripcion.equals("") || precio < 0 || categoria.equals(null)) {
@@ -138,8 +136,9 @@ public class VentanaCrearAnuncio extends JFrame{
 			    		anuncio.setDescripcion(descripcion);
 			    		anuncio.setPrecio(precio);
 			    		anuncio.setCategoria(categoria);
-			    		anuncio.setNombreUsuario(nombreUsuario);
 			    		anuncio.setOferta(oferta);
+			    		anuncio.setIdUsuario(usuario.getIdUsuario());
+
 																		
 							try {
 								

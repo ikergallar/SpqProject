@@ -43,13 +43,13 @@ public class DBManager {
 			Usuario usuario3=new Usuario("Aitofr", "Davilfa" , "aidsfav13", "passfs123","aidav@gmail.com" , "68393948" ,"Calle Ave del Pfaaraiso 9, Barcelafona","Bsduena zona",null,"Dua","¿Como se llamsfa mi gato?", null);
 			pm.makePersistent(usuario3);
 			
-			Anuncio anuncio=new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true, "peter");
+			Anuncio anuncio=new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);
 			pm.makePersistent(anuncio);
-			Anuncio anuncio1=new Anuncio("Aiadtor", "Ofrezco servicio de fontaneria" ,40,"", Categoria.ALBAYIL,false,"peter");
+			Anuncio anuncio1=new Anuncio("Aiadtor", "Ofrezco servicio de fontaneria" ,40,"", Categoria.ALBAYIL,false);
 			pm.makePersistent(anuncio1);
-			Anuncio anuncio2=new Anuncio("sitor", "Ofrezdco servicio de fontaneria" ,20,"", Categoria.ALBAYIL,true,"peter");
+			Anuncio anuncio2=new Anuncio("sitor", "Ofrezdco servicio de fontaneria" ,20,"", Categoria.ALBAYIL,true);
 			pm.makePersistent(anuncio2);
-			Anuncio anuncio3=new Anuncio("Aitoddr", "Ofrezco saaervicio de fontaneria" ,90,"", Categoria.ALBAYIL,true,"peter");
+			Anuncio anuncio3=new Anuncio("Aitoddr", "Ofrezco saaervicio de fontaneria" ,90,"", Categoria.ALBAYIL,true);
 			pm.makePersistent(anuncio3);
 			
 
@@ -293,14 +293,14 @@ public class DBManager {
 		
 	}
 	
-	public List<Anuncio> misAnuncios(String nomUsuario) throws DBException{
+	public List<Anuncio> misAnuncios(int IdUsuario) throws DBException{
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		
 		tx.begin();
 		
-		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where nombreusuario='"+nomUsuario+"'");
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where idusuario='"+IdUsuario+"'");
 		query.setClass(Anuncio.class);
 		List<Anuncio> results = query.executeList();
 		
@@ -335,7 +335,7 @@ public class DBManager {
 	 		
 	        tx.begin();
 	 		
-	 		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE anuncio SET nombre='"+ anuncio.getNombre() +"', descripcion='"+anuncio.getDescripcion() +"', categoria='"+anuncio.getCategoria()+"',precio='"+anuncio.getPrecio()+ "'") ;
+	 		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE anuncio SET nombre='"+ anuncio.getNombre() +"', descripcion='"+anuncio.getDescripcion() +"', categoria='"+anuncio.getCategoria()+"',precio='"+anuncio.getPrecio()+ "' WHERE idanuncio ='"+ anuncio.getIdAnuncio() + "'") ;
 	 		query.setClass(Anuncio.class);
 	 		Long update = (Long)query.execute();
 	 		
@@ -385,7 +385,7 @@ public class DBManager {
 	 		
 	 		tx.begin();
 	 		
-	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "DELETE  FROM anuncio where nombre='"+anuncio.getNombre()+"'");
+	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "DELETE  FROM anuncio where idanuncio='"+anuncio.getIdAnuncio()+ "'");
 	 		query.setClass(Anuncio.class);
 	 		Long delete = (Long)query.execute();
 	 		

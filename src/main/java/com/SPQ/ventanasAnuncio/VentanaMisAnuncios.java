@@ -36,7 +36,7 @@ public class VentanaMisAnuncios extends JFrame{
 		modelo = new DefaultListModel<List<Anuncio>>();
 
 		try {
-			listaAnuncios = conn.misAnuncios(usuario.getNombreUsuario());
+			listaAnuncios = conn.misAnuncios(usuario.getIdUsuario());
 		} catch (DBException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
@@ -64,11 +64,9 @@ public class VentanaMisAnuncios extends JFrame{
 		btnEditar.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e){   
 					Anuncio anuncio = ((Anuncio)list.getSelectedValue());
-					if(anuncio instanceof Anuncio) {
 					VentanaEditarAnuncio edit = new VentanaEditarAnuncio(usuario, anuncio);	
 					edit.setVisible(true);
 					dispose();
-					}
 													        			      		        
 		    }
 		});

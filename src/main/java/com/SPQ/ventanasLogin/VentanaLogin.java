@@ -134,11 +134,14 @@ public class VentanaLogin extends JFrame{
 						acceso= false;
 					}
 				}
-        		        														
-				JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-				VentanaMisAnuncios vPrincipal = new VentanaMisAnuncios(usuarioIniciado);
-				vPrincipal.setVisible(true);
-				frmLogin.dispose();
+        		
+        		if(acceso == true) {
+					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+					VentanaMisAnuncios vPrincipal = new VentanaMisAnuncios(usuarioIniciado);
+					vPrincipal.setVisible(true);
+					frmLogin.dispose();
+        		}
+				
 			    if(acceso!=true){
 				    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
 				    textFieldUsuario.setText("");

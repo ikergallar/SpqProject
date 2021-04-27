@@ -1,14 +1,20 @@
 package com.SPQ.clasesBasicas;
 
 import javax.jdo.annotations.ForeignKey;
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
 
 @PersistenceCapable
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Anuncio {
-	private static String idAnuncio;
+	
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
+	private int idAnuncio;
 
 	private String nombre;
 	private String descripcion;
@@ -17,18 +23,17 @@ public class Anuncio {
 	private Categoria categoria;
 	private boolean oferta;
 	@ForeignKey
-	private String nombreUsuario;
+	private int idUsuario;
 	
 	
 	
-	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, String nombreUsuario) {
+	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.foto = foto;
 		this.categoria = categoria;
-		this.nombreUsuario = nombreUsuario;
 		this.oferta = oferta;
 				
 	}
@@ -39,16 +44,15 @@ public class Anuncio {
 		this.precio = 0;
 		this.foto = "";
 		this.categoria = categoria.NINGUNA;
-		this.nombreUsuario = "";
 		this.oferta = false;
 
 	}
 
-	public static String getIdAnuncio() {
+	public int getIdAnuncio() {
 		return idAnuncio;
 	}
-	public static void setIdAnuncio(String idAnuncio) {
-		Anuncio.idAnuncio = idAnuncio;
+	public  void setIdAnuncio(int idAnuncio) {
+		this.idAnuncio = idAnuncio;
 	}
 	public String getNombre() {
 		return nombre;
@@ -74,11 +78,11 @@ public class Anuncio {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public String getNombreUsuario() {
-		return nombreUsuario;
+	public int getIdUsuario() {
+		return idUsuario;
 	}
-	public void setNombreUsuario(String nombreUsuario) {
-		this.nombreUsuario = nombreUsuario;
+	public void setIdUsuario(int nombreUsuario) {
+		this.idUsuario = nombreUsuario;
 	}
 	public Categoria getCategoria() {
 		return categoria;
@@ -97,7 +101,7 @@ public class Anuncio {
 
 	@Override
 	public String toString() {
-		return nombre + ", " + descripcion + ", " + precio + " euros, CATEGORIA:" + categoria + ", Usuario: " + nombreUsuario + "]";
+		return nombre + ", " + descripcion + ", " + precio + " euros, CATEGORIA:" + categoria;
 	}
 	
 	
