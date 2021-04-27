@@ -55,18 +55,20 @@ public class VentanaAnuncios extends JFrame{
 		});
 	}
 	public VentanaAnuncios(){
-		getContentPane().setForeground(new Color(39, 45, 53));
+		getContentPane().setBackground(new Color(39, 45, 53));
 		getContentPane().setEnabled(false);
 		getContentPane().setLayout(null);
 					
 		
 		list = new JList();
+		list.setBackground(Color.WHITE);
 		list.setBounds(205, 88, 584, 440);
 		getContentPane().add(list);
 				
 		DBManager conn = new DBManager();
 		
 		JRadioButton rdbtnCategoria = new JRadioButton("Categoría");
+		rdbtnCategoria.setBackground(new Color(39, 45, 53));
 		rdbtnCategoria.setForeground(Color.WHITE);
 		rdbtnCategoria.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnCategoria.setBounds(41, 123, 109, 23);
@@ -98,6 +100,7 @@ public class VentanaAnuncios extends JFrame{
 		getContentPane().add(flitro);
 		
 		JRadioButton rdbtnPrecio = new JRadioButton("Precio");
+		rdbtnPrecio.setBackground(new Color(39, 45, 53));
 		rdbtnPrecio.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnPrecio.setForeground(Color.WHITE);
 		rdbtnPrecio.setBounds(41, 220, 109, 23);
@@ -114,12 +117,14 @@ public class VentanaAnuncios extends JFrame{
 		getContentPane().add(comboPrecio);
 		
 		JRadioButton rdbtnOferta = new JRadioButton("Ofertas");
+		rdbtnOferta.setBackground(new Color(39, 45, 53));
 		rdbtnOferta.setForeground(Color.WHITE);
 		rdbtnOferta.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnOferta.setBounds(41, 317, 109, 23);
 		getContentPane().add(rdbtnOferta);
 		
 		JRadioButton rdbtnUsuario = new JRadioButton("Nombre de usuario");
+		rdbtnUsuario.setBackground(new Color(39, 45, 53));
 		rdbtnUsuario.setForeground(Color.WHITE);
 		rdbtnUsuario.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnUsuario.setBounds(41, 369, 165, 23);
@@ -133,8 +138,8 @@ public class VentanaAnuncios extends JFrame{
 		
 		
 		textUsername = new JTextField();
-		textUsername.setForeground(Color.WHITE);
-		textUsername.setBackground(Color.RED);
+		textUsername.setForeground(Color.BLACK);
+		textUsername.setBackground(Color.WHITE);
 		textUsername.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textUsername.setEnabled(false);
 		textUsername.setBounds(41, 399, 98, 35);
