@@ -54,6 +54,12 @@ public class VentanaMisAnuncios extends JFrame{
 		btnEditar.setBounds(70, 585, 144, 39);
 		getContentPane().add(btnEditar);
 		
+		JButton btnEliminar = new JButton("Eliminar");
+		btnEliminar.setForeground(Color.WHITE);
+		btnEliminar.setBackground(Color.RED);
+		btnEliminar.setBounds(213, 585, 144, 39);
+		getContentPane().add(btnEliminar);
+		
 		
 		btnEditar.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e){   
@@ -73,11 +79,29 @@ public class VentanaMisAnuncios extends JFrame{
 		        if (evt.getClickCount() == 2) {
 		        	Anuncio anuncio = (Anuncio) list.getSelectedValue();
 		        	if(anuncio instanceof Anuncio) {
-					    new VentanaEditarAnuncio(usuario,anuncio);	
+		        		VentanaEditarAnuncio edit = new VentanaEditarAnuncio(usuario, anuncio);	
+						edit.setVisible(true);
+						dispose();	
 		        	}
 		        	
 		        }		    
 		    }
+		});
+		
+		btnEliminar.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+				
+				Anuncio anuncio = (Anuncio) list.getSelectedValue();
+				modelo.removeElement(anuncio);
+				try {
+					conn.eliminarAnuncio(anuncio);
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+													        			      		        
+		
 		});
 											
 		this.setSize(600,697);
