@@ -20,8 +20,10 @@ import java.awt.Color;
 
 public class VentanaMisAnuncios extends JFrame{
 	
-	private DefaultListModel<List<Anuncio>> modelo;
+	private DefaultListModel modelo;
 	private JList<List<Anuncio>> list;
+	private List<Anuncio> listaAnuncios;
+	private DefaultListModel<List<Anuncio>> modeloAnuncios;
 	
 	public VentanaMisAnuncios(Usuario usuario) {
 		getContentPane().setLayout(null);
@@ -33,13 +35,20 @@ public class VentanaMisAnuncios extends JFrame{
 		DBManager conn = new DBManager();
 		
 		modelo = new DefaultListModel<List<Anuncio>>();
+
 		try {
-			modelo.addElement(conn.misAnuncios(usuario.getNombreUsuario()));
-		} catch (DBException e) {
+			listaAnuncios = conn.misAnuncios(usuario.getNombreUsuario());
+		} catch (DBException e2) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e2.printStackTrace();
 		}
-		list.setModel(modelo);
+		modeloAnuncios = new DefaultListModel<List<Anuncio>>();
+		for (Anuncio anuncios : listaAnuncios) {
+			modelo.addElement(anuncios);
+			list.setModel(modelo);
+		}
+		
+		
 		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setForeground(Color.WHITE);
