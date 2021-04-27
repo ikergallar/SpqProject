@@ -3,24 +3,27 @@ package com.SPQ.dao;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.SPQ.modelo.*;
+import com.SPQ.clasesBasicas.Usuario;
 
 
 public class ProductoDao {
 
-	public static List getProductos() {
-		List<Producto> lista = new ArrayList();
-		Producto producto = new Producto(1, "Pez", 12);
-		Producto producto1 = new Producto(2, "b", 23);
-		Producto producto2 = new Producto(3, "c", 54);
-		Producto producto3 = new Producto(4, "d", 80);
-		Producto producto4 = new Producto(5, "e", 32);
+	public static List getUsuarios() {
 		
-		lista.add(producto);
-		lista.add(producto1);
-		lista.add(producto2);
-		lista.add(producto3);
-		lista.add(producto4);
+		List<Usuario> lista = new ArrayList();
+		
+		Usuario usuario = new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		Usuario usuario1 = new Usuario("Juan", "Gomez" , "gomezJuan", "7","gomezJuan@gmail.com" , "678987123" ,"Calle Colon 13, Zaragoza","","Misifu","¿Como se llama mi gato?");
+		Usuario usuario2 = new Usuario("Markel", "Alegria" , "markai", "091","markAle@gmail.com" , "786123064" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		Usuario usuario3 = new Usuario("Marta", "Fournier" , "marfur", "091","marF@gmail.com" , "672094560" ,"Calle Uhagon 12, Pamplona","","Dua","¿Como se llama mi gato?");
+		Usuario usuario4 = new Usuario("Maria", "Gallarzagoitia" , "marGa", "893","marGallar@gmail.com" , "641527093" ,"Calle Bilbao, Sevilla","","Whiskas","¿Como se llama mi gato?");
+		
+		lista.add(usuario);
+		lista.add(usuario1);
+		lista.add(usuario2);
+		lista.add(usuario3);
+		lista.add(usuario4);
+		
 		return lista;
 	}
 	

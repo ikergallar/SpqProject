@@ -3,6 +3,15 @@ package com.SPQ.dataBase;
 
 import java.util.List;
 import javax.jdo.*;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import com.SPQ.clasesBasicas.*;
 
 
@@ -106,6 +115,9 @@ public class DBManager {
    }
    
  //LISTAR USUARIOS DE BD
+   	@GET
+   	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Usuario> listarUsuarios() throws DBException{
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -155,7 +167,9 @@ public class DBManager {
  		return usuario;
  		
  	}
- 	
+ 	@PUT
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
     public void  updateUsuario(Usuario usuario) throws DBException{
  		
  		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
@@ -191,6 +205,9 @@ public class DBManager {
 			
  	}
    
+   @GET
+   @Path("/{id}")
+   @Produces(MediaType.APPLICATION_JSON)
    public List<Anuncio> listarAnuncios() throws DBException{
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -225,6 +242,9 @@ public class DBManager {
 		
 	}
    
+    @GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
    	public List<AnuncioGuardado> listarAnunciosGuardados() throws DBException{
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -345,6 +365,9 @@ public class DBManager {
 	 		
 	 }
 	 
+	 @GET
+	 @Path("/{id}")
+	 @Produces(MediaType.APPLICATION_JSON)
 	 public Anuncio seleccionarAnuncio(Anuncio anuncio) throws DBException{
 	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -362,6 +385,10 @@ public class DBManager {
 	 		return anuncio;
 	 		
 	 	}
+	 
+	 @POST
+	 @Produces(MediaType.APPLICATION_JSON)
+	 @Consumes(MediaType.APPLICATION_JSON)
 	 public void guardarAnuncio(Anuncio anuncio) throws DBException{
 		 	PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -377,7 +404,9 @@ public class DBManager {
 	 		tx.commit();
 	 		pm.close();
 	 }
-	 
+	 @DELETE
+	 @Path("/{id}")
+	 @Produces(MediaType.APPLICATION_JSON)
 	 public Anuncio eliminarAnuncio(Anuncio anuncio) throws DBException{
 	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	 		PersistenceManager pm = pmf.getPersistenceManager();
