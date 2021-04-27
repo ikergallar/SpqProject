@@ -31,6 +31,11 @@ public class VentanaAnuncios extends JFrame{
 	private DefaultListModel modeloPrecio;
 	private DefaultListModel modeloOferta;
 	private DefaultListModel modeloUsuario;
+	private List<Anuncio> listaAnuncios;
+	private List<Anuncio> listaCategoria;
+	private List<Anuncio> listaPrecio;
+	private List<Anuncio> listaOferta;
+	private List<Anuncio> listaUsuario;
 	private JScrollPane scrollPane;
 	private JList list;
 	private ButtonGroup buttonGroup;	
@@ -73,12 +78,16 @@ public class VentanaAnuncios extends JFrame{
 		
 		modelo = new DefaultListModel();
 		try {
-			modelo.addElement(conn.listarAnuncios());
+			listaAnuncios = conn.listarAnuncios();
 		} catch (DBException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		list.setModel(modelo);
+		
+		for (Anuncio anuncios : listaAnuncios) {
+			modelo.addElement(anuncios);
+			list.setModel(modelo);
+		}
 		
 		JLabel flitro = new JLabel("Filtrar por:");
 		flitro.setBounds(62, 11, 104, 14);
@@ -139,12 +148,16 @@ public class VentanaAnuncios extends JFrame{
 				modeloCategoria = new DefaultListModel();
 				modelo = modeloCategoria;
 				try {
-					modeloCategoria.addElement(conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
+					listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
 				} catch (DBException e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				list.setModel(modeloCategoria);
+				
+				for (Anuncio anuncios : listaCategoria) {
+					modeloCategoria.addElement(anuncios);
+					list.setModel(modeloCategoria);
+				}
 		    }
 			});
 		
@@ -166,14 +179,17 @@ public class VentanaAnuncios extends JFrame{
 					modeloPrecio = new DefaultListModel();
 					modelo = modeloPrecio;
 					try {
-						modeloPrecio.addElement(conn.filtroPrecioMayor());
+						listaPrecio = (conn.filtroPrecioMayor());
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
-					list.setModel(modeloPrecio);
-					
+					for (Anuncio anuncios : listaPrecio) {
+						modeloPrecio.addElement(anuncios);
+						list.setModel(modeloPrecio);
+					}
+									
 				}else if(comboPrecio.getSelectedItem().toString().equals("Menor precio")) {
 					modeloPrecio = new DefaultListModel();
 					modelo = modeloPrecio;
@@ -184,8 +200,10 @@ public class VentanaAnuncios extends JFrame{
 						e1.printStackTrace();
 					}
 					
-					list.setModel(modeloPrecio);
-
+					for (Anuncio anuncios : listaPrecio) {
+						modeloPrecio.addElement(anuncios);
+						list.setModel(modeloPrecio);
+					}
 				}					
 			}
 		});
@@ -201,13 +219,16 @@ public class VentanaAnuncios extends JFrame{
 		        	modeloOferta = new DefaultListModel();
 					modelo = modeloOferta;
 					try {
-						modeloOferta.addElement(conn.filtroOfertas());
+						listaOferta = (conn.filtroOfertas());
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
 					
-					list.setModel(modeloOferta);
+					for (Anuncio anuncios : listaOferta) {
+						modeloOferta.addElement(anuncios);
+						list.setModel(modeloOferta);
+					}
 		            
 		        }
 		    }
@@ -227,19 +248,18 @@ public class VentanaAnuncios extends JFrame{
 		btnBuscar.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e){   
 				String nomUsuario = textUsername.getText();
-
-		        try {
-					if (conn.filtroUsuario(nomUsuario) != null){
-						modeloUsuario = new DefaultListModel();
-						modelo = modeloUsuario;
-						modeloUsuario.addElement(conn.filtroUsuario(nomUsuario));
-						list.setModel(modeloUsuario);	        	
-					}else{
-						 JOptionPane.showMessageDialog(null, "El usuario no existe", "Error", 0);
-					}
-				} catch (DBException e1) {
+				modeloUsuario = new DefaultListModel();
+				modelo = modeloUsuario;
+				try {
+					listaUsuario = (conn.filtroUsuario(nomUsuario));
+				} catch (DBException e2) {
 					// TODO Auto-generated catch block
-					e1.printStackTrace();
+					e2.printStackTrace();
+				}
+
+				for (Anuncio anuncios : listaUsuario) {
+					modeloUsuario.addElement(anuncios);
+					list.setModel(modeloUsuario);
 				}
 		    }
 			});

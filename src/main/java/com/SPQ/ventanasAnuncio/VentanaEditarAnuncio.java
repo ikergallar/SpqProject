@@ -35,9 +35,7 @@ public class VentanaEditarAnuncio extends JFrame{
 	private JComboBox<Categoria> comboCategoria;
 	
 		
-	public VentanaEditarAnuncio(Usuario usuario, Anuncio anuncio) {				
-		
-		DBManager con = new DBManager();
+	public VentanaEditarAnuncio(Usuario usuario, Anuncio anuncio) {						
 		
 		pNorte = new JPanel();
 		pNorte.setBackground(Color.WHITE);
@@ -114,6 +112,8 @@ public class VentanaEditarAnuncio extends JFrame{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				DBManager con = new DBManager();
+				
 				String nombre;
 				String descripcion;
 				float  precio;
@@ -132,33 +132,24 @@ public class VentanaEditarAnuncio extends JFrame{
 					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
 					
 				}else {
-					    	
+					    					   				    				    							
 				    try {
-				    	
-			    		Anuncio anuncio = new Anuncio();
-			    		anuncio.setNombre(nombre);
+				    	anuncio.setNombre(nombre);
 			    		anuncio.setDescripcion(descripcion);
 			    		anuncio.setPrecio(precio);
 			    		anuncio.setCategoria(categoria);
 			    		anuncio.setNombreUsuario(nombreUsuario);
-			    		anuncio.setOferta(oferta);
-																		
-							try {
-								
-								con.updateAnuncio(anuncio);
-								JOptionPane.showMessageDialog(null, "Anuncio editado correctamente", "Correcto", 1);
-                                dispose();											
-									
-								
-							} catch (DBException e1) {
-								e1.printStackTrace();
-							}
-								
-								
-						} catch (HeadlessException | SecurityException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}														  
+			    		anuncio.setOferta(oferta);			
+						con.updateAnuncio(anuncio);
+						
+						JOptionPane.showMessageDialog(null, "Anuncio editado correctamente", "Correcto", 1);
+					} catch (DBException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+						
+                        dispose();											
+																											  
 				}
 			}
 			
