@@ -291,15 +291,15 @@ public class VentanaPrincipal extends JFrame{
 			panelPerfilGen.add(btnNewButton);
 			
 			JButton botonCerrarSesion = new JButton("Cerrar Sesion");
-			botonCerrarSesion.setFont(new Font("Tahoma", Font.BOLD, 12));
+			botonCerrarSesion.setFont(new Font("Tahoma", Font.BOLD, 14));
 			botonCerrarSesion.setForeground(Color.WHITE);
 			botonCerrarSesion.setBackground(Color.RED);
-			botonCerrarSesion.setBounds(664, 15, 134, 40);
+			botonCerrarSesion.setBounds(641, 15, 157, 51);
 			panelPerfilGen.add(botonCerrarSesion);
 			
 			final JLabel cambiarPass = new JLabel("¿Deseas cambiar tu contraseña? Pincha aquí.");
 			cambiarPass.setForeground(Color.GRAY);
-			cambiarPass.setBounds(36, 305, 273, 14);
+			cambiarPass.setBounds(36, 314, 273, 14);
 			panelPerfilGen.add(cambiarPass);
 			
 			JButton btnServicios = new JButton("MIS SERVICIOS");
