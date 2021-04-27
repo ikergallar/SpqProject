@@ -40,6 +40,8 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JTabbedPane;
+import java.awt.CardLayout;
+import javax.swing.UIManager;
 
 public class VentanaPrincipal extends JFrame{
 
@@ -65,6 +67,8 @@ public class VentanaPrincipal extends JFrame{
 	JPanel panelPerfil;
 	JPanel panelServicios;
     DBManager con = new DBManager();
+    JPanel panelesDinamicos;
+    CardLayout cl= new CardLayout();
 
 
 
@@ -77,21 +81,24 @@ public class VentanaPrincipal extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		
-		JLayeredPane panelesDinamicos = new JLayeredPane();
+		panelesDinamicos = new JPanel();
+		panelesDinamicos.setBackground(new Color(39, 45, 53));
 		panelesDinamicos.setBounds(250, 89, 835, 592);
 		getContentPane().add(panelesDinamicos);
+		panelesDinamicos.setLayout(cl);
 		
 		panelPerfil = genPanelPerfil(usuario);
 		panelPerfil.setBounds(0, 0, 835, 592);
-		panelesDinamicos.add(panelPerfil);
+		panelesDinamicos.add(panelPerfil, "1");
 		
 		panelServicios = genPanelServicios();
 		panelServicios.setBounds(0, 0, 835, 592);
-		panelesDinamicos.add(panelServicios);
+		panelesDinamicos.add(panelServicios, "2");
 		
 		JPanel panelChat = new JPanel();
 		panelChat.setBounds(0, 0, 835, 592);
-		panelesDinamicos.add(panelChat);
+		panelesDinamicos.add(panelChat, "3");
+		cl.show(panelesDinamicos, "1");
 		
 		JPanel panelSelecVentana = new JPanel();
 		panelSelecVentana.setBounds(20, 89, 230, 600);
@@ -102,7 +109,7 @@ public class VentanaPrincipal extends JFrame{
 		ventPerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				
+				cl.show(panelesDinamicos, "1");
 			}
 		});
 		ventPerfil.setBackground(new Color(39, 45, 53));
@@ -122,6 +129,7 @@ public class VentanaPrincipal extends JFrame{
 		ventServicios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				cl.show(panelesDinamicos, "2");
 			}
 		});
 		ventServicios.setBackground(new Color(39, 45, 53));
