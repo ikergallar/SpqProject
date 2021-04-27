@@ -24,30 +24,22 @@ public class AnuncioTest {
 		return new JUnit4TestAdapter(AnuncioTest.class);
 		}
 	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
 	
 	@Before
 	public void setUp() throws Exception {
 	}
-	
-	Anuncio anuncio;
-	
-	@Before
-	public void init() {
 		
-		anuncio = new Anuncio();
-	}
-	
 	@After
 	public void tearDown() throws Exception {
 	}
 
+	@Test
+	public void testGetIdAnuncio() {
+	    Anuncio anuncio = new Anuncio();
+        anuncio.setIdAnuncio(1);
+        assertEquals(1, anuncio.getIdAnuncio());
+	} 
+	
 	@Test
 	public void testGetNombre() {
 		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);
@@ -72,6 +64,25 @@ public class AnuncioTest {
 		assertEquals(Categoria.ALBAYIL, anuncio.getCategoria());	
 	}
 	
+	@Test
+	public void testIsOferta() {
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.ALBAYIL,true);		
+		assertEquals(true, anuncio.isOferta());	
+	}
+	
+	@Test
+	public void testGetIdUsuario() {
+	    Anuncio anuncio = new Anuncio();
+        anuncio.setIdUsuario(1);
+        assertEquals(1, anuncio.getIdUsuario());
+	}
+	
+	@Test
+	public void testSetIdAnuncio() {
+		Anuncio anuncio=new Anuncio();
+		int idAnuncio = 1;
+		anuncio.setIdUsuario(idAnuncio);
+	} 
 	@Test
 	public void testSetNombre() {
 		Anuncio anuncio= new Anuncio();
@@ -99,5 +110,19 @@ public class AnuncioTest {
 		Categoria categoria = Categoria.FONTANERO;
 		anuncio.setCategoria(categoria);
 	}
+	
+	@Test
+	public void testSetOferta() {
+		Anuncio anuncio= new Anuncio();		
+		boolean oferta = true;
+		anuncio.setOferta(oferta);
+	}
+	
+	@Test
+	public void testSetIdUsuario() {
+		Anuncio anuncio=new Anuncio();
+		int idUsuario = 1;
+		anuncio.setIdUsuario(idUsuario);
+	} 
 	
 }
