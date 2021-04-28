@@ -247,4 +247,18 @@ public class VentanaLogin extends JFrame{
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public boolean login(Usuario usuario) {
+		String nomUsuario = textFieldUsuario.getText();
+		String contrasenya= textFieldContrasena.getText();
+		if (!nomUsuario.equals("") && !contrasenya.equals("")) {
+		    if (usuario.getNombreUsuario().equals(nomUsuario) || !usuario.equals(null)){
+			    return true;
+		    } else {
+			    return false;
+		    }
+		}else {
+			return false;
+		}
+	}
 }
