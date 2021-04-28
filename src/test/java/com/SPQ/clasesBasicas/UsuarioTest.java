@@ -168,6 +168,17 @@ public class UsuarioTest {
 		usuario.setPreguntaRecuperacion(preguntaRecuperacion);
 	}
 	
+	@Test
+	public void testPrintPublicData() {
+		usuario.printPublicData();
+	}
+	
+	@Test
+	public void testPrintAllData() {
+		usuario.printAllData();
+	}
+	
+	
 	
 
 }

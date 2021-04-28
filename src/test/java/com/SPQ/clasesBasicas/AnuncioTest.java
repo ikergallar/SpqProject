@@ -22,11 +22,6 @@ public class AnuncioTest {
 	
 	Anuncio anuncio;
 	
-	public static junit.framework.Test suite() {
-		return new JUnit4TestAdapter(AnuncioTest.class);
-		}
-	
-	
 	@Before
 	public void setUp() throws Exception {
 		anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true);		
@@ -60,6 +55,11 @@ public class AnuncioTest {
 	}
 	
 	@Test
+	public void testGetFoto() {
+		assertEquals("", anuncio.getFoto());	
+	}
+	
+	@Test
 	public void testGetCategoria() {
 		assertEquals(Categoria.FONTANERO, anuncio.getCategoria());	
 	}
@@ -77,43 +77,46 @@ public class AnuncioTest {
 	
 	@Test
 	public void testSetIdAnuncio() {
-		int idAnuncio = 1;
-		anuncio.setIdUsuario(idAnuncio);
+		anuncio.setIdUsuario(anuncio.getIdAnuncio());
 	} 
 	@Test
 	public void testSetNombre() {
-		String nombre = "Aitor";
-		anuncio.setNombre(nombre);	
+		anuncio.setNombre(anuncio.getNombre());	
 	}
 	
 	@Test
 	public void testSetDescripcion() {
-		String descripcion = "Ofrezco servicio de fontaneria";
-		anuncio.setDescripcion(descripcion);
+		anuncio.setDescripcion(anuncio.getDescripcion());
 	}
 		
 	@Test
 	public void testSetPrecio() {
-		Float precio = 60.0f;
-		anuncio.setPrecio(precio);	
+		anuncio.setPrecio(anuncio.getPrecio());	
+	}
+	
+	@Test
+	public void testSetFoto() {
+		anuncio.setFoto(anuncio.getFoto());
 	}
 	
 	@Test
 	public void testSetCategoria() {
-		Categoria categoria = Categoria.FONTANERO;
-		anuncio.setCategoria(categoria);
+		anuncio.setCategoria(anuncio.getCategoria());
 	}
 	
 	@Test
 	public void testSetOferta() {
-		boolean oferta = true;
-		anuncio.setOferta(oferta);
+		anuncio.setOferta(anuncio.isOferta());
 	}
 	
 	@Test
 	public void testSetIdUsuario() {
-		int idUsuario = 1;
-		anuncio.setIdUsuario(idUsuario);
+		anuncio.setIdUsuario(anuncio.getIdUsuario());
+	} 
+	
+	@Test
+	public void testToString() {
+		anuncio.toString();
 	} 
 	
 }
