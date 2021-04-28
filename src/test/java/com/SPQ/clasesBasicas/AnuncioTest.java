@@ -1,0 +1,122 @@
+package com.SPQ.clasesBasicas;
+
+import static org.junit.Assert.assertEquals;
+
+import org.glassfish.jersey.test.JerseyTest;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import com.SPQ.clasesBasicas.Anuncio;
+import com.SPQ.clasesBasicas.Categoria;
+import com.SPQ.clasesBasicas.Usuario;
+
+import junit.framework.JUnit4TestAdapter;
+
+@RunWith(MockitoJUnitRunner.class)
+public class AnuncioTest {
+	
+	Anuncio anuncio;
+	
+	@Before
+	public void setUp() throws Exception {
+		anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true);		
+
+	}
+		
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testGetIdAnuncio() {
+	    Anuncio anuncio = new Anuncio();
+        anuncio.setIdAnuncio(1);
+        assertEquals(1, anuncio.getIdAnuncio());
+	} 
+	
+	@Test
+	public void testGetNombre() {
+		assertEquals("Aitor", anuncio.getNombre());	
+	}
+	
+	@Test
+	public void testGetDescripcion() {
+		assertEquals("Ofrezco servicio de fontaneria", anuncio.getDescripcion());	
+	}
+		
+	@Test
+	public void testGetPrecio() {
+		assertEquals(60, anuncio.getPrecio(), 0.0f);	
+	}
+	
+	@Test
+	public void testGetFoto() {
+		assertEquals("", anuncio.getFoto());	
+	}
+	
+	@Test
+	public void testGetCategoria() {
+		assertEquals(Categoria.FONTANERO, anuncio.getCategoria());	
+	}
+	
+	@Test
+	public void testIsOferta() {
+		assertEquals(true, anuncio.isOferta());	
+	}
+	
+	@Test
+	public void testGetIdUsuario() {
+        anuncio.setIdUsuario(1);
+        assertEquals(1, anuncio.getIdUsuario());
+	}
+	
+	@Test
+	public void testSetIdAnuncio() {
+		anuncio.setIdUsuario(anuncio.getIdAnuncio());
+	} 
+	@Test
+	public void testSetNombre() {
+		anuncio.setNombre(anuncio.getNombre());	
+	}
+	
+	@Test
+	public void testSetDescripcion() {
+		anuncio.setDescripcion(anuncio.getDescripcion());
+	}
+		
+	@Test
+	public void testSetPrecio() {
+		anuncio.setPrecio(anuncio.getPrecio());	
+	}
+	
+	@Test
+	public void testSetFoto() {
+		anuncio.setFoto(anuncio.getFoto());
+	}
+	
+	@Test
+	public void testSetCategoria() {
+		anuncio.setCategoria(anuncio.getCategoria());
+	}
+	
+	@Test
+	public void testSetOferta() {
+		anuncio.setOferta(anuncio.isOferta());
+	}
+	
+	@Test
+	public void testSetIdUsuario() {
+		anuncio.setIdUsuario(anuncio.getIdUsuario());
+	} 
+	
+	@Test
+	public void testToString() {
+		anuncio.toString();
+	} 
+	
+}

@@ -1,4 +1,4 @@
-package com.SPQ.sockets;
+package com.SPQ.chat;
 
 import java.awt.event.*;
 import java.io.DataOutputStream;

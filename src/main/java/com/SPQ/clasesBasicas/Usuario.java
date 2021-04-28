@@ -24,15 +24,14 @@ public class Usuario {
 	private String telefono;	
 	private String direccion;	
 	private String foto;	
-	private Anuncio[] anuncios;	
 	private String palabraRecuperacion;
 	private String preguntaRecuperacion;
-	private UsuarioConectado usuarioConectado;
+	//private UsuarioConectado usuarioConectado;
 	
 	
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
-			String direccion,  String foto, Anuncio[] anuncios, String palabraRecuperacion,
-			String preguntaRecuperacion, UsuarioConectado usuarioConectado) {
+			String direccion,  String foto, String palabraRecuperacion,
+			String preguntaRecuperacion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nombreUsuario = nombreUsuario;
@@ -41,7 +40,6 @@ public class Usuario {
 		this.telefono = telefono;
 		this.direccion = direccion;
 		this.foto = foto;
-		this.anuncios = anuncios;
 		this.palabraRecuperacion = palabraRecuperacion;
 		this.preguntaRecuperacion = preguntaRecuperacion;
 //		this.setUsuarioConectado(usuarioConectado);
@@ -56,14 +54,13 @@ public class Usuario {
 		this.telefono = "";
 		this.direccion = "";
 		this.foto = "";
-		this.anuncios = null;
 		this.palabraRecuperacion = "";
 		this.preguntaRecuperacion = "";
 	}
 	public int getIdUsuario() {
 		return idUsuario;
 	}
-	public void setIdUsuario(int id) {
+	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 	public String getNombreUsuario() {
@@ -115,12 +112,7 @@ public class Usuario {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-	public Anuncio[] getAnuncios() {
-		return anuncios;
-	}
-	public void setAnuncios(Anuncio[] anuncios) {
-		this.anuncios = anuncios;
-	}
+
 	public String getPalabraRecuperacion() {
 		return palabraRecuperacion;
 	}
@@ -142,6 +134,28 @@ public class Usuario {
 		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", pass=" + pass
 				+ ", mail=" + mail +  ", foto=" + foto + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idUsuario;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Usuario other = (Usuario) obj;
+		if (idUsuario != other.idUsuario)
+			return false;
+		return true;
+	}
 	
 //	public static String getStatus() {
 //		if(UsuarioConectado.isConnected(nombre)) {
@@ -151,7 +165,7 @@ public class Usuario {
 //		}
 //	}
 //
-//	public UsuarioConectado getUsuarioConectado() {
+//	public UsuarioConectado Conectado() {
 //		return usuarioConectado;
 //	}
 //
