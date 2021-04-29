@@ -105,12 +105,20 @@ public class VentanaPrincipal extends JFrame{
 		JPanel panelSelecVentana = new JPanel();
 		panelSelecVentana.setBounds(20, 89, 230, 600);
 		getContentPane().add(panelSelecVentana);
-		panelSelecVentana.setLayout(new GridLayout(4, 1, 0, 0));
+		panelSelecVentana.setLayout(new GridLayout(3, 1, 0, 0));
 		
+		//Paneles laterales
 		JPanel ventPerfil = new JPanel();
+		JPanel ventServicios = new JPanel();
+		JPanel ventChat = new JPanel();
+		
 		ventPerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				ventPerfil.setBackground(Color.gray);
+				ventChat.setBackground(new Color(39, 45, 53));
+				ventServicios.setBackground(new Color(39, 45, 53));
+				
 				cl.show(panelesDinamicos, "1");
 			}
 		});
@@ -127,10 +135,14 @@ public class VentanaPrincipal extends JFrame{
 		lblPerfil.setFont(new Font("Tahoma", Font.BOLD, 18));
 		ventPerfil.add(lblPerfil);
 		
-		JPanel ventServicios = new JPanel();
+		
 		ventServicios.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				ventServicios.setBackground(Color.gray);
+				ventChat.setBackground(new Color(39, 45, 53));
+				ventPerfil.setBackground(new Color(39, 45, 53));
+				
 				cl.show(panelesDinamicos, "2");
 			}
 		});
@@ -147,29 +159,14 @@ public class VentanaPrincipal extends JFrame{
 		lblServicios.setForeground(Color.WHITE);
 		ventServicios.add(lblServicios);
 		
-		JPanel ventOferta = new JPanel();
-		ventOferta.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-			}
-		});
-		ventOferta.setBackground(new Color(39, 45, 53));
-		panelSelecVentana.add(ventOferta);
-		ventOferta.setLayout(new GridLayout(1, 2, 0, 0));
 		
-		JLabel imgOferta = new JLabel("");
-		imgOferta.setIcon(new ImageIcon(getClass().getResource("/iconoOferta.png")));
-		ventOferta.add(imgOferta);
-		
-		JLabel lblOferta = new JLabel("OFERTAS");
-		lblOferta.setForeground(Color.WHITE);
-		lblOferta.setFont(new Font("Tahoma", Font.BOLD, 18));
-		ventOferta.add(lblOferta);
-		
-		JPanel ventChat = new JPanel();
 		ventChat.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				ventChat.setBackground(Color.gray);
+				ventServicios.setBackground(new Color(39, 45, 53));
+				ventPerfil.setBackground(new Color(39, 45, 53));
+				
 				cl.show(panelesDinamicos, "3");
 			}
 		});
@@ -505,28 +502,25 @@ public class VentanaPrincipal extends JFrame{
 		    }
 			});
 			
-			comboCategoria.addActionListener((ActionListener) new ActionListener() {
-				public void actionPerformed(ActionEvent e){   
+		comboCategoria.addActionListener((ActionListener) new ActionListener() {
+            public void actionPerformed(ActionEvent e){
 
-					modeloCategoria = new DefaultListModel();
-					try {
-						listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					for (Anuncio anuncios : listaCategoria) {
-						modelo = modeloCategoria;
-						if(anuncios.getCategoria() != null) {
-						   modeloCategoria.addElement(anuncios);
-						   list.setModel(modeloCategoria);
-						}else {
-						    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-						}
-					}
-			    }
-				});
+                modeloCategoria = new DefaultListModel();
+                try {
+                   listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));                    	
+                                
+                } catch (DBException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                
+                    for (Anuncio anuncios : listaCategoria) {
+                        modelo = modeloCategoria;
+                        modeloCategoria.addElement(anuncios);
+                        list.setModel(modeloCategoria);
+                    }
+            }
+            });
 			
 			rdbtnPrecio.addActionListener((ActionListener) new ActionListener() {
 				public void actionPerformed(ActionEvent e){   
@@ -619,20 +613,20 @@ public class VentanaPrincipal extends JFrame{
 					Usuario usuario;
 					try {
 						usuario = conn.seleccionarUsuario(nomUsuario);
-						listaUsuario = (conn.filtroUsuario(usuario));
+						if(usuario != null) {
+						    listaUsuario = (conn.filtroUsuario(usuario));
+						}else {
+						    JOptionPane.showMessageDialog(null, "El usuario: " + nomUsuario + " no ofrece ningun servicio", "Error", 0);
 
+						}
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}				
-
 					for (Anuncio anuncios : listaUsuario) {
-						if(anuncios.getIdUsuario() >0) {
-							
-						}
-						modelo = modeloUsuario;
-						modeloUsuario.addElement(anuncios);
-						list.setModel(modeloUsuario);
+                            modelo = modeloUsuario;
+							modeloUsuario.addElement(anuncios);
+							list.setModel(modeloUsuario);								
 					}
 			    }
 				});
