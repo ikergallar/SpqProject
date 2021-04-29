@@ -1,6 +1,8 @@
 package com.SPQ.clasesBasicas;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.GregorianCalendar;
 
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
@@ -9,22 +11,15 @@ import javax.jdo.annotations.PersistenceCapable;
 @PersistenceCapable
 @Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class AnuncioGuardado extends Anuncio{
-	private Date fecha;
+	private GregorianCalendar fecha;
 	private String nombre;
 
-	public Date getFecha() {
+	public GregorianCalendar getFecha() {
 		return fecha;
 	}
 
-	public void setFecha(Date fecha) {
+	public void setFecha(GregorianCalendar fecha) {
 		this.fecha = fecha;
-	}
-
-	public AnuncioGuardado(String nombre, String descripcion, float precio, String foto, Categoria categoria,
-			boolean oferta, Date fecha, String nombreGuardado) {
-		super(nombre, descripcion, precio, foto, categoria, oferta);
-		this.fecha = fecha;
-		this.nombre = nombreGuardado;
 	}
 
 	public String getNombre() {
@@ -34,6 +29,17 @@ public class AnuncioGuardado extends Anuncio{
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+
+	public AnuncioGuardado(GregorianCalendar date, String nombre) {
+		super();
+		this.fecha = date;
+		this.nombre = nombre;
+	}
+
+	public AnuncioGuardado() {
+	}
+
+	
 	
 	
 	
