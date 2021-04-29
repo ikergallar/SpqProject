@@ -56,7 +56,7 @@ public class VentanaEditarServicio extends JFrame {
 		lblPrecio.setBounds(36, 145, 46, 14);
 		contentPane.add(lblPrecio);
 		
-		JLabel lblEditarServicio = new JLabel("CREAR SERVICIO");
+		JLabel lblEditarServicio = new JLabel("EDITAR SERVICIO");
 		lblEditarServicio.setForeground(Color.WHITE);
 		lblEditarServicio.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblEditarServicio.setBounds(178, 29, 214, 27);
