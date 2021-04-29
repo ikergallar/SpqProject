@@ -29,7 +29,7 @@ public class VentanaEditarServicio extends JFrame {
 	
 	public VentanaEditarServicio(Usuario usuario, Anuncio anuncio) {
 		setResizable(false);
-		setTitle("Hustle - Crear Servicio");
+		setTitle("Hustle - Editar Servicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 586, 428);
 		contentPane = new JPanel();
