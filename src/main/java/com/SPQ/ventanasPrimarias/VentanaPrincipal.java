@@ -505,28 +505,25 @@ public class VentanaPrincipal extends JFrame{
 		    }
 			});
 			
-			comboCategoria.addActionListener((ActionListener) new ActionListener() {
-				public void actionPerformed(ActionEvent e){   
+		comboCategoria.addActionListener((ActionListener) new ActionListener() {
+            public void actionPerformed(ActionEvent e){
 
-					modeloCategoria = new DefaultListModel();
-					try {
-						listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}
-					
-					for (Anuncio anuncios : listaCategoria) {
-						modelo = modeloCategoria;
-						if(anuncios.getCategoria() != null) {
-						   modeloCategoria.addElement(anuncios);
-						   list.setModel(modeloCategoria);
-						}else {
-						    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-						}
-					}
-			    }
-				});
+                modeloCategoria = new DefaultListModel();
+                try {
+                   listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));                    	
+                                
+                } catch (DBException e1) {
+                    // TODO Auto-generated catch block
+                    e1.printStackTrace();
+                }
+                
+                    for (Anuncio anuncios : listaCategoria) {
+                        modelo = modeloCategoria;
+                        modeloCategoria.addElement(anuncios);
+                        list.setModel(modeloCategoria);
+                    }
+            }
+            });
 			
 			rdbtnPrecio.addActionListener((ActionListener) new ActionListener() {
 				public void actionPerformed(ActionEvent e){   
@@ -619,20 +616,20 @@ public class VentanaPrincipal extends JFrame{
 					Usuario usuario;
 					try {
 						usuario = conn.seleccionarUsuario(nomUsuario);
-						listaUsuario = (conn.filtroUsuario(usuario));
+						if(usuario != null) {
+						    listaUsuario = (conn.filtroUsuario(usuario));
+						}else {
+						    JOptionPane.showMessageDialog(null, "El usuario: " + nomUsuario + " no ofrece ningun servicio", "Error", 0);
 
+						}
 					} catch (DBException e1) {
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}				
-
 					for (Anuncio anuncios : listaUsuario) {
-						if(anuncios.getIdUsuario() >0) {
-							
-						}
-						modelo = modeloUsuario;
-						modeloUsuario.addElement(anuncios);
-						list.setModel(modeloUsuario);
+                            modelo = modeloUsuario;
+							modeloUsuario.addElement(anuncios);
+							list.setModel(modeloUsuario);								
 					}
 			    }
 				});
