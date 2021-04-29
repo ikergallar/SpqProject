@@ -16,19 +16,62 @@ import com.SPQ.clasesBasicas.Categoria;
 public class AnuncioGuardadoTest {
 
 	@Test
-	public void testGetNombre() {
+	public void testGetFecha() {
 	
 		try {
 			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-			String fecha1 = "11-11-2001";
-			Date d1 = sdf.parse(fecha1);
-			GregorianCalendar gc1 = new GregorianCalendar();
-			gc1.setTimeInMillis(d1.getTime());
-			AnuncioGuardado anuncio = new AnuncioGuardado(gc1,"pedro");
+			String fecha = "11-11-2001";
+			Date date = sdf.parse(fecha);
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.setTimeInMillis(date.getTime());
+			AnuncioGuardado anuncio = new AnuncioGuardado(gc,"pedro");
 			assertEquals("11-11-2001", sdf.format(anuncio.getFecha().getTime()));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
 	}
+	@Test
+	public void testGetNombre() {
+	
+		try {
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			String fecha = "11-11-2001";
+			Date date = sdf.parse(fecha);
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.setTimeInMillis(date.getTime());
+			AnuncioGuardado anuncio = new AnuncioGuardado(gc,"pedro");
+			assertEquals("pedro", anuncio.getNombre());
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+	}
+	
+	@Test
+	public void testSetNombre() {
+		AnuncioGuardado anuncio = new AnuncioGuardado();
+		String nombre = "Pedro";
+		anuncio.setNombre(nombre);
+	}
+	
+	@Test
+	public void testSetFecha() {
+		
+		try {
+			AnuncioGuardado anuncio = new AnuncioGuardado();
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			String fecha = "11-11-2001";
+			Date date;
+			date = sdf.parse(fecha);
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.setTimeInMillis(date.getTime());
+			anuncio.setFecha(gc);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
 }
