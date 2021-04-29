@@ -1,6 +1,7 @@
 package com.SPQ.ventanasPrimarias;
 
 import java.awt.Color;
+
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
@@ -9,7 +10,7 @@ import javax.swing.JPanel;
 
 public class VentanaPanelAnuncios extends JPanel{
 	
-	public VentanaPanelAnuncios(String textoNombre, String textoFoto, String textoDescripción, int ref, double textoPrecio, String textoCategoria, String textoContacto) {
+	public VentanaPanelAnuncios(String textoNombre, String textoFoto, String textoDescripcion, int ref, double textoPrecio, String textoCategoria, String textoContacto) {
 		setBackground(Color.WHITE);
 		setLayout(null);
 
@@ -32,7 +33,7 @@ public class VentanaPanelAnuncios extends JPanel{
 		lblContacto.setBounds(30, 194, 119, 13);
 		add(lblContacto);
 		
-		JLabel lblDescripcion = new JLabel(textoDescripción);
+		JLabel lblDescripcion = new JLabel(textoDescripcion);
 		lblDescripcion.setBounds(30, 220, 119, 13);
 		add(lblDescripcion);
 		
@@ -49,5 +50,5 @@ public class VentanaPanelAnuncios extends JPanel{
 		
         
 	}
-
 }
+

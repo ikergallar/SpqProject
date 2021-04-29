@@ -1,6 +1,9 @@
 package com.SPQ.dataBase;
 
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import javax.jdo.*;
 import javax.ws.rs.Consumes;
@@ -395,15 +398,18 @@ public class DBManager {
 	 		Transaction tx = pm.currentTransaction();
 	 		
 	 		tx.begin();
+	 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+	 		Date date = new Date(0);
 	 		
-	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "INSERT INTO anuncioguardado VALUES ");
+	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "INSERT INTO anuncioguardado(fecha, nombre) VALUES ('"+ dateFormat.format(date) +"','"+anuncio.getNombre()+"')");
 	 		query.setClass(Anuncio.class);
 
-	 		anuncio = query.executeUnique();
+	 		Long delete = (Long)query.execute();
 	 		
 	 		tx.commit();
 	 		pm.close();
 	 }
+	 
 	 @DELETE
 	 @Path("/{id}")
 	 @Produces(MediaType.APPLICATION_JSON)
