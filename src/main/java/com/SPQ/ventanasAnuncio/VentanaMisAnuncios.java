@@ -17,6 +17,10 @@ import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Font;
+import javax.swing.JPanel;
+import java.awt.GridLayout;
+import javax.swing.JLabel;
 
 public class VentanaMisAnuncios extends JFrame{
 	
@@ -25,10 +29,11 @@ public class VentanaMisAnuncios extends JFrame{
 	private List<Anuncio> listaAnuncios;
 	
 	public VentanaMisAnuncios(Usuario usuario) {
+		getContentPane().setBackground(new Color(39, 45, 53));
 		getContentPane().setLayout(null);
 						
 		list = new JList<List<Anuncio>>();
-		list.setBounds(28, 35, 535, 524);
+		list.setBounds(28, 83, 535, 476);
 		getContentPane().add(list);
 				
 		DBManager conn = new DBManager();
@@ -46,19 +51,56 @@ public class VentanaMisAnuncios extends JFrame{
 			list.setModel(modelo);
 		}
 		
+		JPanel panelBotones = new JPanel();
+		panelBotones.setBounds(0, 592, 592, 83);
+		getContentPane().add(panelBotones);
+		panelBotones.setLayout(new GridLayout(0, 3, 0, 0));
 		
 		
-		JButton btnEditar = new JButton("Editar");
+		
+		JButton btnEditar = new JButton("EDITAR");
+		panelBotones.add(btnEditar);
+		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEditar.setForeground(Color.WHITE);
 		btnEditar.setBackground(Color.RED);
-		btnEditar.setBounds(70, 585, 144, 39);
-		getContentPane().add(btnEditar);
 		
-		JButton btnEliminar = new JButton("Eliminar");
+		JButton btnEliminar = new JButton("ELIMINAR");
+		panelBotones.add(btnEliminar);
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setBackground(Color.RED);
-		btnEliminar.setBounds(213, 585, 144, 39);
-		getContentPane().add(btnEliminar);
+		
+		JButton btnNuevoAnuncio = new JButton("NUEVO ANUNCIO");
+		panelBotones.add(btnNuevoAnuncio);
+		btnNuevoAnuncio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNuevoAnuncio.setForeground(Color.WHITE);
+		btnNuevoAnuncio.setBackground(Color.RED);
+		
+		JLabel lblNewLabel = new JLabel("MIS SERVICIOS");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblNewLabel.setBounds(199, 23, 201, 38);
+		getContentPane().add(lblNewLabel);
+		btnNuevoAnuncio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		
+		btnEliminar.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+				
+				Anuncio anuncio = (Anuncio) list.getSelectedValue();
+				modelo.removeElement(anuncio);
+				try {
+					conn.eliminarAnuncio(anuncio);
+				} catch (DBException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+													        			      		        
+		
+		});
 		
 		
 		btnEditar.addActionListener((ActionListener) new ActionListener() {
@@ -85,27 +127,11 @@ public class VentanaMisAnuncios extends JFrame{
 		        }		    
 		    }
 		});
-		
-		btnEliminar.addActionListener((ActionListener) new ActionListener() {
-			public void actionPerformed(ActionEvent e){   
-				
-				Anuncio anuncio = (Anuncio) list.getSelectedValue();
-				modelo.removeElement(anuncio);
-				try {
-					conn.eliminarAnuncio(anuncio);
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
-			}
-													        			      		        
-		
-		});
 											
-		this.setSize(600,697);
+		this.setSize(608,714);
 		this.setLocationRelativeTo(null);
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-		this.setTitle("MIS ANUNCIOS");
+		this.setTitle("Hustle - Mis Servicios");
 		this.setVisible(true);
 		
 	}
