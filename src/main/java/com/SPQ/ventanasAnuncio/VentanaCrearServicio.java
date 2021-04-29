@@ -13,34 +13,20 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JToggleButton;
+import javax.swing.JSpinner;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class VentanaCrearServicio extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfNombre;
-	private JTextField tfPrecio;
 	private JTextField tfDescripcion;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					VentanaCrearServicio frame = new VentanaCrearServicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public VentanaCrearServicio() {
+		setResizable(false);
+		setTitle("Hustle - Crear Servicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 586, 428);
 		contentPane = new JPanel();
@@ -73,14 +59,8 @@ public class VentanaCrearServicio extends JFrame {
 		lblCrearServicio.setBounds(178, 29, 214, 27);
 		contentPane.add(lblCrearServicio);
 		
-		JCheckBox chckbxOferta = new JCheckBox("Oferta");
-		chckbxOferta.setForeground(Color.WHITE);
-		chckbxOferta.setBackground(new Color(39, 45, 53));
-		chckbxOferta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		chckbxOferta.setBounds(327, 170, 97, 27);
-		contentPane.add(chckbxOferta);
-		
 		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBoxCategoria.setBounds(327, 107, 214, 27);
 		contentPane.add(comboBoxCategoria);
 		
@@ -96,12 +76,6 @@ public class VentanaCrearServicio extends JFrame {
 		contentPane.add(tfNombre);
 		tfNombre.setColumns(10);
 		
-		tfPrecio = new JTextField();
-		tfPrecio.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		tfPrecio.setColumns(10);
-		tfPrecio.setBounds(36, 170, 214, 27);
-		contentPane.add(tfPrecio);
-		
 		tfDescripcion = new JTextField();
 		tfDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tfDescripcion.setColumns(10);
@@ -109,10 +83,28 @@ public class VentanaCrearServicio extends JFrame {
 		contentPane.add(tfDescripcion);
 		
 		JButton btnCrearAnuncio = new JButton("CREAR ANUNCIO");
+		
 		btnCrearAnuncio.setForeground(Color.WHITE);
 		btnCrearAnuncio.setBackground(Color.RED);
 		btnCrearAnuncio.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnCrearAnuncio.setBounds(327, 273, 214, 73);
 		contentPane.add(btnCrearAnuncio);
+		
+		JSpinner spinner = new JSpinner();
+		spinner.setBounds(36, 170, 214, 27);
+		contentPane.add(spinner);
+		
+		JToggleButton tglbtnOferta = new JToggleButton("Oferta");
+		tglbtnOferta.setBackground(Color.RED);
+		tglbtnOferta.setForeground(Color.WHITE);
+		tglbtnOferta.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tglbtnOferta.setBounds(327, 169, 214, 27);
+		contentPane.add(tglbtnOferta);
+		
+		btnCrearAnuncio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 	}
 }
