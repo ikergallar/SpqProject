@@ -1,6 +1,5 @@
 package com.SPQ.main;
 
-import com.SPQ.ventanasAnuncio.VentanaAnuncios;
 import com.SPQ.ventanasLogin.VentanaLogin;
 
 public class Main {
