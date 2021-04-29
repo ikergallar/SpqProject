@@ -56,6 +56,7 @@ public class VentanaPrincipal extends JFrame{
 	private DefaultListModel modeloPrecio;
 	private DefaultListModel modeloOferta;
 	private DefaultListModel modeloUsuario;
+	private List<Anuncio> lista;
 	private List<Anuncio> listaCategoria;
 	private List<Anuncio> listaPrecio;
 	private List<Anuncio> listaOferta;
@@ -414,13 +415,19 @@ public class VentanaPrincipal extends JFrame{
 		panelServiciosGen.add(comboCategoria);
 		
 		modelo = new DefaultListModel();
+		
 		try {
-			modelo.addElement(conn.listarAnuncios());
+			lista = conn.listarAnuncios();
 		} catch (DBException e2) {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
-		list.setModel(modelo);
+		
+		for (Anuncio anuncios : lista) {
+			modelo.addElement(anuncios);
+			list.setModel(modelo);
+		}
+		
 		
 		JLabel flitro = new JLabel("FILTRADO");
 		flitro.setForeground(Color.WHITE);
@@ -511,8 +518,12 @@ public class VentanaPrincipal extends JFrame{
 					
 					for (Anuncio anuncios : listaCategoria) {
 						modelo = modeloCategoria;
-						modeloCategoria.addElement(anuncios);
-						list.setModel(modeloCategoria);
+						if(anuncios.getCategoria() != null) {
+						   modeloCategoria.addElement(anuncios);
+						   list.setModel(modeloCategoria);
+						}else {
+						    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+						}
 					}
 			    }
 				});
@@ -616,6 +627,9 @@ public class VentanaPrincipal extends JFrame{
 					}				
 
 					for (Anuncio anuncios : listaUsuario) {
+						if(anuncios.getIdUsuario() >0) {
+							
+						}
 						modelo = modeloUsuario;
 						modeloUsuario.addElement(anuncios);
 						list.setModel(modeloUsuario);
