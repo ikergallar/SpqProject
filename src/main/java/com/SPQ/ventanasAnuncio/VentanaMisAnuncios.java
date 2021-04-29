@@ -60,29 +60,30 @@ public class VentanaMisAnuncios extends JFrame{
 		
 		JButton btnEditar = new JButton("EDITAR");
 		panelBotones.add(btnEditar);
-		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEditar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnEditar.setForeground(Color.WHITE);
 		btnEditar.setBackground(Color.RED);
 		
 		JButton btnEliminar = new JButton("ELIMINAR");
 		panelBotones.add(btnEliminar);
-		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnEliminar.setForeground(Color.WHITE);
 		btnEliminar.setBackground(Color.RED);
 		
 		JButton btnNuevoAnuncio = new JButton("NUEVO ANUNCIO");
 		panelBotones.add(btnNuevoAnuncio);
-		btnNuevoAnuncio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnNuevoAnuncio.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnNuevoAnuncio.setForeground(Color.WHITE);
 		btnNuevoAnuncio.setBackground(Color.RED);
 		
 		JLabel lblNewLabel = new JLabel("MIS SERVICIOS");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(199, 23, 201, 38);
+		lblNewLabel.setBounds(208, 21, 201, 38);
 		getContentPane().add(lblNewLabel);
 		btnNuevoAnuncio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				
 			}
 		});
 		
@@ -106,7 +107,7 @@ public class VentanaMisAnuncios extends JFrame{
 		btnEditar.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e){   
 					Anuncio anuncio = ((Anuncio)list.getSelectedValue());
-					VentanaEditarAnuncio edit = new VentanaEditarAnuncio(usuario, anuncio);	
+					VentanaEditarServicio edit = new VentanaEditarServicio(usuario, anuncio);	
 					edit.setVisible(true);
 					dispose();
 													        			      		        
@@ -119,7 +120,7 @@ public class VentanaMisAnuncios extends JFrame{
 		        if (evt.getClickCount() == 2) {
 		        	Anuncio anuncio = (Anuncio) list.getSelectedValue();
 		        	if(anuncio instanceof Anuncio) {
-		        		VentanaEditarAnuncio edit = new VentanaEditarAnuncio(usuario, anuncio);	
+		        		VentanaEditarServicio edit = new VentanaEditarServicio(usuario, anuncio);	
 						edit.setVisible(true);
 						dispose();	
 		        	}
