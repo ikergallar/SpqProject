@@ -18,7 +18,7 @@ public class Anuncio {
 
 	private String nombre;
 	private String descripcion;
-	private float precio;
+	private double precio;
 	private String foto;
 	private Categoria categoria;
 	private boolean oferta;
@@ -66,11 +66,11 @@ public class Anuncio {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public float getPrecio() {
+	public double getPrecio() {
 		return precio;
 	}
-	public void setPrecio(float precio) {
-		this.precio = precio;
+	public void setPrecio(double d) {
+		this.precio = d;
 	}
 	public String getFoto() {
 		return foto;

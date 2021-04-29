@@ -82,7 +82,7 @@ public class VentanaEditarAnuncio extends JFrame{
         preciolbl.setBounds(79, 236, 46, 14);
         pCentral.add(preciolbl);
         
-        textPrecio = new JTextField(Float.toString(anuncio.getPrecio()));
+        textPrecio = new JTextField(Double.toString(anuncio.getPrecio()));
         textPrecio.setBounds(63, 285, 86, 20);
         pCentral.add(textPrecio);
         textPrecio.setColumns(10);
