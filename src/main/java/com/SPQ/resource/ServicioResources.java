@@ -53,7 +53,7 @@ public class ServicioResources {
      }
 	
 	@GET
-    @Path("todos")
+    @Path("listaServicios")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Anuncio> listarAnuncios(){
 	    PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
@@ -83,7 +83,7 @@ public class ServicioResources {
 		
 		tx.begin();
 		
-		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","Select * FROM anuncio WHERE oferta = 'true'");
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","Select * FROM anuncio WHERE oferta = '1'");
 		query.setClass(Anuncio.class);
 		List<Anuncio> results = query.executeList();
 		
@@ -96,7 +96,7 @@ public class ServicioResources {
 	@GET
 	@Path("categoria")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroCategoria(Categoria categoria){
+	public List<Anuncio> filtroCategoria(@QueryParam("categoria") String categoria){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -154,7 +154,7 @@ public class ServicioResources {
 	}
 	
 	@GET
-	@Path("misservicios")
+	@Path("misServicios")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Anuncio> misAnuncios(@QueryParam("IdUsuario") int IdUsuario){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
@@ -176,14 +176,14 @@ public class ServicioResources {
 	@GET
 	@Path("usuarios")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroUsuario(Usuario usuario){
+	public List<Anuncio> filtroUsuario(@QueryParam("idUsuario") int idUsuario){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
 		tx.begin();
 
-		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where idusuario='"+ usuario.getIdUsuario() +"'");
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where idusuario='"+ idUsuario +"'");
 		query.setClass(Anuncio.class);
 		List<Anuncio> results = query.executeList();
 

@@ -16,7 +16,6 @@ import javax.swing.SwingConstants;
 
 
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
 import com.SPQ.ventanasPrimarias.VentanaPrincipal;
 
 import jakarta.ws.rs.client.Client;
@@ -29,12 +28,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
+
 import java.util.List;
 import javax.swing.UIManager;
 
@@ -49,10 +43,9 @@ public class VentanaLogin extends JFrame{
 	private Usuario usuarioIniciado;
 	
 	Client client = ClientBuilder.newClient();
-
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget usuarioTarget = appTarget.path("usuarios");
-	final WebTarget listarUsuarioTarget = usuarioTarget.path("todos");
+	final WebTarget listarUsuarioTarget = usuarioTarget.path("listaUsuarios");
 
 	/**
 	 * Create the application.
@@ -81,15 +74,6 @@ public class VentanaLogin extends JFrame{
 		
 		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 		usuarios =  listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-
-		
-//		DBManager conn = new DBManager();
-//        try {
-//        	usuarios =conn.listarUsuarios();
-//		} catch (DBException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 				
 		frmLogin = new JFrame();
 		frmLogin.setResizable(false);
@@ -238,6 +222,7 @@ public class VentanaLogin extends JFrame{
 				// Ventana para registro
 				VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
 				recuperacionContra.setVisible(true);
+				frmLogin.dispose();
 
 			}
 		});

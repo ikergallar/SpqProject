@@ -13,6 +13,13 @@ import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -35,6 +42,13 @@ public class VentanaRecuperacion extends JDialog {
 	private JTextField texto_usuario;
 	private JTextField textoRespuesta;
 	private List<Usuario> usuarios;
+	
+	Client client = ClientBuilder.newClient();
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget usuarioTarget = appTarget.path("usuarios");
+	final WebTarget listarUsuarioTarget = usuarioTarget.path("listaUsuarios");
+	final WebTarget cambiarContraTarget = usuarioTarget.path("contra");
+
 
 
 	public static void main(String[] args) {
@@ -59,15 +73,9 @@ public class VentanaRecuperacion extends JDialog {
 	public VentanaRecuperacion() {
 		setTitle("Hustle - Recuperación Contraseña");
 		
-		DBManager conn = new DBManager();
-        try {
-        	usuarios =conn.listarUsuarios();
-		} catch (DBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
+		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
+		usuarios =  listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+				
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 513, 419);
 		contentPane = new JPanel();
@@ -155,24 +163,25 @@ public class VentanaRecuperacion extends JDialog {
                 for (Usuario usuario : usuarios) {
                 	if(usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPalabraRecuperacion().equals(palabraRecuperacion) && usuario.getPreguntaRecuperacion().equals(preguntaRecuperacion)) {
                 		if(texto_contrasena.getText().equals(texto_confPass.getText())) {
-                			try {
     							
     								usuario = new Usuario();
     								usuario.setPass(texto_confPass.getText());
     								usuario.setNombreUsuario(nomUsuario);
     								comprobar = true;
     
-   								
-   								    conn.cambiarContrasenya(usuario);
+   								    cambiarContraTarget.request().put(Entity.entity(usuario, MediaType.APPLICATION_JSON));
     								JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
     								break;
-    
-    							} catch (DBException e1) {
-    								e1.printStackTrace();
-    							}   							
+       							   							
     						}
                         }
                 	
+                }
+                if(comprobar) {
+                	VentanaLogin perfil = new VentanaLogin();											
+					perfil.frmLogin.setVisible(true);
+					dispose();
+
                 }
                 
                 if(!comprobar) {

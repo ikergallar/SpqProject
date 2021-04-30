@@ -10,18 +10,24 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
-import com.SPQ.dataBase.DBManager;
+
+import com.SPQ.resource.UsuarioResources;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
-import java.awt.HeadlessException;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
-import java.awt.EventQueue;
 
 import javax.swing.JComboBox;
 
@@ -37,6 +43,12 @@ public class VentanaRegistro extends JDialog {
 	private JTextField texto_usuario;
 	private JTextField textoRespuesta;
 				
+	Client client = ClientBuilder.newClient();
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget usuarioTarget = appTarget.path("usuarios");
+	final WebTarget registroTarget = usuarioTarget.path("registro");
+	final WebTarget existeUsuarioTarget = usuarioTarget.path("existeUsuario");
+	
 	/**
 	 * Create the frame.
 	 */
@@ -162,9 +174,7 @@ public class VentanaRegistro extends JDialog {
 				String email;
 				String nombre;
 				String apellido;
-				
-				DBManager conexion = new DBManager();
-				
+								
 				nombreUsuario = texto_usuario.getText();
 				contrasenya = String.valueOf(texto_contrasena.getPassword());
 				confPass = String.valueOf(texto_confPass.getPassword());
@@ -180,41 +190,27 @@ public class VentanaRegistro extends JDialog {
 					if(contrasenya.equals(confPass)) {
 					
 					    if (email.contains("@") && email.contains(".")) {
-					    	
-					    	try {
-					    		Usuario usuario = new Usuario();
-								usuario.setNombreUsuario(nombreUsuario);
-								usuario.setPass(contrasenya);
-								usuario.setMail(email);
-								usuario.setNombre(nombre);
-								usuario.setApellido(apellido);
-								usuario.setPalabraRecuperacion(textoRespuesta.getText());
-								usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());
-								
-								if(!conexion.existeUsuario(usuario)) {						
-									
-									try {
+					    					    	
+					    	Usuario usuario = new Usuario();
+							usuario.setNombreUsuario(nombreUsuario);
+							usuario.setPass(contrasenya);
+							usuario.setMail(email);
+							usuario.setNombre(nombre);
+							usuario.setApellido(apellido);
+							usuario.setPalabraRecuperacion(textoRespuesta.getText());
+							usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());							
+																
+								if(!UsuarioResources.existeUsuario(usuario)) {															
 										
-										conexion.registrarUsuario(usuario);
-										JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-										VentanaLogin perfil = new VentanaLogin();											
-										perfil.frmLogin.setVisible(true);
-										dispose();
-											
-										
-									} catch (DBException e1) {
-										e1.printStackTrace();
-									}
-									
-									}else {
-										JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
-										
-									}
-							} catch (HeadlessException | SecurityException | DBException e1) {
-								// TODO Auto-generated catch block
-								e1.printStackTrace();
-							}
-							
+									registroTarget.request().post(Entity.entity(usuario, MediaType.APPLICATION_JSON));
+									JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+									VentanaLogin perfil = new VentanaLogin();											
+									perfil.frmLogin.setVisible(true);
+									dispose();
+																					
+								}else {
+										JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);										
+								}														
 				
 					     }else {
 					    	 JOptionPane.showMessageDialog(null, "Direccion de correo no valida", "Error", 0);

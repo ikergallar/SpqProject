@@ -16,9 +16,17 @@ import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+import com.SPQ.resource.UsuarioResources;
 import com.SPQ.ventanasAnuncio.VentanaMisAnuncios;
 import com.SPQ.ventanasLogin.VentanaContrasenya;
 import com.SPQ.ventanasLogin.VentanaLogin;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
 
 import java.awt.GridLayout;
 
@@ -67,10 +75,23 @@ public class VentanaPrincipal extends JFrame{
 	private JTextField textUsername;
 	JPanel panelPerfil;
 	JPanel panelServicios;
-    DBManager con = new DBManager();
     JPanel panelesDinamicos;
     CardLayout cl= new CardLayout();
-
+    
+    Client client = ClientBuilder.newClient();
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	
+	final WebTarget usuarioTarget = appTarget.path("usuarios");
+	final WebTarget listarUsuarioTarget = usuarioTarget.path("listaUsuarios");
+	final WebTarget updateUsuarioTarget = usuarioTarget.path("update");
+	final WebTarget seleccionarUsuarioTarget = usuarioTarget.path("user");
+	
+	final WebTarget servicioTarget = appTarget.path("servicios");
+	final WebTarget listarServicioTarget = servicioTarget.path("listaServicios");
+	final WebTarget precioMayorTarget = servicioTarget.path("caro");
+	final WebTarget precioMenorTarget = servicioTarget.path("barato");
+	final WebTarget ofertaTarget = servicioTarget.path("ofertas");
+	final WebTarget updateServicioTarget = servicioTarget.path("update");
 
 
 	public VentanaPrincipal(Usuario usuario) {
@@ -200,9 +221,7 @@ public class VentanaPrincipal extends JFrame{
 	public JPanel genPanelPerfil(Usuario usuario){
 		JPanel panelPerfilGen=new JPanel();
 		panelPerfilGen.setBackground(new Color(39, 45, 53));
-		panelPerfilGen.setLayout(null);    	
-
-	    		 		  		    
+		panelPerfilGen.setLayout(null);    		    		 		  		    
 
 	    panelPerfilGen.setBounds(100, 100, 835, 592);
 	    panelPerfilGen.setBackground(new Color(39, 45, 53));
@@ -264,7 +283,6 @@ public class VentanaPrincipal extends JFrame{
 		textTel.setBounds(172, 175, 201, 20);
 		panelPerfilGen.add(textTel);
 		
-
 		JLabel lblDetalles = new JLabel("Detalles de la cuenta");
 		lblDetalles.setForeground(Color.WHITE);
 		lblDetalles.setFont(new Font("Tahoma", Font.BOLD, 12));
@@ -293,35 +311,26 @@ public class VentanaPrincipal extends JFrame{
 		textMail.setColumns(10);
 		textMail.setBounds(172, 274, 201, 20);
 		panelPerfilGen.add(textMail);
-		
-			
-		
-			JButton btnNewButton = new JButton("GUARDAR");
-			btnNewButton.setBackground(Color.RED);
-			btnNewButton.setForeground(Color.WHITE);
-			btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
-			
-			btnNewButton.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					DBManager con = new DBManager();
-					
-					try {
-						usuario.setNombre(textNombre.getText());
-						usuario.setApellido(textApellido.getText());
-						usuario.setDireccion(textDireccion.getText());
-						usuario.setTelefono(textTel.getText());
-						usuario.setNombreUsuario(textUsuario.getText());
-						con.updateUsuario(usuario);
-						
-						JOptionPane.showMessageDialog(null, "Datos editados correctamente", "Informacion", 1);
-					} catch (DBException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
 				
-				}
-			});
+		JButton btnNewButton = new JButton("GUARDAR");
+		btnNewButton.setBackground(Color.RED);
+		btnNewButton.setForeground(Color.WHITE);
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 16));
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				usuario.setNombre(textNombre.getText());
+				usuario.setApellido(textApellido.getText());
+				usuario.setDireccion(textDireccion.getText());
+				usuario.setTelefono(textTel.getText());
+				usuario.setNombreUsuario(textUsuario.getText());
+				updateUsuarioTarget.request().put(Entity.entity(usuario, MediaType.APPLICATION_JSON));
+				
+				JOptionPane.showMessageDialog(null, "Datos editados correctamente", "Informacion", 1);										
+			
+			}
+		});
 			
 			btnNewButton.setBounds(36, 494, 337, 68);
 			panelPerfilGen.add(btnNewButton);
@@ -384,15 +393,13 @@ public class VentanaPrincipal extends JFrame{
 		
 		panelServiciosGen.setBackground(new Color(39, 45, 53));
 		panelServiciosGen.setSize(835,592);
-		panelServiciosGen.setLayout(null);
-					
+		panelServiciosGen.setLayout(null);					
 		
 		list = new JList();
 		list.setBackground(Color.WHITE);
 		list.setBounds(205, 88, 584, 440);
 		panelServiciosGen.add(list);
 				
-		DBManager conn = new DBManager();
 		
 		JRadioButton rdbtnCategoria = new JRadioButton("Categoría");
 		rdbtnCategoria.setBackground(new Color(39, 45, 53));
@@ -413,13 +420,11 @@ public class VentanaPrincipal extends JFrame{
 		
 		modelo = new DefaultListModel();
 		
-		try {
-			lista = conn.listarAnuncios();
-		} catch (DBException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
-		
+		GenericType<List<Anuncio>> genericType = new GenericType<List<Anuncio>>() {};
+		GenericType<List<Usuario>> genericTypeUsuario = new GenericType<List<Usuario>>() {};
+
+		lista =  listarServicioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+			
 		for (Anuncio anuncios : lista) {
 			modelo.addElement(anuncios);
 			list.setModel(modelo);
@@ -506,16 +511,13 @@ public class VentanaPrincipal extends JFrame{
             public void actionPerformed(ActionEvent e){
 
                 modeloCategoria = new DefaultListModel();
-                try {
-                   listaCategoria = (conn.filtroCategoria((Categoria)comboCategoria.getSelectedItem()));                    	
-                                
-                } catch (DBException e1) {
-                    // TODO Auto-generated catch block
-                    e1.printStackTrace();
-                }
+                modelo = modeloCategoria;
+                
+            	WebTarget categoriaTarget = servicioTarget.path("categoria").queryParam("categoria", comboCategoria.getSelectedItem());
+
+           		listaCategoria = categoriaTarget.request(MediaType.APPLICATION_JSON).get(genericType);
                 
                     for (Anuncio anuncios : listaCategoria) {
-                        modelo = modeloCategoria;
                         modeloCategoria.addElement(anuncios);
                         list.setModel(modeloCategoria);
                     }
@@ -538,15 +540,11 @@ public class VentanaPrincipal extends JFrame{
 				public void actionPerformed(ActionEvent e){
 					if(comboPrecio.getSelectedItem().toString().equals("Mayor precio")) {
 						modeloPrecio = new DefaultListModel();
-						try {
-							listaPrecio = (conn.filtroPrecioMayor());
-						} catch (DBException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						modelo = modeloPrecio;
 						
-						for (Anuncio anuncios : listaPrecio) {
-							modelo = modeloPrecio;
+						listaPrecio = precioMayorTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+						
+						for (Anuncio anuncios : listaPrecio) {							
 							modeloPrecio.addElement(anuncios);
 							list.setModel(modeloPrecio);
 						}
@@ -554,12 +552,8 @@ public class VentanaPrincipal extends JFrame{
 					}else if(comboPrecio.getSelectedItem().toString().equals("Menor precio")) {
 						modeloPrecio = new DefaultListModel();
 						modelo = modeloPrecio;
-						try {
-							listaPrecio = (conn.filtroPrecioMenor());
-						} catch (DBException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						
+						listaPrecio = precioMenorTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 						
 						for (Anuncio anuncios : listaPrecio) {
 							modeloPrecio.addElement(anuncios);
@@ -579,12 +573,8 @@ public class VentanaPrincipal extends JFrame{
 			            comboPrecio.setEnabled(false);
 			        	modeloOferta = new DefaultListModel();
 						modelo = modeloOferta;
-						try {
-							listaOferta = (conn.filtroOfertas());
-						} catch (DBException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
+						
+						listaOferta = ofertaTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 						
 						for (Anuncio anuncios : listaOferta) {
 							modeloOferta.addElement(anuncios);
@@ -611,18 +601,17 @@ public class VentanaPrincipal extends JFrame{
 					String nomUsuario = textUsername.getText();
 					modeloUsuario = new DefaultListModel();
 					Usuario usuario;
-					try {
-						usuario = conn.seleccionarUsuario(nomUsuario);
-						if(usuario != null) {
-						    listaUsuario = (conn.filtroUsuario(usuario));
-						}else {
-						    JOptionPane.showMessageDialog(null, "El usuario: " + nomUsuario + " no ofrece ningun servicio", "Error", 0);
+					WebTarget seleccionarUsuarioTarget = usuarioTarget.path("user").queryParam("nombreUsuario", nomUsuario);
+					usuario = (Usuario) seleccionarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericTypeUsuario);
+					if(usuario != null) {
+				        WebTarget filtroUsuarioTarget = servicioTarget.path("usuario").queryParam("idUsuario", usuario.getIdUsuario());
+						listaUsuario =  filtroUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+							
+					}else {
+					    JOptionPane.showMessageDialog(null, "El usuario: " + nomUsuario + " no ofrece ningun servicio", "Error", 0);
 
-						}
-					} catch (DBException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}				
+					}
+								
 					for (Anuncio anuncios : listaUsuario) {
                             modelo = modeloUsuario;
 							modeloUsuario.addElement(anuncios);

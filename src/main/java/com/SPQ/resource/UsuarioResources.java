@@ -23,9 +23,9 @@ import jakarta.ws.rs.core.MediaType;
 public class UsuarioResources {
 	
    	@GET
-   	@Path("todos")
+   	@Path("listaUsuarios")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Usuario> listarUsuarios(){
+	public static List<Usuario> listarUsuarios(){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -67,9 +67,9 @@ public class UsuarioResources {
 	   }
    	
    	@GET
-	@Path("username")
+	@Path("existeUsuario")
 	@Produces(MediaType.APPLICATION_JSON)
-     public boolean existeUsuario(Usuario usuario){
+     public static boolean existeUsuario(Usuario usuario){
  		
  		boolean existe = false;
  		List<Usuario> usuarios = listarUsuarios();
@@ -87,7 +87,7 @@ public class UsuarioResources {
    	@GET
 	@Path("user")
 	@Produces(MediaType.APPLICATION_JSON)
-   	public Usuario seleccionarUsuario(String nombreUsuario){
+   	public static Usuario seleccionarUsuario(@QueryParam("nombreUsuario") String nombreUsuario){
  		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
  		PersistenceManager pm = pmf.getPersistenceManager();
  		Transaction tx = pm.currentTransaction();

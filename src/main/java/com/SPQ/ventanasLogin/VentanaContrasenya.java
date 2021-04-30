@@ -21,9 +21,13 @@ import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
 
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
+
 import javax.swing.JCheckBox;
-
-
 
 public class VentanaContrasenya extends JFrame{
 	int a = VentanaLogin.getUsuarioId();
@@ -31,6 +35,11 @@ public class VentanaContrasenya extends JFrame{
 	private JPasswordField confirmarContrasenya;
 	private String nombreUsuario;
 		
+	Client client = ClientBuilder.newClient();
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget usuarioTarget = appTarget.path("usuarios");
+	final WebTarget contrasenyaTarget = usuarioTarget.path("contra");
+	
 	public VentanaContrasenya(Usuario usuario) {
 		
 		setTitle("Hustle - Seguridad");
@@ -114,24 +123,16 @@ public class VentanaContrasenya extends JFrame{
 				
 			}
 		});
-			    	
-	    DBManager con = new DBManager();
-	    	   
+			    		    	   
 		btnCambiar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {try {
 				if(nuevaContrasenya.getText().equals(confirmarContrasenya.getText())) {
-					try {
-						usuario.setPass(confirmarContrasenya.getText());
-						con.cambiarContrasenya(usuario);
-						JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
 					
-
-					} catch (DBException e1) {
-						e1.printStackTrace();
-					}
-					
-					
+					usuario.setPass(confirmarContrasenya.getText());
+					contrasenyaTarget.request().put(Entity.entity(usuario, MediaType.APPLICATION_JSON));
+					JOptionPane.showMessageDialog(null, "Contraseña cambiada correctamente", "Confirmacion", 1);
+															
 					dispose();
 				
 				}else {
