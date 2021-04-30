@@ -1,3 +1,4 @@
+package com.SPQ.ventanaLogin;
 //package com.SPQ.ventanaLogin;
 //
 //import static org.junit.Assert.assertEquals;
@@ -12,7 +13,7 @@
 //import com.SPQ.clasesBasicas.Usuario;
 //import com.SPQ.ventanasLogin.VentanaLogin;
 //
-//public class ventanaLoginTest {
+//public class VentanaLoginTest {
 //	Usuario usuario;
 //	
 //	@Before
