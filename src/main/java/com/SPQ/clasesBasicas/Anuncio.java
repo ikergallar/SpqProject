@@ -27,7 +27,7 @@ public class Anuncio {
 	
 	
 	
-	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta) {
+	public Anuncio(String nombre, String descripcion, float precio, String foto, Categoria categoria,boolean oferta, int idUsuario) {
 		super();
 		this.nombre = nombre;
 		this.descripcion = descripcion;
@@ -35,6 +35,8 @@ public class Anuncio {
 		this.foto = foto;
 		this.categoria = categoria;
 		this.oferta = oferta;
+		this.idUsuario = idUsuario;
+
 				
 	}
 	
@@ -45,6 +47,8 @@ public class Anuncio {
 		this.foto = "";
 		this.categoria = categoria.NINGUNA;
 		this.oferta = false;
+		this.idUsuario = 0;
+
 
 	}
 

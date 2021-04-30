@@ -17,9 +17,13 @@ import javax.swing.SwingConstants;
 
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
-import com.SPQ.dataBase.DBManager;
-import com.SPQ.ventanasAnuncio.VentanaMisAnuncios;
-import com.SPQ.ventanasPrimarias.VentanaPrincipal;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
@@ -42,10 +46,29 @@ public class VentanaLogin extends JFrame{
 	private List<Usuario> usuarios;
 	private boolean acceso = false;	
 	private Usuario usuarioIniciado;
+	
+	Client client = ClientBuilder.newClient();
+
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget usuarioTarget = appTarget.path("usuarios");
+	final WebTarget listarUsuarioTarget = usuarioTarget.path("todos");
 
 	/**
 	 * Create the application.
 	 */
+	
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					VentanaLogin window = new VentanaLogin();
+					window.frmLogin.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	public VentanaLogin() {
 		initialize();
 	}
@@ -55,13 +78,17 @@ public class VentanaLogin extends JFrame{
 	 */
 	private void initialize() {
 		
-		DBManager conn = new DBManager();
-        try {
-        	usuarios =conn.listarUsuarios();
-		} catch (DBException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		GenericType<Usuario> genericType = new GenericType<Usuario>() {};
+		usuarios = (List<Usuario>) listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+
+		
+//		DBManager conn = new DBManager();
+//        try {
+//        	usuarios =conn.listarUsuarios();
+//		} catch (DBException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 				
 		frmLogin = new JFrame();
 		frmLogin.setResizable(false);
@@ -104,9 +131,9 @@ public class VentanaLogin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Ventana para registro
-				VentanaRegistro register = new VentanaRegistro();
-				register.setVisible(true);
-				frmLogin.dispose();
+//				VentanaRegistro register = new VentanaRegistro();
+//				register.setVisible(true);
+//				frmLogin.dispose();
 
 			}
 		});
@@ -135,9 +162,9 @@ public class VentanaLogin extends JFrame{
         		
         		if(acceso == true) {
 					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-					VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
-					vPrincipal.setVisible(true);
-					frmLogin.dispose();
+//					VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
+//					vPrincipal.setVisible(true);
+//					frmLogin.dispose();
         		}
 				
 			    if(acceso!=true){
@@ -208,8 +235,8 @@ public class VentanaLogin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Ventana para registro
-				VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
-				recuperacionContra.setVisible(true);
+//				VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
+//				recuperacionContra.setVisible(true);
 
 			}
 		});

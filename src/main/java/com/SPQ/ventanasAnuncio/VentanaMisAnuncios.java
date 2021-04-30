@@ -15,6 +15,7 @@ import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
 import com.SPQ.dataBase.DBManager;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;

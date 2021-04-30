@@ -194,12 +194,6 @@
 			</plugin>
 			
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-site-plugin</artifactId>
-				<version>3.9.1</version>
-			</plugin>
-			
-			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.6</version>
@@ -237,6 +231,54 @@
 			
 		</plugins>
 	</build>
+	
+	<profiles>
+	<profile>
+			<id>cliente</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.2.1</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>java</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<mainClass>com.SPQ.ventanasLogin.VentanaLogin</mainClass>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		
+		<profile>
+				<id>datos</id>
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>exec-maven-plugin</artifactId>
+							<version>1.2.1</version>
+							<executions>
+								<execution>
+									<goals>
+										<goal>java</goal>
+									</goals>
+								</execution>
+							</executions>
+							<configuration>
+								<mainClass>com.SPQ.util.PrepareData</mainClass>
+							</configuration>
+						</plugin>
+					</plugins>
+				</build>
+			</profile>
+	</profiles>
 	
 	<reporting>
 		 <plugins>
