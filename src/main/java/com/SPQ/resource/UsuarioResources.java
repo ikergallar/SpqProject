@@ -87,7 +87,7 @@ public class UsuarioResources {
    	@GET
 	@Path("user")
 	@Produces(MediaType.APPLICATION_JSON)
-   	public static Usuario seleccionarUsuario(@QueryParam("nombreUsuario") String nombreUsuario){
+   	public static Usuario seleccionarUsuario(@QueryParam("nombreusuario") String nombreUsuario){
  		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
  		PersistenceManager pm = pmf.getPersistenceManager();
  		Transaction tx = pm.currentTransaction();

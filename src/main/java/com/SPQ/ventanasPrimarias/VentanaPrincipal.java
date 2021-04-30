@@ -14,8 +14,6 @@ import javax.swing.JTextField;
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
-import com.SPQ.dataBase.DBManager;
 import com.SPQ.resource.UsuarioResources;
 import com.SPQ.ventanasAnuncio.VentanaMisAnuncios;
 import com.SPQ.ventanasLogin.VentanaContrasenya;
@@ -601,10 +599,10 @@ public class VentanaPrincipal extends JFrame{
 					String nomUsuario = textUsername.getText();
 					modeloUsuario = new DefaultListModel();
 					Usuario usuario;
-					WebTarget seleccionarUsuarioTarget = usuarioTarget.path("user").queryParam("nombreUsuario", nomUsuario);
+					WebTarget seleccionarUsuarioTarget = usuarioTarget.path("user").queryParam("nombreusuario", nomUsuario);
 					usuario = (Usuario) seleccionarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericTypeUsuario);
 					if(usuario != null) {
-				        WebTarget filtroUsuarioTarget = servicioTarget.path("usuario").queryParam("idUsuario", usuario.getIdUsuario());
+				        WebTarget filtroUsuarioTarget = servicioTarget.path("usuario").queryParam("idusuario", usuario.getIdUsuario());
 						listaUsuario =  filtroUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 							
 					}else {

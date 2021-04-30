@@ -76,7 +76,6 @@ public class VentanaLogin extends JFrame{
 		usuarios =  listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 				
 		frmLogin = new JFrame();
-		frmLogin.setResizable(false);
 		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
 		frmLogin.setTitle("Hustle - Login");
 		frmLogin.setBounds(100, 100, 513, 870);
@@ -125,47 +124,6 @@ public class VentanaLogin extends JFrame{
 		panelCorreo.setLayout(null);
 		labelRegistro.setForeground(Color.GRAY);
 		panelCorreo.add(labelRegistro);
-
-		JButton botonLogin = new JButton("LOGIN");
-		botonLogin.setBounds(0, 35, 497, 73);
-		botonLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				
-				String nomUsuario = textFieldUsuario.getText();
-				String contrasena = textFieldContrasena.getText();
-                
-                
-        		for (Usuario usuario : usuarios) {
-					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
-						acceso = true;				
-						usuarioIniciado = usuario;
-						break;
-					}else {
-						acceso= false;
-					}
-				}
-        		
-        		if(acceso == true) {
-					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-					VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
-					vPrincipal.setVisible(true);
-					frmLogin.dispose();
-        		}
-				
-			    if(acceso!=true){
-				    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-				    textFieldUsuario.setText("");
-				    textFieldContrasena.setText("");
-				}
-                											
-			}
-		});
-		
-		
-		botonLogin.setForeground(Color.WHITE);
-		botonLogin.setBackground(new Color(255, 0, 0));
-		botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
-		panelLogin.add(botonLogin);
 		
 		textFieldContrasena = new JPasswordField();
 		textFieldContrasena.setBounds(36, 630, 293, 26);
@@ -231,6 +189,47 @@ public class VentanaLogin extends JFrame{
 		labelLogo.setBounds(0, 0, 500, 500);
 		frmLogin.getContentPane().add(labelLogo);
 		labelLogo.setIcon(new ImageIcon(getClass().getResource("/hustle50.png")));
+		
+				JButton botonLogin = new JButton("LOGIN");
+				botonLogin.setBounds(3, 444, 497, 73);
+				frmLogin.getContentPane().add(botonLogin);
+				botonLogin.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+						
+						String nomUsuario = textFieldUsuario.getText();
+						String contrasena = textFieldContrasena.getText();
+                
+                
+        		for (Usuario usuario : usuarios) {
+							if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
+								acceso = true;				
+								usuarioIniciado = usuario;
+								break;
+							}else {
+								acceso= false;
+							}
+						}
+        		
+        		if(acceso == true) {
+							JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+							VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
+							vPrincipal.setVisible(true);
+							frmLogin.dispose();
+        		}
+						
+					    if(acceso!=true){
+						    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+						    textFieldUsuario.setText("");
+						    textFieldContrasena.setText("");
+						}
+                											
+					}
+				});
+				
+				
+				botonLogin.setForeground(Color.WHITE);
+				botonLogin.setBackground(new Color(255, 0, 0));
+				botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
 		
 		checkVerPass.addActionListener(new ActionListener() {	
 			@Override

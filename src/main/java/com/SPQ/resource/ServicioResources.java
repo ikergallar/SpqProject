@@ -156,14 +156,14 @@ public class ServicioResources {
 	@GET
 	@Path("misServicios")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> misAnuncios(@QueryParam("IdUsuario") int IdUsuario){
+	public List<Anuncio> misAnuncios(@QueryParam("idusuario") int idUsuario){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 		
 		tx.begin();
 		
-		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where idusuario='"+IdUsuario+"'");
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL","SELECT * FROM anuncio where idusuario='"+ idUsuario +"'");
 		query.setClass(Anuncio.class);
 		List<Anuncio> results = query.executeList();
 		
@@ -176,7 +176,7 @@ public class ServicioResources {
 	@GET
 	@Path("usuarios")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroUsuario(@QueryParam("idUsuario") int idUsuario){
+	public List<Anuncio> filtroUsuario(@QueryParam("idusuario") int idUsuario){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();

@@ -18,8 +18,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
-import com.SPQ.dataBase.DBManager;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;

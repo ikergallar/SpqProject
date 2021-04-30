@@ -13,11 +13,10 @@ import javax.swing.JList;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
-import com.SPQ.dataBase.DBManager;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
@@ -46,14 +45,12 @@ public class VentanaMisAnuncios extends JFrame{
 		list = new JList<List<Anuncio>>();
 		list.setBounds(28, 83, 535, 476);
 		getContentPane().add(list);
-				
+						
+		modelo = new DefaultListModel();
 		
-		modelo = new DefaultListModel<List<Anuncio>>();
-		
-		WebTarget listarServicioTarget = servicioTarget.path("misServicios").queryParam("idUsuario", usuario.getIdUsuario());
+		WebTarget misServiciosTarget = servicioTarget.path("misServicios").queryParam("idusuario", usuario.getIdUsuario());
 		GenericType<List<Anuncio>> genericType = new GenericType<List<Anuncio>>() {};
-		listaAnuncios = listarServicioTarget.request(MediaType.APPLICATION_JSON).get(genericType);;
-		
+		listaAnuncios = misServiciosTarget.request(MediaType.APPLICATION_JSON).get(genericType);;
 		for (Anuncio anuncios : listaAnuncios) {
 			modelo.addElement(anuncios);
 			list.setModel(modelo);
@@ -100,12 +97,8 @@ public class VentanaMisAnuncios extends JFrame{
 				
 				Anuncio anuncio = (Anuncio) list.getSelectedValue();
 				modelo.removeElement(anuncio);
-//				try {
-//					conn.eliminarAnuncio(anuncio);
-//				} catch (DBException e1) {
-//					// TODO Auto-generated catch block
-//					e1.printStackTrace();
-//				}
+				WebTarget eliminarTarget = servicioTarget.path("eliminar");
+				eliminarTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));			
 			}
 													        			      		        
 		
@@ -117,6 +110,15 @@ public class VentanaMisAnuncios extends JFrame{
 					Anuncio anuncio = ((Anuncio)list.getSelectedValue());
 					VentanaEditarServicio edit = new VentanaEditarServicio(usuario, anuncio);	
 					edit.setVisible(true);
+					dispose();
+													        			      		        
+		    }
+		});
+		
+		btnNuevoAnuncio.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+					VentanaCrearServicio crear = new VentanaCrearServicio(usuario);	
+					crear.setVisible(true);
 					dispose();
 													        			      		        
 		    }

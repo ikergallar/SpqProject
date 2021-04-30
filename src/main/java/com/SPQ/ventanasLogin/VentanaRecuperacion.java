@@ -10,8 +10,6 @@ import javax.swing.JPasswordField;
 import javax.swing.border.EmptyBorder;
 
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
-import com.SPQ.dataBase.DBManager;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
