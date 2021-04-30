@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -20,14 +21,31 @@ import javax.swing.border.EmptyBorder;
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Usuario;
 
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+
 public class VentanaEditarServicio extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfNombre;
 	private JTextField tfDescripcion;
+	private List<Usuario> usuarios;
+	
+	Client client = ClientBuilder.newClient();
+
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget usuarioTarget = appTarget.path("usuarios");
+	final WebTarget listarUsuarioTarget = usuarioTarget.path("todos");
 
 	
 	public VentanaEditarServicio(Usuario usuario, Anuncio anuncio) {
+		
+		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
+		usuarios =  listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+
 		setResizable(false);
 		setTitle("Hustle - Editar Servicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
