@@ -49,7 +49,7 @@ public class VentanaLogin extends JFrame{
 
 	/**
 	 * Create the application.
-	 */
+	 **/
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
