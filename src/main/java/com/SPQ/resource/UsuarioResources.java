@@ -7,17 +7,17 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.PUT;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("usuarios")
 public class UsuarioResources {
@@ -25,7 +25,7 @@ public class UsuarioResources {
    	@GET
    	@Path("todos")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Usuario> listarUsuarios() throws DBException{
+	public List<Usuario> listarUsuarios(){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -45,7 +45,7 @@ public class UsuarioResources {
    	@POST
 	@Path("registro")
 	@Consumes(MediaType.APPLICATION_JSON)
-	 public void registrarUsuario(Usuario usuario) throws DBException{
+	 public void registrarUsuario(Usuario usuario){
 			
 			PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 			PersistenceManager pm = pmf.getPersistenceManager();
@@ -69,7 +69,7 @@ public class UsuarioResources {
    	@GET
 	@Path("username")
 	@Produces(MediaType.APPLICATION_JSON)
-     public boolean existeUsuario(Usuario usuario) throws DBException{
+     public boolean existeUsuario(Usuario usuario){
  		
  		boolean existe = false;
  		List<Usuario> usuarios = listarUsuarios();
@@ -87,7 +87,7 @@ public class UsuarioResources {
    	@GET
 	@Path("user")
 	@Produces(MediaType.APPLICATION_JSON)
-   	public Usuario seleccionarUsuario(String nombreUsuario) throws DBException{
+   	public Usuario seleccionarUsuario(String nombreUsuario){
  		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
  		PersistenceManager pm = pmf.getPersistenceManager();
  		Transaction tx = pm.currentTransaction();
@@ -108,7 +108,7 @@ public class UsuarioResources {
    	@PUT
 	@Path("update")
 	@Produces(MediaType.APPLICATION_JSON)
-    public void  updateUsuario(Usuario usuario) throws DBException{
+    public void  updateUsuario(Usuario usuario){
  		
  		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
  		PersistenceManager pm = pmf.getPersistenceManager();
@@ -128,7 +128,7 @@ public class UsuarioResources {
 	@PUT
 	@Path("contra")
 	@Produces(MediaType.APPLICATION_JSON)
-    public void  cambiarContrasenya(Usuario usuario) throws DBException{
+    public void  cambiarContrasenya(Usuario usuario){
  		
  		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
  		PersistenceManager pm = pmf.getPersistenceManager();

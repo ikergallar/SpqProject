@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.dataBase.DBException;
+import com.SPQ.ventanasPrimarias.VentanaPrincipal;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
@@ -78,8 +79,8 @@ public class VentanaLogin extends JFrame{
 	 */
 	private void initialize() {
 		
-		GenericType<Usuario> genericType = new GenericType<Usuario>() {};
-		usuarios = (List<Usuario>) listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
+		usuarios =  listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 
 		
 //		DBManager conn = new DBManager();
@@ -131,9 +132,9 @@ public class VentanaLogin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Ventana para registro
-//				VentanaRegistro register = new VentanaRegistro();
-//				register.setVisible(true);
-//				frmLogin.dispose();
+				VentanaRegistro register = new VentanaRegistro();
+				register.setVisible(true);
+				frmLogin.dispose();
 
 			}
 		});
@@ -162,9 +163,9 @@ public class VentanaLogin extends JFrame{
         		
         		if(acceso == true) {
 					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-//					VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
-//					vPrincipal.setVisible(true);
-//					frmLogin.dispose();
+					VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
+					vPrincipal.setVisible(true);
+					frmLogin.dispose();
         		}
 				
 			    if(acceso!=true){
@@ -235,8 +236,8 @@ public class VentanaLogin extends JFrame{
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				// Ventana para registro
-//				VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
-//				recuperacionContra.setVisible(true);
+				VentanaRecuperacion recuperacionContra = new VentanaRecuperacion();
+				recuperacionContra.setVisible(true);
 
 			}
 		});

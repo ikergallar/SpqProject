@@ -10,20 +10,20 @@ import javax.jdo.PersistenceManager;
 import javax.jdo.PersistenceManagerFactory;
 import javax.jdo.Query;
 import javax.jdo.Transaction;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
+
 
 import com.SPQ.clasesBasicas.Anuncio;
-import com.SPQ.clasesBasicas.AnuncioGuardado;
 import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
+import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
+import jakarta.ws.rs.core.MediaType;
 
 @Path("servicios")
 public class ServicioResources {
@@ -31,7 +31,7 @@ public class ServicioResources {
 	@POST
 	@Path("crear")
 	@Consumes(MediaType.APPLICATION_JSON)
-    public void crearAnuncio(Anuncio anuncio) throws DBException{
+    public void crearAnuncio(Anuncio anuncio){
 		
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -55,7 +55,7 @@ public class ServicioResources {
 	@GET
     @Path("todos")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Anuncio> listarAnuncios() throws DBException{
+    public List<Anuncio> listarAnuncios(){
 	    PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -72,30 +72,11 @@ public class ServicioResources {
 		
 	 }
 	
-	@GET
-	@Path("guardados")
-	@Produces(MediaType.APPLICATION_JSON)
-   	public List<AnuncioGuardado> listarAnunciosGuardados() throws DBException{
-		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-		
-		tx.begin();
-		
-		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL","Select * FROM anuncioguardado");
-		query.setClass(AnuncioGuardado.class);
-		List<AnuncioGuardado> results = query.executeList();
-		
-		tx.commit();
-		pm.close();
-		return results;
-		
-	}
 	
 	@GET
 	@Path("ofertas")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroOfertas() throws DBException{
+	public List<Anuncio> filtroOfertas(){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -115,7 +96,7 @@ public class ServicioResources {
 	@GET
 	@Path("categoria")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroCategoria(Categoria categoria) throws DBException{
+	public List<Anuncio> filtroCategoria(Categoria categoria){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -135,7 +116,7 @@ public class ServicioResources {
 	@GET
 	@Path("caro")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroPrecioMayor() throws DBException{
+	public List<Anuncio> filtroPrecioMayor(){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -155,7 +136,7 @@ public class ServicioResources {
 	@GET
 	@Path("barato")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroPrecioMenor() throws DBException{
+	public List<Anuncio> filtroPrecioMenor(){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -175,7 +156,7 @@ public class ServicioResources {
 	@GET
 	@Path("misservicios")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> misAnuncios(int IdUsuario) throws DBException{
+	public List<Anuncio> misAnuncios(@QueryParam("IdUsuario") int IdUsuario){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -195,7 +176,7 @@ public class ServicioResources {
 	@GET
 	@Path("usuarios")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Anuncio> filtroUsuario(Usuario usuario) throws DBException{
+	public List<Anuncio> filtroUsuario(Usuario usuario){
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -215,7 +196,7 @@ public class ServicioResources {
 	@POST
 	@Path("update")
 	@Produces(MediaType.APPLICATION_JSON)
-	 public void  updateAnuncio(Anuncio anuncio) throws DBException{
+	 public void  updateAnuncio(Anuncio anuncio){
 	 		
 	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -236,7 +217,7 @@ public class ServicioResources {
 	 @GET
 	 @Path("servicio")
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public Anuncio seleccionarAnuncio(Anuncio anuncio) throws DBException{
+	 public Anuncio seleccionarAnuncio(Anuncio anuncio){
 	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	 		PersistenceManager pm = pmf.getPersistenceManager();
 	 		Transaction tx = pm.currentTransaction();
@@ -253,32 +234,12 @@ public class ServicioResources {
 	 		return anuncio;
 	 		
 	 	}
-	 
-	 @POST
-	 @Path("comprar")
-	 @Consumes(MediaType.APPLICATION_JSON)
-	 public void guardarAnuncio(Anuncio anuncio) throws DBException{
-		 	PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	 		PersistenceManager pm = pmf.getPersistenceManager();
-	 		Transaction tx = pm.currentTransaction();
-	 		
-	 		tx.begin();
-	 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-	 		Date date = new Date(0);
-	 		
-	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "INSERT INTO anuncioguardado(fecha, nombre) VALUES ('"+ dateFormat.format(date) +"','"+anuncio.getNombre()+"')");
-	 		query.setClass(Anuncio.class);
-
-	 		Long delete = (Long)query.execute();
-	 		
-	 		tx.commit();
-	 		pm.close();
-	 }
+	 	 
 	 
 	 @DELETE
 	 @Path("eliminar")
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public Anuncio eliminarAnuncio(Anuncio anuncio) throws DBException{
+	 public Anuncio eliminarAnuncio(Anuncio anuncio){
 	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	 		PersistenceManager pm = pmf.getPersistenceManager();
 	 		Transaction tx = pm.currentTransaction();
