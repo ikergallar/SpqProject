@@ -1,6 +1,7 @@
 package com.SPQ.ventanasLogin;
 
 import javax.swing.ImageIcon;
+
 import javax.swing.JFrame;
 
 import java.awt.*;
@@ -25,6 +26,7 @@ import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -230,6 +232,61 @@ public class VentanaLogin extends JFrame{
 				botonLogin.setForeground(Color.WHITE);
 				botonLogin.setBackground(new Color(255, 0, 0));
 				botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
+				KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+				manager.addKeyEventDispatcher(new KeyEventDispatcher() {
+					boolean ctrlPulsado = false;
+					@Override
+					public boolean dispatchKeyEvent(KeyEvent e) {
+							// TODO Auto-generated method stub
+					    if (e.getID() == KeyEvent.KEY_PRESSED) {
+					    	
+					    	 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+					    		 String nomUsuario = textFieldUsuario.getText();
+									String contrasena = textFieldContrasena.getText();
+			                
+			                
+			        		for (Usuario usuario : usuarios) {
+										if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
+											acceso = true;				
+											usuarioIniciado = usuario;
+											break;
+										}else {
+											acceso= false;
+										}
+									}
+			        		
+			        		if(acceso == true) {
+										JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+										VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
+										vPrincipal.setVisible(true);
+										frmLogin.dispose();
+			        		}
+									
+								    if(acceso!=true){
+									    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+									    textFieldUsuario.setText("");
+									    textFieldContrasena.setText("");
+									}
+			                			
+								
+					    		 ctrlPulsado = true;
+					    		 
+					    		 
+					    		 //VentanaInicioSesion.this.dispose();
+
+							 }
+					    	
+							
+						else if (e.getID() == KeyEvent.KEY_RELEASED) {
+						     
+							 if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+						    	 ctrlPulsado = false;
+						     }
+						}
+				  }
+					    	return false;
+				}
+		});
 		
 		checkVerPass.addActionListener(new ActionListener() {	
 			@Override
