@@ -70,7 +70,7 @@ public class Anuncio {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public double getPrecio() {
+	public float getPrecio() {
 		return precio;
 	}
 	public void setPrecio(float precio) {
