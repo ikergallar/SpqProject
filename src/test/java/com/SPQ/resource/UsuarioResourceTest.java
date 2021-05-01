@@ -93,6 +93,12 @@ public class UsuarioResourceTest {
     
     @Test
     @PerfTest(invocations = 1000, threads = 40)
+    public void testExisteUsuario() {
+    	
+    }
+    
+    @Test
+    @PerfTest(invocations = 1000, threads = 40)
     public void testSeleccionarUsuario() {
     	
     	Usuario u1 = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
