@@ -88,7 +88,7 @@ public class VentanaMisAnuncios extends JFrame{
 		getContentPane().add(lblNewLabel);
 		btnNuevoAnuncio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				VentanaCrearServicio crearServ = new VentanaCrearServicio();	
+				VentanaCrearServicio crearServ = new VentanaCrearServicio(usuario);	
 				crearServ.setVisible(true);
 				dispose();
 			}
