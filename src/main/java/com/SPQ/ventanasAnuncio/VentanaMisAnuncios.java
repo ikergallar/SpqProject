@@ -100,7 +100,7 @@ public class VentanaMisAnuncios extends JFrame{
 				Anuncio anuncio = (Anuncio) list.getSelectedValue();
 				modelo.removeElement(anuncio);
 				WebTarget eliminarTarget = servicioTarget.path("eliminar");
-				eliminarTarget.request().post(Entity.entity(anuncio, MediaType.APPLICATION_JSON));			
+				eliminarTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));			
 			}
 													        			      		        
 		

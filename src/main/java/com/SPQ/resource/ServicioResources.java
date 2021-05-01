@@ -20,6 +20,7 @@ import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
+import jakarta.ws.rs.PUT;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.QueryParam;
@@ -193,7 +194,7 @@ public class ServicioResources {
 
 	}
 	
-	@POST
+	@PUT
 	@Path("update")
 	@Produces(MediaType.APPLICATION_JSON)
 	 public void  updateAnuncio(Anuncio anuncio){
@@ -236,7 +237,7 @@ public class ServicioResources {
 	 	}
 	 	 
 	 
-	 @DELETE
+	 @PUT
 	 @Path("eliminar")
 	 @Produces(MediaType.APPLICATION_JSON)
 	 public Anuncio eliminarAnuncio(Anuncio anuncio){

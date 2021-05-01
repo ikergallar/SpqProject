@@ -83,6 +83,7 @@ public class VentanaEditarServicio extends JFrame {
 		comboBoxCategoria.addItem(Categoria.FONTANERO);
 		comboBoxCategoria.addItem(Categoria.INFORMATICO);
 		comboBoxCategoria.addItem(Categoria.PERSIANERO);
+		comboBoxCategoria.setSelectedItem(anuncio.getCategoria());
 		comboBoxCategoria.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBoxCategoria.setBounds(327, 107, 214, 27);
 		contentPane.add(comboBoxCategoria);
@@ -93,13 +94,13 @@ public class VentanaEditarServicio extends JFrame {
 		lblCategoria.setBounds(328, 82, 68, 14);
 		contentPane.add(lblCategoria);
 		
-		tfNombre = new JTextField();
+		tfNombre = new JTextField(anuncio.getNombre());
 		tfNombre.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tfNombre.setBounds(36, 107, 214, 27);
 		contentPane.add(tfNombre);
 		tfNombre.setColumns(10);
 		
-		tfDescripcion = new JTextField();
+		tfDescripcion = new JTextField(anuncio.getDescripcion());
 		tfDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		tfDescripcion.setColumns(10);
 		tfDescripcion.setBounds(36, 240, 214, 106);
@@ -115,12 +116,14 @@ public class VentanaEditarServicio extends JFrame {
 		
 		JSpinner spinner = new JSpinner();
 		spinner.setBounds(36, 170, 214, 27);
+		spinner.setValue(anuncio.getPrecio());
 		contentPane.add(spinner);
 		
 		JToggleButton tglbtnOferta = new JToggleButton("Oferta");
 		tglbtnOferta.setBackground(Color.RED);
 		tglbtnOferta.setForeground(Color.WHITE);
 		tglbtnOferta.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		tglbtnOferta.setSelected(anuncio.isOferta());
 		tglbtnOferta.setBounds(327, 169, 214, 27);
 		contentPane.add(tglbtnOferta);
 		
@@ -134,7 +137,7 @@ public class VentanaEditarServicio extends JFrame {
 
 				nombre = tfNombre.getText();
 				descripcion = tfDescripcion.getText();
-				precio = (float) spinner.getValue();
+				precio = Float.valueOf(spinner.getValue().toString());
 				categoria = (Categoria) comboBoxCategoria.getSelectedItem();		
 				oferta = tglbtnOferta.isSelected();
 
@@ -150,7 +153,7 @@ public class VentanaEditarServicio extends JFrame {
 		    		anuncio.setOferta(oferta);
 		    		anuncio.setIdUsuario(usuario.getIdUsuario());
 
-		    		updateServicioTarget.request().post(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
+		    		updateServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 					JOptionPane.showMessageDialog(null, "Anuncio creado correctamente", "Correcto", 1);
                     dispose();																				
 																																										  

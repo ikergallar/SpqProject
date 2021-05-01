@@ -127,14 +127,13 @@ public class VentanaCrearServicio extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre;
 				String descripcion;
-				double  precio;
+				float  precio;
 				Categoria categoria;
-				int idUsuario;
 				boolean oferta;
 
 				nombre = tfNombre.getText();
 				descripcion = tfDescripcion.getText();
-				precio = Double.valueOf(spinner.getValue().toString());
+				precio = Float.valueOf(spinner.getValue().toString());
 				categoria = (Categoria) comboBoxCategoria.getSelectedItem();		
 				oferta = tglbtnOferta.isSelected();
 
