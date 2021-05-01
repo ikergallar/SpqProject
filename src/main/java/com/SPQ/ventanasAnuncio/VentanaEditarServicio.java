@@ -6,11 +6,13 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
@@ -18,16 +20,30 @@ import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 
 import com.SPQ.clasesBasicas.Anuncio;
+import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
 
 public class VentanaEditarServicio extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField tfNombre;
 	private JTextField tfDescripcion;
-
+	private List<Usuario> usuarios;
+	
+	Client client = ClientBuilder.newClient();
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget servicioTarget = appTarget.path("servicios");
+	final WebTarget updateServicioTarget = servicioTarget.path("update");
 	
 	public VentanaEditarServicio(Usuario usuario, Anuncio anuncio) {
+
 		setResizable(false);
 		setTitle("Hustle - Editar Servicio");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -63,6 +79,10 @@ public class VentanaEditarServicio extends JFrame {
 		contentPane.add(lblEditarServicio);
 		
 		JComboBox comboBoxCategoria = new JComboBox();
+		comboBoxCategoria.addItem(Categoria.ALBAYIL);
+		comboBoxCategoria.addItem(Categoria.FONTANERO);
+		comboBoxCategoria.addItem(Categoria.INFORMATICO);
+		comboBoxCategoria.addItem(Categoria.PERSIANERO);
 		comboBoxCategoria.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboBoxCategoria.setBounds(327, 107, 214, 27);
 		contentPane.add(comboBoxCategoria);
@@ -106,9 +126,38 @@ public class VentanaEditarServicio extends JFrame {
 		
 		btnEditarAnuncio.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				String nombre;
+				String descripcion;
+				float  precio;
+				Categoria categoria;
+				boolean oferta;
+
+				nombre = tfNombre.getText();
+				descripcion = tfDescripcion.getText();
+				precio = (float) spinner.getValue();
+				categoria = (Categoria) comboBoxCategoria.getSelectedItem();		
+				oferta = tglbtnOferta.isSelected();
+
+				if (nombre.equals("") || descripcion.equals("") || precio < 0 || categoria.equals(null)) {
+					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
+					
+				}else {
+					    		    	
+		    		anuncio.setNombre(nombre);
+		    		anuncio.setDescripcion(descripcion);
+		    		anuncio.setPrecio(precio);
+		    		anuncio.setCategoria(categoria);
+		    		anuncio.setOferta(oferta);
+		    		anuncio.setIdUsuario(usuario.getIdUsuario());
+
+		    		updateServicioTarget.request().post(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
+					JOptionPane.showMessageDialog(null, "Anuncio creado correctamente", "Correcto", 1);
+                    dispose();																				
+																																										  
+				}
 			}
-		});
+			
+		});					
 	}
 
 }

@@ -13,8 +13,14 @@ import javax.swing.JList;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Usuario;
-import com.SPQ.dataBase.DBException;
-import com.SPQ.dataBase.DBManager;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+
 import javax.swing.JButton;
 import java.awt.Color;
 import java.awt.Font;
@@ -28,6 +34,10 @@ public class VentanaMisAnuncios extends JFrame{
 	private JList<List<Anuncio>> list;
 	private List<Anuncio> listaAnuncios;
 	
+	Client client = ClientBuilder.newClient();
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget servicioTarget = appTarget.path("servicios");
+	
 	public VentanaMisAnuncios(Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
 		getContentPane().setLayout(null);
@@ -35,17 +45,12 @@ public class VentanaMisAnuncios extends JFrame{
 		list = new JList<List<Anuncio>>();
 		list.setBounds(28, 83, 535, 476);
 		getContentPane().add(list);
-				
-		DBManager conn = new DBManager();
+						
+		modelo = new DefaultListModel();
 		
-		modelo = new DefaultListModel<List<Anuncio>>();
-
-		try {
-			listaAnuncios = conn.misAnuncios(usuario.getIdUsuario());
-		} catch (DBException e2) {
-			// TODO Auto-generated catch block
-			e2.printStackTrace();
-		}
+		WebTarget misServiciosTarget = servicioTarget.path("misServicios").queryParam("idusuario", usuario.getIdUsuario());
+		GenericType<List<Anuncio>> genericType = new GenericType<List<Anuncio>>() {};
+		listaAnuncios = misServiciosTarget.request(MediaType.APPLICATION_JSON).get(genericType);;
 		for (Anuncio anuncios : listaAnuncios) {
 			modelo.addElement(anuncios);
 			list.setModel(modelo);
@@ -94,12 +99,8 @@ public class VentanaMisAnuncios extends JFrame{
 				
 				Anuncio anuncio = (Anuncio) list.getSelectedValue();
 				modelo.removeElement(anuncio);
-				try {
-					conn.eliminarAnuncio(anuncio);
-				} catch (DBException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				WebTarget eliminarTarget = servicioTarget.path("eliminar");
+				eliminarTarget.request().post(Entity.entity(anuncio, MediaType.APPLICATION_JSON));			
 			}
 													        			      		        
 		
@@ -111,6 +112,15 @@ public class VentanaMisAnuncios extends JFrame{
 					Anuncio anuncio = ((Anuncio)list.getSelectedValue());
 					VentanaEditarServicio edit = new VentanaEditarServicio(usuario, anuncio);	
 					edit.setVisible(true);
+					dispose();
+													        			      		        
+		    }
+		});
+		
+		btnNuevoAnuncio.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e){   
+					VentanaCrearServicio crear = new VentanaCrearServicio(usuario);	
+					crear.setVisible(true);
 					dispose();
 													        			      		        
 		    }
