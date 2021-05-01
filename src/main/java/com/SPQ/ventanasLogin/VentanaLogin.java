@@ -15,7 +15,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.ventanasPrimarias.VentanaPrincipal;
 
@@ -34,16 +33,15 @@ import java.awt.event.MouseEvent;
 import java.util.List;
 import javax.swing.UIManager;
 
-
-public class VentanaLogin extends JFrame{
+public class VentanaLogin extends JFrame {
 
 	public JFrame frmLogin;
 	private JTextField textFieldUsuario;
 	private JPasswordField textFieldContrasena;
 	private List<Usuario> usuarios;
-	private boolean acceso = false;	
+	private boolean acceso = false;
 	private Usuario usuarioIniciado;
-	
+
 	Client client = ClientBuilder.newClient();
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget usuarioTarget = appTarget.path("usuarios");
@@ -52,7 +50,7 @@ public class VentanaLogin extends JFrame{
 	/**
 	 * Create the application.
 	 **/
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -65,6 +63,7 @@ public class VentanaLogin extends JFrame{
 			}
 		});
 	}
+
 	public VentanaLogin() {
 		initialize();
 	}
@@ -73,10 +72,11 @@ public class VentanaLogin extends JFrame{
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		
-		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
-		usuarios =  listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-				
+
+		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {
+		};
+		usuarios = listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+
 		frmLogin = new JFrame();
 		frmLogin.getContentPane().setBackground(new Color(39, 45, 53));
 		frmLogin.setTitle("Hustle - Login");
@@ -126,12 +126,12 @@ public class VentanaLogin extends JFrame{
 		panelCorreo.setLayout(null);
 		labelRegistro.setForeground(Color.GRAY);
 		panelCorreo.add(labelRegistro);
-		
+
 		textFieldContrasena = new JPasswordField();
 		textFieldContrasena.setBounds(36, 630, 293, 26);
 		frmLogin.getContentPane().add(textFieldContrasena);
 		textFieldContrasena.setColumns(10);
-		
+
 		JLabel labelCorreo = new JLabel("Usuario");
 		labelCorreo.setBackground(Color.WHITE);
 		labelCorreo.setBounds(36, 499, 52, 89);
@@ -139,28 +139,29 @@ public class VentanaLogin extends JFrame{
 		labelCorreo.setForeground(Color.WHITE);
 		labelCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelCorreo.setFont(new Font("Tahoma", Font.BOLD, 14));
-		
+
 		textFieldUsuario = new JTextField();
 		textFieldUsuario.setBounds(36, 562, 398, 26);
 		frmLogin.getContentPane().add(textFieldUsuario);
 		textFieldUsuario.setHorizontalAlignment(SwingConstants.LEFT);
 		textFieldUsuario.setFont(new Font("Malgun Gothic", Font.PLAIN, 14));
 		textFieldUsuario.setColumns(30);
-		
+
 		JLabel lblNewLabel = new JLabel("Contraseña");
 		lblNewLabel.setBackground(Color.WHITE);
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel.setBounds(36, 599, 111, 14);
 		frmLogin.getContentPane().add(lblNewLabel);
-		
+
 		final JCheckBox checkVerPass = new JCheckBox("Ver contraseña");
 		checkVerPass.setBackground(new Color(39, 45, 53));
 		checkVerPass.setForeground(Color.WHITE);
 		checkVerPass.setBounds(335, 630, 137, 26);
 		frmLogin.getContentPane().add(checkVerPass);
-		
-		final JLabel textoRecuperacion = new JLabel("¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
+
+		final JLabel textoRecuperacion = new JLabel(
+				"¿Se le ha olvidado la contraseña? Pulse aquí si desea recuperarla");
 		textoRecuperacion.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		textoRecuperacion.setBackground(Color.WHITE);
 		textoRecuperacion.setForeground(Color.GRAY);
@@ -186,120 +187,113 @@ public class VentanaLogin extends JFrame{
 
 			}
 		});
-		
+
 		JLabel labelLogo = new JLabel("");
 		labelLogo.setBounds(0, 0, 500, 500);
 		frmLogin.getContentPane().add(labelLogo);
 		labelLogo.setIcon(new ImageIcon(getClass().getResource("/hustle50.png")));
-		
-				JButton botonLogin = new JButton("LOGIN");
-				botonLogin.setBounds(3, 444, 497, 73);
-				frmLogin.getContentPane().add(botonLogin);
-				botonLogin.addActionListener(new ActionListener() {
-					public void actionPerformed(ActionEvent arg0) {
-						
+
+		JButton botonLogin = new JButton("LOGIN");
+		botonLogin.setBounds(3, 444, 497, 73);
+		frmLogin.getContentPane().add(botonLogin);
+		botonLogin.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+
+				String nomUsuario = textFieldUsuario.getText();
+				String contrasena = textFieldContrasena.getText();
+
+				for (Usuario usuario : usuarios) {
+					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
+						acceso = true;
+						usuarioIniciado = usuario;
+						break;
+					} else {
+						acceso = false;
+					}
+				}
+
+				if (acceso == true) {
+					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+					VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
+					vPrincipal.setVisible(true);
+					frmLogin.dispose();
+				}
+
+				if (acceso != true) {
+					JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+					textFieldUsuario.setText("");
+					textFieldContrasena.setText("");
+				}
+
+			}
+		});
+
+		botonLogin.setForeground(Color.WHITE);
+		botonLogin.setBackground(new Color(255, 0, 0));
+		botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
+		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		manager.addKeyEventDispatcher(new KeyEventDispatcher() {
+			boolean ctrlPulsado = false;
+
+			@Override
+			public boolean dispatchKeyEvent(KeyEvent e) {
+				// TODO Auto-generated method stub
+				if (e.getID() == KeyEvent.KEY_PRESSED) {
+
+					if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 						String nomUsuario = textFieldUsuario.getText();
 						String contrasena = textFieldContrasena.getText();
-                
-                
-        		for (Usuario usuario : usuarios) {
+
+						for (Usuario usuario : usuarios) {
 							if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
-								acceso = true;				
+								acceso = true;
 								usuarioIniciado = usuario;
 								break;
-							}else {
-								acceso= false;
+							} else {
+								acceso = false;
 							}
 						}
-        		
-        		if(acceso == true) {
+
+						if (acceso == true) {
 							JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
 							VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
 							vPrincipal.setVisible(true);
 							frmLogin.dispose();
-        		}
-						
-					    if(acceso!=true){
-						    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-						    textFieldUsuario.setText("");
-						    textFieldContrasena.setText("");
 						}
-                											
-					}
-				});
-				
-				
-				botonLogin.setForeground(Color.WHITE);
-				botonLogin.setBackground(new Color(255, 0, 0));
-				botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
-				KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-				manager.addKeyEventDispatcher(new KeyEventDispatcher() {
-					boolean ctrlPulsado = false;
-					@Override
-					public boolean dispatchKeyEvent(KeyEvent e) {
-							// TODO Auto-generated method stub
-					    if (e.getID() == KeyEvent.KEY_PRESSED) {
-					    	
-					    	 if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-					    		 String nomUsuario = textFieldUsuario.getText();
-									String contrasena = textFieldContrasena.getText();
-			                
-			                
-			        		for (Usuario usuario : usuarios) {
-										if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
-											acceso = true;				
-											usuarioIniciado = usuario;
-											break;
-										}else {
-											acceso= false;
-										}
-									}
-			        		
-			        		if(acceso == true) {
-										JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-										VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
-										vPrincipal.setVisible(true);
-										frmLogin.dispose();
-			        		}
-									
-								    if(acceso!=true){
-									    JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-									    textFieldUsuario.setText("");
-									    textFieldContrasena.setText("");
-									}
-			                			
-								
-					    		 ctrlPulsado = true;
-					    		 
-					    		 
-					    		 //VentanaInicioSesion.this.dispose();
 
-							 }
-					    	
-							
-						else if (e.getID() == KeyEvent.KEY_RELEASED) {
-						     
-							 if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
-						    	 ctrlPulsado = false;
-						     }
+						if (acceso == false) {
+							JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+							textFieldUsuario.setText("");
+							textFieldContrasena.setText("");
 						}
-				  }
-					    	return false;
+
+						ctrlPulsado = true;
+
+					}
+
+					else if (e.getID() == KeyEvent.KEY_RELEASED) {
+
+						if (e.getKeyCode() == KeyEvent.VK_CONTROL) {
+							ctrlPulsado = false;
+						}
+					}
 				}
+				return false;
+			}
 		});
-		
-		checkVerPass.addActionListener(new ActionListener() {	
+
+		checkVerPass.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if(checkVerPass.isSelected()) {
-					
-					textFieldContrasena.setEchoChar((char)0);
-					
-				}else {
-					
+				if (checkVerPass.isSelected()) {
+
+					textFieldContrasena.setEchoChar((char) 0);
+
+				} else {
+
 					textFieldContrasena.setEchoChar(('*'));
 				}
-				
+
 			}
 		});
 
@@ -307,15 +301,15 @@ public class VentanaLogin extends JFrame{
 
 	public void setVisible(boolean b) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public static int getUsuarioId() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	//Para el test VentanaLogin
+
+	// Para el test VentanaLogin
 //	public boolean login(String nomUsuario, String contrasenya) {
 //		if (!nomUsuario.equals("") && !contrasenya.equals("")) {
 //		    if (usuarioIniciado.getNombreUsuario().equals(nomUsuario) || !usuarioIniciado.equals(null)){

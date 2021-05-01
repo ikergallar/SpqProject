@@ -127,18 +127,18 @@ public class VentanaCrearServicio extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				String nombre;
 				String descripcion;
-				float  precio;
+				double  precio;
 				Categoria categoria;
 				int idUsuario;
 				boolean oferta;
 
 				nombre = tfNombre.getText();
 				descripcion = tfDescripcion.getText();
-				precio = (float) spinner.getValue();
+				precio = Double.valueOf(spinner.getValue().toString());
 				categoria = (Categoria) comboBoxCategoria.getSelectedItem();		
 				oferta = tglbtnOferta.isSelected();
 
-				if (nombre.equals("") || descripcion.equals("") || precio < 0 || categoria.equals(null)) {
+				if (nombre.equals("") || descripcion.equals("") || categoria.equals(null)) {
 					JOptionPane.showMessageDialog(null, "Es necesario rellenar todos los campos", "Error", 0);
 					
 				}else {
