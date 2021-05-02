@@ -1,55 +1,106 @@
 package com.SPQ.ventanasAnuncio;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import com.SPQ.clasesBasicas.Anuncio;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import java.awt.GridLayout;
+import javax.swing.JTextField;
+import javax.swing.JToggleButton;
+import javax.swing.JCheckBox;
+
 public class VentanaMostrarServicio extends JDialog {
+	private JTextField tfCategoria;
+	private JTextField tfPrecio;
+	private JTextField tfDescripcion;
 
-	private final JPanel contentPanel = new JPanel();
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		try {
-			VentanaMostrarServicio dialog = new VentanaMostrarServicio();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	/**
-	 * Create the dialog.
-	 */
-	public VentanaMostrarServicio() {
-		setBounds(100, 100, 450, 300);
-		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setLayout(new FlowLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		{
-			JPanel buttonPane = new JPanel();
-			buttonPane.setLayout(new FlowLayout(FlowLayout.RIGHT));
-			getContentPane().add(buttonPane, BorderLayout.SOUTH);
-			{
-				JButton okButton = new JButton("OK");
-				okButton.setActionCommand("OK");
-				buttonPane.add(okButton);
-				getRootPane().setDefaultButton(okButton);
+	public VentanaMostrarServicio(Anuncio anuncio) {
+		getContentPane().setBackground(new Color(39, 45, 53));
+		setTitle("Hustle - Servicio");
+		setBounds(100, 100, 513, 496);
+		getContentPane().setLayout(null);
+		
+		JButton btnCerrar = new JButton("CERRAR");
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 			}
-			{
-				JButton cancelButton = new JButton("Cancel");
-				cancelButton.setActionCommand("Cancel");
-				buttonPane.add(cancelButton);
-			}
-		}
+		});
+		btnCerrar.setBackground(new Color(255, 0, 0));
+		btnCerrar.setForeground(Color.WHITE);
+		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnCerrar.setBounds(0, 380, 497, 77);
+		getContentPane().add(btnCerrar);
+		
+		JPanel panelServicio = new JPanel();
+		panelServicio.setBackground(new Color(39, 45, 53));
+		panelServicio.setBounds(28, 104, 438, 278);
+		getContentPane().add(panelServicio);
+		panelServicio.setLayout(new GridLayout(4, 2, 0, 0));
+		
+		JLabel lblCategoria = new JLabel("Categoria:");
+		lblCategoria.setForeground(Color.WHITE);
+		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelServicio.add(lblCategoria);
+		
+		tfCategoria = new JTextField();
+		tfCategoria.setBackground(new Color(39, 45, 53));
+		tfCategoria.setForeground(Color.WHITE);
+		tfCategoria.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfCategoria.setEditable(false);
+		panelServicio.add(tfCategoria);
+		tfCategoria.setColumns(10);
+		
+		JLabel lblPrecio = new JLabel("Precio:");
+		lblPrecio.setForeground(Color.WHITE);
+		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelServicio.add(lblPrecio);
+		
+		tfPrecio = new JTextField();
+		tfPrecio.setBackground(new Color(39, 45, 53));
+		tfPrecio.setForeground(Color.WHITE);
+		tfPrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfPrecio.setEditable(false);
+		panelServicio.add(tfPrecio);
+		tfPrecio.setColumns(10);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion:");
+		lblDescripcion.setForeground(Color.WHITE);
+		lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelServicio.add(lblDescripcion);
+		
+		tfDescripcion = new JTextField();
+		tfDescripcion.setBackground(new Color(39, 45, 53));
+		tfDescripcion.setForeground(Color.WHITE);
+		tfDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		tfDescripcion.setEditable(false);
+		panelServicio.add(tfDescripcion);
+		tfDescripcion.setColumns(10);
+		
+		JLabel lblOferta = new JLabel("Oferta:");
+		lblOferta.setForeground(Color.WHITE);
+		lblOferta.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelServicio.add(lblOferta);
+		
+		JCheckBox chckbxOferta = new JCheckBox("");
+		chckbxOferta.setEnabled(false);
+		chckbxOferta.setBackground(new Color(39, 45, 53));
+		panelServicio.add(chckbxOferta);
+		
+		JLabel lblNewLabel = new JLabel("Titulo");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
+		lblNewLabel.setBounds(28, 0, 438, 105);
+		getContentPane().add(lblNewLabel);
 	}
-
 }
