@@ -95,10 +95,14 @@ public class VentanaMostrarServicio extends JDialog {
 		lblOferta.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelServicio.add(lblOferta);
 		
+		
 		JCheckBox chckbxOferta = new JCheckBox("");
 		chckbxOferta.setEnabled(false);
 		chckbxOferta.setBackground(new Color(39, 45, 53));
 		panelServicio.add(chckbxOferta);
+		if(anuncio.isOferta()) {
+			chckbxOferta.setSelected(true);
+		}
 		
 		JLabel lblNewLabel = new JLabel(anuncio.getNombre());
 		lblNewLabel.setForeground(Color.WHITE);
