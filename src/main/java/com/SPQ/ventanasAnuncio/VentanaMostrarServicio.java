@@ -30,7 +30,7 @@ public class VentanaMostrarServicio extends JDialog {
 		setTitle("Hustle - Servicio");
 		setBounds(100, 100, 513, 496);
 		getContentPane().setLayout(null);
-		
+
 		JButton btnCerrar = new JButton("CERRAR");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -41,18 +41,18 @@ public class VentanaMostrarServicio extends JDialog {
 		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnCerrar.setBounds(0, 380, 497, 77);
 		getContentPane().add(btnCerrar);
-		
+
 		JPanel panelServicio = new JPanel();
 		panelServicio.setBackground(new Color(39, 45, 53));
 		panelServicio.setBounds(28, 104, 438, 278);
 		getContentPane().add(panelServicio);
 		panelServicio.setLayout(new GridLayout(4, 2, 0, 0));
-		
+
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setForeground(Color.WHITE);
 		lblCategoria.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelServicio.add(lblCategoria);
-		
+
 		tfCategoria = new JTextField();
 		tfCategoria.setText(anuncio.getCategoria().name());
 		tfCategoria.setBackground(new Color(39, 45, 53));
@@ -61,12 +61,12 @@ public class VentanaMostrarServicio extends JDialog {
 		tfCategoria.setEditable(false);
 		panelServicio.add(tfCategoria);
 		tfCategoria.setColumns(10);
-		
+
 		JLabel lblPrecio = new JLabel("Precio:");
 		lblPrecio.setForeground(Color.WHITE);
 		lblPrecio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelServicio.add(lblPrecio);
-		
+
 		tfPrecio = new JTextField();
 		tfPrecio.setText(Float.toString(anuncio.getPrecio()));
 		tfPrecio.setBackground(new Color(39, 45, 53));
@@ -75,12 +75,12 @@ public class VentanaMostrarServicio extends JDialog {
 		tfPrecio.setEditable(false);
 		panelServicio.add(tfPrecio);
 		tfPrecio.setColumns(10);
-		
+
 		JLabel lblDescripcion = new JLabel("Descripcion:");
 		lblDescripcion.setForeground(Color.WHITE);
 		lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelServicio.add(lblDescripcion);
-		
+
 		tfDescripcion = new JTextField();
 		tfDescripcion.setText(anuncio.getDescripcion());
 		tfDescripcion.setBackground(new Color(39, 45, 53));
@@ -89,21 +89,20 @@ public class VentanaMostrarServicio extends JDialog {
 		tfDescripcion.setEditable(false);
 		panelServicio.add(tfDescripcion);
 		tfDescripcion.setColumns(10);
-		
+
 		JLabel lblOferta = new JLabel("Oferta:");
 		lblOferta.setForeground(Color.WHITE);
 		lblOferta.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelServicio.add(lblOferta);
-		
-		
+
 		JCheckBox chckbxOferta = new JCheckBox("");
 		chckbxOferta.setEnabled(false);
 		chckbxOferta.setBackground(new Color(39, 45, 53));
 		panelServicio.add(chckbxOferta);
-		if(anuncio.isOferta()) {
+		if (anuncio.isOferta()) {
 			chckbxOferta.setSelected(true);
 		}
-		
+
 		JLabel lblNewLabel = new JLabel(anuncio.getNombre());
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));

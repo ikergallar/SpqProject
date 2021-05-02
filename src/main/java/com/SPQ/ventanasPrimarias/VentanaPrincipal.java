@@ -491,13 +491,13 @@ public class VentanaPrincipal extends JFrame {
 		lblTiruloServicios.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblTiruloServicios.setBounds(325, 29, 139, 33);
 		panelServiciosGen.add(lblTiruloServicios);
-		
+
 		JButton btnAbrirServicio = new JButton("ABRIR");
 		btnAbrirServicio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				Anuncio anuncio = ((Anuncio)list.getSelectedValue());
-				VentanaMostrarServicio mostrar = new VentanaMostrarServicio(anuncio);	
+				Anuncio anuncio = ((Anuncio) list.getSelectedValue());
+				VentanaMostrarServicio mostrar = new VentanaMostrarServicio(anuncio);
 				mostrar.setVisible(true);
 			}
 		});
