@@ -3,7 +3,11 @@ package com.SPQ.resource;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -64,26 +68,37 @@ public class ServicioGuardadoResourceTest {
     @PerfTest(invocations = 1000, threads = 40)
     public void testListarAnuncioGuardado() {
     	
-    	AnuncioGuardado a1 = new  AnuncioGuardado();
-		AnuncioGuardado a2 = new  AnuncioGuardado();
+    	try {
+    		
+			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+			String fecha = "20-11-1999";
+			Date date = sdf.parse(fecha);
+			GregorianCalendar gc = new GregorianCalendar();
+			gc.setTimeInMillis(date.getTime());
+			AnuncioGuardado anuncio = new AnuncioGuardado(gc,"John");
+			
+			WebTarget servicioGuardadoTarget = appTarget.path("anuncios");
+	    	WebTarget listaServicioGuardadoTarget = servicioGuardadoTarget.path("listaServicioGuardado");
+	    	
+	    	List<AnuncioGuardado> listaAnuncioGuardado = new ArrayList<AnuncioGuardado>();
+	    	listaAnuncioGuardado.add(anuncio);
+	    			   			
+	    	GenericType<List<AnuncioGuardado>> genericType = new GenericType<List<AnuncioGuardado>>() {};
+	    	List<AnuncioGuardado> usuarios = listaServicioGuardadoTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+	    	
+	        assertEquals(listaAnuncioGuardado.get(0).getNombre(), usuarios.get(0).getNombre());
+	        assertEquals(listaAnuncioGuardado.get(1).getNombre(), usuarios.get(1).getNombre());
+			
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
     	
-    	WebTarget servicioGuardadoTarget = appTarget.path("anuncios");
-    	WebTarget listaServicioGuardadoTarget = servicioGuardadoTarget.path("listaServicioGuardado");
     	
-    	List<AnuncioGuardado> listaAnuncioGuardado = new ArrayList<AnuncioGuardado>();
-    	listaAnuncioGuardado.add(a1);
-    	listaAnuncioGuardado.add(a2);
-    			   			
-    	GenericType<List<AnuncioGuardado>> genericType = new GenericType<List<AnuncioGuardado>>() {};
-    	List<AnuncioGuardado> usuarios = listaServicioGuardadoTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-    	
-        assertEquals(listaAnuncioGuardado.get(0).getNombre(), usuarios.get(0).getNombre());
-        assertEquals(listaAnuncioGuardado.get(1).getNombre(), usuarios.get(1).getNombre());
     }
     
-    @POST
-	@Path("registro")
-	@Consumes(MediaType.APPLICATION_JSON)
+     @Test
+     @PerfTest(invocations = 1000, threads = 40)
 	 public void guardarServicioGuardado(AnuncioGuardado anuncioGuardado){
 			
 			PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
