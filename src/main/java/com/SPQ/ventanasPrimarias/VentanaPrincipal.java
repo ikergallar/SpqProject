@@ -15,7 +15,9 @@ import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.resource.UsuarioResources;
+import com.SPQ.ventanasAnuncio.VentanaEditarServicio;
 import com.SPQ.ventanasAnuncio.VentanaMisAnuncios;
+import com.SPQ.ventanasAnuncio.VentanaMostrarServicio;
 import com.SPQ.ventanasLogin.VentanaContrasenya;
 import com.SPQ.ventanasLogin.VentanaLogin;
 
@@ -489,6 +491,21 @@ public class VentanaPrincipal extends JFrame {
 		lblTiruloServicios.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblTiruloServicios.setBounds(325, 29, 139, 33);
 		panelServiciosGen.add(lblTiruloServicios);
+		
+		JButton btnAbrirServicio = new JButton("ABRIR");
+		btnAbrirServicio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Anuncio anuncio = ((Anuncio)list.getSelectedValue());
+				VentanaMostrarServicio mostrar = new VentanaMostrarServicio(anuncio);	
+				mostrar.setVisible(true);
+			}
+		});
+		btnAbrirServicio.setBackground(Color.RED);
+		btnAbrirServicio.setForeground(Color.WHITE);
+		btnAbrirServicio.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnAbrirServicio.setBounds(41, 493, 133, 35);
+		panelServiciosGen.add(btnAbrirServicio);
 
 		rdbtnCategoria.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
