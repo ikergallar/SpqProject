@@ -617,7 +617,7 @@ public class VentanaPrincipal extends JFrame {
 				WebTarget seleccionarUsuarioTarget = usuarioTarget.path("user").queryParam("nombreusuario", nomUsuario);
 				usuario = seleccionarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericTypeUsuario);
 				if (usuario != null) {
-					WebTarget filtroUsuarioTarget = servicioTarget.path("usuario").queryParam("idusuario",
+					WebTarget filtroUsuarioTarget = servicioTarget.path("usuarios").queryParam("idusuario",
 							usuario.getIdUsuario());
 					listaUsuario = filtroUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 
