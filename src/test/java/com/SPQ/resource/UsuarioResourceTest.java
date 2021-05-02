@@ -4,6 +4,8 @@ import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
+import javax.swing.DefaultListModel;
+
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
@@ -83,12 +85,6 @@ public class UsuarioResourceTest {
         assertEquals("ramona", usuarios.get(4).getNombreUsuario());
 
    }
-     
-    @Test
-    @PerfTest(invocations = 1000, threads = 40)
-    public void testExisteUsuario() {
-    	
-    }
    
     @Test
     @PerfTest(invocations = 1000, threads = 40)
@@ -141,4 +137,18 @@ public class UsuarioResourceTest {
         assertEquals(u1.getDireccion(),usuario.getDireccion());
         assertEquals(u1.getMail(),usuario.getMail());
     }   
+    
+    @Test
+    @PerfTest(invocations = 1000, threads = 40)
+    public void testFiltrarUsuario() {
+    	
+    }
+    
+    @Test
+    @PerfTest(invocations = 1000, threads = 40)
+    public void testExisteUsuario() {
+    	
+    }
+    
+    
 }
