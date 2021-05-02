@@ -147,6 +147,9 @@ public class UsuarioResourceTest {
     @Test
     @PerfTest(invocations = 1000, threads = 40)
     public void testExisteUsuario() {
+    	WebTarget existeTarget = usuarioTarget.path("existeUsuario");
+    	
+    	
     	
     }
     

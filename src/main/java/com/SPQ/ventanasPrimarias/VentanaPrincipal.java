@@ -10,7 +10,6 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
@@ -42,6 +41,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.List;
 import java.awt.FlowLayout;
 import java.awt.GridBagLayout;
@@ -50,6 +57,20 @@ import java.awt.Insets;
 import javax.swing.JTabbedPane;
 import java.awt.CardLayout;
 import javax.swing.UIManager;
+import javax.swing.JTextArea;
+
+import java.awt.event.*;
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.net.ServerSocket;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.util.ArrayList;
+
+import javax.swing.*;
 
 public class VentanaPrincipal extends JFrame {
 
@@ -76,6 +97,7 @@ public class VentanaPrincipal extends JFrame {
 	JPanel panelPerfil;
 	JPanel panelServicios;
 	JPanel panelesDinamicos;
+	JPanel panelChat;
 	CardLayout cl = new CardLayout();
 
 	Client client = ClientBuilder.newClient();
@@ -92,6 +114,7 @@ public class VentanaPrincipal extends JFrame {
 	final WebTarget precioMenorTarget = servicioTarget.path("barato");
 	final WebTarget ofertaTarget = servicioTarget.path("ofertas");
 	final WebTarget updateServicioTarget = servicioTarget.path("update");
+	private JTextField tfChat;
 
 	public VentanaPrincipal(Usuario usuario) {
 
@@ -116,11 +139,9 @@ public class VentanaPrincipal extends JFrame {
 		panelServicios.setBounds(0, 0, 835, 592);
 		panelesDinamicos.add(panelServicios, "2");
 
-		JPanel panelChat = new JPanel();
+		panelChat = genPanelChat();
 		panelChat.setBounds(0, 0, 835, 592);
 		panelesDinamicos.add(panelChat, "3");
-		panelChat.setLayout(null);
-		cl.show(panelesDinamicos, "1");
 
 		JPanel panelSelecVentana = new JPanel();
 		panelSelecVentana.setBounds(20, 89, 230, 600);
@@ -636,5 +657,175 @@ public class VentanaPrincipal extends JFrame {
 		});
 
 		return panelServiciosGen;
+	}
+	JTextArea campoChat;
+	JLabel nick;
+	JComboBox ip;
+	public JPanel genPanelChat() {
+		JPanel panelChatGen=new JPanel();
+		panelChatGen.setBackground(new Color(39, 45, 53));
+		panelChatGen.setBounds(0, 0, 835, 592);
+		panelChatGen.setLayout(null);
+		
+		campoChat = new JTextArea();
+		campoChat.setBounds(51, 81, 745, 332);
+		panelChatGen.add(campoChat);
+		
+		tfChat = new JTextField();
+		tfChat.setBounds(246, 438, 426, 34);
+		panelChatGen.add(tfChat);
+		tfChat.setColumns(10);
+		
+		JLabel lblNickTitulo = new JLabel("NICK:");
+		lblNickTitulo.setForeground(Color.WHITE);
+		lblNickTitulo.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblNickTitulo.setBounds(51, 37, 92, 33);
+		panelChatGen.add(lblNickTitulo);
+		
+		JButton btnEnviar = new JButton("ENVIAR");
+		btnEnviar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				EnviaTexto miEvento = new EnviaTexto();
+			}
+		});
+		btnEnviar.setBackground(Color.RED);
+		btnEnviar.setForeground(Color.WHITE);
+		btnEnviar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnEnviar.setBounds(671, 438, 125, 34);
+		panelChatGen.add(btnEnviar);
+		
+		nick = new JLabel("");
+		nick.setForeground(Color.WHITE);
+		nick.setFont(new Font("Tahoma", Font.BOLD, 18));
+		nick.setBounds(153, 37, 333, 33);
+		panelChatGen.add(nick);
+		
+		JLabel lblOnline = new JLabel("ONLINE:");
+		lblOnline.setForeground(Color.WHITE);
+		lblOnline.setFont(new Font("Tahoma", Font.BOLD, 18));
+		lblOnline.setBounds(456, 37, 92, 33);
+		panelChatGen.add(lblOnline);
+		
+		ip = new JComboBox();
+		ip.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		ip.setBounds(591, 38, 205, 33);
+		panelChatGen.add(ip);
+		
+		Thread mihilo = new Thread();
+		mihilo.start();
+		
+		return panelChatGen;
+	}
+	private class EnviaTexto implements ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			// TODO Auto-generated method stub
+
+			// System.out.println(tfChat.getText());
+
+			campoChat.append("\n" + tfChat.getText());
+
+			try {
+				Socket misocket = new Socket("192.168.56.1", 9999);
+
+				PaqueteEnvio datos = new PaqueteEnvio();
+
+				datos.setNick(nick.getText());
+				datos.setIp(ip.getSelectedItem().toString());
+				datos.setMensaje(tfChat.getText());
+
+				ObjectOutputStream paquete_datos = new ObjectOutputStream(misocket.getOutputStream());
+				paquete_datos.writeObject(datos);
+
+				misocket.close();
+
+			} catch (UnknownHostException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
+
+		}
+
+	}
+
+
+	public void run() {
+		// TODO Auto-generated method stub
+		try {
+
+			ServerSocket servidorCliente = new ServerSocket(9090);
+			Socket cliente;
+			PaqueteEnvio paqueteRecibido;
+
+			while (true) {
+				cliente = servidorCliente.accept();
+
+				ObjectInputStream flujoentrada = new ObjectInputStream(cliente.getInputStream());
+
+				paqueteRecibido = (PaqueteEnvio) flujoentrada.readObject();
+
+				if (!paqueteRecibido.getMensaje().equals(" online")) {
+					campoChat.append("\n" + paqueteRecibido.getNick() + ": " + paqueteRecibido.getMensaje());
+				} else {
+					campoChat.append("\n" + paqueteRecibido.getIps());
+					ArrayList<String> IpsMenu = new ArrayList<String>();
+					IpsMenu = paqueteRecibido.getIps();
+					ip.removeAllItems();
+
+					for (String z : IpsMenu) {
+						ip.addItem(z);
+					}
+				}
+
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+}
+
+class PaqueteEnvio implements Serializable {
+
+	private String nick, ip, mensaje;
+
+	private ArrayList<String> Ips;
+
+	public ArrayList<String> getIps() {
+		return Ips;
+	}
+
+	public void setIps(ArrayList<String> ips) {
+		Ips = ips;
+	}
+
+	public String getNick() {
+		return nick;
+	}
+
+	public void setNick(String nick) {
+		this.nick = nick;
+	}
+
+	public String getIp() {
+		return ip;
+	}
+
+	public void setIp(String ip) {
+		this.ip = ip;
+	}
+
+	public String getMensaje() {
+		return mensaje;
+	}
+
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
 	}
 }
