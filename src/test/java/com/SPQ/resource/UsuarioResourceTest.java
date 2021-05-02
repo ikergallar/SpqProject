@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.management.loading.PrivateClassLoader;
-
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
@@ -124,7 +122,7 @@ public class UsuarioResourceTest {
         GenericType<Usuario> genericType = new GenericType<Usuario>() {};
         Usuario usuario = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType); 
         
-       assertEquals(usuario.getDireccion(), "Calle la pantomima");
+       assertEquals("Calle la pantomima",usuario.getDireccion());
     }
     
     @Test
@@ -140,7 +138,7 @@ public class UsuarioResourceTest {
         GenericType<Usuario> genericType = new GenericType<Usuario>() {};
         Usuario usuario = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType); 
         
-        assertEquals(usuario.getPass(), "123");
+        assertEquals("123",usuario.getPass());
     }
     
 
