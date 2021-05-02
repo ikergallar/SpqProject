@@ -419,7 +419,7 @@ public class VentanaPrincipal extends JFrame {
 
 		GenericType<List<Anuncio>> genericType = new GenericType<List<Anuncio>>() {
 		};
-		GenericType<List<Usuario>> genericTypeUsuario = new GenericType<List<Usuario>>() {
+		GenericType<Usuario> genericTypeUsuario = new GenericType<Usuario>() {
 		};
 
 		lista = listarServicioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
@@ -615,8 +615,7 @@ public class VentanaPrincipal extends JFrame {
 				modeloUsuario = new DefaultListModel();
 				Usuario usuario;
 				WebTarget seleccionarUsuarioTarget = usuarioTarget.path("user").queryParam("nombreusuario", nomUsuario);
-				usuario = (Usuario) seleccionarUsuarioTarget.request(MediaType.APPLICATION_JSON)
-						.get(genericTypeUsuario);
+				usuario = seleccionarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericTypeUsuario);
 				if (usuario != null) {
 					WebTarget filtroUsuarioTarget = servicioTarget.path("usuario").queryParam("idusuario",
 							usuario.getIdUsuario());
