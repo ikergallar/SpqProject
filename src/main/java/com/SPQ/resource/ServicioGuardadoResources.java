@@ -19,6 +19,7 @@ import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.QueryParam;
 import jakarta.ws.rs.core.MediaType;
 
 @Path("serviciosGuardados")
@@ -65,6 +66,28 @@ public class ServicioGuardadoResources {
 	 		tx.commit();
 	 		pm.close();
 	 }
+	 
+	 @GET
+	 @Path("servicio")
+	 @Produces(MediaType.APPLICATION_JSON)
+	 public Anuncio seleccionarAnuncioGuardado(@QueryParam("nombre") String nombre){
+	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+	 		PersistenceManager pm = pmf.getPersistenceManager();
+	 		Transaction tx = pm.currentTransaction();
+	 		
+	 		tx.begin();
+	 		
+	 		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL", "SELECT * FROM anuncioguardado where nombre='"+nombre+"'");
+	 		query.setClass(AnuncioGuardado.class);
+
+	 		AnuncioGuardado anuncio = query.executeUnique();
+	 		
+	 		tx.commit();
+	 		pm.close();
+	 		return anuncio;
+	 		
+	 	}
+	 	 
 	 
 
 }

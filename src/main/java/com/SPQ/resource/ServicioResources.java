@@ -218,17 +218,17 @@ public class ServicioResources {
 	 @GET
 	 @Path("servicio")
 	 @Produces(MediaType.APPLICATION_JSON)
-	 public Anuncio seleccionarAnuncio(Anuncio anuncio){
+	 public Anuncio seleccionarAnuncio(@QueryParam("nombre") String nombre){
 	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 	 		PersistenceManager pm = pmf.getPersistenceManager();
 	 		Transaction tx = pm.currentTransaction();
 	 		
 	 		tx.begin();
 	 		
-	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "SELECT * FROM anuncio where nombre='"+anuncio.getNombre()+"'");
+	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "SELECT * FROM anuncio where nombre='"+nombre+"'");
 	 		query.setClass(Anuncio.class);
 
-	 		anuncio = query.executeUnique();
+	 		Anuncio anuncio = query.executeUnique();
 	 		
 	 		tx.commit();
 	 		pm.close();
