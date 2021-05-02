@@ -2,8 +2,8 @@ package com.SPQ.resource;
 
 import static org.junit.Assert.assertEquals;
 
-import java.awt.List;
-import java.awt.PageAttributes.MediaType;
+
+import java.util.List;
 import java.util.ArrayList;
 
 import javax.swing.JList;
@@ -29,6 +29,7 @@ import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
 
 @Category(IntegrationTest.class)
 public class ServicioResourceTest {
@@ -59,21 +60,21 @@ public class ServicioResourceTest {
     }
     
     
-//    @Test
-//    @PerfTest(invocations = 1000, threads = 40)
-//    public void testSeleccionarAnuncio() {
-//    	
-//    	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
-//    	Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
-//
-//    	WebTarget servicioTarget = appTarget.path("servicios");
-//    	WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("Ofrezco servicio de fontaneria");
-//    			   			
-//    	GenericType<Anuncio> genericType = new GenericType<Anuncio>() {};
-//    	Usuario anuncio2 = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);   	
-//    	
-//        assertEquals(anuncio.getNombre(), anuncio2.getNombre());
-//    }
+    @Test
+    @PerfTest(invocations = 1000, threads = 40)
+    public void testSeleccionarAnuncio() {
+    	
+    	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+    	Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
+
+    	WebTarget servicioTarget = appTarget.path("servicios");
+    	WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("Ofrezco servicio de fontaneria");
+    			   			
+    	GenericType<Anuncio> genericType = new GenericType<Anuncio>() {};
+    	Anuncio anuncio2 = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);   	
+    	
+        assertEquals(anuncio.getIdAnuncio(), anuncio2.getIdAnuncio());
+    }
     
 //    @Test
 //    @PerfTest(invocations = 1000, threads = 40)
@@ -86,54 +87,54 @@ public class ServicioResourceTest {
 //    	WebTarget listaUsuariosTarget = servicioTarget.path("crear");
 //    	servicioTarget.request().post(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 //    			   			
-//    	WebTarget crearAnuncioTarget = usuarioTarget.path("listaUsuarios");
+//    	WebTarget crearAnuncioTarget = servicioTarget.path("listaUsuarios");
 //    	GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 //    	List<Usuario> usuarios = listaUsuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 //    	
 //    	List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-//    	listaUsuarios.add(u1);
+//    	listaUsuarios.add(usuario);
 //    	
 //        assertEquals(listaUsuarios.get(0).getNombreUsuario(), usuarios.get(4).getNombreUsuario());
 //    }
     
-//	  @Test
-//	  @PerfTest(invocations = 1000, threads = 40)
-//	  public void testListarAnuncios() {
-//	  	
-//	  	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
-//	  	Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
-//	  	Anuncio anuncio2= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
-//	  	
-//	  	WebTarget servicioTarget = appTarget.path("servicios");
-//	  	WebTarget listaAnunciosTarget = servicioTarget.path("listaAnuncios");
-//	  	
-//	  	List<Anuncio> listaAnuncios = new List<Anuncio>();
-//	  	listaAnuncios.add(anuncio);
-//	  	listaAnuncios.add(anuncio2);
-//	  			   			
-//	  	GenericType<List<Anuncio>> genericType = new GenericType<List<Anuncio>>() {};
-//	  	List<Anuncio> anuncios = listaAnunciosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-//	  	
-//	    assertEquals(listaAnuncios.get(0).getNombre(), anuncios.get(0).getNombre());
-//	    assertEquals(listaAnuncios.get(1).getNombre(), anuncios.get(1).getNombre());
-//	  }
-//    
-//    @Test
-//    @PerfTest(invocations = 1000, threads = 40)
-//    public void testUpdateAnuncio() {
-//    	
-//    	Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
-//		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
-//	
-//    	
-//    	WebTarget servicioTarget = appTarget.path("servicios");
-//    	WebTarget updateTarget = servicioTarget.path("update");
-//    			   			
-//    	GenericType<Anuncio> genericType = new GenericType<Anuncio>() {};
-//    	Anuncio anuncio2 = updateTarget.request(MediaType.APPLICATION_JSON).get(genericType);   	
-//    	
-//        assertEquals(anuncio.getNombre(), anuncio2.getNombre());
-//    }
+	  @Test
+	  @PerfTest(invocations = 1000, threads = 40)
+	  public void testListarAnuncios() {
+	  	
+	  	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+	  	Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
+	  	Anuncio anuncio2= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
+	  	
+	  	WebTarget servicioTarget = appTarget.path("servicios");
+	  	WebTarget listaAnunciosTarget = servicioTarget.path("listaAnuncios");
+	  	
+	  	List<Anuncio> listaAnuncios = new ArrayList<Anuncio>();
+	  	listaAnuncios.add(anuncio);
+	  	listaAnuncios.add(anuncio2);
+	  			   			
+	  	GenericType<List<Anuncio>> genericType = new GenericType<List<Anuncio>>() {};
+	  	List<Anuncio> anuncios = listaAnunciosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+	  	
+	    assertEquals(listaAnuncios.get(0).getIdAnuncio(), anuncios.get(0).getIdAnuncio());
+	    assertEquals(listaAnuncios.get(1).getIdAnuncio(), anuncios.get(1).getIdAnuncio());
+	  }
+    
+    @Test
+    @PerfTest(invocations = 1000, threads = 40)
+    public void testUpdateAnuncio() {
+    	
+    	Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
+	
+    	
+    	WebTarget servicioTarget = appTarget.path("servicios");
+    	WebTarget updateTarget = servicioTarget.path("update");
+    			   			
+    	GenericType<Anuncio> genericType = new GenericType<Anuncio>() {};
+    	Anuncio anuncio2 = updateTarget.request(MediaType.APPLICATION_JSON).get(genericType);   	
+    	
+        assertEquals(anuncio.getIdAnuncio(), anuncio2.getIdAnuncio());
+    }
     
     
 
