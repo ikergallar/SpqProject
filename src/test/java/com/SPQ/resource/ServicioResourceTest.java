@@ -39,6 +39,8 @@ public class ServicioResourceTest {
 	private HttpServer server;
     private WebTarget appTarget;
     private Client c;
+    private WebTarget anuncioTarget;
+    private Anuncio a1;
     
     @Before
     public void setUp() throws Exception {
@@ -48,6 +50,7 @@ public class ServicioResourceTest {
         Client c = ClientBuilder.newClient();
 
         appTarget = c.target(Main.BASE_URI);
+        anuncioTarget = appTarget.path("anuncios");
 
     }
     		
@@ -64,7 +67,7 @@ public class ServicioResourceTest {
     @PerfTest(invocations = 1000, threads = 40)
     public void testSeleccionarAnuncio() {
     	
-    	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+    	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","ï¿½Como se llama mi gato?");
     	Anuncio anuncio= new Anuncio("asasas", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
 
     	WebTarget servicioTarget = appTarget.path("servicios");
@@ -80,7 +83,7 @@ public class ServicioResourceTest {
 //    @PerfTest(invocations = 1000, threads = 40)
 //    public void testCrearAnuncio() {
 //    	
-//        Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+//        Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","ï¿½Como se llama mi gato?");
 //		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
 //		
 //    	WebTarget servicioTarget = appTarget.path("servicios");
@@ -101,7 +104,7 @@ public class ServicioResourceTest {
 //	  @PerfTest(invocations = 1000, threads = 40)
 //	  public void testListarAnuncios() {
 //	  	
-//	  	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+//	  	Usuario usuario = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","ï¿½Como se llama mi gato?");
 //	  	Anuncio anuncio= new Anuncio("asasas", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
 //	  	Anuncio anuncio2= new Anuncio("asasas", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
 //	  	
@@ -135,6 +138,20 @@ public class ServicioResourceTest {
         Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType); 
         
        assertEquals("asasas",anuncio.getNombre());
+    }
+    
+    @Test
+    @PerfTest(invocations = 1000, threads = 40)
+    public void testCrearAnuncio() {
+    	  
+    	WebTarget crearTarget = anuncioTarget.path("servicios");
+    	crearTarget.request().post(Entity.entity(a1, MediaType.APPLICATION_JSON));
+    			   			
+    	WebTarget seleccionarTarget = anuncioTarget.path("crear").queryParam("nombre", "johnny");			
+        GenericType<Anuncio> genericType = new GenericType<Anuncio>() {};
+        Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+    	
+        assertEquals(a1.getNombre(), anuncio.getNombre());
     }
     
     
