@@ -56,7 +56,7 @@ mvn -Pdatos exec:java
 Introducidos los datos de prueba se pueden lanzar los tests de integración y rendimiento usando el comando
 
 ```
-mvn verify -Pintegracion
+mvn verify -Pintegration
 ```
 
 **Inicio del servidor**
