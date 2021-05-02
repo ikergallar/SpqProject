@@ -73,8 +73,7 @@ public class VentanaLogin extends JFrame {
 	 */
 	private void initialize() {
 
-		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {
-		};
+		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 		usuarios = listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 
 		frmLogin = new JFrame();
@@ -126,6 +125,45 @@ public class VentanaLogin extends JFrame {
 		panelCorreo.setLayout(null);
 		labelRegistro.setForeground(Color.GRAY);
 		panelCorreo.add(labelRegistro);
+		
+				JButton botonLogin = new JButton("LOGIN");
+				botonLogin.setBounds(0, 35, 497, 73);
+				panelLogin.add(botonLogin);
+				botonLogin.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent arg0) {
+
+						String nomUsuario = textFieldUsuario.getText();
+						String contrasena = textFieldContrasena.getText();
+
+						for (Usuario usuario : usuarios) {
+							if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
+								acceso = true;
+								usuarioIniciado = usuario;
+								break;
+							} else {
+								acceso = false;
+							}
+						}
+
+						if (acceso == true) {
+							JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
+							VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
+							vPrincipal.setVisible(true);
+							frmLogin.dispose();
+						}
+
+						if (acceso != true) {
+							JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
+							textFieldUsuario.setText("");
+							textFieldContrasena.setText("");
+						}
+
+					}
+				});
+				
+						botonLogin.setForeground(Color.WHITE);
+						botonLogin.setBackground(new Color(255, 0, 0));
+						botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
 
 		textFieldContrasena = new JPasswordField();
 		textFieldContrasena.setBounds(36, 630, 293, 26);
@@ -192,45 +230,6 @@ public class VentanaLogin extends JFrame {
 		labelLogo.setBounds(0, 0, 500, 500);
 		frmLogin.getContentPane().add(labelLogo);
 		labelLogo.setIcon(new ImageIcon(getClass().getResource("/hustle50.png")));
-
-		JButton botonLogin = new JButton("LOGIN");
-		botonLogin.setBounds(3, 444, 497, 73);
-		frmLogin.getContentPane().add(botonLogin);
-		botonLogin.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-
-				String nomUsuario = textFieldUsuario.getText();
-				String contrasena = textFieldContrasena.getText();
-
-				for (Usuario usuario : usuarios) {
-					if (usuario.getNombreUsuario().equals(nomUsuario) && usuario.getPass().equals(contrasena)) {
-						acceso = true;
-						usuarioIniciado = usuario;
-						break;
-					} else {
-						acceso = false;
-					}
-				}
-
-				if (acceso == true) {
-					JOptionPane.showMessageDialog(null, "Inicio de sesion correcto", "Confirmacion", 1);
-					VentanaPrincipal vPrincipal = new VentanaPrincipal(usuarioIniciado);
-					vPrincipal.setVisible(true);
-					frmLogin.dispose();
-				}
-
-				if (acceso != true) {
-					JOptionPane.showMessageDialog(null, "Datos incorrectos", "Error", 0);
-					textFieldUsuario.setText("");
-					textFieldContrasena.setText("");
-				}
-
-			}
-		});
-
-		botonLogin.setForeground(Color.WHITE);
-		botonLogin.setBackground(new Color(255, 0, 0));
-		botonLogin.setFont(new Font("Tahoma", Font.BOLD, 18));
 		KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 		manager.addKeyEventDispatcher(new KeyEventDispatcher() {
 			boolean ctrlPulsado = false;
@@ -296,29 +295,5 @@ public class VentanaLogin extends JFrame {
 
 			}
 		});
-
 	}
-
-	public void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public static int getUsuarioId() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	// Para el test VentanaLogin
-//	public boolean login(String nomUsuario, String contrasenya) {
-//		if (!nomUsuario.equals("") && !contrasenya.equals("")) {
-//		    if (usuarioIniciado.getNombreUsuario().equals(nomUsuario) || !usuarioIniciado.equals(null)){
-//			    return true;
-//		    } else {
-//			    return false;
-//		    }
-//		}else {
-//			return false;
-//		}
-//	}
 }

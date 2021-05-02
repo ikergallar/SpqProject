@@ -2,9 +2,6 @@ package com.SPQ.resource;
 
 import static org.junit.Assert.assertEquals;
 
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.glassfish.grizzly.http.server.HttpServer;
@@ -20,7 +17,6 @@ import com.SPQ.categories.IntegrationTest;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.main.Main;
 
-import jakarta.validation.constraints.Email;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
