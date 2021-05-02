@@ -85,17 +85,13 @@ public class ServicioGuardadoResourceTest {
     	  		
     		WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
         	WebTarget listaAnuncioGuardadoTarget = anuncioTarget.path("guardados");
-    				    	
-	    	List<AnuncioGuardado> listaAnuncioGuardado = new ArrayList<AnuncioGuardado>();
-	    	listaAnuncioGuardado.add(a1);
-	    			   			
+    				    
 	    	GenericType<List<AnuncioGuardado>> genericType = new GenericType<List<AnuncioGuardado>>() {};
-	    	List<AnuncioGuardado> anuncio1 = listaAnuncioGuardadoTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+	    	List<AnuncioGuardado> anuncios = listaAnuncioGuardadoTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 	    	
-	        assertEquals(listaAnuncioGuardado.get(0).getNombre(), anuncio1.get(0).getNombre());
-	        assertEquals(listaAnuncioGuardado.get(1).getNombre(), anuncio1.get(1).getNombre());
-				
-    	
+	        assertEquals("johnny", anuncios.get(0).getNombre());
+	        assertEquals("johnny", anuncios.get(1).getNombre());
+				    	
     }
     
      @Test
@@ -111,7 +107,20 @@ public class ServicioGuardadoResourceTest {
 	     	AnuncioGuardado anuncioGuardado = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 	     	
 	        assertEquals("Johnny", anuncioGuardado.getNombre());
-     }         
+     }    
+     
+     @Test
+     @PerfTest(invocations = 1000, threads = 40)
+     public void testSeleccionarAnuncioGuardado() {
+     	    	
+     	WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
+     	WebTarget seleccionarTarget = anuncioTarget.path("servicio").queryParam("nombre", "johnny");
+     			   			
+     	GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {};
+     	AnuncioGuardado anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);   	
+     	
+         assertEquals(a1.getNombre(), anuncio.getNombre());
+     }
      
      
      
