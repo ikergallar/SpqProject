@@ -26,6 +26,7 @@ import org.junit.experimental.categories.Category;
 
 import com.SPQ.categories.IntegrationTest;
 import com.SPQ.clasesBasicas.AnuncioGuardado;
+import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.main.Main;
 
 import jakarta.ws.rs.Consumes;
@@ -33,6 +34,7 @@ import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 
@@ -43,6 +45,14 @@ import jakarta.ws.rs.core.MediaType;
 @Category(IntegrationTest.class)
 public class ServicioGuardadoResourceTest {
 	
+	private AnuncioGuardado a1;
+	
+	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+	String fecha = "20-11-1999";
+	GregorianCalendar gc = new GregorianCalendar();
+	
+
+	
 	@Rule public ContiPerfRule rule = new ContiPerfRule();
 	
 	private HttpServer server;
@@ -51,6 +61,11 @@ public class ServicioGuardadoResourceTest {
     
     @Before
     public void setUp() throws Exception {
+    	Date date = sdf.parse(fecha);
+    	gc.setTimeInMillis(date.getTime());
+    	
+    	a1 = new AnuncioGuardado(gc,"Johnny");
+    	
     	
     	server = Main.startServer();
         // create the client
@@ -68,55 +83,36 @@ public class ServicioGuardadoResourceTest {
     @PerfTest(invocations = 1000, threads = 40)
     public void testListarAnuncioGuardado() {
     	
-    	try {
+    	  		
+    		WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
+        	WebTarget listaAnuncioGuardadoTarget = anuncioTarget.path("guardados");
     		
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-			String fecha = "20-11-1999";
-			Date date = sdf.parse(fecha);
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.setTimeInMillis(date.getTime());
-			AnuncioGuardado anuncio = new AnuncioGuardado(gc,"John");
 			
-			WebTarget servicioGuardadoTarget = appTarget.path("anuncios");
-	    	WebTarget listaServicioGuardadoTarget = servicioGuardadoTarget.path("listaServicioGuardado");
-	    	
+				    	
 	    	List<AnuncioGuardado> listaAnuncioGuardado = new ArrayList<AnuncioGuardado>();
-	    	listaAnuncioGuardado.add(anuncio);
+	    	listaAnuncioGuardado.add(a1);
 	    			   			
 	    	GenericType<List<AnuncioGuardado>> genericType = new GenericType<List<AnuncioGuardado>>() {};
-	    	List<AnuncioGuardado> usuarios = listaServicioGuardadoTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+	    	List<AnuncioGuardado> anuncio1 = listaAnuncioGuardadoTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 	    	
-	        assertEquals(listaAnuncioGuardado.get(0).getNombre(), usuarios.get(0).getNombre());
-	        assertEquals(listaAnuncioGuardado.get(1).getNombre(), usuarios.get(1).getNombre());
-			
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-    	
+	        assertEquals(listaAnuncioGuardado.get(0).getNombre(), anuncio1.get(0).getNombre());
+	        assertEquals(listaAnuncioGuardado.get(1).getNombre(), anuncio1.get(1).getNombre());
+				
     	
     }
     
      @Test
      @PerfTest(invocations = 1000, threads = 40)
-	 public void guardarServicioGuardado(AnuncioGuardado anuncioGuardado){
-			
-			PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-			PersistenceManager pm = pmf.getPersistenceManager();
-			Transaction tx = pm.currentTransaction();
-			
-			try {
-				tx.begin();
-				
-				pm.makePersistent(anuncioGuardado);
-
-				tx.commit();
-				
-			} finally {
-				if (tx.isActive()) {
-					tx.rollback();
-				}
-				pm.close();
-			}
-	   }
+	 public void guardarServicioGuardado(){
+    	      
+    	WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
+     	WebTarget guardarTarget = anuncioTarget.path("comprar");
+     	guardarTarget.request().post(Entity.entity(a1, MediaType.APPLICATION_JSON));
+     			   			
+     	WebTarget seleccionarTarget = anuncioTarget.path("anuncioGuardado").queryParam("11-12-2011", "aidav13");
+     	GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {};
+     	AnuncioGuardado anuncioGuardado = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+     	
+         assertEquals("aidav13", anuncioGuardado.getNombre());
+     }         
 }
