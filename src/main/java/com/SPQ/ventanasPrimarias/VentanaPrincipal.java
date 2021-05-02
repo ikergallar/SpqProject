@@ -317,9 +317,9 @@ public class VentanaPrincipal extends JFrame {
 
 				usuario.setNombre(textNombre.getText());
 				usuario.setApellido(textApellido.getText());
-				usuario.setDireccion(textDireccion.getText());
 				usuario.setTelefono(textTel.getText());
-				usuario.setNombreUsuario(textUsuario.getText());
+				usuario.setDireccion(textDireccion.getText());
+				usuario.setMail(textMail.getText());
 				updateUsuarioTarget.request().put(Entity.entity(usuario, MediaType.APPLICATION_JSON));
 
 				JOptionPane.showMessageDialog(null, "Datos editados correctamente", "Informacion", 1);
