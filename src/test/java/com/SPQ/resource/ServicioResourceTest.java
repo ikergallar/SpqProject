@@ -54,9 +54,6 @@ public class ServicioResourceTest {
 
     }
     		
-
-	
-    
     @After
     public void tearDown() throws Exception {
         server.stop();
@@ -78,28 +75,7 @@ public class ServicioResourceTest {
     	
         assertEquals("asasas", anuncio2.getNombre());
     }
-    
-//    @Test
-//    @PerfTest(invocations = 1000, threads = 40)
-//    public void testCrearAnuncio() {
-//    	
-//        Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","�Como se llama mi gato?");
-//		Anuncio anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());
-//		
-//    	WebTarget servicioTarget = appTarget.path("servicios");
-//    	WebTarget listaUsuariosTarget = servicioTarget.path("crear");
-//    	servicioTarget.request().post(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
-//    			   			
-//    	WebTarget crearAnuncioTarget = servicioTarget.path("listaUsuarios");
-//    	GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
-//    	List<Usuario> usuarios = listaUsuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-//    	
-//    	List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-//    	listaUsuarios.add(usuario);
-//    	
-//        assertEquals(listaUsuarios.get(0).getNombreUsuario(), usuarios.get(4).getNombreUsuario());
-//    }
-    
+
 //	  @Test
 //	  @PerfTest(invocations = 1000, threads = 40)
 //	  public void testListarAnuncios() {
@@ -154,6 +130,20 @@ public class ServicioResourceTest {
         assertEquals(a1.getNombre(), anuncio.getNombre());
     }
     
+    @Test
+    @PerfTest(invocations = 1000, threads = 40)
+    public void testEliminarAnuncio() {
+    	  
+    	WebTarget crearTarget = anuncioTarget.path("servicios");
+    	crearTarget.request().post(Entity.entity(a1, MediaType.APPLICATION_JSON));
+    			   			
+    	WebTarget seleccionarTarget = anuncioTarget.path("eliminar").queryParam("nombre", "johnny");			
+        GenericType<Anuncio> genericType = new GenericType<Anuncio>() {};
+        Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+    	
+        assertEquals(a1.getNombre(), anuncio.getNombre());
+    }
+   
     
 
 }
