@@ -9,8 +9,8 @@ import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
 @PersistenceCapable
-@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
-public class AnuncioGuardado extends Anuncio{
+@Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
+public class AnuncioGuardado extends Anuncio {
 	private GregorianCalendar fecha;
 	private String nombre;
 
@@ -38,10 +38,5 @@ public class AnuncioGuardado extends Anuncio{
 
 	public AnuncioGuardado() {
 	}
-
-	
-	
-	
-	
 
 }

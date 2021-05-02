@@ -25,72 +25,69 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("serviciosGuardados")
 public class ServicioGuardadoResources {
-	
+
 	@GET
 	@Path("guardados")
 	@Produces(MediaType.APPLICATION_JSON)
-   	public List<AnuncioGuardado> listarAnunciosGuardados(){
+	public List<AnuncioGuardado> listarAnunciosGuardados() {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
-		
+
 		tx.begin();
-		
-		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL","Select * FROM anuncioguardado");
+
+		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL", "Select * FROM anuncioguardado");
 		query.setClass(AnuncioGuardado.class);
 		List<AnuncioGuardado> results = query.executeList();
-		
+
 		tx.commit();
 		pm.close();
 		return results;
-		
+
 	}
-	
-	
-	 @POST
-	 @Path("comprar")
-	 @Consumes(MediaType.APPLICATION_JSON)
-	 public void guardarAnuncio(Anuncio anuncio){
-		 	PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	 		PersistenceManager pm = pmf.getPersistenceManager();
-	 		Transaction tx = pm.currentTransaction();
-	 		
-	 		tx.begin();
-	 		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-	 		Date date = new Date(0);
-	 		
-	 		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "INSERT INTO anuncioguardado(fecha, nombre) VALUES ('"+ dateFormat.format(date) +"','"+anuncio.getNombre()+"')");
-	 		query.setClass(Anuncio.class);
 
-	 		Long delete = (Long)query.execute();
-	 		
-	 		tx.commit();
-	 		pm.close();
-	 }
-	 
-	 @GET
-	 @Path("servicio")
-	 @Produces(MediaType.APPLICATION_JSON)
-	 public Anuncio seleccionarAnuncioGuardado(@QueryParam("nombre") String nombre){
-	 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-	 		PersistenceManager pm = pmf.getPersistenceManager();
-	 		Transaction tx = pm.currentTransaction();
-	 		
-	 		tx.begin();
-	 		
-	 		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL", "SELECT * FROM anuncioguardado where nombre='"+nombre+"'");
-	 		query.setClass(AnuncioGuardado.class);
+	@POST
+	@Path("comprar")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void guardarAnuncio(Anuncio anuncio) {
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
 
-	 		AnuncioGuardado anuncio = query.executeUnique();
-	 		
-	 		tx.commit();
-	 		pm.close();
-	 		return anuncio;
-	 		
-	 	}
-	 
-	 	
-	 	 
-	 
+		tx.begin();
+		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
+		Date date = new Date(0);
+
+		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "INSERT INTO anuncioguardado(fecha, nombre) VALUES ('"
+				+ dateFormat.format(date) + "','" + anuncio.getNombre() + "')");
+		query.setClass(Anuncio.class);
+
+		Long delete = (Long) query.execute();
+
+		tx.commit();
+		pm.close();
+	}
+
+	@GET
+	@Path("servicio")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Anuncio seleccionarAnuncioGuardado(@QueryParam("nombre") String nombre) {
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		tx.begin();
+
+		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL",
+				"SELECT * FROM anuncioguardado where nombre='" + nombre + "'");
+		query.setClass(AnuncioGuardado.class);
+
+		AnuncioGuardado anuncio = query.executeUnique();
+
+		tx.commit();
+		pm.close();
+		return anuncio;
+
+	}
 
 }
