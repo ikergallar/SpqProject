@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import javax.management.loading.PrivateClassLoader;
+
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
@@ -29,8 +31,8 @@ import jakarta.ws.rs.core.MediaType;
 
 @Category(IntegrationTest.class)
 public class UsuarioResourceTest {
-	
-	Usuario u1 = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+	private Usuario u1;
+	private Usuario u2;
 
 	@Rule public ContiPerfRule rule = new ContiPerfRule();
 	
@@ -41,6 +43,9 @@ public class UsuarioResourceTest {
     @Before
     public void setUp() throws Exception {
     	
+    	u1 = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		u2 = new  Usuario("Jose", "fernan" , "ramona", "passa123","polaoa@gmail.com" , "6245525255" ,"Callse Ave del Paraiso 9, Barcselona","","Dusa","¿Comso se llama mi gato?");
+
     	server = Main.startServer();
         // create the client
         Client c = ClientBuilder.newClient();
@@ -56,9 +61,7 @@ public class UsuarioResourceTest {
     @Test
     @PerfTest(invocations = 1000, threads = 40)
     public void testListarUsuarios() {
-    	
-		Usuario u2 = new  Usuario("Aitora", "Davilaa" , "aidav13a", "passa123","aidav@gamail.com" , "68392848" ,"Callse Ave del Paraiso 9, Barcselona","","Dusa","¿Comso se llama mi gato?");
-    	
+    	    	
     	WebTarget usuarioTarget = appTarget.path("usuarios");
     	WebTarget listaUsuariosTarget = usuarioTarget.path("listaUsuarios");
     	
@@ -69,27 +72,23 @@ public class UsuarioResourceTest {
     	GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
     	List<Usuario> usuarios = listaUsuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
     	
-        assertEquals(listaUsuarios.get(0).getNombreUsuario(), usuarios.get(0).getNombreUsuario());
-        assertEquals(listaUsuarios.get(1).getNombreUsuario(), usuarios.get(1).getNombreUsuario());
+        assertEquals("aidav13", usuarios.get(0).getNombreUsuario());
+        assertEquals("ramona", usuarios.get(1).getNombreUsuario());
     }
     
     @Test
     @PerfTest(invocations = 1000, threads = 40)
     public void testRegistrarUsuario() {
-    	
-  
+    	  
     	WebTarget usuarioTarget = appTarget.path("usuarios");
     	WebTarget registrarTarget = usuarioTarget.path("registro");
     	registrarTarget.request().post(Entity.entity(u1, MediaType.APPLICATION_JSON));
     			   			
-    	WebTarget listaUsuariosTarget = usuarioTarget.path("listaUsuarios");
-    	GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
-    	List<Usuario> usuarios = listaUsuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+    	WebTarget seleccionarTarget = usuarioTarget.path("user").queryParam("nombreusuario", "aidav13");
+    	GenericType<Usuario> genericType = new GenericType<Usuario>() {};
+    	Usuario usuario = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
     	
-    	List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-    	listaUsuarios.add(u1);
-    	
-        assertEquals(listaUsuarios.get(0).getNombreUsuario(), usuarios.get(4).getNombreUsuario());
+        assertEquals("aidav13", usuario.getNombreUsuario());
     }
     
     @Test
@@ -101,9 +100,7 @@ public class UsuarioResourceTest {
     @Test
     @PerfTest(invocations = 1000, threads = 40)
     public void testSeleccionarUsuario() {
-    	
-    	Usuario u1 = new  Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
-    	
+    	    	
     	WebTarget usuarioTarget = appTarget.path("usuarios");
     	WebTarget seleccionarTarget = usuarioTarget.path("user").queryParam("nombreusuario", "aidav13");
     			   			
