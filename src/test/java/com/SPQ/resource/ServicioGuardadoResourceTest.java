@@ -25,6 +25,7 @@ import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
 import com.SPQ.categories.IntegrationTest;
+import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.AnuncioGuardado;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.main.Main;
@@ -50,8 +51,6 @@ public class ServicioGuardadoResourceTest {
 	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	String fecha = "20-11-1999";
 	GregorianCalendar gc = new GregorianCalendar();
-	
-
 	
 	@Rule public ContiPerfRule rule = new ContiPerfRule();
 	
@@ -86,9 +85,7 @@ public class ServicioGuardadoResourceTest {
     	  		
     		WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
         	WebTarget listaAnuncioGuardadoTarget = anuncioTarget.path("guardados");
-    		
-			
-				    	
+    				    	
 	    	List<AnuncioGuardado> listaAnuncioGuardado = new ArrayList<AnuncioGuardado>();
 	    	listaAnuncioGuardado.add(a1);
 	    			   			
@@ -103,16 +100,21 @@ public class ServicioGuardadoResourceTest {
     
      @Test
      @PerfTest(invocations = 1000, threads = 40)
-	 public void guardarServicioGuardado(){
+	 public void testServicioGuardado(){
     	      
-    	WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
-     	WebTarget guardarTarget = anuncioTarget.path("comprar");
-     	guardarTarget.request().post(Entity.entity(a1, MediaType.APPLICATION_JSON));
-     			   			
-     	WebTarget seleccionarTarget = anuncioTarget.path("anuncioGuardado").queryParam("11-12-2011", "aidav13");
-     	GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {};
-     	AnuncioGuardado anuncioGuardado = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-     	
-         assertEquals("aidav13", anuncioGuardado.getNombre());
+	    	WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
+	     	WebTarget guardarTarget = anuncioTarget.path("comprar");
+	     	guardarTarget.request().post(Entity.entity(a1, MediaType.APPLICATION_JSON));
+	     			   			
+	     	WebTarget seleccionarTarget = anuncioTarget.path("servicio").queryParam("nombre", "Johnny");
+	     	GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {};
+	     	AnuncioGuardado anuncioGuardado = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+	     	
+	        assertEquals("Johnny", anuncioGuardado.getNombre());
      }         
+     
+     
+     
+     
+     
 }
