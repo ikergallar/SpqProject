@@ -54,6 +54,7 @@ public class VentanaMostrarServicio extends JDialog {
 		panelServicio.add(lblCategoria);
 		
 		tfCategoria = new JTextField();
+		tfCategoria.setText(anuncio.getCategoria().name());
 		tfCategoria.setBackground(new Color(39, 45, 53));
 		tfCategoria.setForeground(Color.WHITE);
 		tfCategoria.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -67,6 +68,7 @@ public class VentanaMostrarServicio extends JDialog {
 		panelServicio.add(lblPrecio);
 		
 		tfPrecio = new JTextField();
+		tfPrecio.setText(Float.toString(anuncio.getPrecio()));
 		tfPrecio.setBackground(new Color(39, 45, 53));
 		tfPrecio.setForeground(Color.WHITE);
 		tfPrecio.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -80,6 +82,7 @@ public class VentanaMostrarServicio extends JDialog {
 		panelServicio.add(lblDescripcion);
 		
 		tfDescripcion = new JTextField();
+		tfDescripcion.setText(anuncio.getDescripcion());
 		tfDescripcion.setBackground(new Color(39, 45, 53));
 		tfDescripcion.setForeground(Color.WHITE);
 		tfDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -97,7 +100,7 @@ public class VentanaMostrarServicio extends JDialog {
 		chckbxOferta.setBackground(new Color(39, 45, 53));
 		panelServicio.add(chckbxOferta);
 		
-		JLabel lblNewLabel = new JLabel("Titulo");
+		JLabel lblNewLabel = new JLabel(anuncio.getNombre());
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(28, 0, 438, 105);
