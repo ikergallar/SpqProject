@@ -20,6 +20,7 @@ import com.SPQ.categories.IntegrationTest;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.main.Main;
 
+import jakarta.validation.constraints.Email;
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
@@ -67,7 +68,7 @@ public class UsuarioResourceTest {
         GenericType<Usuario> genericType = new GenericType<Usuario>() {};
         Usuario usuario = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
     	
-        assertEquals("ramona", usuario.getNombreUsuario());
+        assertEquals(u1.getNombreUsuario(), usuario.getNombreUsuario());
     }
     
     @Test
@@ -109,6 +110,8 @@ public class UsuarioResourceTest {
     public void testUpdateUsuario() {
    	
     	u1.setDireccion("Calle la pantomima");
+    	u1.setApellido("Jorge");
+    	u1.setMail("mail@Email.com");
     	WebTarget usuarioTarget = appTarget.path("usuarios");
     	WebTarget updateTarget = usuarioTarget.path("update");
     	
@@ -118,7 +121,7 @@ public class UsuarioResourceTest {
         GenericType<Usuario> genericType = new GenericType<Usuario>() {};
         Usuario usuario = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType); 
         
-       assertEquals("Calle la pantomima",usuario.getDireccion());
+       assertEquals(u1.getDireccion(),usuario.getDireccion());
     }
     
     @Test
@@ -134,6 +137,6 @@ public class UsuarioResourceTest {
         GenericType<Usuario> genericType = new GenericType<Usuario>() {};
         Usuario usuario = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType); 
         
-        assertEquals("123",usuario.getPass());
+        assertEquals(u1.getPass(),usuario.getPass());
     }
 }
