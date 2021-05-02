@@ -28,7 +28,7 @@ import jakarta.ws.rs.core.MediaType;
 import javax.swing.JCheckBox;
 
 public class VentanaContrasenya extends JFrame {
-	int a = VentanaLogin.getUsuarioId();
+	//int a = VentanaLogin.getUsuarioId();
 	private JPasswordField nuevaContrasenya;
 	private JPasswordField confirmarContrasenya;
 	private String nombreUsuario;
