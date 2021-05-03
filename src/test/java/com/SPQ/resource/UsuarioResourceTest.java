@@ -147,9 +147,12 @@ public class UsuarioResourceTest {
     @Test
     @PerfTest(invocations = 1000, threads = 40)
     public void testExisteUsuario() {
+    	boolean existe= false;
     	WebTarget existeTarget = usuarioTarget.path("existeUsuario");
-    	
-    	
+    	if (UsuarioResources.existeUsuario(u1)) {
+    		existe=true;
+    	}
+    	assertEquals(existe,true);
     	
     }
     
