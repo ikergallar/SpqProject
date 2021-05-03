@@ -197,7 +197,7 @@ public class VentanaRegistro extends JDialog {
 							usuario.setApellido(apellido);
 							usuario.setPalabraRecuperacion(textoRespuesta.getText());
 							usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());
-	
+
 							if (!UsuarioResources.existeUsuario(usuario)) {
 
 								registroTarget.request().post(Entity.entity(usuario, MediaType.APPLICATION_JSON));
