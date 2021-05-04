@@ -39,91 +39,89 @@ import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 
-
-
 import jakarta.ws.rs.core.MediaType;
 
 @Category(IntegrationTest.class)
 public class ServicioGuardadoResourceTest {
-	
+
 	private AnuncioGuardado a1;
-	
+
 	SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 	String fecha = "20-11-1999";
 	GregorianCalendar gc = new GregorianCalendar();
-	
-	@Rule public ContiPerfRule rule = new ContiPerfRule();
-	
+
+	@Rule
+	public ContiPerfRule rule = new ContiPerfRule();
+
 	private HttpServer server;
-    private WebTarget appTarget;
-    private Client c;
-    
-    @Before
-    public void setUp() throws Exception {
-    	Date date = sdf.parse(fecha);
-    	gc.setTimeInMillis(date.getTime());
-    	
-    	a1 = new AnuncioGuardado(gc,"Johnny");
-    	
-    	
-    	server = Main.startServer();
-        // create the client
-        Client c = ClientBuilder.newClient();
+	private WebTarget appTarget;
+	private Client c;
 
-        appTarget = c.target(Main.BASE_URI);
+	@Before
+	public void setUp() throws Exception {
+		Date date = sdf.parse(fecha);
+		gc.setTimeInMillis(date.getTime());
 
-    }
-    @After
-    public void tearDown() throws Exception {
-        server.stop();
-    }
-    
-    @Test
-    @PerfTest(invocations = 1000, threads = 40)
-    public void testListarAnuncioGuardado() {
-    	
-    	  		
-    		WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
-        	WebTarget listaAnuncioGuardadoTarget = anuncioTarget.path("guardados");
-    				    
-	    	GenericType<List<AnuncioGuardado>> genericType = new GenericType<List<AnuncioGuardado>>() {};
-	    	List<AnuncioGuardado> anuncios = listaAnuncioGuardadoTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-	    	
-	        assertEquals("johnny", anuncios.get(0).getNombre());
-	        assertEquals("johnny", anuncios.get(1).getNombre());
-				    	
-    }
-    
-     @Test
-     @PerfTest(invocations = 1000, threads = 40)
-	 public void testServicioGuardado(){
-    	      
-	    	WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
-	     	WebTarget guardarTarget = anuncioTarget.path("comprar");
-	     	guardarTarget.request().post(Entity.entity(a1, MediaType.APPLICATION_JSON));
-	     			   			
-	     	WebTarget seleccionarTarget = anuncioTarget.path("servicio").queryParam("nombre", "Johnny");
-	     	GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {};
-	     	AnuncioGuardado anuncioGuardado = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-	     	
-	        assertEquals("Johnny", anuncioGuardado.getNombre());
-     }    
-     
-     @Test
-     @PerfTest(invocations = 1000, threads = 40)
-     public void testSeleccionarAnuncioGuardado() {
-     	    	
-     	WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
-     	WebTarget seleccionarTarget = anuncioTarget.path("servicio").queryParam("nombre", "johnny");
-     			   			
-     	GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {};
-     	AnuncioGuardado anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);   	
-     	
-         assertEquals(a1.getNombre(), anuncio.getNombre());
-     }
-     
-     
-     
-     
-     
+		a1 = new AnuncioGuardado(gc, "Johnny");
+
+		server = Main.startServer();
+		// create the client
+		Client c = ClientBuilder.newClient();
+
+		appTarget = c.target(Main.BASE_URI);
+
+	}
+
+	@After
+	public void tearDown() throws Exception {
+		server.stop();
+	}
+
+	@Test
+	@PerfTest(invocations = 1000, threads = 40)
+	public void testListarAnuncioGuardado() {
+
+		WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
+		WebTarget listaAnuncioGuardadoTarget = anuncioTarget.path("guardados");
+
+		GenericType<List<AnuncioGuardado>> genericType = new GenericType<List<AnuncioGuardado>>() {
+		};
+		List<AnuncioGuardado> anuncios = listaAnuncioGuardadoTarget.request(MediaType.APPLICATION_JSON)
+				.get(genericType);
+
+		assertEquals("johnny", anuncios.get(0).getNombre());
+		assertEquals("johnny", anuncios.get(1).getNombre());
+
+	}
+
+	@Test
+	@PerfTest(invocations = 1000, threads = 40)
+	public void testServicioGuardado() {
+
+		WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
+		WebTarget guardarTarget = anuncioTarget.path("comprar");
+		guardarTarget.request().post(Entity.entity(a1, MediaType.APPLICATION_JSON));
+
+		WebTarget seleccionarTarget = anuncioTarget.path("servicio").queryParam("nombre", "Johnny");
+		GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {
+		};
+		AnuncioGuardado anuncioGuardado = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+
+		assertEquals("Johnny", anuncioGuardado.getNombre());
+	}
+
+	@Test
+	@PerfTest(invocations = 1000, threads = 40)
+	public void testSeleccionarAnuncioGuardado() {
+
+		WebTarget anuncioTarget = appTarget.path("serviciosGuardados");
+		WebTarget seleccionarTarget = anuncioTarget.path("servicio").queryParam("nombre", "johnny");
+
+		GenericType<AnuncioGuardado> genericType = new GenericType<AnuncioGuardado>() {
+		};
+		AnuncioGuardado anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+
+		assertEquals(a1.getNombre(), anuncio.getNombre());
+	}
+
 }
