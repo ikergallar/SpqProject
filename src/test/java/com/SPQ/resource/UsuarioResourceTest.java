@@ -152,7 +152,7 @@ public class UsuarioResourceTest {
     	if (UsuarioResources.existeUsuario(u1)) {
     		existe=true;
     	}
-    	assertEquals(existe,true);
+    	assertEquals(true,existe);
     	
     }
     
