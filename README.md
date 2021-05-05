@@ -112,3 +112,9 @@ accederiamos a los detalles del servicio que hubiesemos seleccionado
 En caso de querer visualizar los anuncios que ha creado el usuario, en el apartado de mi perfil 
 podríamos acceder a la sección de mis servicios, donde tendriamos la opción de eliminar o editar 
 anuncios que ya hayamos creado y crear nuevos anuncios también.
+
+**Chat**
+
+Mediante el boton "*chat* " en la ventana principal podremos acceder a esta funcionalidad. Una vez pulsamos este botón se ejecutará el servidor. 
+Se utiliza este como punto intermedio, de forma que un cliente pueda enviar la información necesaria a otro cliente. Para ello, 
+necesitaremos dos ip diferentes. Cada cliente debe introducir su nick y la propia ip. Esta ip será detectada por el servidor y se podrán comunicar ambos clientes.
