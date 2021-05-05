@@ -79,6 +79,8 @@ mvn -Pcliente exec:java
 
 ##EJECUCIÓN
 
+*Funciones de Login*
+
 Una vez ejecutado estos pasos, se abrirá la ventana de **Login**. 
 
 Teniendo en cuenta que es la primera vez que iniciamos y **no tenemos cuenta creada:**
@@ -99,3 +101,14 @@ en el anterior parrafo.
 1. Clickariamos en la opcion de *recuperar contraseña*, donde accederiamos a una nueva ventana. 
 2. En esta nueva ventana tendriamos que introducir nuestro nombre de usuario asi como la palabra y 
 pregunta de recuperacion que introdujimos cuando nos registramos para poder crear una nueva contraseña.
+
+
+*Funciones de anuncios*
+
+Tras iniciar sesión, en el apartado de servicios se encuentra la lista de los servicios que se ofrecen
+donde mediante filtros la busqueda se podrá ajustar más a lo que buscamos. Mediante la opción de abrir
+accederiamos a los detalles del servicio que hubiesemos seleccionado
+
+En caso de querer visualizar los anuncios que ha creado el usuario, en el apartado de mi perfil 
+podríamos acceder a la sección de mis servicios, donde tendriamos la opción de eliminar o editar 
+anuncios que ya hayamos creado y crear nuevos anuncios también.
