@@ -2,6 +2,8 @@ package com.SPQ.clasesBasicas;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,10 +23,11 @@ import junit.framework.JUnit4TestAdapter;
 public class AnuncioTest {
 	
 	Anuncio anuncio;
+	Usuario usuario;
 	
 	@Before
 	public void setUp() throws Exception {
-		Usuario usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		usuario=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
 		anuncio= new Anuncio("Aitor", "Ofrezco servicio de fontaneria" ,60,"", Categoria.FONTANERO,true, usuario.getIdUsuario());		
 
 	}
@@ -119,5 +122,24 @@ public class AnuncioTest {
 	public void testToString() {
 		anuncio.toString();
 	} 
+	@Test
+	public void testGetComentarios() {
+        List<Comentario> comentarios=null;
+        anuncio.setComentarios(comentarios);
+	}
+	@Test
+	public void testSetComentarios() {
+		List<Comentario> comentarios=null;
+        anuncio.setComentarios(comentarios);
+        assertEquals(null, anuncio.getComentarios());
+	}
+	@Test
+	public void testanyadirComentario() {
+		Comentario coment = new Comentario();
+		coment.generarComentario("Este es un mensaje de prueba", usuario);
+		anuncio.anyadirComentario(anuncio, coment);
+		
+		assertEquals("Este es un mensaje de prueba",anuncio.getComentarios().get(0));	
+	}
 	
 }

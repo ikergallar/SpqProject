@@ -115,6 +115,13 @@ public class Anuncio {
 	public void setOferta(boolean oferta) {
 		this.oferta = oferta;
 	}
+	public List<Comentario> getComentarios() {
+		return comentarios;
+	}
+
+	public void setComentarios(List<Comentario> comentarios) {
+		this.comentarios = comentarios;
+	}
 
 	@Override
 	public String toString() {
@@ -124,5 +131,6 @@ public class Anuncio {
 		anuncioR.comentarios.add(comentR);
 		
 	}
+
 
 }

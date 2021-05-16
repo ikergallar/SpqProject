@@ -16,7 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
-
 import com.SPQ.clasesBasicas.Usuario;
 
 import jakarta.ws.rs.client.Client;
@@ -32,6 +31,7 @@ public class VentanaContrasenya extends JFrame {
 	private JPasswordField nuevaContrasenya;
 	private JPasswordField confirmarContrasenya;
 	private String nombreUsuario;
+
 
 	Client client = ClientBuilder.newClient();
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");

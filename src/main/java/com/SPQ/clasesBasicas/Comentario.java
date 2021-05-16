@@ -28,16 +28,20 @@ public class Comentario {
 		this.fecha = fecha;
 	}
 	
-	public Comentario generarComentario(String mensaje, Usuario user) {
+	public void generarComentario(String mensaje, Usuario user) {
 		this.mensaje = mensaje;
 		this.nombreUsuario = user.getNombreUsuario();
-		
 		//fecha
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
 		Date date = new Date();    
 		this.fecha = formatter.format(date);
-		return null;
 	}
+	public Comentario() {
+		this.mensaje = "";
+		this.nombreUsuario = "";
+		this.fecha = "";
+	}
+	
 	
 	
 
