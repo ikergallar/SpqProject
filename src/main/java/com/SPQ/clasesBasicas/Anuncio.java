@@ -1,5 +1,7 @@
 package com.SPQ.clasesBasicas;
 
+import java.util.List;
+
 import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
@@ -22,6 +24,7 @@ public class Anuncio {
 	private String foto;
 	private Categoria categoria;
 	private boolean oferta;
+	private List<Comentario> comentarios;
 	@ForeignKey
 	private int idUsuario;
 
@@ -46,7 +49,7 @@ public class Anuncio {
 		this.categoria = categoria.NINGUNA;
 		this.oferta = false;
 		this.idUsuario = 0;
-
+		this.comentarios = null;
 	}
 
 	public int getIdAnuncio() {
@@ -116,6 +119,10 @@ public class Anuncio {
 	@Override
 	public String toString() {
 		return nombre + ", " + descripcion + ", " + precio + " euros, CATEGORIA:" + categoria;
+	}
+	public void anyadirComentario(Anuncio anuncioR, Comentario comentR) {
+		anuncioR.comentarios.add(comentR);
+		
 	}
 
 }
