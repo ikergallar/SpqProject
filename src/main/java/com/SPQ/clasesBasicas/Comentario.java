@@ -36,6 +36,11 @@ public class Comentario {
 		Date date = new Date();    
 		this.fecha = formatter.format(date);
 	}
+	public Comentario(String mensaje, String nombreUsuario, String fecha) {
+		this.mensaje = mensaje;
+		this.nombreUsuario = nombreUsuario;
+		this.fecha = fecha;
+	}
 	public Comentario() {
 		this.mensaje = "";
 		this.nombreUsuario = "";
