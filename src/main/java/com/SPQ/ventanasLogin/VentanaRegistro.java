@@ -47,6 +47,7 @@ public class VentanaRegistro extends JDialog {
 	final WebTarget usuarioTarget = appTarget.path("usuarios");
 	final WebTarget registroTarget = usuarioTarget.path("registro");
 	final WebTarget existeUsuarioTarget = usuarioTarget.path("existeUsuario");
+	private JTextField textoDescripcion;
 
 	/**
 	 * Create the frame.
@@ -55,7 +56,7 @@ public class VentanaRegistro extends JDialog {
 		setTitle("Hustle - Registro");
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 513, 496);
+		setBounds(100, 100, 513, 622);
 		contentPane = new JPanel();
 		contentPane.setBackground(new Color(39, 45, 53));
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -130,7 +131,7 @@ public class VentanaRegistro extends JDialog {
 		btnRegistrar.setBackground(new Color(255, 0, 0));
 		btnRegistrar.setForeground(Color.WHITE);
 		btnRegistrar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnRegistrar.setBounds(0, 385, 497, 72);
+		btnRegistrar.setBounds(0, 511, 497, 72);
 		contentPane.add(btnRegistrar);
 
 		ImageIcon ico4 = new ImageIcon("imagenes/fondos.jpg");
@@ -163,13 +164,26 @@ public class VentanaRegistro extends JDialog {
 		contentPane.add(textoRespuesta);
 		
 		JLabel lblPrivacidad = new JLabel("Politíca de privacidad");
+		lblPrivacidad.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblPrivacidad.setForeground(Color.WHITE);
-		lblPrivacidad.setBounds(91, 360, 136, 14);
+		lblPrivacidad.setBounds(308, 476, 136, 14);
 		contentPane.add(lblPrivacidad);
 		
 		JCheckBox chckbxPrivacidad = new JCheckBox("");
-		chckbxPrivacidad.setBounds(54, 355, 21, 23);
+		chckbxPrivacidad.setBackground(new Color(39,45,53));
+		chckbxPrivacidad.setBounds(439, 471, 21, 23);
 		contentPane.add(chckbxPrivacidad);
+		
+		JLabel lblDescripcion = new JLabel("Descripcion");
+		lblDescripcion.setForeground(Color.WHITE);
+		lblDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 13));
+		lblDescripcion.setBounds(31, 365, 136, 14);
+		contentPane.add(lblDescripcion);
+		
+		textoDescripcion = new JTextField();
+		textoDescripcion.setColumns(10);
+		textoDescripcion.setBounds(31, 390, 424, 75);
+		contentPane.add(textoDescripcion);
 
 		btnRegistrar.addActionListener(new ActionListener() {
 
@@ -181,6 +195,7 @@ public class VentanaRegistro extends JDialog {
 				String email;
 				String nombre;
 				String apellido;
+				String descripcion;
 
 				nombreUsuario = texto_usuario.getText();
 				contrasenya = String.valueOf(texto_contrasena.getPassword());
@@ -188,6 +203,7 @@ public class VentanaRegistro extends JDialog {
 				email = texto_email.getText();
 				nombre = textoNombre.getText();
 				apellido = textoApellido.getText();
+				descripcion = textoDescripcion.getText();
 
 				if (nombreUsuario.equals("") || contrasenya.equals("") || email.equals("") || nombre.equals("")
 						|| apellido.equals("") || textoRespuesta.equals("")) {
@@ -209,6 +225,7 @@ public class VentanaRegistro extends JDialog {
 								usuario.setApellido(apellido);
 								usuario.setPalabraRecuperacion(textoRespuesta.getText());
 								usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());
+								usuario.setDescripcion(descripcion);
 	
 								if (!UsuarioResources.existeUsuario(usuario)) {
 	

@@ -81,8 +81,8 @@ public class VentanaMostrarPerfil extends JFrame {
 		lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelServicio.add(lblDescripcion);
 
-		tfDescripcion = new JTextField(perfil.getDescripcion());
-		tfDescripcion.setText(" FALTA POR CREAR ATRIBUTO EN USUARIO ");
+		tfDescripcion = new JTextField();
+		tfDescripcion.setText(perfil.getDescripcion());
 		tfDescripcion.setBackground(new Color(39, 45, 53));
 		tfDescripcion.setForeground(Color.WHITE);
 		tfDescripcion.setFont(new Font("Tahoma", Font.PLAIN, 14));
