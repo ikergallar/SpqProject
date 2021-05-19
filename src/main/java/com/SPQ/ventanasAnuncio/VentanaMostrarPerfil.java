@@ -1,4 +1,4 @@
-package com.SPQ.ventanasperfil;
+package com.SPQ.ventanasAnuncio;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

@@ -29,6 +29,7 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 
 import javax.swing.JComboBox;
+import javax.swing.JCheckBox;
 
 public class VentanaRegistro extends JDialog {
 
@@ -160,6 +161,15 @@ public class VentanaRegistro extends JDialog {
 		textoRespuesta.setColumns(10);
 		textoRespuesta.setBounds(280, 314, 175, 19);
 		contentPane.add(textoRespuesta);
+		
+		JLabel lblPrivacidad = new JLabel("Politíca de privacidad");
+		lblPrivacidad.setForeground(Color.WHITE);
+		lblPrivacidad.setBounds(91, 360, 136, 14);
+		contentPane.add(lblPrivacidad);
+		
+		JCheckBox chckbxPrivacidad = new JCheckBox("");
+		chckbxPrivacidad.setBounds(54, 355, 21, 23);
+		contentPane.add(chckbxPrivacidad);
 
 		btnRegistrar.addActionListener(new ActionListener() {
 
@@ -188,26 +198,32 @@ public class VentanaRegistro extends JDialog {
 					if (contrasenya.equals(confPass)) {
 
 						if (email.contains("@") && email.contains(".")) {
+							
+							if(chckbxPrivacidad.isSelected()) {
 
-							Usuario usuario = new Usuario();
-							usuario.setNombreUsuario(nombreUsuario);
-							usuario.setPass(contrasenya);
-							usuario.setMail(email);
-							usuario.setNombre(nombre);
-							usuario.setApellido(apellido);
-							usuario.setPalabraRecuperacion(textoRespuesta.getText());
-							usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());
-
-							if (!UsuarioResources.existeUsuario(usuario)) {
-
-								registroTarget.request().post(Entity.entity(usuario, MediaType.APPLICATION_JSON));
-								JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
-								VentanaLogin perfil = new VentanaLogin();
-								perfil.frmLogin.setVisible(true);
-								dispose();
-
-							} else {
-								JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
+								Usuario usuario = new Usuario();
+								usuario.setNombreUsuario(nombreUsuario);
+								usuario.setPass(contrasenya);
+								usuario.setMail(email);
+								usuario.setNombre(nombre);
+								usuario.setApellido(apellido);
+								usuario.setPalabraRecuperacion(textoRespuesta.getText());
+								usuario.setPreguntaRecuperacion(comboPreguntas.getSelectedItem().toString());
+	
+								if (!UsuarioResources.existeUsuario(usuario)) {
+	
+									registroTarget.request().post(Entity.entity(usuario, MediaType.APPLICATION_JSON));
+									JOptionPane.showMessageDialog(null, "Cuenta creada correctamente", "Correcto", 1);
+									VentanaLogin perfil = new VentanaLogin();
+									perfil.frmLogin.setVisible(true);
+									dispose();
+									
+								} else {
+									JOptionPane.showMessageDialog(null, "El usuario ya existe", "Error", 0);
+								}
+							
+							}else {
+								JOptionPane.showMessageDialog(null, "Debe revisar la politíca de privacidad", "Error", 0);
 							}
 
 						} else {
