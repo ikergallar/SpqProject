@@ -24,12 +24,13 @@ public class Usuario {
 	private String telefono;
 	private String direccion;
 	private String foto;
+	private String descripcion;
 	private String palabraRecuperacion;
 	private String preguntaRecuperacion;
 	// private UsuarioConectado usuarioConectado;
 
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
-			String direccion, String foto, String palabraRecuperacion, String preguntaRecuperacion) {
+			String direccion, String foto, String palabraRecuperacion, String preguntaRecuperacion, String descripcion) {
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.nombreUsuario = nombreUsuario;
@@ -40,6 +41,7 @@ public class Usuario {
 		this.foto = foto;
 		this.palabraRecuperacion = palabraRecuperacion;
 		this.preguntaRecuperacion = preguntaRecuperacion;
+		this.descripcion = descripcion;
 //		this.setUsuarioConectado(usuarioConectado);
 	}
 
@@ -54,6 +56,15 @@ public class Usuario {
 		this.foto = "";
 		this.palabraRecuperacion = "";
 		this.preguntaRecuperacion = "";
+		this.descripcion = "";
+	}
+
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 
 	public int getIdUsuario() {
