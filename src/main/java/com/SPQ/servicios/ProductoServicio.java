@@ -67,15 +67,6 @@
 //		
 //	}
 //	
-//	@POST
-//	@Produces(MediaType.APPLICATION_JSON)
-//	@Consumes(MediaType.APPLICATION_JSON)
-//	public Response guardarProducto(Producto producto) 
-//	{
-//		lista.add(producto);
-//		return Response.status(Response.Status.CREATED).entity(producto).build();
-//		
-//	}
 //	
 //	
 //}
