@@ -135,7 +135,7 @@ public class VentanaPrincipal extends JFrame {
 		panelPerfil.setBounds(0, 0, 835, 592);
 		panelesDinamicos.add(panelPerfil, "1");
 
-		panelServicios = genPanelServicios();
+		panelServicios = genPanelServicios(usuario);
 		panelServicios.setBounds(0, 0, 835, 592);
 		panelesDinamicos.add(panelServicios, "2");
 
@@ -407,7 +407,7 @@ public class VentanaPrincipal extends JFrame {
 		return panelPerfilGen;
 	}
 
-	public JPanel genPanelServicios() {
+	public JPanel genPanelServicios(Usuario usuario) {
 		JPanel panelServiciosGen = new JPanel();
 
 		panelServiciosGen.setBackground(new Color(39, 45, 53));
@@ -518,7 +518,7 @@ public class VentanaPrincipal extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				Anuncio anuncio = ((Anuncio) list.getSelectedValue());
-				VentanaMostrarServicio mostrar = new VentanaMostrarServicio(anuncio);
+				VentanaMostrarServicio mostrar = new VentanaMostrarServicio(anuncio, usuario);
 				mostrar.setVisible(true);
 			}
 		});

@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import com.SPQ.clasesBasicas.Anuncio;
+import com.SPQ.clasesBasicas.Usuario;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -19,13 +20,16 @@ import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JCheckBox;
+import javax.swing.UIManager;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfCategoria;
 	private JTextField tfPrecio;
 	private JTextField tfDescripcion;
 
-	public VentanaMostrarServicio(Anuncio anuncio) {
+	public VentanaMostrarServicio(Anuncio anuncio, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
 		setTitle("Hustle - Servicio");
 		setBounds(100, 100, 513, 496);
@@ -46,7 +50,7 @@ public class VentanaMostrarServicio extends JDialog {
 		panelServicio.setBackground(new Color(39, 45, 53));
 		panelServicio.setBounds(28, 104, 438, 278);
 		getContentPane().add(panelServicio);
-		panelServicio.setLayout(new GridLayout(4, 2, 0, 0));
+		panelServicio.setLayout(new GridLayout(5, 2, 0, 0));
 
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setForeground(Color.WHITE);
@@ -99,6 +103,30 @@ public class VentanaMostrarServicio extends JDialog {
 		chckbxOferta.setEnabled(false);
 		chckbxOferta.setBackground(new Color(39, 45, 53));
 		panelServicio.add(chckbxOferta);
+		
+		JLabel lblPerfil = new JLabel("Ver Perfil:");
+		lblPerfil.setForeground(Color.WHITE);
+		lblPerfil.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelServicio.add(lblPerfil);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(39,45,53));
+		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
+		flowLayout.setVgap(15);
+		panelServicio.add(panel);
+		
+		JButton btnAbrirPerfil = new JButton("ABRIR");
+		btnAbrirPerfil.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				VentanaMostrarPerfil mostrar = new VentanaMostrarPerfil(usuario);
+				mostrar.setVisible(true);
+			}
+		});
+		btnAbrirPerfil.setBackground(Color.RED);
+		btnAbrirPerfil.setForeground(Color.WHITE);
+		btnAbrirPerfil.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		panel.add(btnAbrirPerfil);
 		if (anuncio.isOferta()) {
 			chckbxOferta.setSelected(true);
 		}
