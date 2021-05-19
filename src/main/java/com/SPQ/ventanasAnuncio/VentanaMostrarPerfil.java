@@ -27,7 +27,7 @@ public class VentanaMostrarPerfil extends JFrame {
 
 	public VentanaMostrarPerfil(Usuario perfil) {
 		getContentPane().setBackground(new Color(39, 45, 53));
-		setTitle("Hustle - Servicio");
+		setTitle("Hustle - Perfil " + perfil.getNombreUsuario());
 		setBounds(100, 100, 513, 496);
 		getContentPane().setLayout(null);
 
@@ -81,7 +81,7 @@ public class VentanaMostrarPerfil extends JFrame {
 		lblDescripcion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		panelServicio.add(lblDescripcion);
 
-		tfDescripcion = new JTextField();
+		tfDescripcion = new JTextField(perfil.getDescripcion());
 		tfDescripcion.setText(" FALTA POR CREAR ATRIBUTO EN USUARIO ");
 		tfDescripcion.setBackground(new Color(39, 45, 53));
 		tfDescripcion.setForeground(Color.WHITE);
