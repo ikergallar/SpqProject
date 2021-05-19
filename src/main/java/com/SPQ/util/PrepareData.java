@@ -21,16 +21,16 @@ public class PrepareData {
 		try {
 			tx.begin();
 			Usuario usuario = new Usuario("Aitor", "Davila", "aidav13", "pass123", "aidav@gmail.com", "6839283948",
-					"Calle Ave del Paraiso 9, Barcelona", "", "Dua", "¿Como se llama mi gato?");
+					"Calle Ave del Paraiso 9, Barcelona", "", "Dua", "¿Como se llama mi gato?", "Descripcion perfil");
 			pm.makePersistent(usuario);
 			Usuario usuario1 = new Usuario("Aitora", "Davilaa", "aidav13a", "passa123", "aidav@gamail.com", "68392848",
-					"Callse Ave del Paraiso 9, Barcselona", "", "Dusa", "¿Comso se llama mi gato?");
+					"Callse Ave del Paraiso 9, Barcselona", "", "Dusa", "¿Comso se llama mi gato?", "Descripcion perfil");
 			pm.makePersistent(usuario1);
 			Usuario usuario2 = new Usuario("Aitsor", "Davilaada", "aidavsfa13", "pass1dsf23", "aidav@fsgmail.com",
-					"68392833948", "Calle Ave del Pafaraiso 9, Barcafelona", "", "Dua", "¿Como se llamsa mi gato?");
+					"68392833948", "Calle Ave del Pafaraiso 9, Barcafelona", "", "Dua", "¿Como se llamsa mi gato?", "Descripcion perfil");
 			pm.makePersistent(usuario2);
 			Usuario usuario3 = new Usuario("Aitofr", "Davilfa", "aidsfav13", "passfs123", "aidav@gmail.com", "68393948",
-					"Calle Ave del Pfaaraiso 9, Barcelafona", "", "Dua", "¿Como se llamsfa mi gato?");
+					"Calle Ave del Pfaaraiso 9, Barcelafona", "", "Dua", "¿Como se llamsfa mi gato?", "Descripcion perfil");
 			pm.makePersistent(usuario3);
 
 			Anuncio anuncio = new Anuncio("Aitor", "Ofrdaezco servicio de fontaneria", 60, "", Categoria.ALBAYIL, true,

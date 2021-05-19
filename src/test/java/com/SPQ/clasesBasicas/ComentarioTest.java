@@ -13,7 +13,7 @@ public class ComentarioTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		user=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?");
+		user=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?", "Descripcion perfil");
 		coment=new Comentario("comentario de prueba", user.getNombreUsuario(), "17/05/2021");
 
 	}
