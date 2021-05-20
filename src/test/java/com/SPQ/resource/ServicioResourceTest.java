@@ -2,6 +2,7 @@ package com.SPQ.resource;
 
 import static org.junit.Assert.assertEquals;
 
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -134,6 +135,26 @@ public class ServicioResourceTest {
 		Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 
 		assertEquals("asasas", anuncio.getNombre());
+	}
+	
+	@Test
+	@PerfTest(invocations = 1000, threads = 40)
+	public void testUpdateValoracion() {
+
+		Anuncio a1 = new Anuncio();
+		a1.setNombre("asasas");
+		a1.setValoracion(5);
+		WebTarget servicioTarget = appTarget.path("servicios");
+		WebTarget updateTarget = servicioTarget.path("updateValoracion");
+
+		updateTarget.request().put(Entity.entity(a1, MediaType.APPLICATION_JSON));
+
+		WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("nombre", "asasas");
+		GenericType<Anuncio> genericType = new GenericType<Anuncio>() {
+		};
+		Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+
+		assertEquals(5, anuncio.getValoracion());
 	}
 
 	@Test
