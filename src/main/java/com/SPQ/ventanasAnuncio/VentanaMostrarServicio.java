@@ -23,6 +23,7 @@ import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 
 public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfCategoria;
@@ -32,7 +33,7 @@ public class VentanaMostrarServicio extends JDialog {
 	public VentanaMostrarServicio(Anuncio anuncio, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
 		setTitle("Hustle - Servicio");
-		setBounds(100, 100, 513, 496);
+		setBounds(100, 100, 513, 543);
 		getContentPane().setLayout(null);
 
 		JButton btnCerrar = new JButton("CERRAR");
@@ -43,7 +44,7 @@ public class VentanaMostrarServicio extends JDialog {
 		btnCerrar.setBackground(new Color(255, 0, 0));
 		btnCerrar.setForeground(Color.WHITE);
 		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnCerrar.setBounds(0, 380, 497, 77);
+		btnCerrar.setBounds(0, 427, 497, 77);
 		getContentPane().add(btnCerrar);
 
 		JPanel panelServicio = new JPanel();
@@ -136,5 +137,17 @@ public class VentanaMostrarServicio extends JDialog {
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
 		lblNewLabel.setBounds(28, 0, 438, 105);
 		getContentPane().add(lblNewLabel);
+		
+		JButton btnFavorito = new JButton("fav");
+		btnFavorito.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ArrayList<Anuncio> fav = null;
+				usuario.setFavoritos(fav);
+				fav.add(anuncio);
+				
+			}
+		});
+		btnFavorito.setBounds(223, 393, 57, 23);
+		getContentPane().add(btnFavorito);
 	}
 }

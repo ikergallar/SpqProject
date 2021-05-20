@@ -4,6 +4,9 @@ import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
+
+import java.util.ArrayList;
+
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
@@ -25,8 +28,10 @@ public class Usuario {
 	private String direccion;
 	private String foto;
 	private String descripcion;
+	
 	private String palabraRecuperacion;
 	private String preguntaRecuperacion;
+	private ArrayList<Anuncio> favoritos;
 	// private UsuarioConectado usuarioConectado;
 
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
@@ -153,6 +158,14 @@ public class Usuario {
 
 	public void setPreguntaRecuperacion(String preguntaRecuperacion) {
 		this.preguntaRecuperacion = preguntaRecuperacion;
+	}
+	
+	public ArrayList<Anuncio> getFavoritos() {
+		return favoritos;
+	}
+
+	public void setFavoritos(ArrayList<Anuncio> favoritos) {
+		this.favoritos = favoritos;
 	}
 
 	// Resumen de datos publicos del usuario

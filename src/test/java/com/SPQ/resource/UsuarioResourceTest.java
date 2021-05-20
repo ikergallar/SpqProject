@@ -49,7 +49,7 @@ public class UsuarioResourceTest {
 		usuarioTarget = appTarget.path("usuarios");
 
 		u1 = new Usuario("Jose", "fer", "ramona", "pass123", "pedro@gmail.com", "6839283948", "Calle koparta", "",
-				"Kos	", "¿Como se llama mi gato?");
+				"Kos	", "¿Como se llama mi gato?", "Una persona con cualidades unicas");
 	}
 
 	@After

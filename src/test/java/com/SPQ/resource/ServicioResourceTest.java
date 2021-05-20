@@ -64,7 +64,7 @@ public class ServicioResourceTest {
 	public void testSeleccionarAnuncio() {
 
 		Usuario usuario = new Usuario("Aitor", "Davila", "aidav13", "pass123", "aidav@gmail.com", "6839283948",
-				"Calle Ave del Paraiso 9, Barcelona", "", "Dua", "�Como se llama mi gato?");
+				"Calle Ave del Paraiso 9, Barcelona", "", "Dua", "�Como se llama mi gato?", "Un servicio especial");
 		Anuncio anuncio = new Anuncio("asasas", "Ofrezco servicio de fontaneria", 60, "", Categoria.FONTANERO, true,
 				usuario.getIdUsuario());
 
