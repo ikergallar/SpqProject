@@ -150,5 +150,26 @@ public class UsuarioResources {
 		pm.close();
 
 	}
+	
+	@POST
+	@Path("seguirUsuario")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void seguirUsuario(Usuario usuario) {
+
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		tx.begin();
+
+		Query query = pm.newQuery("javax.jdo.query.SQL", "UPDATE usuario SET pass='" + usuario.getPass()
+				+ "' WHERE nombreusuario = '" + usuario.getNombreUsuario() + "'");
+		query.setClass(Usuario.class);
+		Long update = (Long) query.execute();
+
+		tx.commit();
+		pm.close();
+
+	}
 
 }
