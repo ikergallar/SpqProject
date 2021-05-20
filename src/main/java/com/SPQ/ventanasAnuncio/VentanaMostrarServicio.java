@@ -13,6 +13,10 @@ import javax.swing.border.EmptyBorder;
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Usuario;
 
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
@@ -29,6 +33,12 @@ public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfCategoria;
 	private JTextField tfPrecio;
 	private JTextField tfDescripcion;
+	private JTextField txtValoracion;
+	
+	Client client = ClientBuilder.newClient();
+	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+	final WebTarget servicioTarget = appTarget.path("servicios");
+	final WebTarget updateServicioTarget = servicioTarget.path("update");
 
 	public VentanaMostrarServicio(Anuncio anuncio, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
@@ -36,16 +46,7 @@ public class VentanaMostrarServicio extends JDialog {
 		setBounds(100, 100, 513, 543);
 		getContentPane().setLayout(null);
 
-		JButton btnCerrar = new JButton("CERRAR");
-		btnCerrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		btnCerrar.setBackground(new Color(255, 0, 0));
-		btnCerrar.setForeground(Color.WHITE);
-		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnCerrar.setBounds(0, 427, 497, 77);
-		getContentPane().add(btnCerrar);
+		
 
 		JPanel panelServicio = new JPanel();
 		panelServicio.setBackground(new Color(39, 45, 53));
@@ -131,12 +132,18 @@ public class VentanaMostrarServicio extends JDialog {
 		if (anuncio.isOferta()) {
 			chckbxOferta.setSelected(true);
 		}
-
+		
 		JLabel lblNewLabel = new JLabel(anuncio.getNombre());
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(28, 0, 438, 105);
+		lblNewLabel.setBounds(28, 10, 438, 105);
 		getContentPane().add(lblNewLabel);
+		
+		JLabel lblValoracion = new JLabel("Valorar (1-5)");
+		lblValoracion.setForeground(Color.WHITE);
+		lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblValoracion.setBounds(28, 392, 101, 27);
+		getContentPane().add(lblValoracion);
 		
 		JButton btnFavorito = new JButton("fav");
 		btnFavorito.addActionListener(new ActionListener() {
@@ -147,7 +154,26 @@ public class VentanaMostrarServicio extends JDialog {
 				
 			}
 		});
-		btnFavorito.setBounds(223, 393, 57, 23);
+		btnFavorito.setBounds(409, 394, 57, 23);
 		getContentPane().add(btnFavorito);
+		
+		txtValoracion = new JTextField();
+		txtValoracion.setBounds(139, 392, 27, 25);
+		getContentPane().add(txtValoracion);
+		txtValoracion.setColumns(10);
+		
+		JButton btnCerrar = new JButton("CERRAR");
+		btnCerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnCerrar.setBackground(new Color(255, 0, 0));
+		btnCerrar.setForeground(Color.WHITE);
+		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnCerrar.setBounds(0, 427, 497, 77);
+		getContentPane().add(btnCerrar);
+		
+		
 	}
 }

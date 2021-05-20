@@ -25,6 +25,14 @@ public class Anuncio {
 	private Categoria categoria;
 	private boolean oferta;
 	private List<Comentario> comentarios;
+	private int valoracion;
+	public int getValoracion() {
+		return valoracion;
+	}
+
+	public void setValoracion(int valoracion) {
+		this.valoracion = valoracion;
+	}
 	@ForeignKey
 	private int idUsuario;
 
@@ -50,6 +58,7 @@ public class Anuncio {
 		this.oferta = false;
 		this.idUsuario = 0;
 		this.comentarios = null;
+		this.valoracion = 0;
 	}
 
 	public int getIdAnuncio() {

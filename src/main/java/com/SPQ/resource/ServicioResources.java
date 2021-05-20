@@ -217,6 +217,25 @@ public class ServicioResources {
 		pm.close();
 
 	}
+	@PUT
+	@Path("updateValoracion")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void updateValoracion(Anuncio anuncio) {
+
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		tx.begin();
+
+		Query query = pm.newQuery("javax.jdo.query.SQL","UPDATE anuncio SET valoracion=" + anuncio.getValoracion() + " WHERE idanuncio ='" + anuncio.getIdAnuncio() + "'");
+		query.setClass(Anuncio.class);
+		Long update = (Long) query.execute();
+
+		tx.commit();
+		pm.close();
+
+	}
 
 	@GET
 	@Path("servicio")
