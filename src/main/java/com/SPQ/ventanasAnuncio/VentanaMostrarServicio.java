@@ -15,11 +15,15 @@ import com.SPQ.clasesBasicas.Usuario;
 
 import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.MediaType;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridLayout;
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
@@ -38,7 +42,7 @@ public class VentanaMostrarServicio extends JDialog {
 	Client client = ClientBuilder.newClient();
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget servicioTarget = appTarget.path("servicios");
-	final WebTarget updateServicioTarget = servicioTarget.path("update");
+	final WebTarget updateServicioTarget = servicioTarget.path("updateValoracion");
 
 	public VentanaMostrarServicio(Anuncio anuncio, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
@@ -165,7 +169,18 @@ public class VentanaMostrarServicio extends JDialog {
 		JButton btnCerrar = new JButton("CERRAR");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				String valoracion;
 				
+				valoracion =  txtValoracion.getText();
+				
+				if(valoracion.equals("5") || valoracion.equals("4") || valoracion.equals("3") || valoracion.equals("2") || valoracion.equals("1") || valoracion.equals("") ) {
+					anuncio.setValoracion(5);
+					updateServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
+					dispose();
+				}else {
+					JOptionPane.showMessageDialog(null, "Por favor, valore el servicio de 1 a 5", "Error", 0);
+					txtValoracion.setText("");
+				}
 			}
 		});
 		btnCerrar.setBackground(new Color(255, 0, 0));
