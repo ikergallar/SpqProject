@@ -26,6 +26,16 @@ public class Anuncio {
 	private boolean oferta;
 	private List<Comentario> comentarios;
 	private int valoracion;
+	private int contador;
+	
+	public int getContador() {
+		return contador;
+	}
+
+	public void setContador(int contador) {
+		this.contador = contador;
+	}
+
 	public int getValoracion() {
 		return valoracion;
 	}

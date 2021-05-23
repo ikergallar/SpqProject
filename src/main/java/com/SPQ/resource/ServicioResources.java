@@ -228,7 +228,7 @@ public class ServicioResources {
 
 		tx.begin();
 
-		Query query = pm.newQuery("javax.jdo.query.SQL","UPDATE anuncio SET valoracion=" + anuncio.getValoracion() + " WHERE idanuncio ='" + anuncio.getIdAnuncio() + "'");
+		Query query = pm.newQuery("javax.jdo.query.SQL","INSERT INTO anuncio (valoracion) VALUES ('" + anuncio.getValoracion() + "') WHERE idanuncio ='" + anuncio.getIdAnuncio() + "'");
 		query.setClass(Anuncio.class);
 		Long update = (Long) query.execute();
 
