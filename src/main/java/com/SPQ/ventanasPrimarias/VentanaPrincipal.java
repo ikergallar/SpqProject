@@ -677,14 +677,13 @@ public class VentanaPrincipal extends JFrame {
 					modeloFavoritos = new DefaultListModel();
 					modelo = modeloFavoritos;
 					
-					ArrayList<Anuncio> fav = usuario.getFavoritos();
+					listaFavoritos = usuario.getFavoritos();
 
-					listaFavoritos = fav;
-
-					
-						modeloFavoritos.addElement(listaFavoritos);
+					for (Anuncio anuncios : listaFavoritos) {
+						modelo = modeloFavoritos;
+						modeloFavoritos.addElement(anuncios);
 						list.setModel(modeloFavoritos);
-					
+					}
 
 				}
 			}

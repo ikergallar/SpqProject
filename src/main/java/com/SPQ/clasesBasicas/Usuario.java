@@ -6,6 +6,7 @@ import javax.jdo.annotations.PrimaryKey;
 import javax.jdo.annotations.Unique;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
@@ -37,7 +38,7 @@ public class Usuario {
 	
 	private String palabraRecuperacion;
 	private String preguntaRecuperacion;
-	private ArrayList<Anuncio> favoritos;
+	private List<Anuncio> favoritos;
 	
 	/**
 	 * Constructor de la clase USUARIO
@@ -282,7 +283,7 @@ public class Usuario {
 	 * Devuelve los favoritos del USUARIO
 	 * @param Favoritos String con los favoritos del USUARIO
 	 */
-	public ArrayList<Anuncio> getFavoritos() {
+	public List<Anuncio> getFavoritos() {
 		return favoritos;
 	}
 
@@ -290,7 +291,7 @@ public class Usuario {
 	 * Actualiza los favoritos del USUARIO
 	 * @param Favoritos String con los nuevos favoritos del USUARIO
 	 */
-	public void setFavoritos(ArrayList<Anuncio> favoritos) {
+	public void setFavoritos(List<Anuncio> favoritos) {
 		this.favoritos = favoritos;
 	}
 

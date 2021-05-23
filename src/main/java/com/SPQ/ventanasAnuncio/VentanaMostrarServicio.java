@@ -32,6 +32,7 @@ import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.List;
 
 public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfCategoria;
@@ -39,7 +40,7 @@ public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfDescripcion;
 	private JTextField txtValoracion;
 	
-	private ArrayList<Anuncio> fav = new ArrayList<Anuncio>();
+	private List<Anuncio> fav = new ArrayList<Anuncio>();
 
 	Client client = ClientBuilder.newClient();
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
@@ -51,8 +52,6 @@ public class VentanaMostrarServicio extends JDialog {
 		setTitle("Hustle - Servicio");
 		setBounds(100, 100, 513, 543);
 		getContentPane().setLayout(null);
-
-		
 
 		JPanel panelServicio = new JPanel();
 		panelServicio.setBackground(new Color(39, 45, 53));
@@ -154,10 +153,14 @@ public class VentanaMostrarServicio extends JDialog {
 		JButton btnFavorito = new JButton("fav");
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(anuncio);
-				fav.add(anuncio);
-				usuario.setFavoritos(fav);
-				
+				if(usuario.getFavoritos()== null) {
+					fav.add(anuncio);
+					usuario.setFavoritos(fav);
+				}else {
+					fav = usuario.getFavoritos();
+					fav.add(anuncio);
+					usuario.setFavoritos(fav);
+				}			
 			}
 		});
 		btnFavorito.setBounds(409, 394, 57, 23);
