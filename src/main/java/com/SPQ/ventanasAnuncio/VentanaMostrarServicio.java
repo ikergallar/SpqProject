@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
@@ -50,7 +51,7 @@ public class VentanaMostrarServicio extends JDialog {
 	public VentanaMostrarServicio(Anuncio anuncio, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
 		setTitle("Hustle - Servicio");
-		setBounds(100, 100, 513, 543);
+		setBounds(100, 100, 513, 700);
 		getContentPane().setLayout(null);
 
 		JPanel panelServicio = new JPanel();
@@ -163,7 +164,7 @@ public class VentanaMostrarServicio extends JDialog {
 				}			
 			}
 		});
-		btnFavorito.setBounds(409, 394, 57, 23);
+		btnFavorito.setBounds(409, 56, 57, 23);
 		getContentPane().add(btnFavorito);
 		
 		txtValoracion = new JTextField();
@@ -191,8 +192,21 @@ public class VentanaMostrarServicio extends JDialog {
 		btnCerrar.setBackground(new Color(255, 0, 0));
 		btnCerrar.setForeground(Color.WHITE);
 		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnCerrar.setBounds(0, 427, 497, 77);
+		btnCerrar.setBounds(0, 584, 497, 77);
 		getContentPane().add(btnCerrar);
+		
+		JLabel lblImagenEstrella = new JLabel("");
+		lblImagenEstrella.setBounds(290, 40, 57, 51);
+		getContentPane().add(lblImagenEstrella);
+		lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
+		if(usuario.getFavoritos()!=null) {
+			for (Anuncio anuncioFav : fav) {
+				if(anuncio.equals(anuncioFav)) {
+					lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
+					break;
+				}
+			}
+		}
 		
 		
 	}
