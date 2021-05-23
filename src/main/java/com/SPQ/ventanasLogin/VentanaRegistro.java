@@ -1,3 +1,6 @@
+/**
+ *  @package VentanasLogin
+ */
 package com.SPQ.ventanasLogin;
 
 import javax.swing.ImageIcon;
@@ -24,6 +27,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.List;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -184,6 +189,26 @@ public class VentanaRegistro extends JDialog {
 		textoDescripcion.setColumns(10);
 		textoDescripcion.setBounds(31, 390, 424, 75);
 		contentPane.add(textoDescripcion);
+		
+		lblPrivacidad.addMouseListener(new MouseAdapter() {
+
+			public void mouseEntered(MouseEvent e) {
+				lblPrivacidad.setForeground(Color.WHITE);
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				lblPrivacidad.setForeground(Color.GRAY);
+			}
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				// Ventana para registro
+				VentanaPrivacidad pri = new VentanaPrivacidad();
+				pri.setVisible(true);
+
+			}
+		});
 
 		btnRegistrar.addActionListener(new ActionListener() {
 

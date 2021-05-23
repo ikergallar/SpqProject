@@ -1,3 +1,6 @@
+/**
+ *  @package VentanasLogin
+ */
 package com.SPQ.ventanasLogin;
 
 import java.awt.Color;

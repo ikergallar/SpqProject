@@ -1,3 +1,6 @@
+/**
+ *  @package VentanasLogin
+ */
 package com.SPQ.ventanasLogin;
 
 import javax.swing.ImageIcon;
@@ -48,9 +51,8 @@ public class VentanaLogin extends JFrame {
 	final WebTarget listarUsuarioTarget = usuarioTarget.path("listaUsuarios");
 
 	/**
-	 * Create the application.
+	 * Launch the application.
 	 **/
-
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -62,8 +64,10 @@ public class VentanaLogin extends JFrame {
 				}
 			}
 		});
-	}
-
+	}	
+	/**
+	 * Create the application.
+	 **/
 	public VentanaLogin() {
 		initialize();
 	}

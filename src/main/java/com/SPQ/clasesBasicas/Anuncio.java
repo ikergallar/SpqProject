@@ -1,3 +1,6 @@
+/**
+ *  @package ClasesBasicas
+ */
 package com.SPQ.clasesBasicas;
 
 import java.util.List;
