@@ -39,6 +39,8 @@ public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfDescripcion;
 	private JTextField txtValoracion;
 	
+	private ArrayList<Anuncio> fav = new ArrayList<Anuncio>();
+
 	Client client = ClientBuilder.newClient();
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget servicioTarget = appTarget.path("servicios");
@@ -152,9 +154,9 @@ public class VentanaMostrarServicio extends JDialog {
 		JButton btnFavorito = new JButton("fav");
 		btnFavorito.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				ArrayList<Anuncio> fav = null;
-				usuario.setFavoritos(fav);
+				System.out.println(anuncio);
 				fav.add(anuncio);
+				usuario.setFavoritos(fav);
 				
 			}
 		});

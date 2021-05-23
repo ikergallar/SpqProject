@@ -85,11 +85,13 @@ public class VentanaPrincipal extends JFrame {
 	private DefaultListModel modeloPrecio;
 	private DefaultListModel modeloOferta;
 	private DefaultListModel modeloUsuario;
+	private DefaultListModel modeloFavoritos;
 	private List<Anuncio> lista;
 	private List<Anuncio> listaCategoria;
 	private List<Anuncio> listaPrecio;
 	private List<Anuncio> listaOferta;
 	private List<Anuncio> listaUsuario;
+	private List<Anuncio> listaFavoritos;
 	private JScrollPane scrollPane;
 	private JList list;
 	private ButtonGroup buttonGroup;
@@ -423,7 +425,7 @@ public class VentanaPrincipal extends JFrame {
 		rdbtnCategoria.setBackground(new Color(39, 45, 53));
 		rdbtnCategoria.setForeground(Color.WHITE);
 		rdbtnCategoria.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rdbtnCategoria.setBounds(41, 123, 109, 23);
+		rdbtnCategoria.setBounds(41, 101, 109, 23);
 		panelServiciosGen.add(rdbtnCategoria);
 
 		JComboBox<Categoria> comboCategoria = new JComboBox<Categoria>();
@@ -433,7 +435,7 @@ public class VentanaPrincipal extends JFrame {
 		comboCategoria.addItem(Categoria.ALBAYIL);
 		comboCategoria.addItem(Categoria.FONTANERO);
 		comboCategoria.addItem(Categoria.PERSIANERO);
-		comboCategoria.setBounds(41, 153, 133, 33);
+		comboCategoria.setBounds(41, 131, 133, 33);
 		panelServiciosGen.add(comboCategoria);
 
 		modelo = new DefaultListModel();
@@ -453,14 +455,14 @@ public class VentanaPrincipal extends JFrame {
 		JLabel flitro = new JLabel("FILTRADO");
 		flitro.setForeground(Color.WHITE);
 		flitro.setFont(new Font("Tahoma", Font.BOLD, 14));
-		flitro.setBounds(22, 87, 104, 14);
+		flitro.setBounds(20, 74, 104, 14);
 		panelServiciosGen.add(flitro);
 
 		JRadioButton rdbtnPrecio = new JRadioButton("Precio");
 		rdbtnPrecio.setBackground(new Color(39, 45, 53));
 		rdbtnPrecio.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnPrecio.setForeground(Color.WHITE);
-		rdbtnPrecio.setBounds(41, 220, 109, 23);
+		rdbtnPrecio.setBounds(41, 185, 109, 23);
 		panelServiciosGen.add(rdbtnPrecio);
 
 		JComboBox comboPrecio = new JComboBox();
@@ -470,41 +472,35 @@ public class VentanaPrincipal extends JFrame {
 		comboPrecio.setEnabled(false);
 		comboPrecio.addItem("Mayor precio");
 		comboPrecio.addItem("Menor precio");
-		comboPrecio.setBounds(41, 250, 133, 35);
+		comboPrecio.setBounds(41, 215, 133, 35);
 		panelServiciosGen.add(comboPrecio);
 
 		JRadioButton rdbtnOferta = new JRadioButton("Ofertas");
 		rdbtnOferta.setBackground(new Color(39, 45, 53));
 		rdbtnOferta.setForeground(Color.WHITE);
 		rdbtnOferta.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rdbtnOferta.setBounds(41, 317, 109, 23);
+		rdbtnOferta.setBounds(41, 268, 109, 23);
 		panelServiciosGen.add(rdbtnOferta);
 
 		JRadioButton rdbtnUsuario = new JRadioButton("Nombre de usuario");
 		rdbtnUsuario.setBackground(new Color(39, 45, 53));
 		rdbtnUsuario.setForeground(Color.WHITE);
 		rdbtnUsuario.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		rdbtnUsuario.setBounds(41, 369, 165, 23);
+		rdbtnUsuario.setBounds(41, 306, 165, 23);
 		panelServiciosGen.add(rdbtnUsuario);
-
-		buttonGroup = new ButtonGroup();
-		buttonGroup.add(rdbtnCategoria);
-		buttonGroup.add(rdbtnPrecio);
-		buttonGroup.add(rdbtnOferta);
-		buttonGroup.add(rdbtnUsuario);
 
 		textUsername = new JTextField();
 		textUsername.setForeground(Color.BLACK);
 		textUsername.setBackground(Color.WHITE);
 		textUsername.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		textUsername.setEnabled(false);
-		textUsername.setBounds(41, 399, 98, 35);
+		textUsername.setBounds(41, 336, 98, 35);
 		panelServiciosGen.add(textUsername);
 		textUsername.setColumns(10);
 
 		JButton btnBuscar = new JButton("New button");
 		btnBuscar.setEnabled(false);
-		btnBuscar.setBounds(139, 399, 35, 35);
+		btnBuscar.setBounds(135, 336, 35, 35);
 		panelServiciosGen.add(btnBuscar);
 
 		JLabel lblTiruloServicios = new JLabel("SERVICIOS");
@@ -527,7 +523,18 @@ public class VentanaPrincipal extends JFrame {
 		btnAbrirServicio.setFont(new Font("Tahoma", Font.BOLD, 14));
 		btnAbrirServicio.setBounds(41, 493, 133, 35);
 		panelServiciosGen.add(btnAbrirServicio);
-
+		
+		JRadioButton rdbtnFavoritos = new JRadioButton("Favoritos");
+		rdbtnFavoritos.setBounds(41, 403, 109, 23);
+		panelServiciosGen.add(rdbtnFavoritos);
+	
+		buttonGroup = new ButtonGroup();
+		buttonGroup.add(rdbtnCategoria);
+		buttonGroup.add(rdbtnPrecio);
+		buttonGroup.add(rdbtnOferta);
+		buttonGroup.add(rdbtnUsuario);
+		buttonGroup.add(rdbtnFavoritos);
+		
 		rdbtnCategoria.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
@@ -652,6 +659,33 @@ public class VentanaPrincipal extends JFrame {
 					modelo = modeloUsuario;
 					modeloUsuario.addElement(anuncios);
 					list.setModel(modeloUsuario);
+				}
+			}
+		});
+		
+		rdbtnFavoritos.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				if (rdbtnFavoritos.isSelected()) {
+					textUsername.setEnabled(false);
+					btnBuscar.setEnabled(false);
+					comboCategoria.setEnabled(false);
+					comboPrecio.setEnabled(false);
+					textUsername.setEnabled(false);
+					btnBuscar.setEnabled(false);
+					
+					modeloFavoritos = new DefaultListModel();
+					modelo = modeloFavoritos;
+					
+					ArrayList<Anuncio> fav = usuario.getFavoritos();
+
+					listaFavoritos = fav;
+
+					
+						modeloFavoritos.addElement(listaFavoritos);
+						list.setModel(modeloFavoritos);
+					
+
 				}
 			}
 		});
