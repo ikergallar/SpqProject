@@ -429,7 +429,9 @@ public class VentanaPrincipal extends JFrame {
 		panelServiciosGen.add(rdbtnCategoria);
 
 		JComboBox<Categoria> comboCategoria = new JComboBox<Categoria>();
-		comboCategoria.setBackground(Color.RED);
+		comboCategoria.setForeground(Color.BLACK);
+		comboCategoria.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		comboCategoria.setBackground(Color.WHITE);
 		comboCategoria.setEnabled(false);
 		comboCategoria.addItem(Categoria.INFORMATICO);
 		comboCategoria.addItem(Categoria.ALBAYIL);
@@ -466,8 +468,8 @@ public class VentanaPrincipal extends JFrame {
 		panelServiciosGen.add(rdbtnPrecio);
 
 		JComboBox comboPrecio = new JComboBox();
-		comboPrecio.setForeground(Color.WHITE);
-		comboPrecio.setBackground(Color.RED);
+		comboPrecio.setForeground(Color.BLACK);
+		comboPrecio.setBackground(Color.WHITE);
 		comboPrecio.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		comboPrecio.setEnabled(false);
 		comboPrecio.addItem("Mayor precio");
@@ -506,7 +508,7 @@ public class VentanaPrincipal extends JFrame {
 		JLabel lblTiruloServicios = new JLabel("SERVICIOS");
 		lblTiruloServicios.setForeground(Color.WHITE);
 		lblTiruloServicios.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblTiruloServicios.setBounds(325, 29, 139, 33);
+		lblTiruloServicios.setBounds(439, 29, 139, 33);
 		panelServiciosGen.add(lblTiruloServicios);
 
 		JButton btnAbrirServicio = new JButton("ABRIR");
@@ -525,6 +527,9 @@ public class VentanaPrincipal extends JFrame {
 		panelServiciosGen.add(btnAbrirServicio);
 		
 		JRadioButton rdbtnFavoritos = new JRadioButton("Favoritos");
+		rdbtnFavoritos.setBackground(new Color(39,45,53));
+		rdbtnFavoritos.setForeground(Color.WHITE);
+		rdbtnFavoritos.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		rdbtnFavoritos.setBounds(41, 403, 109, 23);
 		panelServiciosGen.add(rdbtnFavoritos);
 	
