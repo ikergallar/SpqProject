@@ -11,6 +11,12 @@ import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 
+/**
+ * Clase USUARIO donde creamos los perfiles de los usuarios del software
+ * @author Aitor GG
+ *
+ */
+
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 public class Usuario {
@@ -36,9 +42,15 @@ public class Usuario {
 	
 	/**
 	 * Constructor de la clase USUARIO
-	 * @param Usuario String con el nombre del USUARIO
-	 * @param password String con la contraseña del USUARIO
-	 * @param email String con el mail del USUARIO
+	 * @param nombreUsuario String con el nombre del USUARIO
+	 * @param pass String con la contraseña del USUARIO
+	 * @param mail String con el mail del USUARIO
+	 * @param telefono String con el teléfono del USUARIO
+	 * @param direccion String con la direccion del USUARIO
+	 * @param foto String con la foto del USUARIO
+	 * @param palabraRecuperacion String con la palabra de recuperacion del USUARIO
+	 * @param preguntaRecupperacion String con la pregunta de recuperacion del USUARIO
+	 * @param descripcion String con la descripcion del USUARIO
 	 */
 
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
@@ -156,7 +168,7 @@ public class Usuario {
 
 	/**
 	 * Devuelve el mail del USUARIO
-	 * @return String con el main del usuario
+	 * @return String con el mail del usuario
 	 */
 	public String getMail() {
 		return mail;
@@ -172,7 +184,7 @@ public class Usuario {
 
 	/**
 	 * Devuelve la foto del USUARIO
-	 * @param email String con el nuevo mail
+	 * @param foto String con la foto
 	 */
 	public String getFoto() {
 		return foto;
@@ -180,32 +192,55 @@ public class Usuario {
 	
 	/**
 	 * Actualiza la foto del USUARIO
-	 * @param email String con el nuevo mail
+	 * @param foto String con la nueva foto
 	 */
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
 
+	/**
+	 * Devuelve la palabra recuperación del USUARIO
+	 * @param palabraRecuperacion String con la palabra de recuperación
+	 */
 	public String getPalabraRecuperacion() {
 		return palabraRecuperacion;
 	}
-
+	
+	/**
+	 * Actualiza la palabra de recuperación del USUARIO
+	 * @param palabraRecuperacion String con la nueva palabra de reucperacion
+	 */
 	public void setPalabraRecuperacion(String palabraRecuperacion) {
 		this.palabraRecuperacion = palabraRecuperacion;
 	}
-
+	/**
+	 * Devuelve la pregunta de recuperación del USUARIO
+	 * @param preguntaRecuperacion String con la pregunta de recuperación
+	 */
 	public String getPreguntaRecuperacion() {
 		return preguntaRecuperacion;
 	}
-
+	
+	/**
+	 * Actualiza la pregunta de recuperación del USUARIO
+	 * @param preguntaRecuperacion String con la nueva pregunta de recuperación
+	 */
 	public void setPreguntaRecuperacion(String preguntaRecuperacion) {
 		this.preguntaRecuperacion = preguntaRecuperacion;
 	}
 	
+	/**
+	 * Devuelve los favoritos del USUARIO
+	 * @param Favoritos String con los favoritos del USUARIO
+	 */
 	public ArrayList<Anuncio> getFavoritos() {
 		return favoritos;
 	}
 
+	/**
+	 * Actualiza los favoritos del USUARIO
+	 * @param Favoritos String con los nuevos favoritos del USUARIO
+	 */
 	public void setFavoritos(ArrayList<Anuncio> favoritos) {
 		this.favoritos = favoritos;
 	}
@@ -234,6 +269,9 @@ public class Usuario {
 		return result;
 	}
 
+	/**
+	 * Boolean de todos los datos de un USUARIO
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
