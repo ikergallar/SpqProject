@@ -13,7 +13,7 @@ import javax.jdo.annotations.InheritanceStrategy;
 
 /**
  * Clase USUARIO donde creamos los perfiles de los usuarios del software
- * @author Aitor GG
+ * @author AitorGG
  *
  */
 
@@ -38,14 +38,15 @@ public class Usuario {
 	private String palabraRecuperacion;
 	private String preguntaRecuperacion;
 	private ArrayList<Anuncio> favoritos;
-	// private UsuarioConectado usuarioConectado;
 	
 	/**
 	 * Constructor de la clase USUARIO
+	 * @param nombre String con el nombre del USUARIO
+	 * @param apellido String con el apellido del USUARIO
 	 * @param nombreUsuario String con el nombre del USUARIO
 	 * @param pass String con la contraseña del USUARIO
 	 * @param mail String con el mail del USUARIO
-	 * @param telefono String con el teléfono del USUARIO
+	 * @param telefono String con el telefono del USUARIO
 	 * @param direccion String con la direccion del USUARIO
 	 * @param foto String con la foto del USUARIO
 	 * @param palabraRecuperacion String con la palabra de recuperacion del USUARIO
@@ -86,18 +87,34 @@ public class Usuario {
 		this.descripcion = "";
 	}
 
+	/**
+	 * Devuelve la descripción del USUARIO
+	 * @return String con el nombre de usuario del USUARIO
+	 */
 	public String getDescripcion() {
 		return descripcion;
 	}
 
+	/**
+	 * Actualiza la descripción del USUARIO
+	 * @param username String con el nuevo nombre de usuario
+	 */
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
 
+	/**
+	 * Devuelve el idUsuario del USUARIO
+	 * @return String con el nombre de usuario del USUARIO
+	 */
 	public int getIdUsuario() {
 		return idUsuario;
 	}
 
+	/**
+	 * Actualiza idUsuario del USUARIO
+	 * @param username String con el nuevo nombre de usuario
+	 */
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}
@@ -111,41 +128,73 @@ public class Usuario {
 	}
 
 	/**
-	 * Permite cambiar el nombre de usuario del USUARIO
+	 * Actualiza el nombre de usuario del USUARIO
 	 * @param username String con el nuevo nombre de usuario
 	 */
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
 
+	/**
+	 * Devuelve el nombre del USUARIO
+	 * @return String con el nombre de usuario del USUARIO
+	 */
 	public String getNombre() {
 		return nombre;
 	}
 
+	/**
+	 * Actualiza el nombre de usuario del USUARIO
+	 * @param username String con el nuevo nombre de usuario
+	 */
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
 
+	/**
+	 * Devuelve el apellido de usuario del USUARIO
+	 * @return String con el nombre de usuario del USUARIO
+	 */
 	public String getApellido() {
 		return apellido;
 	}
 
+	/**
+	 * Actualiza el apellido del USUARIO
+	 * @param username String con el nuevo nombre de usuario
+	 */
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
 
+	/**
+	 * Devuelve el telefono del USUARIO
+	 * @return String con el nombre de usuario del USUARIO
+	 */
 	public String getTelefono() {
 		return telefono;
 	}
 
+	/**
+	 * Actualiza el telefono del USUARIO
+	 * @param username String con el nuevo nombre de usuario
+	 */
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
-
+	
+	/**
+	 * Devuelve la direccion del USUARIO
+	 * @return String con el nombre de usuario del USUARIO
+	 */
 	public String getDireccion() {
 		return direccion;
 	}
 
+	/**
+	 * Actualiza la direccion del USUARIO
+	 * @param username String con el nuevo nombre de usuario
+	 */
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
@@ -261,6 +310,7 @@ public class Usuario {
 				+ ", mail=" + mail + ", foto=" + foto + "]";
 	}
 
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -286,20 +336,5 @@ public class Usuario {
 		return true;
 	}
 
-//	public static String getStatus() {
-//		if(UsuarioConectado.isConnected(nombre)) {
-//			return "Conectado";
-//		}else {
-//			return "No conectado";
-//		}
-//	}
-//
-//	public UsuarioConectado Conectado() {
-//		return usuarioConectado;
-//	}
-//
-//	public void setUsuarioConectado(UsuarioConectado usuarioConectado) {
-//		this.usuarioConectado = usuarioConectado;
-//	}
 
 }
