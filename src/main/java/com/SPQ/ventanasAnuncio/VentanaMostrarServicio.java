@@ -56,9 +56,9 @@ public class VentanaMostrarServicio extends JDialog {
 
 		JPanel panelServicio = new JPanel();
 		panelServicio.setBackground(new Color(39, 45, 53));
-		panelServicio.setBounds(28, 104, 438, 278);
+		panelServicio.setBounds(28, 104, 438, 430);
 		getContentPane().add(panelServicio);
-		panelServicio.setLayout(new GridLayout(5, 2, 0, 0));
+		panelServicio.setLayout(new GridLayout(6, 2, 0, 0));
 
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setForeground(Color.WHITE);
@@ -119,11 +119,10 @@ public class VentanaMostrarServicio extends JDialog {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(39,45,53));
-		FlowLayout flowLayout = (FlowLayout) panel.getLayout();
-		flowLayout.setVgap(15);
 		panelServicio.add(panel);
 		
 		JButton btnAbrirPerfil = new JButton("ABRIR");
+		btnAbrirPerfil.setBounds(61, 21, 95, 32);
 		btnAbrirPerfil.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
@@ -131,10 +130,28 @@ public class VentanaMostrarServicio extends JDialog {
 				mostrar.setVisible(true);
 			}
 		});
+		panel.setLayout(null);
 		btnAbrirPerfil.setBackground(Color.RED);
 		btnAbrirPerfil.setForeground(Color.WHITE);
 		btnAbrirPerfil.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(btnAbrirPerfil);
+		
+		JLabel lblNewLabel_1 = new JLabel("Comentarios");
+		lblNewLabel_1.setForeground(Color.WHITE);
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
+		panelServicio.add(lblNewLabel_1);
+		
+		JPanel panel_1 = new JPanel();
+		panel_1.setLayout(null);
+		panel_1.setBackground(new Color(39, 45, 53));
+		panelServicio.add(panel_1);
+		
+		JButton btnAccederComentarios = new JButton("ACCEDER");
+		btnAccederComentarios.setForeground(Color.WHITE);
+		btnAccederComentarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnAccederComentarios.setBackground(Color.RED);
+		btnAccederComentarios.setBounds(61, 21, 95, 32);
+		panel_1.add(btnAccederComentarios);
 		if (anuncio.isOferta()) {
 			chckbxOferta.setSelected(true);
 		}
@@ -142,33 +159,17 @@ public class VentanaMostrarServicio extends JDialog {
 		JLabel lblNewLabel = new JLabel(anuncio.getNombre());
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(28, 10, 338, 105);
+		lblNewLabel.setBounds(28, 10, 371, 105);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblValoracion = new JLabel("Valorar (1-5)");
 		lblValoracion.setForeground(Color.WHITE);
 		lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblValoracion.setBounds(28, 392, 101, 27);
+		lblValoracion.setBounds(28, 545, 101, 27);
 		getContentPane().add(lblValoracion);
 		
-		JButton btnFavorito = new JButton("fav");
-		btnFavorito.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if(usuario.getFavoritos()== null) {
-					fav.add(anuncio);
-					usuario.setFavoritos(fav);
-				}else {
-					fav = usuario.getFavoritos();
-					fav.add(anuncio);
-					usuario.setFavoritos(fav);
-				}			
-			}
-		});
-		btnFavorito.setBounds(387, 497, 57, 23);
-		getContentPane().add(btnFavorito);
-		
 		txtValoracion = new JTextField();
-		txtValoracion.setBounds(139, 392, 27, 25);
+		txtValoracion.setBounds(165, 548, 27, 25);
 		getContentPane().add(txtValoracion);
 		txtValoracion.setColumns(10);
 		
@@ -196,6 +197,19 @@ public class VentanaMostrarServicio extends JDialog {
 		getContentPane().add(btnCerrar);
 		
 		JLabel lblImagenEstrella = new JLabel("");
+		lblImagenEstrella.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				if(usuario.getFavoritos()== null) {
+					fav.add(anuncio);
+					usuario.setFavoritos(fav);
+				}else {
+					fav = usuario.getFavoritos();
+					fav.add(anuncio);
+					usuario.setFavoritos(fav);
+				}			
+			}
+		});
 		lblImagenEstrella.setBounds(409, 38, 55, 55);
 		getContentPane().add(lblImagenEstrella);
 		lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
