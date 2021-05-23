@@ -33,6 +33,13 @@ public class Usuario {
 	private String preguntaRecuperacion;
 	private ArrayList<Anuncio> favoritos;
 	// private UsuarioConectado usuarioConectado;
+	
+	/**
+	 * Constructor de la clase USUARIO
+	 * @param Usuario String con el nombre del USUARIO
+	 * @param password String con la contraseña del USUARIO
+	 * @param email String con el mail del USUARIO
+	 */
 
 	public Usuario(String nombre, String apellido, String nombreUsuario, String pass, String mail, String telefono,
 			String direccion, String foto, String palabraRecuperacion, String preguntaRecuperacion, String descripcion) {
@@ -49,7 +56,10 @@ public class Usuario {
 		this.descripcion = descripcion;
 //		this.setUsuarioConectado(usuarioConectado);
 	}
-
+	
+	/**
+	 * Constructor vacio de la clase USUARIO
+	 */
 	public Usuario() {
 		this.nombre = "";
 		this.apellido = "";
@@ -80,10 +90,18 @@ public class Usuario {
 		this.idUsuario = idUsuario;
 	}
 
+	/**
+	 * Devuelve el nombre de usuario del USUARIO
+	 * @return String con el nombre de usuario del USUARIO
+	 */
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
 
+	/**
+	 * Permite cambiar el nombre de usuario del USUARIO
+	 * @param username String con el nuevo nombre de usuario
+	 */
 	public void setNombreUsuario(String nombreUsuario) {
 		this.nombreUsuario = nombreUsuario;
 	}
@@ -120,26 +138,50 @@ public class Usuario {
 		this.direccion = direccion;
 	}
 
+	/**
+	 * Devuelve la contraseña del USUARIO
+	 * @return String de la contraseña
+	 */
 	public String getPass() {
 		return pass;
 	}
 
+	/**
+	 * Actualiza la contraseña del USUARIO
+	 * @param password String con la nueva contraseña
+	 */
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
 
+	/**
+	 * Devuelve el mail del USUARIO
+	 * @return String con el main del usuario
+	 */
 	public String getMail() {
 		return mail;
 	}
 
+	/**
+	 * Actualiza el mail del USUARIO
+	 * @param email String con el nuevo mail
+	 */
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
+	/**
+	 * Devuelve la foto del USUARIO
+	 * @param email String con el nuevo mail
+	 */
 	public String getFoto() {
 		return foto;
 	}
-
+	
+	/**
+	 * Actualiza la foto del USUARIO
+	 * @param email String con el nuevo mail
+	 */
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
@@ -168,12 +210,17 @@ public class Usuario {
 		this.favoritos = favoritos;
 	}
 
-	// Resumen de datos publicos del usuario
+	/**
+	 * String de resumen de datos publicos del USUARIO
+	 */
+	
 	public String printPublicData() {
 		return "Usuario [Nombre=" + nombre + ", Apellido=" + apellido + ", Email=" + mail + "]";
 	}
-
-	// Todos los datos de un usuario
+	
+	/**
+	 * String de todos los datos de un USUARIO
+	 */
 	public String printAllData() {
 		return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", telefono=" + telefono + ", pass=" + pass
 				+ ", mail=" + mail + ", foto=" + foto + "]";
