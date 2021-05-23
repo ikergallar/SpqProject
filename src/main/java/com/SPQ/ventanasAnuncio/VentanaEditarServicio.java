@@ -42,6 +42,10 @@ public class VentanaEditarServicio extends JFrame {
 	final WebTarget servicioTarget = appTarget.path("servicios");
 	final WebTarget updateServicioTarget = servicioTarget.path("update");
 
+
+	/**
+	 * Create the frame.
+	 */
 	public VentanaEditarServicio(Usuario usuario, Anuncio anuncio) {
 
 		setResizable(false);

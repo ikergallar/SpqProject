@@ -66,17 +66,21 @@ public class VentanaLogin extends JFrame {
 		});
 	}	
 	/**
-	 * Create the application.
-	 **/
+	 * @wbp.parser.constructor
+	 */
 	public VentanaLogin() {
 		initialize();
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Create the frame.
+	 * @param usuario2 
 	 */
 	private void initialize() {
-
+		
+		/**
+		 * Valores propios de la ventana JFRAME
+		 */
 		GenericType<List<Usuario>> genericType = new GenericType<List<Usuario>>() {};
 		usuarios = listarUsuarioTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 

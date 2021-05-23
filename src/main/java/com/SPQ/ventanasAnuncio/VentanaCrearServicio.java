@@ -42,6 +42,10 @@ public class VentanaCrearServicio extends JFrame {
 	final WebTarget servicioTarget = appTarget.path("servicios");
 	final WebTarget crearServicioTarget = servicioTarget.path("crear");
 
+
+	/**
+	 * Create the frame.
+	 */
 	public VentanaCrearServicio(Usuario usuario) {
 		setResizable(false);
 		setTitle("Hustle - Crear Servicio");
