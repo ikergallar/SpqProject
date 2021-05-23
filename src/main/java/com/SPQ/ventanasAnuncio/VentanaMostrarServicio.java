@@ -142,7 +142,7 @@ public class VentanaMostrarServicio extends JDialog {
 		JLabel lblNewLabel = new JLabel(anuncio.getNombre());
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(28, 10, 438, 105);
+		lblNewLabel.setBounds(28, 10, 338, 105);
 		getContentPane().add(lblNewLabel);
 		
 		JLabel lblValoracion = new JLabel("Valorar (1-5)");
@@ -164,7 +164,7 @@ public class VentanaMostrarServicio extends JDialog {
 				}			
 			}
 		});
-		btnFavorito.setBounds(409, 56, 57, 23);
+		btnFavorito.setBounds(387, 497, 57, 23);
 		getContentPane().add(btnFavorito);
 		
 		txtValoracion = new JTextField();
@@ -196,7 +196,7 @@ public class VentanaMostrarServicio extends JDialog {
 		getContentPane().add(btnCerrar);
 		
 		JLabel lblImagenEstrella = new JLabel("");
-		lblImagenEstrella.setBounds(290, 40, 57, 51);
+		lblImagenEstrella.setBounds(409, 38, 55, 55);
 		getContentPane().add(lblImagenEstrella);
 		lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
 		if(usuario.getFavoritos()!=null) {
