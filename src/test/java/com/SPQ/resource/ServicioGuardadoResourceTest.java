@@ -62,7 +62,7 @@ public class ServicioGuardadoResourceTest {
 		Date date = sdf.parse(fecha);
 		gc.setTimeInMillis(date.getTime());
 
-		a1 = new AnuncioGuardado(gc, "Johnny");
+	//	a1 = new AnuncioGuardado(gc, "Johnny");
 
 		server = Main.startServer();
 		// create the client

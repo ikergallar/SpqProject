@@ -31,7 +31,7 @@ public class Anuncio {
 	private float precio;
 	private String foto;
 	private Categoria categoria;
-	private boolean oferta;
+	protected boolean oferta;
 	private List<Comentario> comentarios;
 	private int valoracion;
 	private int contador;
@@ -76,6 +76,7 @@ public class Anuncio {
 		this.comentarios = null;
 		this.valoracion = 0;
 	}
+
 	/**
 	 * Devuelve el id del Anuncio
 	 * @return Int del valor del Id

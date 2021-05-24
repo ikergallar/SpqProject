@@ -11,7 +11,10 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import org.datanucleus.query.inmemory.method.LocalDateGetDayOfMonth;
+
 import com.SPQ.clasesBasicas.Anuncio;
+import com.SPQ.clasesBasicas.AnuncioGuardado;
 import com.SPQ.clasesBasicas.Usuario;
 
 import jakarta.ws.rs.client.Client;
@@ -48,7 +51,11 @@ public class VentanaMostrarServicio extends JDialog {
 	Client client = ClientBuilder.newClient();
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget servicioTarget = appTarget.path("servicios");
+	final WebTarget servicioGuardadoTarget = appTarget.path("serviciosGuardados");
+	final WebTarget contratarTarget = servicioGuardadoTarget.path("comprar");
 	final WebTarget updateServicioTarget = servicioTarget.path("updateValoracion");
+	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
+
 	private JTextField textField;
 
 	public VentanaMostrarServicio(Anuncio anuncio, Usuario usuario) {
@@ -84,7 +91,7 @@ public class VentanaMostrarServicio extends JDialog {
 		btnCerrar.setBackground(new Color(255, 0, 0));
 		btnCerrar.setForeground(Color.WHITE);
 		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
-		btnCerrar.setBounds(0, 584, 497, 77);
+		btnCerrar.setBounds(237, 584, 260, 77);
 		getContentPane().add(btnCerrar);
 
 		JLabel lblImagenEstrella = new JLabel("");
@@ -115,31 +122,31 @@ public class VentanaMostrarServicio extends JDialog {
 		panelServicios.add(panelComentarios, "2");
 				panelComentarios.setLayout(null);
 		
-				JLabel lblValoracion = new JLabel("Valorar (1-5)");
-				lblValoracion.setBounds(39, 270, 100, 19);
-				panelComentarios.add(lblValoracion);
-				lblValoracion.setForeground(Color.WHITE);
-				lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 15));
-				
-						txtValoracion = new JTextField();
-						txtValoracion.setBounds(165, 262, 44, 38);
-						panelComentarios.add(txtValoracion);
-						txtValoracion.setColumns(10);
-						
-						JLabel lblNewLabel_2 = new JLabel("Comentario");
-						lblNewLabel_2.setForeground(Color.WHITE);
-						lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-						lblNewLabel_2.setBounds(39, 329, 100, 19);
-						panelComentarios.add(lblNewLabel_2);
-						
-						textField = new JTextField();
-						textField.setBounds(165, 311, 243, 55);
-						panelComentarios.add(textField);
-						textField.setColumns(10);
-						
-						JButton btnNewButton = new JButton("COMENTAR");
-						btnNewButton.setBounds(107, 377, 89, 23);
-						panelComentarios.add(btnNewButton);
+		JLabel lblValoracion = new JLabel("Valorar (1-5)");
+		lblValoracion.setBounds(39, 270, 100, 19);
+		panelComentarios.add(lblValoracion);
+		lblValoracion.setForeground(Color.WHITE);
+		lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		
+		txtValoracion = new JTextField();
+		txtValoracion.setBounds(165, 262, 44, 38);
+		panelComentarios.add(txtValoracion);
+		txtValoracion.setColumns(10);
+		
+		JLabel lblNewLabel_2 = new JLabel("Comentario");
+		lblNewLabel_2.setForeground(Color.WHITE);
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblNewLabel_2.setBounds(39, 329, 100, 19);
+		panelComentarios.add(lblNewLabel_2);
+		
+		textField = new JTextField();
+		textField.setBounds(165, 311, 243, 55);
+		panelComentarios.add(textField);
+		textField.setColumns(10);
+		
+		JButton btnNewButton = new JButton("COMENTAR");
+		btnNewButton.setBounds(107, 377, 89, 23);
+		panelComentarios.add(btnNewButton);
 
 		JPanel panelInfo = new JPanel();
 		panelServicios.add(panelInfo, "1");
@@ -243,6 +250,26 @@ public class VentanaMostrarServicio extends JDialog {
 		btnAccederComentarios.setBackground(Color.RED);
 		btnAccederComentarios.setBounds(61, 21, 95, 32);
 		panel_1.add(btnAccederComentarios);
+		
+		JButton btnContratar = new JButton("CONTRATAR");
+		btnContratar.setFont(new Font("Tahoma", Font.BOLD, 18));
+		btnContratar.setBackground(Color.RED);
+		btnContratar.setForeground(Color.WHITE);
+		btnContratar.setBounds(0, 584, 237, 77);
+		getContentPane().add(btnContratar);
+		
+		btnContratar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				AnuncioGuardado anuncioContratado = new AnuncioGuardado();
+				anuncioContratado.setIdAnuncio(anuncio.getIdAnuncio());
+  //              anuncioContratado.setFecha(java.time.LocalTime.now());
+				servicioGuardadoTarget.request().post(Entity.entity(anuncioContratado, MediaType.APPLICATION_JSON));
+				eliminarServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
+				JOptionPane.showMessageDialog(null, "Servicio contratado correctamente", "Correcto", 1);
+				dispose();
+			}
+		});
+		
 		if (usuario.getFavoritos() != null) {
 			for (Anuncio anuncioFav : fav) {
 				if (anuncio.equals(anuncioFav)) {

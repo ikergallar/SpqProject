@@ -49,23 +49,24 @@ public class ServicioGuardadoResources {
 	@POST
 	@Path("comprar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void guardarAnuncio(Anuncio anuncio) {
+	public void guardarAnuncio(AnuncioGuardado anuncio) {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
 
-		tx.begin();
-		DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-		Date date = new Date(0);
+		try {
+			tx.begin();
 
-		Query<Anuncio> query = pm.newQuery("javax.jdo.query.SQL", "INSERT INTO anuncioguardado(fecha, nombre) VALUES ('"
-				+ dateFormat.format(date) + "','" + anuncio.getNombre() + "')");
-		query.setClass(Anuncio.class);
+			pm.makePersistent(anuncio);
 
-		Long delete = (Long) query.execute();
+			tx.commit();
 
-		tx.commit();
-		pm.close();
+		} finally {
+			if (tx.isActive()) {
+				tx.rollback();
+			}
+			pm.close();
+		}
 	}
 
 	@GET

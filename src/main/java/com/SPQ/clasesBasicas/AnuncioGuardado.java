@@ -21,7 +21,6 @@ import javax.jdo.annotations.PersistenceCapable;
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 public class AnuncioGuardado extends Anuncio {
 	private GregorianCalendar fecha;
-	private String nombre;
 	
 	/**
 	 * Devuelve la fecha
@@ -41,26 +40,17 @@ public class AnuncioGuardado extends Anuncio {
 	 * Devuelve la nombre
 	 * @return String con el nombre del AnuncioGuardado
 	 */
-	public String getNombre() {
-		return nombre;
-	}
-	/**
-	 * Actualiza el nombre del AnuncioGuardado
-	 * @param nombre String con el nuevo nombre del AnuncioGuardado
-	 */
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+	
 	/**
 	 * Constructor de la clase AnuncioGuardado
 	 * @param fecha GregorianCalendar para determinar la fecha de reserva de AnuncioGuardado
 	 * @param nombre String para determinar el nombre del AnuncioGuardado
 	 */
-	public AnuncioGuardado(GregorianCalendar date, String nombre) {
+	public AnuncioGuardado(GregorianCalendar date) {
 		super();
 		this.fecha = date;
-		this.nombre = nombre;
 	}
+	
 	/**
 	 * Constructor vacio de la clase AnuncioGuardado
 	 */
