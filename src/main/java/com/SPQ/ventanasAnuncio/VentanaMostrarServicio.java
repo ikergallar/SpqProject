@@ -46,7 +46,7 @@ public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfCategoria;
 	private JTextField tfPrecio;
 	private JTextField tfDescripcion;
-	private JTextField txtValoracion;
+	private JTextField tfValoracion;
 	CardLayout cl = new CardLayout();
 
 	private List<Anuncio> fav = new ArrayList<Anuncio>();
@@ -76,19 +76,7 @@ public class VentanaMostrarServicio extends JDialog {
 		JButton btnCerrar = new JButton("CERRAR");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String valoracion;
-
-				valoracion = txtValoracion.getText();
-
-				if (valoracion.equals("5") || valoracion.equals("4") || valoracion.equals("3") || valoracion.equals("2")
-						|| valoracion.equals("1") || valoracion.equals("")) {
-					anuncio.setValoracion(5);
-					updateServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, valore el servicio de 1 a 5", "Error", 0);
-					txtValoracion.setText("");
-				}
+				dispose();
 			}
 		});
 		btnCerrar.setBackground(new Color(255, 0, 0));
@@ -141,10 +129,10 @@ public class VentanaMostrarServicio extends JDialog {
 		lblValoracion.setForeground(Color.WHITE);
 		lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
-		txtValoracion = new JTextField();
-		txtValoracion.setBounds(130, 383, 44, 36);
-		panelComentarios.add(txtValoracion);
-		txtValoracion.setColumns(10);
+		tfValoracion = new JTextField();
+		tfValoracion.setBounds(130, 383, 44, 36);
+		panelComentarios.add(tfValoracion);
+		tfValoracion.setColumns(10);
 		
 		JLabel lblComentario = new JLabel("Comentario");
 		lblComentario.setForeground(Color.WHITE);
@@ -158,6 +146,16 @@ public class VentanaMostrarServicio extends JDialog {
 		tfComentario.setColumns(10);
 		
 		JButton btnComentar = new JButton("COMENTAR");
+		btnComentar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				Comentario nuevoComent= new Comentario();
+				nuevoComent.generarComentario(tfComentario.getText(), Integer.parseInt(tfValoracion.getText())  , usuario);
+				anuncio.getComentarios().add(nuevoComent);
+				//FALTA ACTUALIZAR LA BD CON EL COMENTARIO REALIZADO SE PODRIA HACER CON EL BOTON CERRAR
+				JOptionPane.showMessageDialog(null, "El comentario se ha realizado", "Comentario realizado", 2);
+			}
+		});
 		btnComentar.setForeground(Color.WHITE);
 		btnComentar.setBackground(Color.RED);
 		btnComentar.setFont(new Font("Tahoma", Font.BOLD, 14));

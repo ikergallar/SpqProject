@@ -33,7 +33,6 @@ public class Anuncio {
 	private Categoria categoria;
 	protected boolean oferta;
 	private List<Comentario> comentarios;
-	private int valoracion;
 	private int contador;
 	
 	@ForeignKey
@@ -74,7 +73,6 @@ public class Anuncio {
 		this.oferta = false;
 		this.idUsuario = 0;
 		this.comentarios = null;
-		this.valoracion = 0;
 	}
 
 	/**
@@ -211,20 +209,7 @@ public class Anuncio {
 	public void setContador(int contador) {
 		this.contador = contador;
 	}
-	/**
-	 * Devuelve la valoracion del Anuncio
-	 * @return Int valoracion del anuncio
-	 */
-	public int getValoracion() {
-		return valoracion;
-	}
-	/**
-	 * Actualiza la lista de comentarios del Anuncio
-	 * @param Int valoracion con el nuevo valor
-	 */
-	public void setValoracion(int valoracion) {
-		this.valoracion = valoracion;
-	}
+	
 	/**
 	 * toString
 	 */
