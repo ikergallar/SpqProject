@@ -120,7 +120,7 @@ public class VentanaMostrarServicio extends JDialog {
 		JPanel panelComentarios = new JPanel();
 		panelComentarios.setBackground(new Color(39,45,53));
 		panelServicios.add(panelComentarios, "2");
-				panelComentarios.setLayout(null);
+		panelComentarios.setLayout(null);
 		
 		JLabel lblValoracion = new JLabel("Valorar (1-5)");
 		lblValoracion.setBounds(39, 270, 100, 19);

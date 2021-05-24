@@ -14,6 +14,7 @@ import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
 import com.SPQ.clasesBasicas.Usuario;
 import com.SPQ.resource.UsuarioResources;
+import com.SPQ.ventanasAnuncio.VentanaAnunciosContratados;
 import com.SPQ.ventanasAnuncio.VentanaEditarServicio;
 import com.SPQ.ventanasAnuncio.VentanaMisAnuncios;
 import com.SPQ.ventanasAnuncio.VentanaMostrarServicio;
@@ -371,6 +372,13 @@ public class VentanaPrincipal extends JFrame {
 		btnServicios.setBackground(Color.RED);
 		btnServicios.setBounds(461, 494, 337, 68);
 		panelPerfilGen.add(btnServicios);
+		
+		JButton btnServiciosContratados = new JButton("SERVICIOS CONTRATADOS");
+		btnServiciosContratados.setForeground(Color.WHITE);
+		btnServiciosContratados.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnServiciosContratados.setBackground(Color.RED);
+		btnServiciosContratados.setBounds(461, 398, 337, 68);
+		panelPerfilGen.add(btnServiciosContratados);
 
 		btnServicios.addActionListener(new ActionListener() {
 			@Override
@@ -380,6 +388,14 @@ public class VentanaPrincipal extends JFrame {
 
 			}
 
+		});
+		
+		btnServiciosContratados.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				VentanaAnunciosContratados servicioContratado = new VentanaAnunciosContratados(usuario);
+				servicioContratado.setVisible(true);
+			}
 		});
 
 		cambiarPass.addMouseListener(new MouseAdapter() {
