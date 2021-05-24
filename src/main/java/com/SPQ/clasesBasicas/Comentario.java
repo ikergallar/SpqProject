@@ -19,6 +19,7 @@ public class Comentario {
 	private String mensaje;
 	private String nombreUsuario;
 	private String fecha;
+	private int valoracion;
 	
 	
 	/**
@@ -64,11 +65,29 @@ public class Comentario {
 		this.fecha = fecha;
 	}
 	/**
+	 * Devuelve la valoracion del COMENTARIO
+	 * @return int con la valoracion del COMENTARIO
+	 */
+	public int getValoracion() {
+		return valoracion;
+	}
+	/**
+	 * Define la valoracion del COMENTARIO
+	 * @param int con la valoracion del COMENTARIO
+	 */
+	public void setValoracion(int valoracion) {
+		this.valoracion = valoracion;
+	}
+	/**
 	 * Genera un COMENTARIO con el mensaje y el usuario que ha recibido
 	 * @param String mensaje del COMENTARIO y USUARIO que comenta
 	 */
-	public void generarComentario(String mensaje, Usuario user) {
+	public void generarComentario(String mensaje, int valoracion, Usuario user) {
 		this.mensaje = mensaje;
+		if(valoracion>5) {
+			valoracion=5;
+		}
+		this.valoracion = valoracion;
 		this.nombreUsuario = user.getNombreUsuario();
 		//fecha
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");  
@@ -81,7 +100,8 @@ public class Comentario {
 	 * @param nombreUsuario String con el nombre del USUARIO
 	 * @param fecha String con la fecha en la que se realiza el COMENTARIO
 	 */
-	public Comentario(String mensaje, String nombreUsuario, String fecha) {
+	public Comentario(String mensaje, int valoracion, String nombreUsuario, String fecha) {
+		this.valoracion = valoracion;
 		this.mensaje = mensaje;
 		this.nombreUsuario = nombreUsuario;
 		this.fecha = fecha;
@@ -90,6 +110,7 @@ public class Comentario {
 	 * Constructor vacio de la clase USUARIO
 	 */
 	public Comentario() {
+		this.valoracion = 0;
 		this.mensaje = "";
 		this.nombreUsuario = "";
 		this.fecha = "";

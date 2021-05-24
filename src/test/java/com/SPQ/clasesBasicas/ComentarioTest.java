@@ -14,7 +14,7 @@ public class ComentarioTest {
 	@Before
 	public void setUp() throws Exception {
 		user=new Usuario("Aitor", "Davila" , "aidav13", "pass123","aidav@gmail.com" , "6839283948" ,"Calle Ave del Paraiso 9, Barcelona","","Dua","¿Como se llama mi gato?", "Descripcion perfil");
-		coment=new Comentario("comentario de prueba", user.getNombreUsuario(), "17/05/2021");
+		coment=new Comentario("comentario de prueba",2, user.getNombreUsuario(), "17/05/2021");
 
 	}
 		
@@ -56,7 +56,7 @@ public class ComentarioTest {
 	@Test
 	public void testGenerarComentario() {
 		Comentario comentGen=new Comentario();
-		comentGen.generarComentario("hol", user);
+		comentGen.generarComentario("hola",5, user);
         assertEquals("aidav13", comentGen.getNombreUsuario());
 	}
 	

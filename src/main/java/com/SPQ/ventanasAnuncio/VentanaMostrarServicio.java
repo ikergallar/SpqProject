@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -15,6 +16,7 @@ import org.datanucleus.query.inmemory.method.LocalDateGetDayOfMonth;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.AnuncioGuardado;
+import com.SPQ.clasesBasicas.Comentario;
 import com.SPQ.clasesBasicas.Usuario;
 
 import jakarta.ws.rs.client.Client;
@@ -177,6 +179,12 @@ public class VentanaMostrarServicio extends JDialog {
 		JList listaComentarios = new JList();
 		listaComentarios.setBounds(10, 60, 417, 217);
 		panelComentarios.add(listaComentarios);
+		DefaultListModel modelo = new DefaultListModel();
+		List<Comentario> comentarios =anuncio.getComentarios();
+		for (Comentario comentario : comentarios) {
+			modelo.addElement(comentario);
+			listaComentarios.setModel(modelo);
+		}
 		
 		JLabel lblComentarios = new JLabel("COMENTARIOS");
 		lblComentarios.setForeground(Color.WHITE);

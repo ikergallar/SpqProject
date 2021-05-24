@@ -136,7 +136,7 @@ public class AnuncioTest {
 	@Test
 	public void testanyadirComentario() {
 		Comentario coment = new Comentario();
-		coment.generarComentario("Este es un mensaje de prueba", usuario);
+		coment.generarComentario("Este es un mensaje de prueba",5, usuario);
 		anuncio.anyadirComentario(anuncio, coment);
 		
 		assertEquals("Este es un mensaje de prueba",anuncio.getComentarios().get(0));	
