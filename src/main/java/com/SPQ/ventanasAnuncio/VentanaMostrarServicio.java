@@ -38,6 +38,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.awt.CardLayout;
+import javax.swing.JList;
 
 public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfCategoria;
@@ -56,7 +57,7 @@ public class VentanaMostrarServicio extends JDialog {
 	final WebTarget updateServicioTarget = servicioTarget.path("updateValoracion");
 	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
 
-	private JTextField textField;
+	private JTextField tfComentario;
 
 	public VentanaMostrarServicio(Anuncio anuncio, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
@@ -95,9 +96,22 @@ public class VentanaMostrarServicio extends JDialog {
 		getContentPane().add(btnCerrar);
 
 		JLabel lblImagenEstrella = new JLabel("");
+		lblImagenEstrella.setBounds(409, 38, 55, 55);
+		getContentPane().add(lblImagenEstrella);
+		if (usuario.getFavoritos() != null) {
+			for (Anuncio anuncioFav : fav) {
+				if (anuncio.equals(anuncioFav)) {
+					lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
+					break;
+				}
+			}
+		}else {
+			lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
+		}
 		lblImagenEstrella.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
+				lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
 				if (usuario.getFavoritos() == null) {
 					fav.add(anuncio);
 					usuario.setFavoritos(fav);
@@ -108,10 +122,7 @@ public class VentanaMostrarServicio extends JDialog {
 				}
 			}
 		});
-		lblImagenEstrella.setBounds(409, 38, 55, 55);
-		getContentPane().add(lblImagenEstrella);
-		lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
-
+		
 		JPanel panelServicios = new JPanel();
 		panelServicios.setBounds(28, 104, 437, 429);
 		getContentPane().add(panelServicios);
@@ -123,30 +134,55 @@ public class VentanaMostrarServicio extends JDialog {
 		panelComentarios.setLayout(null);
 		
 		JLabel lblValoracion = new JLabel("Valorar (1-5)");
-		lblValoracion.setBounds(39, 270, 100, 19);
+		lblValoracion.setBounds(10, 390, 100, 19);
 		panelComentarios.add(lblValoracion);
 		lblValoracion.setForeground(Color.WHITE);
-		lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 14));
 		
 		txtValoracion = new JTextField();
-		txtValoracion.setBounds(165, 262, 44, 38);
+		txtValoracion.setBounds(130, 383, 44, 36);
 		panelComentarios.add(txtValoracion);
 		txtValoracion.setColumns(10);
 		
-		JLabel lblNewLabel_2 = new JLabel("Comentario");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(39, 329, 100, 19);
-		panelComentarios.add(lblNewLabel_2);
+		JLabel lblComentario = new JLabel("Comentario");
+		lblComentario.setForeground(Color.WHITE);
+		lblComentario.setFont(new Font("Tahoma", Font.BOLD, 14));
+		lblComentario.setBounds(10, 327, 100, 19);
+		panelComentarios.add(lblComentario);
 		
-		textField = new JTextField();
-		textField.setBounds(165, 311, 243, 55);
-		panelComentarios.add(textField);
-		textField.setColumns(10);
+		tfComentario = new JTextField();
+		tfComentario.setBounds(130, 311, 297, 55);
+		panelComentarios.add(tfComentario);
+		tfComentario.setColumns(10);
 		
-		JButton btnNewButton = new JButton("COMENTAR");
-		btnNewButton.setBounds(107, 377, 89, 23);
-		panelComentarios.add(btnNewButton);
+		JButton btnComentar = new JButton("COMENTAR");
+		btnComentar.setForeground(Color.WHITE);
+		btnComentar.setBackground(Color.RED);
+		btnComentar.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnComentar.setBounds(298, 380, 129, 38);
+		panelComentarios.add(btnComentar);
+		
+		JButton btnVolver = new JButton("VOLVER");
+		btnVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				cl.show(panelServicios, "1");
+			}
+		});
+		btnVolver.setBackground(Color.RED);
+		btnVolver.setForeground(Color.WHITE);
+		btnVolver.setFont(new Font("Tahoma", Font.BOLD, 14));
+		btnVolver.setBounds(20, 11, 119, 38);
+		panelComentarios.add(btnVolver);
+		
+		JList listaComentarios = new JList();
+		listaComentarios.setBounds(10, 60, 417, 217);
+		panelComentarios.add(listaComentarios);
+		
+		JLabel lblComentarios = new JLabel("COMENTARIOS");
+		lblComentarios.setForeground(Color.WHITE);
+		lblComentarios.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblComentarios.setBounds(165, 16, 168, 28);
+		panelComentarios.add(lblComentarios);
 
 		JPanel panelInfo = new JPanel();
 		panelServicios.add(panelInfo, "1");
@@ -213,6 +249,7 @@ public class VentanaMostrarServicio extends JDialog {
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(39, 45, 53));
 		panelInfo.add(panel);
+		cl.show(panelServicios, "1");
 
 		JButton btnAbrirPerfil = new JButton("ABRIR");
 		btnAbrirPerfil.setBounds(61, 21, 95, 32);
@@ -270,14 +307,7 @@ public class VentanaMostrarServicio extends JDialog {
 			}
 		});
 		
-		if (usuario.getFavoritos() != null) {
-			for (Anuncio anuncioFav : fav) {
-				if (anuncio.equals(anuncioFav)) {
-					lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
-					break;
-				}
-			}
-		}
+
 		if (anuncio.isOferta()) {
 			chckbxOferta.setSelected(true);
 		}
