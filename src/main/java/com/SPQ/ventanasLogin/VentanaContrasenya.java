@@ -41,6 +41,11 @@ public class VentanaContrasenya extends JFrame {
 	final WebTarget usuarioTarget = appTarget.path("usuarios");
 	final WebTarget contrasenyaTarget = usuarioTarget.path("contra");
 
+	
+	/**
+	 * Create the frame.
+	 *  
+	 */
 	public VentanaContrasenya(Usuario usuario) {
 
 		setTitle("Hustle - Seguridad");
@@ -97,6 +102,10 @@ public class VentanaContrasenya extends JFrame {
 		checkVerPass.setBounds(32, 216, 182, 23);
 		getContentPane().add(checkVerPass);
 
+		/**
+		 * CheckBox para visualizar la contraseña.
+		 *  
+		 */
 		checkVerPass.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -115,6 +124,10 @@ public class VentanaContrasenya extends JFrame {
 			}
 		});
 
+		/**
+		 * boton para ir hacia atras.
+		 *  
+		 */
 		btnAtras.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -125,6 +138,10 @@ public class VentanaContrasenya extends JFrame {
 			}
 		});
 
+		/**
+		 * Boton para realizar el cambio de contraseña.
+		 *  
+		 */
 		btnCambiar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -25,6 +25,10 @@ public class VentanaMostrarPerfil extends JFrame {
 	private JTextField tfMail;
 	private JTextField tfDescripcion;
 
+	/**
+	 * Create the frame.
+	 *  
+	 */
 	public VentanaMostrarPerfil(Usuario perfil) {
 		getContentPane().setBackground(new Color(39, 45, 53));
 		setTitle("Hustle - Perfil " + perfil.getNombreUsuario());

@@ -150,6 +150,10 @@ public class VentanaRecuperacion extends JDialog {
 		textoRespuesta.setBounds(31, 246, 175, 19);
 		contentPane.add(textoRespuesta);
 
+		/**
+		 * Boton para recuperar la contraseña a un usuario.
+		 *  
+		 */
 		btnRegistrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 

@@ -210,6 +210,11 @@ public class VentanaRegistro extends JDialog {
 			}
 		});
 
+		
+		/**
+		 * Boton para registrar a un usuario.
+		 *  
+		 */
 		btnRegistrar.addActionListener(new ActionListener() {
 
 			@Override

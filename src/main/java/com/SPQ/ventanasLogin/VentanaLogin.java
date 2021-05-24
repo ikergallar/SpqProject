@@ -74,7 +74,7 @@ public class VentanaLogin extends JFrame {
 
 	/**
 	 * Create the frame.
-	 * @param usuario2 
+	 *  
 	 */
 	private void initialize() {
 		

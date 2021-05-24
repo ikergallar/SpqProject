@@ -38,6 +38,10 @@ public class VentanaMisAnuncios extends JFrame {
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget servicioTarget = appTarget.path("servicios");
 
+	/**
+	 * Create the frame.
+	 *  
+	 */
 	public VentanaMisAnuncios(Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
 		getContentPane().setLayout(null);
