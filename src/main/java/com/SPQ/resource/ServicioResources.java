@@ -236,6 +236,26 @@ public class ServicioResources {
 		pm.close();
 
 	}
+	
+	@PUT
+	@Path("updateContador")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void updateContador(Anuncio anuncio) {
+
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		tx.begin();
+
+		Query query = pm.newQuery("javax.jdo.query.SQL","INSERT INTO anuncio (contador) VALUES ('" + anuncio.getContador() + "') WHERE idanuncio ='" + anuncio.getIdAnuncio() + "'");
+		query.setClass(Anuncio.class);
+		Long update = (Long) query.execute();
+
+		tx.commit();
+		pm.close();
+
+	}
 
 	@GET
 	@Path("servicio")
