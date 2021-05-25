@@ -64,8 +64,7 @@ public class VentanaMostrarServicioContratado extends JDialog {
 		setBounds(100, 100, 513, 700);
 		getContentPane().setLayout(null);		
 
-		WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("idAnuncio",
-				anunciosGuardados.getIdAnuncio());
+		WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("idanuncio",anunciosGuardados.getIdAnuncio());
 		GenericType<Anuncio> genericType = new GenericType<Anuncio>() {
 		};
 		

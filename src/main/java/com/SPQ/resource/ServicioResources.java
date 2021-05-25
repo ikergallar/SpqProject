@@ -242,7 +242,7 @@ public class ServicioResources {
 	@GET
 	@Path("servicio")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Anuncio seleccionarAnuncio(@QueryParam("idAnuncio_0") int id) {
+	public Anuncio seleccionarAnuncio(@QueryParam("idanuncio") int id) {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();

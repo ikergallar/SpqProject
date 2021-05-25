@@ -49,7 +49,7 @@ public class ServicioGuardadoResources {
 	@POST
 	@Path("contratar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void guardarAnuncio(AnuncioGuardado anuncioGuardado) {
+	public void guardarAnuncio(AnuncioGuardado anuncio) {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -57,7 +57,7 @@ public class ServicioGuardadoResources {
 		try {
 			tx.begin();
 
-			pm.makePersistent(anuncioGuardado);
+			pm.makePersistent(anuncio);
 
 			tx.commit();
 
@@ -72,7 +72,7 @@ public class ServicioGuardadoResources {
 	@GET
 	@Path("servicio")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Anuncio seleccionarAnuncioGuardado(@QueryParam("idAnuncio") int id) {
+	public AnuncioGuardado seleccionarAnuncioGuardado(@QueryParam("idAnuncio") int id) {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();

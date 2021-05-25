@@ -8,9 +8,18 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
+import javax.jdo.annotations.PrimaryKey;
+
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
 
 /**
  * En la clase ANUNCIOGUARDADO almacenamos aquellos anuncios que han sido guardados
@@ -19,11 +28,20 @@ import javax.jdo.annotations.PersistenceCapable;
  */
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
-public class AnuncioGuardado extends Anuncio {
+public class AnuncioGuardado {
+	@PrimaryKey
+	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
+	private int idAnuncioGuardado;
 	int idAnuncio;
 	
 	public int getIdAnuncio() {
 		return idAnuncio;
+	}
+	public int getIdAnuncioGuardado() {
+		return idAnuncioGuardado;
+	}
+	public void setIdAnuncioGuardado(int idAnuncioGuardado) {
+		this.idAnuncioGuardado = idAnuncioGuardado;
 	}
 	public void setIdAnuncio(int idAnuncio) {
 		this.idAnuncio = idAnuncio;
@@ -82,7 +100,16 @@ public class AnuncioGuardado extends Anuncio {
 	 * toString
 	 */
 	public String toString() {
-		return "AnuncioGuardado [fecha=" + fecha + ", reportes=" + reportes + "]";
+		Client client = ClientBuilder.newClient();
+		final WebTarget appTarget = client.target("http://localhost:8080/myapp");
+		final WebTarget servicioTarget = appTarget.path("servicios");
+		WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("idanuncio",getIdAnuncio());
+		GenericType<Anuncio> genericType = new GenericType<Anuncio>() {
+		};
+		
+		Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+		
+		return anuncio.getNombre() + ", " + anuncio.getDescripcion() + ", Fecha: " + fecha + ", " + anuncio.getPrecio() + " euros, CATEGORIA:" + anuncio.getCategoria();
 	}
 
 }
