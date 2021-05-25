@@ -708,11 +708,8 @@ public class VentanaPrincipal extends JFrame {
 							modelo = modeloFavoritos;
 							modeloFavoritos.addElement(anuncios);
 							list.setModel(modeloFavoritos);
-						}
-					
+						}				
 					}
-					
-
 				}
 			}
 		});

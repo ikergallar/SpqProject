@@ -84,10 +84,11 @@ public class AnuncioGuardado {
 	 * @param fecha GregorianCalendar para determinar la fecha de reserva de AnuncioGuardado
 	 * @param nombre String para determinar el nombre del AnuncioGuardado
 	 */
-	public AnuncioGuardado(GregorianCalendar date, int reportes) {
+	public AnuncioGuardado(GregorianCalendar date, int reportes, int IdAnuncio) {
 		super();
 		this.fecha = date;
 		this.reportes = reportes;
+		this.idAnuncio = idAnuncio;
 	}
 	
 	/**
