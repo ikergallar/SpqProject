@@ -30,7 +30,10 @@ public class AnuncioGuardado extends Anuncio {
 	public GregorianCalendar getFecha() {
 		return fecha;
 	}
-	
+	/**
+	 * Devuelve la fecha
+	 * @return Int con los reportes de AnuncioGuardado
+	 */
 	public int getReportes() {
 		return reportes;
 	}
@@ -43,11 +46,12 @@ public class AnuncioGuardado extends Anuncio {
 	}
 	/**
 	 * Devuelve la nombre
-	 * @return String con el nombre del AnuncioGuardado
+	 * @param Int con el numero de reportes del AnuncioGuardado
 	 */
 	public void setReportes(int reportes) {
 		this.reportes = reportes;
 	}
+	
 	/**
 	 * Constructor de la clase AnuncioGuardado
 	 * @param fecha GregorianCalendar para determinar la fecha de reserva de AnuncioGuardado
@@ -63,6 +67,13 @@ public class AnuncioGuardado extends Anuncio {
 	 * Constructor vacio de la clase AnuncioGuardado
 	 */
 	public AnuncioGuardado() {
+	}
+	
+	/**
+	 * toString
+	 */
+	public String toString() {
+		return "AnuncioGuardado [fecha=" + fecha + ", reportes=" + reportes + "]";
 	}
 
 }
