@@ -37,7 +37,12 @@ import javax.swing.JCheckBox;
 import javax.swing.UIManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 import java.awt.CardLayout;
 import javax.swing.JList;
@@ -308,7 +313,12 @@ public class VentanaMostrarServicio extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				AnuncioGuardado anuncioContratado = new AnuncioGuardado();
 				anuncioContratado.setIdAnuncio(anuncio.getIdAnuncio());
-  //              anuncioContratado.setFecha(java.time.LocalTime.now());
+				ZoneId defaultZoneId = ZoneId.systemDefault();
+				LocalDate localDate = LocalDate.now();
+				Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
+				GregorianCalendar gc = new GregorianCalendar();
+				gc.setTimeInMillis(date.getTime());
+				anuncioContratado.setFecha(gc);
 				contratarTarget.request().post(Entity.entity(anuncioContratado, MediaType.APPLICATION_JSON));
 				eliminarServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 				JOptionPane.showMessageDialog(null, "Servicio contratado correctamente", "Correcto", 1);
