@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
 
+import javax.jdo.annotations.ForeignKey;
 import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
@@ -32,23 +33,14 @@ public class AnuncioGuardado {
 	@PrimaryKey
 	@Persistent(valueStrategy = IdGeneratorStrategy.INCREMENT)
 	private int idAnuncioGuardado;
-	int idAnuncio;
+	private GregorianCalendar fecha;
+	private int reportes;
+	@ForeignKey
+	private int idAnuncio;
 	
-	public int getIdAnuncio() {
-		return idAnuncio;
-	}
 	public int getIdAnuncioGuardado() {
 		return idAnuncioGuardado;
 	}
-	public void setIdAnuncioGuardado(int idAnuncioGuardado) {
-		this.idAnuncioGuardado = idAnuncioGuardado;
-	}
-	public void setIdAnuncio(int idAnuncio) {
-		this.idAnuncio = idAnuncio;
-	}
-
-	private GregorianCalendar fecha;
-	int reportes;
 	
 	/**
 	 * Devuelve la fecha
@@ -64,6 +56,14 @@ public class AnuncioGuardado {
 	public int getReportes() {
 		return reportes;
 	}
+	public int getIdAnuncio() {
+		return idAnuncio;
+	}
+	
+	public void setIdAnuncioGuardado(int idAnuncioGuardado) {
+		this.idAnuncioGuardado = idAnuncioGuardado;
+	}
+	
 	/**
 	 * Actualiza la fecha del AnuncioGuardado
 	 * @param fecha GregorianCalendar con la fecha del AnuncioGuardado
@@ -84,6 +84,10 @@ public class AnuncioGuardado {
 	 * @param fecha GregorianCalendar para determinar la fecha de reserva de AnuncioGuardado
 	 * @param nombre String para determinar el nombre del AnuncioGuardado
 	 */
+	public void setIdAnuncio(int idAnuncio) {
+		this.idAnuncio = idAnuncio;
+	}
+	
 	public AnuncioGuardado(GregorianCalendar date, int reportes, int IdAnuncio) {
 		super();
 		this.fecha = date;

@@ -1,6 +1,10 @@
 package com.SPQ.util;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.jdo.JDOHelper;
 import javax.jdo.PersistenceManager;
@@ -43,14 +47,61 @@ public class PrepareData {
 			Anuncio anuncio3 = new Anuncio("Tu persiana necesita que la enrolle", "Arreglo de persianas", 90, "", Categoria.PERSIANERO,true, usuario3.getIdUsuario());
 			pm.makePersistent(anuncio3);
 			
-			AnuncioGuardado anuncioGuardado = new AnuncioGuardado(null, 0, anuncio.getIdAnuncio());
-			pm.makePersistent(anuncioGuardado);
-			AnuncioGuardado anuncioGuardado1 = new AnuncioGuardado(null, 1, anuncio1.getIdAnuncio());
-			pm.makePersistent(anuncioGuardado1);
-			AnuncioGuardado anuncioGuardado2 = new AnuncioGuardado(null, 0, anuncio2.getIdAnuncio());
-			pm.makePersistent(anuncioGuardado2);
-			AnuncioGuardado anuncioGuardado3 = new AnuncioGuardado(null, 0, anuncio3.getIdAnuncio());
-			pm.makePersistent(anuncioGuardado3);
+//			try {
+//				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//				String fecha = "11-11-2001";
+//				Date date = sdf.parse(fecha);
+//				GregorianCalendar gc = new GregorianCalendar();
+//				gc.setTimeInMillis(date.getTime());
+//				AnuncioGuardado anuncioGuardado = new AnuncioGuardado(gc, 0, anuncio.getIdAnuncio());
+//				pm.makePersistent(anuncioGuardado);
+//		
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}	
+//			
+//			try {
+//				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//				String fecha = "11-01-2021";
+//				Date date = sdf.parse(fecha);
+//				GregorianCalendar gc = new GregorianCalendar();
+//				gc.setTimeInMillis(date.getTime());
+//				AnuncioGuardado anuncioGuardado1 = new AnuncioGuardado(gc, 1, anuncio1.getIdAnuncio());
+//				pm.makePersistent(anuncioGuardado1);
+//		
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}	
+//			
+//			try {
+//				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//				String fecha = "21-08-2021";
+//				Date date = sdf.parse(fecha);
+//				GregorianCalendar gc = new GregorianCalendar();
+//				gc.setTimeInMillis(date.getTime());
+//				AnuncioGuardado anuncioGuardado2 = new AnuncioGuardado(gc, 0, anuncio2.getIdAnuncio());
+//				pm.makePersistent(anuncioGuardado2);
+//		
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}	
+//			
+//			try {
+//				SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+//				String fecha = "11-03-2020";
+//				Date date = sdf.parse(fecha);
+//				GregorianCalendar gc = new GregorianCalendar();
+//				gc.setTimeInMillis(date.getTime());
+//				AnuncioGuardado anuncioGuardado3 = new AnuncioGuardado(gc, 0, anuncio3.getIdAnuncio());
+//				pm.makePersistent(anuncioGuardado3);
+//		
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}			
 
 			tx.commit();
 

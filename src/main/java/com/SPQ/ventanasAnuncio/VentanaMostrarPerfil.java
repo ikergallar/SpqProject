@@ -38,6 +38,7 @@ public class VentanaMostrarPerfil extends JFrame {
 		JButton btnCerrar = new JButton("CERRAR");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				dispose();
 			}
 		});
 		btnCerrar.setBackground(new Color(255, 0, 0));
