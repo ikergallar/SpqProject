@@ -145,11 +145,17 @@ public class Anuncio {
 	public void setFoto(String foto) {
 		this.foto = foto;
 	}
-
+	/**
+	 * Devuelve el id del usuario que ha creado el Anuncio
+	 * @return int idUsuario del anuncio
+	 */
 	public int getIdUsuario() {
 		return idUsuario;
 	}
-
+	/**
+	 * Actualiza el idUsuario del Anuncio
+	 * @param int idUsuario del anuncio con el nuevo valor
+	 */
 	public void setIdUsuario(int nombreUsuario) {
 		this.idUsuario = nombreUsuario;
 	}
