@@ -20,6 +20,15 @@ import javax.jdo.annotations.PersistenceCapable;
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 public class AnuncioGuardado extends Anuncio {
+	int idAnuncio;
+	
+	public int getIdAnuncio() {
+		return idAnuncio;
+	}
+	public void setIdAnuncio(int idAnuncio) {
+		this.idAnuncio = idAnuncio;
+	}
+
 	private GregorianCalendar fecha;
 	int reportes;
 	

@@ -60,7 +60,7 @@ public class VentanaMostrarServicio extends JDialog {
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget servicioTarget = appTarget.path("servicios");
 	final WebTarget servicioGuardadoTarget = appTarget.path("serviciosGuardados");
-	final WebTarget contratarTarget = servicioGuardadoTarget.path("comprar");
+	final WebTarget contratarTarget = servicioGuardadoTarget.path("contratar");
 	final WebTarget updateTarget = servicioTarget.path("updateAnuncio");
 	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
 
@@ -311,8 +311,9 @@ public class VentanaMostrarServicio extends JDialog {
 		
 		btnContratar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int idAnuncio = anuncio.getIdAnuncio();
 				AnuncioGuardado anuncioContratado = new AnuncioGuardado();
-				anuncioContratado.setIdAnuncio(anuncio.getIdAnuncio());
+				anuncioContratado.setIdAnuncio(idAnuncio);
 				ZoneId defaultZoneId = ZoneId.systemDefault();
 				LocalDate localDate = LocalDate.now();
 				Date date = Date.from(localDate.atStartOfDay(defaultZoneId).toInstant());
@@ -320,7 +321,6 @@ public class VentanaMostrarServicio extends JDialog {
 				gc.setTimeInMillis(date.getTime());
 				anuncioContratado.setFecha(gc);
 				contratarTarget.request().post(Entity.entity(anuncioContratado, MediaType.APPLICATION_JSON));
-				eliminarServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 				JOptionPane.showMessageDialog(null, "Servicio contratado correctamente", "Correcto", 1);
 				dispose();
 			}

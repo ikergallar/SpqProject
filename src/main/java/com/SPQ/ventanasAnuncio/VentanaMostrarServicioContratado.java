@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -21,6 +22,7 @@ import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
 import java.awt.event.ActionListener;
@@ -56,12 +58,19 @@ public class VentanaMostrarServicioContratado extends JDialog {
 	final WebTarget updateServicioTarget = servicioTarget.path("updateValoracion");
 	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
 
-	public VentanaMostrarServicioContratado(AnuncioGuardado anuncio, Usuario usuario) {
+	public VentanaMostrarServicioContratado(AnuncioGuardado anunciosGuardados, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
 		setTitle("Hustle - Servicio");
 		setBounds(100, 100, 513, 700);
-		getContentPane().setLayout(null);
-	
+		getContentPane().setLayout(null);		
+
+		WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("idAnuncio",
+				anunciosGuardados.getIdAnuncio());
+		GenericType<Anuncio> genericType = new GenericType<Anuncio>() {
+		};
+		
+		Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+		
 		JLabel lblNewLabel = new JLabel(anuncio.getNombre());
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
@@ -177,8 +186,8 @@ public class VentanaMostrarServicioContratado extends JDialog {
 			public void actionPerformed(ActionEvent arg0) {
 				int reportes = 0;
 				reportes ++;
-				anuncio.setReportes(reportes);
-				reportTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
+				anunciosGuardados.setReportes(reportes);
+				reportTarget.request().put(Entity.entity(anunciosGuardados, MediaType.APPLICATION_JSON));
 				JOptionPane.showMessageDialog(null, "Servicio reportado correctamente", "Correcto", 1);
 				dispose();
 			}

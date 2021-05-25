@@ -31,29 +31,7 @@ public class AnuncioGuardadoTest {
 			e.printStackTrace();
 		}	
 	}
-	@Test
-	public void testGetNombre() {
 	
-		try {
-			SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-			String fecha = "11-11-2001";
-			Date date = sdf.parse(fecha);
-			GregorianCalendar gc = new GregorianCalendar();
-			gc.setTimeInMillis(date.getTime());
-		//	AnuncioGuardado anuncio = new AnuncioGuardado(gc,"pedro");
-		//	assertEquals("pedro", anuncio.getNombre());
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}	
-	}
-	
-	@Test
-	public void testSetNombre() {
-		AnuncioGuardado anuncio = new AnuncioGuardado();
-		String nombre = "Pedro";
-		anuncio.setNombre(nombre);
-	}
 	
 	@Test
 	public void testSetFecha() {

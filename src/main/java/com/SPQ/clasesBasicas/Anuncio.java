@@ -228,10 +228,6 @@ public class Anuncio {
 	 * @param Anuncio
 	 * @param Comentario
 	 */
-	public void anyadirComentario(Anuncio anuncioR, Comentario comentR) {
-		anuncioR.comentarios.add(comentR);
-		
-	}
-
+	
 
 }

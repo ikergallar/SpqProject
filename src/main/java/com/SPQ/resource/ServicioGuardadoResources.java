@@ -47,9 +47,9 @@ public class ServicioGuardadoResources {
 	}
 
 	@POST
-	@Path("comprar")
+	@Path("contratar")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void guardarAnuncio(AnuncioGuardado anuncio) {
+	public void guardarAnuncio(AnuncioGuardado anuncioGuardado) {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -57,7 +57,7 @@ public class ServicioGuardadoResources {
 		try {
 			tx.begin();
 
-			pm.makePersistent(anuncio);
+			pm.makePersistent(anuncioGuardado);
 
 			tx.commit();
 
@@ -72,7 +72,7 @@ public class ServicioGuardadoResources {
 	@GET
 	@Path("servicio")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Anuncio seleccionarAnuncioGuardado(@QueryParam("nombre") String nombre) {
+	public Anuncio seleccionarAnuncioGuardado(@QueryParam("idAnuncio") int id) {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
 		Transaction tx = pm.currentTransaction();
@@ -80,7 +80,7 @@ public class ServicioGuardadoResources {
 		tx.begin();
 
 		Query<AnuncioGuardado> query = pm.newQuery("javax.jdo.query.SQL",
-				"SELECT * FROM anuncioguardado where nombre='" + nombre + "'");
+				"SELECT * FROM anuncioguardado where idAnuncio='" + id + "'");
 		query.setClass(AnuncioGuardado.class);
 
 		AnuncioGuardado anuncio = query.executeUnique();
