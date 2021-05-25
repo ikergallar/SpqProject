@@ -107,10 +107,10 @@ public class AnuncioGuardado {
 		WebTarget seleccionarTarget = servicioTarget.path("servicio").queryParam("idanuncio",getIdAnuncio());
 		GenericType<Anuncio> genericType = new GenericType<Anuncio>() {
 		};
-		
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		Anuncio anuncio = seleccionarTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 		
-		return anuncio.getNombre() + ", " + anuncio.getDescripcion() + ", Fecha: " + fecha + ", " + anuncio.getPrecio() + " euros, CATEGORIA:" + anuncio.getCategoria();
+		return anuncio.getNombre() + ", " + anuncio.getDescripcion() + ", Fecha: " + sdf.format(fecha.getTime()) + ", " + anuncio.getPrecio() + " euros, CATEGORIA:" + anuncio.getCategoria();
 	}
 
 }
