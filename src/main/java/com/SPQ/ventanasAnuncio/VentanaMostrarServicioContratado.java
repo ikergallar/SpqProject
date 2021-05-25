@@ -80,24 +80,6 @@ public class VentanaMostrarServicioContratado extends JDialog {
 		btnCerrar.setBounds(237, 584, 260, 77);
 		getContentPane().add(btnCerrar);
 
-		JLabel lblImagenEstrella = new JLabel("");
-		lblImagenEstrella.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				if (usuario.getFavoritos() == null) {
-					fav.add(anuncio);
-					usuario.setFavoritos(fav);
-				} else {
-					fav = usuario.getFavoritos();
-					fav.add(anuncio);
-					usuario.setFavoritos(fav);
-				}
-			}
-		});
-		lblImagenEstrella.setBounds(409, 38, 55, 55);
-		getContentPane().add(lblImagenEstrella);
-		lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
-
 		JPanel panelServicios = new JPanel();
 		panelServicios.setBounds(28, 104, 437, 429);
 		getContentPane().add(panelServicios);
@@ -202,14 +184,6 @@ public class VentanaMostrarServicioContratado extends JDialog {
 			}
 		});
 		
-		if (usuario.getFavoritos() != null) {
-			for (Anuncio anuncioFav : fav) {
-				if (anuncio.equals(anuncioFav)) {
-					lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
-					break;
-				}
-			}
-		}
 		if (anuncio.isOferta()) {
 			chckbxOferta.setSelected(true);
 		}

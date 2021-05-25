@@ -162,7 +162,7 @@ public class VentanaCrearServicio extends JFrame {
 
 		});
 		
-		dispose();
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 	}
 }

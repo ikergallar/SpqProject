@@ -60,35 +60,39 @@ public class VentanaAnunciosContratados extends JFrame {
 			list.setModel(modelo);
 		}
 
-		JPanel panelBotones = new JPanel();
-		panelBotones.setBounds(0, 592, 592, 83);
-		getContentPane().add(panelBotones);
-		panelBotones.setLayout(new GridLayout(0, 3, 0, 0));
-
 		JButton btnAbrir = new JButton("ABRIR");
-		panelBotones.add(btnAbrir);
 		btnAbrir.setFont(new Font("Tahoma", Font.BOLD, 16));
 		btnAbrir.setForeground(Color.WHITE);
 		btnAbrir.setBackground(Color.RED);
+		btnAbrir.setBounds(28, 570, 263, 94);
+		getContentPane().add(btnAbrir);
+		
 
-		JButton btnEliminar = new JButton("");
-		panelBotones.add(btnEliminar);
-		btnEliminar.setFont(new Font("Tahoma", Font.BOLD, 16));
-		btnEliminar.setForeground(Color.WHITE);
-		btnEliminar.setBackground(Color.RED);
-
+		JButton btnAtras = new JButton("CERRAR");
+		btnAtras.setFont(new Font("Tahoma", Font.BOLD, 16));
+		btnAtras.setForeground(Color.WHITE);
+		btnAtras.setBackground(Color.RED);
+		btnAtras.setBounds(300, 570, 263, 94);
+		getContentPane().add(btnAtras);
 
 		JLabel lblNewLabel = new JLabel("SERVICIOS CONTRATADOS");
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 22));
-		lblNewLabel.setBounds(208, 21, 201, 38);
-		getContentPane().add(lblNewLabel);
+		lblNewLabel.setBounds(151, 21, 322, 38);
+		getContentPane().add(lblNewLabel);		
 
 		btnAbrir.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				AnuncioGuardado anuncio = ((AnuncioGuardado) list.getSelectedValue());
 				VentanaMostrarServicioContratado contr = new VentanaMostrarServicioContratado(anuncio, usuario);
 				contr.setVisible(true);
+				dispose();
+
+			}
+		});	
+		
+		btnAtras.addActionListener((ActionListener) new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
 				dispose();
 
 			}
