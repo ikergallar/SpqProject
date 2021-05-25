@@ -1,0 +1,25 @@
+var classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test =
+[
+    [ "setUp", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#af7390ed68a4605bf5962eb4d9ce1d7ab", null ],
+    [ "tearDown", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a3567fa37b610d0901277d3d61dcb832a", null ],
+    [ "testanyadirComentario", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a3d47c3c53240bb285444ae41e86237d9", null ],
+    [ "testGetCategoria", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a7b227734670cc196915c131b82f91026", null ],
+    [ "testGetComentarios", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a626362f6f59125f34c4d417497d8d9fb", null ],
+    [ "testGetDescripcion", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a930727b83d99d9cacd20f0c31b30af19", null ],
+    [ "testGetFoto", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a31098cb4414aa24c991e06a6439ad3fc", null ],
+    [ "testGetIdAnuncio", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a74748cdd37c8b51bd7d26c13422fc1b4", null ],
+    [ "testGetIdUsuario", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a8e2d55d8dae6c0e9a6c3f100e2927928", null ],
+    [ "testGetNombre", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#ad1fe35e0bcfde78b644d1821f5441e86", null ],
+    [ "testGetPrecio", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a53968d4a6a05a95dfb5babf0229031bd", null ],
+    [ "testIsOferta", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a61f03ec700aab9307f1707d1bf3c1ace", null ],
+    [ "testSetCategoria", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a1aeb86212416e95982a414852bc92962", null ],
+    [ "testSetComentarios", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#ab93d3fe3f153c142ec84c05ada7a7fae", null ],
+    [ "testSetDescripcion", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#ae432cf7ea1e0daa63fec0ed0112e0b9f", null ],
+    [ "testSetFoto", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#aa173bab3499b4004349bc0b5bb7fc8e3", null ],
+    [ "testSetIdAnuncio", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a0725d0540a29ecac474b2d123913a5a0", null ],
+    [ "testSetIdUsuario", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#af111b669aefec44e32b8522b844f87d4", null ],
+    [ "testSetNombre", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#af66b53a80eb44babbad1bc9d563b4292", null ],
+    [ "testSetOferta", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a0d3a0161b98954081ef2e9d2ee641d0a", null ],
+    [ "testSetPrecio", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#a68cde58538e4d26b970e9cf2b77b23f4", null ],
+    [ "testToString", "classcom_1_1_s_p_q_1_1clases_basicas_1_1_anuncio_test.html#aeaee6d0e4d87713da7ce6bcb0b24f8fd", null ]
+];
