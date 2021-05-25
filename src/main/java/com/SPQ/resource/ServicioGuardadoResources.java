@@ -90,5 +90,26 @@ public class ServicioGuardadoResources {
 		return anuncio;
 
 	}
+	
+	@PUT
+	@Path("report")
+	@Produces(MediaType.APPLICATION_JSON)
+	public void updateAnuncio(AnuncioGuardado anuncio) {
+
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		tx.begin();
+
+		Query query = pm.newQuery("javax.jdo.query.SQL",
+				"UPDATE anuncioGuardado SET reportes='" + anuncio.getReportes()	+ "' WHERE idanuncio ='" + anuncio.getIdAnuncio() + "'");
+		query.setClass(Anuncio.class);
+		Long update = (Long) query.execute();
+
+		tx.commit();
+		pm.close();
+
+	}
 
 }

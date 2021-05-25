@@ -86,9 +86,9 @@ public class VentanaAnunciosContratados extends JFrame {
 
 		btnAbrir.addActionListener((ActionListener) new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Anuncio anuncio = ((Anuncio) list.getSelectedValue());
-				VentanaEditarServicio edit = new VentanaEditarServicio(usuario, anuncio);
-				edit.setVisible(true);
+				AnuncioGuardado anuncio = ((AnuncioGuardado) list.getSelectedValue());
+				VentanaMostrarServicioContratado contr = new VentanaMostrarServicioContratado(anuncio, usuario);
+				contr.setVisible(true);
 				dispose();
 
 			}

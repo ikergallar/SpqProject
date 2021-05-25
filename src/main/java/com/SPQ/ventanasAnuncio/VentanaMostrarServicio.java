@@ -306,7 +306,7 @@ public class VentanaMostrarServicio extends JDialog {
 				AnuncioGuardado anuncioContratado = new AnuncioGuardado();
 				anuncioContratado.setIdAnuncio(anuncio.getIdAnuncio());
   //              anuncioContratado.setFecha(java.time.LocalTime.now());
-				servicioGuardadoTarget.request().post(Entity.entity(anuncioContratado, MediaType.APPLICATION_JSON));
+				contratarTarget.request().post(Entity.entity(anuncioContratado, MediaType.APPLICATION_JSON));
 				eliminarServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 				JOptionPane.showMessageDialog(null, "Servicio contratado correctamente", "Correcto", 1);
 				dispose();

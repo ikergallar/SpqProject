@@ -53,6 +53,7 @@ public class VentanaMostrarServicioContratado extends JDialog {
 	final WebTarget servicioTarget = appTarget.path("servicios");
 	final WebTarget servicioGuardadoTarget = appTarget.path("serviciosGuardados");
 	final WebTarget contratarTarget = servicioGuardadoTarget.path("comprar");
+	final WebTarget reportTarget = servicioGuardadoTarget.path("report");
 	final WebTarget updateServicioTarget = servicioTarget.path("updateValoracion");
 	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
 
@@ -79,7 +80,7 @@ public class VentanaMostrarServicioContratado extends JDialog {
 
 				if (valoracion.equals("5") || valoracion.equals("4") || valoracion.equals("3") || valoracion.equals("2")
 						|| valoracion.equals("1") || valoracion.equals("")) {
-					anuncio.setValoracion(5);
+			//		anuncio.setValoracion(5);
 					updateServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 					dispose();
 				} else {
@@ -260,6 +261,10 @@ public class VentanaMostrarServicioContratado extends JDialog {
 		
 		btnReportar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				int reportes = 0;
+				reportes ++;
+				anuncio.setReportes(reportes);
+				reportTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 				JOptionPane.showMessageDialog(null, "Servicio reportado correctamente", "Correcto", 1);
 				dispose();
 			}
