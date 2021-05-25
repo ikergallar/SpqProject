@@ -42,7 +42,6 @@ public class VentanaCrearServicio extends JFrame {
 	final WebTarget servicioTarget = appTarget.path("servicios");
 	final WebTarget crearServicioTarget = servicioTarget.path("crear");
 
-
 	/**
 	 * Create the frame.
 	 */
@@ -158,10 +157,12 @@ public class VentanaCrearServicio extends JFrame {
 					JOptionPane.showMessageDialog(null, "Anuncio creado correctamente", "Correcto", 1);
 					dispose();
 
-				}
+				}				
 			}
 
 		});
+		
+		dispose();
 
 	}
 }

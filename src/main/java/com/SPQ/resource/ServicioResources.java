@@ -209,27 +209,8 @@ public class ServicioResources {
 
 		Query query = pm.newQuery("javax.jdo.query.SQL",
 				"UPDATE anuncio SET nombre='" + anuncio.getNombre() + "', descripcion='" + anuncio.getDescripcion()
-						+ "', categoria='" + anuncio.getCategoria() + "',precio='" + anuncio.getPrecio()
+						+ "', categoria='" + anuncio.getCategoria() + "',precio='" + anuncio.getPrecio() + "' comentarios= '" + anuncio.getComentarios()
 						+ "' WHERE idanuncio ='" + anuncio.getIdAnuncio() + "'");
-		query.setClass(Anuncio.class);
-		Long update = (Long) query.execute();
-
-		tx.commit();
-		pm.close();
-
-	}
-	@PUT
-	@Path("updateValoracion")
-	@Produces(MediaType.APPLICATION_JSON)
-	public void updateValoracion(Comentario comentario) {
-
-		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
-		PersistenceManager pm = pmf.getPersistenceManager();
-		Transaction tx = pm.currentTransaction();
-
-		tx.begin();
-
-		Query query = pm.newQuery("javax.jdo.query.SQL","INSERT INTO comentario (valoracion) VALUES ('" + comentario.getValoracion() + "') WHERE nombreusuario ='" + comentario.getNombreUsuario() + "'");
 		query.setClass(Anuncio.class);
 		Long update = (Long) query.execute();
 

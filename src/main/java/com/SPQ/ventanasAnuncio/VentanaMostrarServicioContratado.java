@@ -71,19 +71,7 @@ public class VentanaMostrarServicioContratado extends JDialog {
 		JButton btnCerrar = new JButton("CERRAR");
 		btnCerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String valoracion;
-
-				valoracion = txtValoracion.getText();
-
-				if (valoracion.equals("5") || valoracion.equals("4") || valoracion.equals("3") || valoracion.equals("2")
-						|| valoracion.equals("1") || valoracion.equals("")) {
-			//		anuncio.setValoracion(5);
-					updateServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
-					dispose();
-				} else {
-					JOptionPane.showMessageDialog(null, "Por favor, valore el servicio de 1 a 5", "Error", 0);
-					txtValoracion.setText("");
-				}
+				dispose();
 			}
 		});
 		btnCerrar.setBackground(new Color(255, 0, 0));

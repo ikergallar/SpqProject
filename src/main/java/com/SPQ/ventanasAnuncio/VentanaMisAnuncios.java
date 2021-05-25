@@ -149,6 +149,7 @@ public class VentanaMisAnuncios extends JFrame {
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		this.setTitle("Hustle - Mis Servicios");
 		this.setVisible(true);
+		dispose();
 
 	}
 }

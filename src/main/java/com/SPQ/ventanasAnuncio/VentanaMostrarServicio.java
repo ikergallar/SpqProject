@@ -56,7 +56,7 @@ public class VentanaMostrarServicio extends JDialog {
 	final WebTarget servicioTarget = appTarget.path("servicios");
 	final WebTarget servicioGuardadoTarget = appTarget.path("serviciosGuardados");
 	final WebTarget contratarTarget = servicioGuardadoTarget.path("comprar");
-	final WebTarget updateServicioTarget = servicioTarget.path("updateValoracion");
+	final WebTarget updateTarget = servicioTarget.path("updateAnuncio");
 	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
 
 	private JTextField tfComentario;
@@ -152,7 +152,7 @@ public class VentanaMostrarServicio extends JDialog {
 				Comentario nuevoComent= new Comentario();
 				nuevoComent.generarComentario(tfComentario.getText(), Integer.parseInt(tfValoracion.getText())  , usuario);
 				anuncio.getComentarios().add(nuevoComent);
-				//FALTA ACTUALIZAR LA BD CON EL COMENTARIO REALIZADO SE PODRIA HACER CON EL BOTON CERRAR
+				updateTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
 				JOptionPane.showMessageDialog(null, "El comentario se ha realizado", "Comentario realizado", 2);
 			}
 		});
@@ -178,11 +178,14 @@ public class VentanaMostrarServicio extends JDialog {
 		listaComentarios.setBounds(10, 60, 417, 217);
 		panelComentarios.add(listaComentarios);
 		DefaultListModel modelo = new DefaultListModel();
-		List<Comentario> comentarios =anuncio.getComentarios();
-		for (Comentario comentario : comentarios) {
-			modelo.addElement(comentario);
-			listaComentarios.setModel(modelo);
+		if(anuncio.getComentarios() != null) {
+			List<Comentario> comentarios =anuncio.getComentarios();
+			for (Comentario comentario : comentarios) {
+				modelo.addElement(comentario);
+				listaComentarios.setModel(modelo);
+			}
 		}
+		
 		
 		JLabel lblComentarios = new JLabel("COMENTARIOS");
 		lblComentarios.setForeground(Color.WHITE);
