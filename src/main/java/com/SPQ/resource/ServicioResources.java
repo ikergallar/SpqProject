@@ -13,6 +13,7 @@ import javax.jdo.Transaction;
 
 import com.SPQ.clasesBasicas.Anuncio;
 import com.SPQ.clasesBasicas.Categoria;
+import com.SPQ.clasesBasicas.Comentario;
 import com.SPQ.clasesBasicas.Usuario;
 
 import jakarta.ws.rs.Consumes;
@@ -220,7 +221,7 @@ public class ServicioResources {
 	@PUT
 	@Path("updateValoracion")
 	@Produces(MediaType.APPLICATION_JSON)
-	public void updateValoracion(Anuncio anuncio) {
+	public void updateValoracion(Comentario comentario) {
 
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -228,7 +229,7 @@ public class ServicioResources {
 
 		tx.begin();
 
-		Query query = pm.newQuery("javax.jdo.query.SQL","INSERT INTO anuncio (valoracion) VALUES ('" + anuncio.getValoracion() + "') WHERE idanuncio ='" + anuncio.getIdAnuncio() + "'");
+		Query query = pm.newQuery("javax.jdo.query.SQL","INSERT INTO comentario (valoracion) VALUES ('" + comentario.getValoracion() + "') WHERE nombreusuario ='" + comentario.getNombreUsuario() + "'");
 		query.setClass(Anuncio.class);
 		Long update = (Long) query.execute();
 
