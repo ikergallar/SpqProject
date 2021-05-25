@@ -43,7 +43,6 @@ public class VentanaMostrarServicioContratado extends JDialog {
 	private JTextField tfCategoria;
 	private JTextField tfPrecio;
 	private JTextField tfDescripcion;
-	private JTextField txtValoracion;
 	CardLayout cl = new CardLayout();
 
 	private List<Anuncio> fav = new ArrayList<Anuncio>();
@@ -56,8 +55,6 @@ public class VentanaMostrarServicioContratado extends JDialog {
 	final WebTarget reportTarget = servicioGuardadoTarget.path("report");
 	final WebTarget updateServicioTarget = servicioTarget.path("updateValoracion");
 	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
-
-	private JTextField textField;
 
 	public VentanaMostrarServicioContratado(AnuncioGuardado anuncio, Usuario usuario) {
 		getContentPane().setBackground(new Color(39, 45, 53));
@@ -118,41 +115,10 @@ public class VentanaMostrarServicioContratado extends JDialog {
 		getContentPane().add(panelServicios);
 		panelServicios.setLayout(cl);
 
-		JPanel panelComentarios = new JPanel();
-		panelComentarios.setBackground(new Color(39,45,53));
-		panelServicios.add(panelComentarios, "2");
-		panelComentarios.setLayout(null);
-		
-		JLabel lblValoracion = new JLabel("Valorar (1-5)");
-		lblValoracion.setBounds(39, 270, 100, 19);
-		panelComentarios.add(lblValoracion);
-		lblValoracion.setForeground(Color.WHITE);
-		lblValoracion.setFont(new Font("Tahoma", Font.BOLD, 15));
-		
-		txtValoracion = new JTextField();
-		txtValoracion.setBounds(165, 262, 44, 38);
-		panelComentarios.add(txtValoracion);
-		txtValoracion.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("Comentario");
-		lblNewLabel_2.setForeground(Color.WHITE);
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 14));
-		lblNewLabel_2.setBounds(39, 329, 100, 19);
-		panelComentarios.add(lblNewLabel_2);
-		
-		textField = new JTextField();
-		textField.setBounds(165, 311, 243, 55);
-		panelComentarios.add(textField);
-		textField.setColumns(10);
-		
-		JButton btnNewButton = new JButton("COMENTAR");
-		btnNewButton.setBounds(107, 377, 89, 23);
-		panelComentarios.add(btnNewButton);
-
 		JPanel panelInfo = new JPanel();
 		panelServicios.add(panelInfo, "1");
 		panelInfo.setBackground(new Color(39, 45, 53));
-		panelInfo.setLayout(new GridLayout(6, 2, 0, 0));
+		panelInfo.setLayout(new GridLayout(5, 2, 0, 0));
 
 		JLabel lblCategoria = new JLabel("Categoria:");
 		lblCategoria.setForeground(Color.WHITE);
@@ -229,28 +195,6 @@ public class VentanaMostrarServicioContratado extends JDialog {
 		btnAbrirPerfil.setForeground(Color.WHITE);
 		btnAbrirPerfil.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		panel.add(btnAbrirPerfil);
-
-		JLabel lblNewLabel_1 = new JLabel("Comentarios");
-		lblNewLabel_1.setForeground(Color.WHITE);
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
-		panelInfo.add(lblNewLabel_1);
-
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBackground(new Color(39, 45, 53));
-		panelInfo.add(panel_1);
-
-		JButton btnAccederComentarios = new JButton("ACCEDER");
-		btnAccederComentarios.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				cl.show(panelServicios, "2");
-			}
-		});
-		btnAccederComentarios.setForeground(Color.WHITE);
-		btnAccederComentarios.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		btnAccederComentarios.setBackground(Color.RED);
-		btnAccederComentarios.setBounds(61, 21, 95, 32);
-		panel_1.add(btnAccederComentarios);
 		
 		JButton btnReportar = new JButton("REPORTAR");
 		btnReportar.setFont(new Font("Tahoma", Font.BOLD, 18));
