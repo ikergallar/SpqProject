@@ -699,12 +699,19 @@ public class VentanaPrincipal extends JFrame {
 					modelo = modeloFavoritos;
 					
 					listaFavoritos = usuario.getFavoritos();
+					
+					if(usuario.getFavoritos() == null || listaFavoritos.isEmpty() ){
+						JOptionPane.showMessageDialog(null, "No tiene ningun servicio en favoritos","Error", 0);
+					}else {
 
-					for (Anuncio anuncios : listaFavoritos) {
-						modelo = modeloFavoritos;
-						modeloFavoritos.addElement(anuncios);
-						list.setModel(modeloFavoritos);
+						for (Anuncio anuncios : listaFavoritos) {
+							modelo = modeloFavoritos;
+							modeloFavoritos.addElement(anuncios);
+							list.setModel(modeloFavoritos);
+						}
+					
 					}
+					
 
 				}
 			}

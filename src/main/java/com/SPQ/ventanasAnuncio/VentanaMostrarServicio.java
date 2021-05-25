@@ -89,32 +89,56 @@ public class VentanaMostrarServicio extends JDialog {
 		btnCerrar.setFont(new Font("Tahoma", Font.BOLD, 18));
 		btnCerrar.setBounds(237, 584, 260, 77);
 		getContentPane().add(btnCerrar);
-
-		JLabel lblImagenEstrella = new JLabel("");
-		lblImagenEstrella.setBounds(409, 38, 55, 55);
-		getContentPane().add(lblImagenEstrella);
+		
+		JLabel lblEstrellaVacia = new JLabel("");
+		lblEstrellaVacia.setBounds(409, 38, 55, 55);
+		lblEstrellaVacia.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
+		getContentPane().add(lblEstrellaVacia);
+		
+		JLabel lblEstrellaRoja = new JLabel("");
+		lblEstrellaRoja.setBounds(409, 38, 55, 55);
+		lblEstrellaRoja.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
+		getContentPane().add(lblEstrellaRoja);
+		lblEstrellaRoja.setVisible(false);
+			
 		if (usuario.getFavoritos() != null) {
-			for (Anuncio anuncioFav : fav) {
-				if (anuncio.equals(anuncioFav)) {
-					lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
-					break;
-				}
+			fav = usuario.getFavoritos();
+			if (fav.indexOf(anuncio) < 0) {
+					lblEstrellaRoja.setVisible(false);
+					lblEstrellaVacia.setVisible(true);
+					
+			}else {
+				lblEstrellaRoja.setVisible(true);
+				lblEstrellaVacia.setVisible(false);
 			}
-		}else {
-			lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaVacia.png")));
 		}
-		lblImagenEstrella.addMouseListener(new MouseAdapter() {
+		lblEstrellaVacia.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				lblImagenEstrella.setIcon(new ImageIcon(getClass().getResource("/estrellaRoja.png")));
+				lblEstrellaRoja.setVisible(true);
+				lblEstrellaVacia.setVisible(false);
 				if (usuario.getFavoritos() == null) {
 					fav.add(anuncio);
 					usuario.setFavoritos(fav);
 				} else {
 					fav = usuario.getFavoritos();
-					fav.add(anuncio);
-					usuario.setFavoritos(fav);
+					if(fav.indexOf(anuncio) < 0) {
+					    fav.add(anuncio);
+					    usuario.setFavoritos(fav);
+					}
 				}
+			}
+		});
+		
+		lblEstrellaRoja.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				lblEstrellaRoja.setVisible(false);
+				lblEstrellaVacia.setVisible(true);
+				fav = usuario.getFavoritos();
+				fav.remove(anuncio);
+				usuario.setFavoritos(fav);
+				
 			}
 		});
 		
