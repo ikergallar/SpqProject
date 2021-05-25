@@ -23,6 +23,7 @@ import jakarta.ws.rs.client.Client;
 import jakarta.ws.rs.client.ClientBuilder;
 import jakarta.ws.rs.client.Entity;
 import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
 import java.awt.event.ActionListener;
@@ -60,9 +61,11 @@ public class VentanaMostrarServicio extends JDialog {
 	final WebTarget appTarget = client.target("http://localhost:8080/myapp");
 	final WebTarget servicioTarget = appTarget.path("servicios");
 	final WebTarget servicioGuardadoTarget = appTarget.path("serviciosGuardados");
+	final WebTarget comentarioTarget = appTarget.path("comentarios");
 	final WebTarget contratarTarget = servicioGuardadoTarget.path("contratar");
 	final WebTarget updateTarget = servicioTarget.path("updateAnuncio");
 	final WebTarget eliminarServicioTarget = servicioTarget.path("eliminar");
+	final WebTarget crearComentarioTarget = comentarioTarget.path("crear");
 
 	private JTextField tfComentario;
 
@@ -182,6 +185,7 @@ public class VentanaMostrarServicio extends JDialog {
 				nuevoComent.generarComentario(tfComentario.getText(), Integer.parseInt(tfValoracion.getText())  , usuario);
 				anuncio.getComentarios().add(nuevoComent);
 				updateTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
+				crearComentarioTarget.request().post(Entity.entity(nuevoComent, MediaType.APPLICATION_JSON));
 				JOptionPane.showMessageDialog(null, "El comentario se ha realizado", "Comentario realizado", 2);
 			}
 		});
@@ -207,8 +211,15 @@ public class VentanaMostrarServicio extends JDialog {
 		listaComentarios.setBounds(10, 60, 417, 217);
 		panelComentarios.add(listaComentarios);
 		DefaultListModel modelo = new DefaultListModel();
+		
+		WebTarget comentariosTarget = comentarioTarget.path("listaComentarios");
+		GenericType<List<Comentario>> genericType = new GenericType<List<Comentario>>() {
+		};
+		
+		List<Comentario> comentarios = comentariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+		
 		if(anuncio.getComentarios() != null) {
-			List<Comentario> comentarios =anuncio.getComentarios();
+			
 			for (Comentario comentario : comentarios) {
 				modelo.addElement(comentario);
 				listaComentarios.setModel(modelo);

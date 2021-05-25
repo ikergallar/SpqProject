@@ -40,7 +40,7 @@ public class PrepareData {
 
 			Anuncio anuncio = new Anuncio("EL Mejor Fontanero", "Servicio de fontaneria, los mejores arreglos de retretes", 60, "", Categoria.FONTANERO, true, usuario.getIdUsuario());
 			pm.makePersistent(anuncio);
-			Anuncio anuncio1 = new Anuncio("Maderas a tutiplen", "El mejor puliendo madera que podras encontrar", 40, "", Categoria.FONTANERO,false, usuario1.getIdUsuario());
+			Anuncio anuncio1 = new Anuncio("Maderas a tutiplen", "El mejor puliendo madera que podras encontrar", 40, "", Categoria.ALBAYIL,false, usuario1.getIdUsuario());
 			pm.makePersistent(anuncio1);
 			Anuncio anuncio2 = new Anuncio("Tu PC no Skaapara de mi", "Desde formatear el PC hasta instarlarte los drivers", 20, "", Categoria.INFORMATICO, true,usuario2.getIdUsuario());
 			pm.makePersistent(anuncio2);
