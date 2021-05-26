@@ -38,6 +38,10 @@ public class AnuncioGuardado {
 	@ForeignKey
 	private int idAnuncio;
 	
+	/**
+	 * Devuelve id del AnuncioGuardado
+	 * @return Int con el id del AnuncioGuardado
+	 */
 	public int getIdAnuncioGuardado() {
 		return idAnuncioGuardado;
 	}
@@ -50,16 +54,23 @@ public class AnuncioGuardado {
 		return fecha;
 	}
 	/**
-	 * Devuelve la fecha
+	 * Devuelve el reporte
 	 * @return Int con los reportes de AnuncioGuardado
 	 */
 	public int getReportes() {
 		return reportes;
 	}
+	/**
+	 * Devuelve el id del anuncio
+	 * @return Int con el id de Anuncio
+	 */
 	public int getIdAnuncio() {
 		return idAnuncio;
 	}
-	
+	/**
+	 * Actualiza el id del AnuncioGuardado
+	 * @param int idAnuncioGuardado con el id del AnuncioGuardado
+	 */
 	public void setIdAnuncioGuardado(int idAnuncioGuardado) {
 		this.idAnuncioGuardado = idAnuncioGuardado;
 	}
@@ -72,7 +83,7 @@ public class AnuncioGuardado {
 		this.fecha = fecha;
 	}
 	/**
-	 * Devuelve la nombre
+	 * Devuelve el numero de reportes
 	 * @param Int con el numero de reportes del AnuncioGuardado
 	 */
 	public void setReportes(int reportes) {
@@ -80,14 +91,18 @@ public class AnuncioGuardado {
 	}
 	
 	/**
-	 * Constructor de la clase AnuncioGuardado
-	 * @param fecha GregorianCalendar para determinar la fecha de reserva de AnuncioGuardado
-	 * @param nombre String para determinar el nombre del AnuncioGuardado
+	 * Devuelve el id del anuncio
+	 * @param Int con el id del Anuncio
 	 */
 	public void setIdAnuncio(int idAnuncio) {
 		this.idAnuncio = idAnuncio;
 	}
-	
+	/**
+	 * Constructor de la clase AnuncioGuardado
+	 * @param fecha GregorianCalendar para determinar la fecha de reserva de AnuncioGuardado
+	 * @param reporte Int para guadar el numero de reportes que tenga el anuncio
+	 * @param idAnuncio Int para determinar el id del Anuncio que ha sido reservado
+	 */
 	public AnuncioGuardado(GregorianCalendar date, int reportes, int IdAnuncio) {
 		super();
 		this.fecha = date;
