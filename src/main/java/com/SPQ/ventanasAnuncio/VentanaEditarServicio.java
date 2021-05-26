@@ -155,10 +155,9 @@ public class VentanaEditarServicio extends JFrame {
 					anuncio.setPrecio(precio);
 					anuncio.setCategoria(categoria);
 					anuncio.setOferta(oferta);
-					anuncio.setIdUsuario(usuario.getIdUsuario());
 
 					updateServicioTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
-					JOptionPane.showMessageDialog(null, "Anuncio creado correctamente", "Correcto", 1);
+					JOptionPane.showMessageDialog(null, "Anuncio editado correctamente", "Correcto", 1);
 					dispose();
 
 				}

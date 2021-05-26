@@ -32,6 +32,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.awt.GridLayout;
+import java.awt.desktop.PrintFilesEvent;
+
 import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JCheckBox;
@@ -54,6 +56,7 @@ public class VentanaMostrarServicio extends JDialog {
 	private JTextField tfDescripcion;
 	private JTextField tfValoracion;
 	CardLayout cl = new CardLayout();
+	JList<Comentario> listaComentarios;
 
 	private List<Anuncio> fav = new ArrayList<Anuncio>();
 
@@ -178,17 +181,6 @@ public class VentanaMostrarServicio extends JDialog {
 		tfComentario.setColumns(10);
 		
 		JButton btnComentar = new JButton("COMENTAR");
-		btnComentar.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				Comentario nuevoComent= new Comentario();
-				nuevoComent.generarComentario(tfComentario.getText(), Integer.parseInt(tfValoracion.getText())  , usuario);
-				anuncio.getComentarios().add(nuevoComent);
-				updateTarget.request().put(Entity.entity(anuncio, MediaType.APPLICATION_JSON));
-				crearComentarioTarget.request().post(Entity.entity(nuevoComent, MediaType.APPLICATION_JSON));
-				JOptionPane.showMessageDialog(null, "El comentario se ha realizado", "Comentario realizado", 2);
-			}
-		});
 		btnComentar.setForeground(Color.WHITE);
 		btnComentar.setBackground(Color.RED);
 		btnComentar.setFont(new Font("Tahoma", Font.BOLD, 14));
@@ -207,24 +199,43 @@ public class VentanaMostrarServicio extends JDialog {
 		btnVolver.setBounds(20, 11, 119, 38);
 		panelComentarios.add(btnVolver);
 		
-		JList listaComentarios = new JList();
+		listaComentarios = new JList<Comentario>();
 		listaComentarios.setBounds(10, 60, 417, 217);
 		panelComentarios.add(listaComentarios);
-		DefaultListModel modelo = new DefaultListModel();
+		DefaultListModel<Comentario> modelo = new DefaultListModel<Comentario>();
 		
-		WebTarget comentariosTarget = comentarioTarget.path("listaComentarios");
-		GenericType<List<Comentario>> genericType = new GenericType<List<Comentario>>() {
-		};
+//		WebTarget comentariosTarget = comentarioTarget.path("listaComentarios");
+//		GenericType<List<Comentario>> genericType = new GenericType<List<Comentario>>() {
+//		};
+//		
+//		List<Comentario> comentarios = comentariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
+//		
+//		if(anuncio.getComentarios() != null) {
+//			
+//			for (Comentario comentario : comentarios) {
+//				modelo.addElement(comentario);
+//				listaComentarios.setModel(modelo);
+//			}
+//		}
 		
-		List<Comentario> comentarios = comentariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
-		
-		if(anuncio.getComentarios() != null) {
-			
-			for (Comentario comentario : comentarios) {
-				modelo.addElement(comentario);
-				listaComentarios.setModel(modelo);
+		btnComentar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				
+				  Comentario nuevoComent= new Comentario();
+				  nuevoComent.generarComentario(tfComentario.getText(), Integer.parseInt(tfValoracion.getText()) , usuario);
+				  modelo.addElement(nuevoComent);
+				  listaComentarios.setModel(modelo);
+				 /* anuncio.getComentarios().add(nuevoComent);
+				 * updateTarget.request().put(Entity.entity(anuncio,
+				 * MediaType.APPLICATION_JSON));
+				 * crearComentarioTarget.request().post(Entity.entity(nuevoComent,
+				 * MediaType.APPLICATION_JSON));
+				 */
+				
+				JOptionPane.showMessageDialog(null, "El comentario se ha realizado", "Comentario realizado", 2);
 			}
-		}
+		});
 		
 		
 		JLabel lblComentarios = new JLabel("COMENTARIOS");

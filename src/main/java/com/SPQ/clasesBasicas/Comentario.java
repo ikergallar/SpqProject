@@ -16,6 +16,7 @@ import javax.jdo.annotations.PersistenceCapable;
 @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 public class Comentario {
 	
+	
 	private String mensaje;
 	private String nombreUsuario;
 	private String fecha;
@@ -116,7 +117,13 @@ public class Comentario {
 		this.fecha = "";
 	}
 	
-	
+	/**
+	 * Devuelve String COMENTARIO
+	 * @return String del COMENTARIO
+	 */
+	public String toString() {
+		return "[ " + nombreUsuario + ": " + mensaje+ ".  V= " + valoracion + " ] en " + fecha;
+	}
 	
 
 }
