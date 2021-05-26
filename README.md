@@ -59,6 +59,14 @@ Introducidos los datos de prueba se pueden lanzar los tests de integración y re
 mvn verify -Pintegration
 ```
 
+**Documentación**
+
+Se genera el reporte de la documentacion en HTML y TeX
+
+```
+mvn doxygen:report
+```
+
 **Inicio del servidor**
 
 El servidor REST de la aplicación se lanza utilizando el comando
@@ -107,11 +115,16 @@ pregunta de recuperacion que introdujimos cuando nos registramos para poder crea
 
 Tras iniciar sesión, en el apartado de servicios se encuentra la lista de los servicios que se ofrecen
 donde mediante filtros la busqueda se podrá ajustar más a lo que buscamos. Mediante la opción de abrir
-accederiamos a los detalles del servicio que hubiesemos seleccionado
+accederiamos a los detalles del servicio que hubiesemos seleccionado donde tendriamos diferentes opciones:
+Podriamos contratar el servicio, añadirlo a una lista de anuncios favoritos, visualizar el perfil de el
+usuario que ha creado el servicio y añadir un comentario al servicio.
 
 En caso de querer visualizar los anuncios que ha creado el usuario, en el apartado de mi perfil 
 podríamos acceder a la sección de mis servicios, donde tendriamos la opción de eliminar o editar 
 anuncios que ya hayamos creado y crear nuevos anuncios también.
+
+También tendriamos en mi perfil la opción de acceder a una lista donde se visualizarian los servicios que 
+hayamos contratado anteriormente. A parte tendriamos la opción de reportar dicho servicio.
 
 **Chat**
 
