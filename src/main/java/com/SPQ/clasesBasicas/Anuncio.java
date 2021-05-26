@@ -33,7 +33,7 @@ public class Anuncio {
 	private Categoria categoria;
 	protected boolean oferta;
 	private List<Comentario> comentarios;
-	private int contador;
+	
 	
 	@ForeignKey
 	private int idUsuario;
@@ -200,20 +200,6 @@ public class Anuncio {
 	 */
 	public void setComentarios(List<Comentario> comentarios) {
 		this.comentarios = comentarios;
-	}
-	/**
-	 * Devuelve el contador del Anuncio
-	 * @return Int contador del anuncio
-	 */
-	public int getContador() {
-		return contador;
-	}
-	/**
-	 * Actualiza la lista de comentarios del Anuncio
-	 * @param Int contador con el nuevo valor
-	 */
-	public void setContador(int contador) {
-		this.contador = contador;
 	}
 	
 	/**

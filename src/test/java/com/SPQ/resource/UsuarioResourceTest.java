@@ -83,9 +83,9 @@ public class UsuarioResourceTest {
 		List<Usuario> usuarios = listaUsuariosTarget.request(MediaType.APPLICATION_JSON).get(genericType);
 
 		assertEquals("aidav13", usuarios.get(0).getNombreUsuario());
-		assertEquals("aidav13a", usuarios.get(1).getNombreUsuario());
-		assertEquals("aidavsfa13", usuarios.get(2).getNombreUsuario());
-		assertEquals("aidsfav13", usuarios.get(3).getNombreUsuario());
+		assertEquals("jhonny2", usuarios.get(1).getNombreUsuario());
+		assertEquals("dnkay", usuarios.get(2).getNombreUsuario());
+		assertEquals("xabster", usuarios.get(3).getNombreUsuario());
 		assertEquals("ramona", usuarios.get(4).getNombreUsuario());
 
 	}
@@ -143,12 +143,6 @@ public class UsuarioResourceTest {
 		assertEquals(u1.getTelefono(), usuario.getTelefono());
 		assertEquals(u1.getDireccion(), usuario.getDireccion());
 		assertEquals(u1.getMail(), usuario.getMail());
-	}
-
-	@Test
-	@PerfTest(invocations = 1000, threads = 40)
-	public void testFiltrarUsuario() {
-
 	}
 
 	@Test

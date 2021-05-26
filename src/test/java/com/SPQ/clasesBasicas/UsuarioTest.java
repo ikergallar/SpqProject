@@ -15,6 +15,8 @@ import junit.framework.JUnit4TestAdapter;
 
 import static org.mockito.Mockito.*;
 
+import java.util.List;
+
 import org.glassfish.jersey.test.JerseyTest;
 
 public class UsuarioTest {
@@ -178,7 +180,26 @@ public class UsuarioTest {
 		usuario.printAllData();
 	}
 	
+	@Test
+	public void testGetFavoritos() {
+		List<Anuncio> favoritos=null;
+		usuario.setFavoritos(favoritos);
+        assertEquals(null, usuario.getFavoritos());
+	}
+	@Test
+	public void testSetComentarios() {
+        List<Anuncio> favoritos=null;
+        usuario.setFavoritos(favoritos);
+	}
 	
+	@Test
+	public void testGetDescripcion() {
+		assertEquals("Descripcion perfil", usuario.getDescripcion());	
+	}
 	
-
+	@Test
+	public void testSetDescripcion() {
+		String descripcion = "Descripcion perfil";
+		usuario.setDescripcion(descripcion);
+	}
 }

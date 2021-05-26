@@ -72,4 +72,26 @@ public class ComentarioResources {
 		return results;
 
 	}
+	
+	@GET
+	@Path("comentario")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Comentario seleccionarComentario(@QueryParam("nombreUsuario") String nomUsuario) {
+		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
+		PersistenceManager pm = pmf.getPersistenceManager();
+		Transaction tx = pm.currentTransaction();
+
+		tx.begin();
+
+		Query<Comentario> query = pm.newQuery("javax.jdo.query.SQL",
+				"SELECT * FROM comentario where nombreUsuario='" + nomUsuario + "'");
+		query.setClass(Comentario.class);
+
+		Comentario comentario = query.executeUnique();
+
+		tx.commit();
+		pm.close();
+		return comentario;
+
+	}
 }
