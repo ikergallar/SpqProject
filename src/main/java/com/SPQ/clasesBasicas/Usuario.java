@@ -311,15 +311,6 @@ public class Usuario {
 				+ ", mail=" + mail + ", foto=" + foto + "]";
 	}
 
-	
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + idUsuario;
-		return result;
-	}
-
 	/**
 	 * Boolean de todos los datos de un USUARIO
 	 */
